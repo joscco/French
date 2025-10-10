@@ -1,10 +1,9 @@
 # French Repository
 
-## Live-Demo
-- joscco.github.io/French
+[Live-Demo](https://joscco.github.io/French)
 
 ## Beschreibung
-- Ein leichtgewichtiges Vokabeltrainer-Tool für den Französischunterricht.
+- Ein Vokabeltrainer-Tool für den Französischunterricht.
 
 ## Features
 - Datenquelle: words.csv (Semikolon-getrennt, UTF-8, mit Headern)
