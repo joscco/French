@@ -1,78 +1,77 @@
-import { Injectable } from '@angular/core';
-import { jsPDF } from 'jspdf';
-import autoTable, { CellInput } from 'jspdf-autotable';
-import { PracticeCard } from '../practice/practice.component';
-import { LessonOption } from '../lesson-selector/lesson-selector.component';
+import {Injectable} from '@angular/core';
+import {jsPDF} from 'jspdf';
+import autoTable, {CellInput, HookData} from 'jspdf-autotable';
+import {PracticeCard} from '../practice/practice.component';
+import {LessonOption} from '../lesson-selector/lesson-selector.component';
 
-@Injectable({ providedIn: 'root' })
+@Injectable({providedIn: 'root'})
 export class ExportPdfService {
   exportVocab(cards: PracticeCard[], selected: LessonOption): void {
     if (!cards || cards.length === 0) return;
 
     // Nach französischem Begriff alphabetisch sortieren (case-insensitive, fr-Locale)
     const sorted = [...cards].sort((a, b) =>
-      (a.frenchPrimary || '').localeCompare(b.frenchPrimary || '', 'fr', { sensitivity: 'base' })
+      (a.frenchPrimary || '').localeCompare(b.frenchPrimary || '', 'fr', {sensitivity: 'base'})
     );
 
     const title = `Vokabelliste${selected === 'Alle' ? '' : ' – ' + selected}`;
 
-    const doc = new jsPDF({ orientation: 'portrait', unit: 'pt', format: 'a4' });
+    const doc = new jsPDF({orientation: 'portrait', unit: 'pt', format: 'a4'});
     const marginLeft = 40;
     const startY = 40;
 
-    doc.setFontSize(14);
+    doc.setFontSize(12);
     doc.text(title, marginLeft, startY);
 
     // Tabelle: 3 Spalten: Lektion | Französisch | Deutsch
     const body: CellInput[][] = [];
 
     for (const c of sorted) {
-      const lesson = typeof c.meta?.lesson === 'number' ? String(c.meta.lesson) : '';
+      const category = (c.meta?.category ?? '').trim();
+      const shortCat = category.length > 5 ? category.substring(0, 3) + '.' : category;
       const fr = this.withFrenchArticle(c.frenchPrimary, c.meta?.fr_genus, !!c.meta?.fr_needs_vowel_article);
       const de = this.withGermanArticle(c.germanPrimary, c.meta?.de_genus);
-      const category = (c.meta?.category ?? '').trim();
 
       // Hauptzeile (fett)
       body.push([
-        { content: lesson, styles: { fontStyle: 'bold' } },
-        { content: fr, styles: { fontStyle: 'bold' } },
-        { content: de, styles: { fontStyle: 'bold' } },
+        {content: shortCat, styles: {fontStyle: 'italic', fontSize: 9}},
+        {content: fr, styles: {fontStyle: 'bold'}},
+        {content: de, styles: {fontStyle: 'bold'}},
       ]);
 
       // Zweite Zeile: Beispiele (grau/kleiner/kursiv) und optional Kategorie klein in FR-Spalte
       const frEx = (c.frenchSecondary ?? '').trim();
       const deEx = (c.germanSecondary ?? '').trim();
-      const frExtraParts: string[] = [];
-      if (frEx) frExtraParts.push(frEx);
-      if (category) frExtraParts.push(`(${category})`);
-      const frExtra = frExtraParts.join('\n');
 
-      if (frExtra || deEx) {
-        const subtle = { fontSize: 9, textColor: [120, 120, 120] as any, fontStyle: 'italic' as const };
+      if (frEx || deEx) {
+        const subtle = {fontSize: 9, textColor: [120, 120, 120] as any, fontStyle: 'italic' as const};
         body.push([
-          { content: '', styles: subtle },
-          { content: frExtra, styles: subtle },
-          { content: deEx, styles: subtle },
+          {content: '', styles: subtle},
+          {content: frEx, styles: subtle},
+          {content: deEx, styles: subtle},
         ]);
       }
     }
 
     autoTable(doc, {
-      head: [[ 'Lektion', 'Französisch', 'Deutsch' ]],
+      head: [['Typ', 'Französisch', 'Deutsch']],
       body,
       startY: startY + 20,
-      styles: { fontSize: 10, cellPadding: 6, overflow: 'linebreak' },
-      headStyles: { fillColor: [25, 118, 210], textColor: 255 },
-      bodyStyles: { valign: 'top' },
-      columnStyles: { 0: { cellWidth: 52 }, 1: { cellWidth: 260 }, 2: { cellWidth: 260 } },
-      margin: { left: marginLeft, right: marginLeft },
-      didParseCell: (data) => {
-        // "kleine Spalte" für Lektion: kleinere Schrift in Datenzeilen
-        if (data.section === 'body' && data.column.index === 0) {
-          data.cell.styles.fontSize = 9;
-          data.cell.styles.textColor = [80, 80, 80];
-        }
-      },
+      styles: {fontSize: 10, cellPadding: 6, overflow: 'linebreak'},
+      headStyles: {fillColor: [25, 118, 210], textColor: 255},
+      bodyStyles: {valign: 'top'},
+      columnStyles: {0: {cellWidth: 50}, 1: {cellWidth: 235}, 2: {cellWidth: 235}},
+      margin: {left: marginLeft, right: marginLeft},
+      didDrawPage: (data: HookData) => {
+        // Seitenzahl unten mittig
+        const page = doc.getCurrentPageInfo().pageNumber;
+        const pageText = `Seite ${page}`;
+        doc.setFontSize(10);
+        const textWidth = doc.getTextWidth(pageText);
+        const x = (doc.internal.pageSize.getWidth() - textWidth) / 2;
+        const y = doc.internal.pageSize.getHeight() - 20;
+        doc.text(pageText, x, y);
+      }
     } as any);
 
     const safeSel = selected === 'Alle' ? 'alle' : selected.replace(/\s+/g, '_').toLowerCase();
