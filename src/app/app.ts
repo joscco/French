@@ -46,7 +46,7 @@ export class AppComponent {
       frenchSecondary: r.fr_sentence ?? '',
       germanPrimary: r.de_word,
       germanSecondary: r.de_sentence ?? '',
-      meta: { category: r.category, fr_genus: r.fr_genus, de_genus: r.de_genus, fr_needs_vowel_article: r.fr_needs_vowel_article, lesson: r.lesson }
+      meta: { id: r.id, category: r.category, fr_genus: r.fr_genus, de_genus: r.de_genus, fr_needs_vowel_article: r.fr_needs_vowel_article, lesson: r.lesson }
     }));
   });
 
