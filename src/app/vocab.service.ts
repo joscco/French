@@ -23,37 +23,27 @@ export class VocabService {
     if (this.loaded) return;
     this.loaded = true;
     try {
-      const indexResp = await fetch('./lessons/index.json');
-      if (!indexResp.ok) throw new Error('index.json fehlgeschlagen');
-      const files: string[] = await indexResp.json();
+      const res = await fetch(`words.csv`);
+      if (!res.ok) throw new Error(`Fehler beim Laden ${res}`);
+      const text = await res.text();
+      const records = parseCSV(text);
       const all: VocabRow[] = [];
-      for (const file of files) {
-        try {
-          const lessonNumber = parseInt(file.replace(/[^0-9]/g, ''), 10) || 0;
-          const res = await fetch(`./lessons/${file}`);
-          if (!res.ok) throw new Error(`Fehler beim Laden ${file}`);
-          const text = await res.text();
-          const records = parseCSV(text);
-          for (const r of records) {
-            // Header: id;category;genus;fr_word;fr_sentence;de_word;de_sentence  (Semikolon getrennt)
-            const row: VocabRow = {
-              lesson: ('date' in r && r['date']) ? Number(r['date']) : lessonNumber,
-              id: Number(r['id']),
-              category: (r['category'] || '').trim(),
-              fr_genus: (r['fr_genus'] || '').trim() || undefined,
-              de_genus: (r['de_genus'] || '').trim() || undefined,
-              fr_needs_vowel_article: r['fr_needs_vowel_article']?.trim().toLowerCase() === 'true',
-              fr_word: (r['fr_word'] || '').trim(),
-              fr_sentence: (r['fr_sentence'] || '').trim() || undefined,
-              de_word: (r['de_word'] || '').trim(),
-              de_sentence: (r['de_sentence'] || '').trim() || undefined,
-            };
-            if (!isNaN(row.id) && row.fr_word && row.de_word) {
-              all.push(row);
-            }
-          }
-        } catch (e) {
-          console.warn(e);
+      for (const r of records) {
+        // Header: id;category;genus;fr_word;fr_sentence;de_word;de_sentence  (Semikolon getrennt)
+        const row: VocabRow = {
+          lesson: r['lesson'] ? Number(r['lesson']) : 0,
+          id: Number(r['id']),
+          category: (r['category'] || '').trim(),
+          fr_genus: (r['fr_genus'] || '').trim() || undefined,
+          de_genus: (r['de_genus'] || '').trim() || undefined,
+          fr_needs_vowel_article: r['fr_needs_vowel_article']?.trim().toLowerCase() === 'wahr',
+          fr_word: (r['fr_word'] || '').trim(),
+          fr_sentence: (r['fr_sentence'] || '').trim() || undefined,
+          de_word: (r['de_word'] || '').trim(),
+          de_sentence: (r['de_sentence'] || '').trim() || undefined,
+        };
+        if (!isNaN(row.id) && row.fr_word && row.de_word) {
+          all.push(row);
         }
       }
       this._rows.set(all);
