@@ -1,13 +1,16 @@
 import {
+  AfterViewInit,
   Component,
-  Input,
-  signal,
-  OnChanges,
-  SimpleChanges,
-  ViewChild,
   ElementRef,
+  EventEmitter,
+  Input,
+  OnChanges,
   OnDestroy,
-  AfterViewInit, OnInit, Output, EventEmitter
+  OnInit,
+  Output,
+  signal,
+  SimpleChanges,
+  ViewChild
 } from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {MatCardModule} from '@angular/material/card';

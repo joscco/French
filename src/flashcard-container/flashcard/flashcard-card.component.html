@@ -46,5 +46,17 @@
         <app-lang-indicator [lang]="'german'"></app-lang-indicator>
       </div>
     </div>
+
+    <!-- Lautsprecher unten rechts -->
+    <button
+      mat-icon-button
+      class="w-10 h-10 flex items-center justify-center rounded-full border-2 border-neutral-300 bg-white/80 hover:bg-neutral-200 active:bg-neutral-300 disabled:opacity-40"
+      (click)="toggleSpeak($event)"
+      [disabled]="!canSpeak()"
+      [attr.aria-label]="isSpeaking() ? 'Vorlesen stoppen' : 'Vorlesen starten'"
+      [attr.title]="isSpeaking() ? 'Vorlesen stoppen' : 'Vorlesen starten'"
+    >
+      <mat-icon>{{ isSpeaking() ? 'stop' : 'volume_up' }}</mat-icon>
+    </button>
   </div>
 </div>
