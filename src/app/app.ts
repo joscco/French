@@ -4,6 +4,7 @@ import {LessonOption, LessonSelectorComponent} from '../lesson-selector/lesson-s
 import {ModeSelectorComponent, PracticeMode} from '../mode-selector/mode-selector.component';
 import {PracticeCard, PracticeComponent} from '../practice/practice.component';
 import {VocabService} from './vocab.service';
+import { ExportPdfService } from './export-pdf.service';
 
 @Component({
   selector: 'app-root',
@@ -14,6 +15,7 @@ import {VocabService} from './vocab.service';
 })
 export class AppComponent {
   private vocab = inject(VocabService);
+  private pdf = inject(ExportPdfService);
   loading = signal(true);
 
   constructor() {
@@ -49,4 +51,11 @@ export class AppComponent {
   });
 
   onLessonsChange(sel: LessonOption) { this.selectedLessons.set(sel); }
+
+  // Delegiert PDF-Export an Service (mit Artikeln und Layout)
+  exportPdf() {
+    const cards = this.practiceCards();
+    if (!cards || cards.length === 0) return;
+    this.pdf.exportVocab(cards, this.selectedLessons());
+  }
 }
