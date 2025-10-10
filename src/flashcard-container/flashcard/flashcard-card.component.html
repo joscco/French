@@ -49,13 +49,17 @@
 
     <!-- Lautsprecher unten rechts nur einblenden, wenn verfügbar -->
     <button
-      *ngIf="canSpeak()"
       mat-icon-button
-      class="w-10 h-10 flex items-center justify-center rounded-full border border-neutral-300 bg-white/80 hover:bg-neutral-200 active:bg-neutral-300"
+      class="w-10 h-10 flex items-center justify-center rounded-full border border-neutral-300
+      bg-white/80 hover:bg-neutral-200 active:bg-neutral-300
+      transition-opacity duration-150"
       (click)="toggleSpeak($event)"
       (touchstart)="$event.stopPropagation()"
       (touchmove)="$event.stopPropagation()"
       (touchend)="$event.stopPropagation()"
+      [class.opacity-100]="canSpeak()"
+      [class.opacity-0]="!canSpeak()"
+      [disabled]="!canSpeak()"
       [attr.aria-label]="isSpeaking() ? 'Vorlesen stoppen' : 'Vorlesen starten'"
       [attr.title]="isSpeaking() ? 'Vorlesen stoppen' : 'Vorlesen starten'"
     >
