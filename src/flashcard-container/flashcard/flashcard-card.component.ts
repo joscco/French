@@ -102,7 +102,7 @@ export class FlashcardCardComponent implements OnChanges, OnDestroy {
     return this.visibleLanguage() === 'french' && !!this.meta?.['id'];
   }
 
-  toggleSpeak(ev: MouseEvent) {
+  toggleSpeak(ev: Event) {
     ev.stopPropagation();
     if (this.isSpeaking()) {
       this.stopSpeaking();
@@ -113,19 +113,35 @@ export class FlashcardCardComponent implements OnChanges, OnDestroy {
 
   private startSpeaking() {
     if (!this.canSpeak()) return;
-    // Vorherige stoppen
-    this.stopSpeaking();
-
     const id = this.meta?.['id'];
-    const src = `sounds/fr${id}.mp3`;
-    try {
-      this.audio = new Audio(src);
-      this.isSpeaking.set(true);
+    const src = new URL(`sounds/fr${id}.mp3`, document.baseURI).toString();
+
+    // Vorherige stoppen und persistenten Audio-Player verwenden
+    this.stopSpeaking();
+    if (!this.audio) {
+      this.audio = new Audio();
+      this.audio.preload = 'none';
       this.audio.onended = () => this.stopSpeaking();
-      this.audio.onerror = () => this.stopSpeaking();
-      // Einige Browser blockieren Autoplay ohne Benutzerinteraktion – hier erfolgt Aufruf per Click
-      void this.audio.play();
-    } catch {
+      this.audio.onerror = (e) => {
+        console.error('Audio-Fehler beim Laden/Abspielen', { src: this?.audio?.src, event: e });
+        this.stopSpeaking();
+      };
+    }
+
+    try {
+      this.audio.src = src;
+      // iOS benötigt häufig ein explizites load() vor play()
+      this.audio.load();
+      this.isSpeaking.set(true);
+      const p = this.audio.play();
+      if (p && typeof p.then === 'function') {
+        p.catch((err) => {
+          console.error('Audio play() abgelehnt/fehlgeschlagen', { src, err });
+          this.stopSpeaking();
+        });
+      }
+    } catch (err) {
+      console.error('Audio-Ausnahme beim Start', { src, err });
       this.stopSpeaking();
     }
   }
@@ -135,12 +151,10 @@ export class FlashcardCardComponent implements OnChanges, OnDestroy {
       if (this.audio) {
         this.audio.pause();
         this.audio.currentTime = 0;
-        this.audio.src = '';
-        this.audio.load?.();
+        // Quelle nicht komplett leeren, um User-Gesten-Freigabe nicht zu verlieren
       }
     } finally {
       this.isSpeaking.set(false);
-      this.audio = undefined;
     }
   }
 }
