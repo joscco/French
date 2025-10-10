@@ -35,7 +35,7 @@
     </div>
   </div>
 
-  <div class="flex flex-row items-center justify-between w-full px-6 pb-6">
+  <div class="flex flex-row items-center justify-between w-full h-12 px-6 pb-6">
     <div class="relative flex items-center h-5 select-none text-sm opacity-60">
       <div class="flex items-center gap-2 absolute left-0 transition-opacity duration-300"
            [class.opacity-100]="currentFace === 'french'" [class.opacity-0]="currentFace === 'german'">
@@ -51,7 +51,7 @@
     <button
       *ngIf="canSpeak()"
       mat-icon-button
-      class="w-10 h-10 flex items-center justify-center rounded-full border-2 border-neutral-300 bg-white/80 hover:bg-neutral-200 active:bg-neutral-300"
+      class="w-10 h-10 flex items-center justify-center rounded-full border border-neutral-300 bg-white/80 hover:bg-neutral-200 active:bg-neutral-300"
       (click)="toggleSpeak($event)"
       (touchstart)="$event.stopPropagation()"
       (touchmove)="$event.stopPropagation()"

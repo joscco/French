@@ -203,6 +203,9 @@ export class FlashcardContainerComponent implements OnInit, OnChanges, AfterView
     this.touchActive = true;
     this.touchStartX = e.touches[0].clientX;
     this.touchStartY = e.touches[0].clientY;
+    // Initiale End-Position auch auf Start-Position setzen, falls kein Move erfolgt
+    this.touchEndX = this.touchStartX;
+    this.touchEndY = this.touchStartY;
   };
 
   private onTouchMove = (e: TouchEvent) => {
@@ -211,13 +214,14 @@ export class FlashcardContainerComponent implements OnInit, OnChanges, AfterView
     this.touchEndY = e.touches[0].clientY;
   };
 
-  private onTouchEnd = (_e: TouchEvent) => {
+  private onTouchEnd = (e: TouchEvent) => {
     if (!this.touchActive) return;
     this.touchActive = false;
     const dx = this.touchEndX - this.touchStartX;
     const dy = this.touchEndY - this.touchStartY;
     const absDx = Math.abs(dx);
     const absDy = Math.abs(dy);
+    console.log('dx', dx, absDx, absDy);
     const minDist = 40; // Mindestdistanz für Swipe
     if (absDx > absDy && absDx > minDist) {
       // Horizontaler Swipe
