@@ -89,10 +89,10 @@ export class ExportPdfService {
     const isMasc = g.includes('m');
     const isFem = g.includes('f');
 
-    if (isPlural) return `les ${w}`;
+    if (isPlural) return `les ${w} (${genus})`;
 
     // Nur auf den Flag fr_needs_vowel_article achten (kein Heuristik-Check des ersten Buchstabens)
-    if (needsVowelArticle) return `l'${w}`;
+    if (needsVowelArticle) return `l'${w} (${genus})`;
 
     if (isMasc) return `le ${w}`;
     if (isFem) return `la ${w}`;
