@@ -1,0 +1,278 @@
+﻿lesson;id;category;fr_word;fr_genus;fr_needs_vowel_article;fr_sentence;de_word;de_genus;de_sentence
+1;1;verbe;s'inscrire;;;Je vais m'inscrire à un cours de français.;sich anmelden;;Ich melde mich zu einem Französischkurs an.
+1;2;nom;manifestation;f.;FALSCH;Il y avait une manifestation dans la rue principale.;Demonstration;f.;In der Hauptstraße gab es eine Demonstration.
+1;3;verbe;désinfecter qc.;;FALSCH;Il faut désinfecter la plaie.;etw. desinfizieren;;Man muss die Wunde desinfizieren.
+1;4;nom;frigidaire;m.;FALSCH;Le frigidaire est plein de légumes.;Kühlschrank;m.;Der Kühlschrank ist voller Gemüse.
+1;5;nom;camping;m.;FALSCH;Nous faisons du camping près du lac.;Campen;n.;Wir machen Camping am See.
+1;6;nom;sac de couchage;m.;FALSCH;J’ai oublié mon sac de couchage.;Schlafsack;m.;Ich habe meinen Schlafsack vergessen.
+1;7;adjectif;viticole;;;C’est une région viticole.;weinbau-;;Das ist eine Weinbauregion.
+1;8;verbe;faire des randonnées;;;Nous aimons faire des randonnées en montagne.;wandern;;Wir gehen gern in den Bergen wandern.
+1;9;verbe;randonner;;;On peut randonner dans le parc naturel.;wandern;;Man kann im Naturpark wandern.
+1;10;nom;dénivelé;m.;FALSCH;Au cours de leur randonnée, ils ont parcouru un bon nombre de mètres de dénivelé.;Höhenunterschied;m.;Während ihrer Wanderung haben sie ordentlich Höhenmeter gemacht.
+1;11;nom;chapelle;f.;FALSCH;Nous avons visité une petite chapelle.;Kapelle;f.;Wir haben eine kleine Kapelle besichtigt.
+1;12;expression;en Bavière;;;J’habite en Bavière.;in Bayern;;Ich wohne in Bayern.
+1;13;nom;station thermale;f.;FALSCH;Cette ville est une station thermale célèbre.;Kurort;m.;Diese Stadt ist ein bekannter Kurort.
+1;14;verbe;aller en cure;;;Ma grand-mère est allée en cure.;zur Kur fahren;;Meine Oma ist zur Kur gefahren.
+1;15;adjectif;crevant;;;Le voyage était crevant.;erschöpfend;;Die Reise war anstrengend/erschöpfend.
+1;16;adjectif;fatiguant;;;C’est un travail très fatiguant.;ermüdend;;Das ist eine sehr ermüdende Arbeit.
+1;17;adjectif;dur;;;L’examen était très dur.;schwer, hart;;Die Prüfung war sehr schwer.
+1;18;nom;rôle;m.;FALSCH;Il a joué un rôle important.;Rolle;f.;Er hat eine wichtige Rolle gespielt.
+1;19;adjectif;dégoûtant;;;Ce repas est dégoûtant.;ekelhaft;;Dieses Essen ist ekelhaft.
+1;20;nom;colline;f.;FALSCH;La maison est sur une colline.;Hügel;m.;Das Haus liegt auf einem Hügel.
+1;21;nom;sacoche;f.;FALSCH;Il porte une sacoche en cuir.;Umhängetasche;f.;Er trägt eine Ledertasche.
+1;22;nom;bagages;m. pl.;FALSCH;J’ai perdu mes bagages à l’aéroport.;Gepäck;n.;Ich habe mein Gepäck am Flughafen verloren.
+1;23;verbe;pousser (un vélo);;;Il a dû pousser son vélo en montée.;(ein Fahrrad) schieben;;Er musste sein Rad bergauf schieben.
+1;24;verbe;rouler;;;La voiture roule vite.;fahren;;Das Auto fährt schnell.
+1;25;nom;frein;m.;FALSCH;Le frein de mon vélo ne marche pas.;Bremse;f.;Meine Fahrradbremse funktioniert nicht.
+1;26;nom;casque;m.;FALSCH;Il faut porter un casque à vélo.;Helm;m.;Beim Radfahren muss man einen Helm tragen.
+1;27;nom;casquette;f.;FALSCH;Il porte une casquette bleue.;Kappe;f.;Er trägt eine blaue Kappe.
+1;28;adjectif;lourd;;;Ce sac est très lourd.;schwer;;Diese Tasche ist sehr schwer.
+1;29;adjectif;léger;;;Ce tissu est très léger.;leicht;;Dieser Stoff ist sehr leicht.
+1;30;nom;borne;f.;FALSCH;Nous avons trouvé une borne kilométrique.;Kilometerstein;m.;Wir haben einen Kilometerstein gefunden.
+1;31;nom;aménagement;m.;WAHR;Les aménagements du parc sont modernes.;Anlage;f.;Die Anlagen des Parks sind modern.
+1;32;nom;estuaire;m.;WAHR;L’estuaire de la Loire est magnifique.;Mündung;f.;Die Mündung der Loire ist wunderschön.
+1;33;expression;en Grèce;;;Je vais en Grèce cet été.;in Griechenland;;Ich fahre diesen Sommer nach Griechenland.
+1;34;adjectif;grec/grecque;;;Elle est grecque.;griechisch;;Sie ist Griechin.
+1;35;nom;mer Baltique;f.;FALSCH;Nous passons nos vacances à la mer Baltique.;Ostsee;f.;Wir machen Urlaub an der Ostsee.
+1;36;expression;être en rénovation;;;Le musée est en rénovation.;renoviert werden;;Das Museum wird gerade renoviert.
+1;37;nom;marzipan;f.;FALSCH;La pâte de marzipan est sucrée.;Marzipan;n.;Marzipan ist süß.
+1;38;nom;camping-car;m.;FALSCH;Ils voyagent en camping-car.;Wohnmobil;n.;Sie reisen mit dem Wohnmobil.
+1;39;adjectif;surpeuplé;;;La plage était surpeuplée.;überfüllt;;Der Strand war überfüllt.
+1;40;expression;sur la côte;;;Nous avons une maison sur la côte.;an der Küste;;Wir haben ein Haus an der Küste.
+1;41;expression;aller en avion;;;Nous allons en avion à Paris.;mit dem Flugzeug fliegen;;Wir fliegen nach Paris.
+1;42;expression;dans le centre;;;L’hôtel est dans le centre-ville.;im Zentrum;;Das Hotel ist im Stadtzentrum.
+1;43;nom;enquêteur;m.;WAHR;L’enquêteur cherche des indices.;Ermittler;m.;Der Ermittler sucht nach Hinweisen.
+1;44;nom;désert;m.;FALSCH;Le Sahara est un grand désert.;Wüste;f.;Die Sahara ist eine große Wüste.
+1;45;nom;vol;m.;FALSCH;Le vol de l’avion a été retardé.;Flug;m.;Der Flug wurde verspätet.
+1;46;nom;exposition;f.;WAHR;Il y a une exposition de peinture au musée.;Ausstellung;f.;Es gibt eine Kunstausstellung im Museum.
+1;47;nom;tableau;m.;FALSCH;Ce tableau est de Picasso.;Gemälde;n.;Dieses Gemälde ist von Picasso.
+1;48;adjectif;scandinave;;;J’aime le design scandinave.;skandinavisch;;Ich mag skandinavisches Design.
+1;49;nom;parquet;m.;FALSCH;Le parquet est en chêne.;Parkett;n.;Das Parkett ist aus Eiche.
+1;50;nom;stratifié;m.;FALSCH;Le sol est en stratifié.;Laminat;n.;Der Boden ist aus Laminat.
+1;51;nom;chêne;m.;FALSCH;Cette table est en chêne.;Eiche;f.;Der Tisch ist aus Eiche.
+1;52;nom;aulne;m.;WAHR;L’aulne pousse près des rivières.;Erle;f.;Erlen wachsen oft an Flüssen.
+1;53;nom;hêtre;m.;FALSCH;Le hêtre est un bois dur.;Buche;f.;Buche ist ein Hartholz.
+1;54;nom;pin;m.;FALSCH;Le pin est un arbre résineux.;Kiefer;f.;Die Kiefer ist ein Nadelbaum.
+1;55;nom;érable;m.;WAHR;L’érable donne du sirop.;Ahorn;m.;Aus dem Ahorn gewinnt man Sirup.
+1;56;nom;épicéa;m.;WAHR;L’épicéa est un arbre commun en Europe.;Fichte;f.;Die Fichte ist ein häufiger Baum in Europa.
+1;57;nom;pin parasol;m.;FALSCH;Le pin parasol pousse au sud.;Pinie;f.;Die Pinie wächst im Süden.
+1;58;nom;bouleau;m.;FALSCH;Le bouleau a une écorce blanche.;Birke;f.;Die Birke hat weiße Rinde.
+1;59;nom;cerisier;m.;FALSCH;Le cerisier fleurit au printemps.;Kirschbaum;m.;Der Kirschbaum blüht im Frühling.
+1;60;nom;bois de cerisier;m.;FALSCH;Cette armoire est en bois de cerisier.;Kirschholz;n.;Dieser Schrank ist aus Kirschholz.
+1;61;nom;mélange;m.;FALSCH;C’est un mélange de couleurs.;Mischung;f.;Das ist eine Farbmischung.
+1;62;nom;marché aux puces;m.;FALSCH;J’ai acheté un vase au marché aux puces.;Flohmarkt;m.;Ich habe eine Vase auf dem Flohmarkt gekauft.
+1;63;nom;vaisselle;f.;FALSCH;La vaisselle est propre.;Geschirr;n.;Das Geschirr ist sauber.
+1;64;nom;marque;f.;FALSCH;Quelle est la marque de cette voiture ?;Marke;f.;Welche Marke hat dieses Auto?
+1;65;adjectif;bon marché;;;Ces chaussures sont bon marché.;billig;;Diese Schuhe sind billig.
+1;66;adjectif;meilleur marché;;;C’est meilleur marché que chez eux.;günstiger;;Das ist günstiger als bei ihnen.
+1;67;nom;TVA;f.;FALSCH;La TVA en France est de 20 %.;Mehrwertsteuer;f.;Die Mehrwertsteuer in Frankreich beträgt 20 %.
+1;68;nom;pancarte;f.;FALSCH;Il y avait une pancarte devant la boutique.;Schild;n.;Vor dem Laden hing ein Schild.
+1;69;nom;brocante;f.;FALSCH;J’ai trouvé une vieille lampe à la brocante.;Flohmarkt;m.;Ich habe eine alte Lampe auf dem Flohmarkt gefunden.
+1;70;nom;vide-greniers;f.;FALSCH;Le village organise un vide-greniers dimanche.;Dachbodenflohmarkt;m.;Das Dorf organisiert am Sonntag einen Dachbodenflohmarkt.
+1;71;expression;dès que;;;Dès que j’arrive, je t’appelle.;sobald;;Sobald ich ankomme, rufe ich dich an.
+1;72;expression;son regard s’illumine;;;Son regard s’illumine quand il parle de musique.;sein Blick hellt sich auf;;Sein Blick hellt sich auf, wenn er über Musik spricht.
+1;73;phrase;;;;Ses yeux brillent de joie.;;;Seine Augen glänzen vor Freude.
+1;74;adjectif;fiévreusement;;;Elle écrit fiévreusement dans son carnet.;fieberhaft;;Sie schreibt fieberhaft in ihr Notizbuch.
+1;75;adjectif;lointain;;;C’est un souvenir lointain de mon enfance.;fern, entfernt;;Das ist eine ferne Erinnerung aus meiner Kindheit.
+1;76;nom;trouvaille;f.;FALSCH;Cette chaise est une belle trouvaille.;Fundstück;n.;Dieser Stuhl ist ein schönes Fundstück.
+1;77;expression;faire la route;;;Nous allons faire la route ensemble.;die Strecke zurücklegen;;Wir werden die Strecke gemeinsam fahren.
+1;78;expression;avant même que + subj.;;;Ils partent avant même que le soleil ne se lève.;noch bevor + verb;;Sie brechen auf, noch bevor die Sonne aufgeht.
+1;79;nom;cabas en toile;m.;FALSCH;Elle apporte toujours un cabas en toile au marché.;Stofftasche;f.;Sie bringt immer eine Stofftasche mit zum Markt.
+1;80;nom;thermos;m.;FALSCH;J’ai pris un thermos de café.;Thermoskanne;f.;Ich habe eine Thermoskanne Kaffee mitgenommen.
+1;81;nom;billet;m.;FALSCH;Il a payé avec un billet de 20 euros.;Geldschein;m.;Er hat mit einem 20-Euro-Geldschein bezahlt.
+1;82;nom;lieu d’achat;m.;FALSCH;Le reçu indique le lieu d’achat.;Kaufort;m.;Der Kassenzettel zeigt den Kaufort.
+1;83;nom;périphérie;f.;FALSCH;Ils habitent à la périphérie de la ville.;Stadtrand;m.;Sie wohnen am Stadtrand.
+1;84;nom;phénomène;m.;FALSCH;Le marché est devenu un vrai phénomène culturel.;ein Phänomen;n.;Der Markt ist zu einem echten kulturellen Phänomen geworden.
+1;85;verbe;se répandre;;;La nouvelle s’est rapidement répandue.;sich verbreiten;;Die Nachricht hat sich schnell verbreitet.
+1;86;expression;milliers;;;Des milliers de personnes visitent le marché.;Tausende;;Tausende Menschen besuchen den Markt.
+1;87;nom;coin;m.;FALSCH;Nous nous retrouvons dans un coin tranquille.;Ecke;f.;Wir treffen uns in einer ruhigen Ecke.
+1;88;verbe;chuchoter;;;Les enfants chuchotent dans la bibliothèque.;flüstern;;Die Kinder flüstern in der Bibliothek.
+1;89;verbe;ébrécher;;;J’ai une assiette ébréchée.;an einer Kante angeschlagen;;Ich habe einen Teller mit einer abgesprungenen Ecke.
+1;90;verbe;évoquer;;;Il évoque souvent ses voyages.;erwähnen, ins Gedächtnis rufen;;Er erwähnt oft seine Reisen.
+1;91;nom;âme;f.;WAHR;Cette maison a une âme.;Seele;f.;Dieses Haus hat eine Seele.
+1;92;nom;horloge;f.;WAHR;L’horloge sonne midi.;Uhr;f.;Die Uhr schlägt zwölf.
+1;93;verbe;patiner;;;La peinture commence à patiner avec le temps.;Patina bekommen;;Die Farbe bekommt mit der Zeit Patina.
+1;94;expression;apporter du caractère;;;Ce détail apporte du caractère à la pièce.;Charakter verleihen;;Dieses Detail verleiht dem Raum Charakter.
+1;95;verbe;plaisanter;;;On plaisante toujours avec lui.;scherzen;;Mit ihm scherzt man immer.
+1;96;expression;avec ferveur;;;Elle négocie avec ferveur sur le marché.;leidenschaftlich;;Sie handelt leidenschaftlich auf dem Markt.
+1;97;phrase;;;;Les vendeurs partagent volontiers des anecdotes sur leurs trésors.;;;Die Verkäufer erzählen gerne Anekdoten über ihre Schätze.
+1;98;nom;convivialité;f.;FALSCH;La convivialité est au cœur de cet événement.;Geselligkeit;f.;Die Geselligkeit steht im Mittelpunkt dieser Veranstaltung.
+1;99;phrase;;;;Le temps semble suspendu au fil des conversations.;;;Die Zeit scheint während der Gespräche stillzustehen.
+1;100;nom;frisson;m.;FALSCH;J’ai ressenti un frisson de joie.;Kribbeln;n.;Ich habe einen Freudenschauer gespürt.
+1;101;nom;rotin;m.;FALSCH;Elle s’assoit sur une chaise en rotin.;Rattan;n.;Sie setzt sich auf einen Rattanstuhl.
+1;102;expression;malgré moi;;;J’ai souri malgré moi.;unwillkürlich;;Ich habe unwillkürlich gelächelt.
+1;103;expression;une passion m’a gagnée;;;Peu à peu, une passion m’a gagnée.;eine Leidenschaft hat mich gepackt;;Nach und nach hat mich eine Leidenschaft ergriffen.
+1;104;adjectif;rayonnante;;;Elle est rayonnante de bonheur.;strahlend;;Sie strahlt vor Glück.
+1;105;expression;céder à une tentation;;;Il a cédé à la tentation d’acheter ce tableau.;einer Versuchung erliegen;;Er ist der Versuchung erlegen, das Bild zu kaufen.
+1;106;adjectif;embrumé;;;Le paysage est embrumé ce matin.;neblig, benebelt;;Die Landschaft ist heute Morgen neblig.
+1;107;nom;portefeuille;m.;FALSCH;J’ai perdu mon portefeuille.;Brieftasche;f.;Ich habe meine Brieftasche verloren.
+1;108;nom;coupure;f.;FALSCH;Il a payé en petites coupures.;Geldschein;m.;Er hat mit kleinen Scheinen bezahlt.
+1;109;verbe;arpenter;;;Ils arpentent les allées du marché.;schlendern;;Sie schlendern durch die Gänge des Marktes.
+1;110;adjectif;insolite;;;C’est un objet insolite.;ungewöhnlich;;Das ist ein ungewöhnlicher Gegenstand.
+1;111;verbe;rapporter;;;J’ai rapporté un souvenir de Paris.;mitbringen;;Ich habe ein Souvenir aus Paris mitgebracht.
+1;112;nom;magie;f.;FALSCH;On sent la magie du lieu.;Magie;f.;Man spürt die Magie des Ortes.
+2;1;expression;au fil des années;;;Au fil des années, ils sont devenus amis.;im Lauf der Jahre;;Im Lauf der Jahre sind sie Freunde geworden.
+2;2;verbe;vous étiez;;;Vous étiez en vacances quand je vous ai appelé.;ihr wart / Sie waren;;Ihr wart im Urlaub, als ich euch anrief.
+2;3;expression;en Croatie;;;Nous passons nos vacances en Croatie.;in Kroatien;;Wir verbringen unsere Ferien in Kroatien.
+2;4;nom;maison de vacances;f.;FALSCH;Nous louons une maison de vacances près de la mer.;Ferienhaus;n.;Wir mieten ein Ferienhaus am Meer.
+2;5;nom;attente;f.;WAHR;Son attente d’une réponse rapide a été déçue.;Erwartung;f.;Seine Erwartung auf eine schnelle Antwort wurde enttäuscht.
+2;6;nom;réderie;f.;FALSCH;La réderie d’Amiens attire de nombreux visiteurs.;Trödelmarkt (Normandie);m.;Der Flohmarkt von Amiens zieht viele Besucher an.
+2;7;nom;braderie;f.;FALSCH;La braderie de Lille est très connue.;Trödelmarkt (Nordfrankreich);m.;Die Flohmarkt in Lille ist sehr bekannt.
+2;8;nom;chiffre d’affaires;m.;FALSCH;Le chiffre d’affaires a augmenté de 10 %.;Umsatz;m.;Der Umsatz ist um 10 % gestiegen.
+2;9;nom;cabas;m.;FALSCH;Elle apporte un cabas en toile au marché.;Einkaufstasche;f.;Sie bringt eine Einkaufstasche aus Stoff mit auf den Markt.
+2;10;nom;tissu;m.;FALSCH;Le tissu de cette chemise est très doux.;Stoff;m.;Der Stoff dieses Hemdes ist sehr weich.
+2;11;adjectif;brut;;;Ce vin est brut et sec.;roh, naturbelassen, trocken;;Dieser Wein ist trocken.
+2;12;nom;levure;f.;FALSCH;Il faut ajouter de la levure à la pâte.;Hefe;f.;Man muss dem Teig Hefe hinzufügen.
+2;13;nom;biberon;m.;FALSCH;Le bébé boit son lait dans un biberon.;Fläschchen;n.;Das Baby trinkt seine Milch aus einem Fläschchen.
+2;14;nom;remorque;f.;FALSCH;Il a attaché une remorque à sa voiture.;Anhänger;m.;Er hat einen Anhänger an sein Auto gehängt.
+2;15;verbe;se débarrasser de qc.;;;Elle veut se débarrasser de ces vieux meubles.;etw. loswerden;;Sie will diese alten Möbel loswerden.
+2;16;verbe;fondre;;;Le chocolat fond au soleil.;schmelzen;;Die Schokolade schmilzt in der Sonne.
+2;17;nom;couvert;m.;FALSCH;Chaque invité a un couvert complet.;Besteck;n.;Zu jedem Gast gehört ein komplettes Besteck.
+2;18;nom;argent;m.;WAHR;L’argent est un métal précieux.;Silber;n.;Silber ist ein Edelmetall.
+2;19;nom;argenterie;f.;WAHR;Les couverts en argent sont rangés dans le tiroir.;Silberbesteck;n.;Das Silberbesteck liegt in der Schublade.
+2;20;nom;fourchette;f.;FALSCH;Je n’ai pas de fourchette propre.;Gabel;f.;Ich habe keine saubere Gabel.
+2;21;nom;couteau;m.;FALSCH;Le couteau n’est pas bien aiguisé.;Messer;n.;Das Messer ist nicht gut geschärft.
+2;22;nom;cuillère;f.;FALSCH;Je prends une cuillère de sucre.;Löffel;m.;Ich nehme einen Löffel Zucker.
+2;23;nom;dot;f.;FALSCH;Autrefois, la dot était courante dans les mariages.;Mitgift;f.;Früher war die Mitgift bei Hochzeiten üblich.
+2;24;nom;porcelaine;f.;FALSCH;La porcelaine de Limoges est célèbre.;Porzellan;n.;Das Porzellan aus Limoges ist berühmt.
+2;25;verbe;polir;;;Il faut polir l’argenterie pour qu’elle brille.;polieren;;Man muss das Silber polieren, damit es glänzt.
+2;26;nom;lustre;m.;FALSCH;Un grand lustre éclaire la salle.;Kronleuchter;m.;Ein großer Kronleuchter erhellt den Saal.
+2;27;adjectif;insolent;;;Cet enfant est insolent.;frech, respektlos;;Dieses Kind ist frech.
+2;28;nom;perte;f.;FALSCH;La perte de son portefeuille l’a beaucoup inquiété.;Verlust;m.;Der Verlust seiner Brieftasche hat ihn sehr beunruhigt.
+2;29;nom;début;m.;FALSCH;Le début du film est passionnant.;Anfang;m.;Der Anfang des Films ist spannend.
+2;30;nom;faïence;f.;FALSCH;La faïence de Delft est très réputée.;Steingut;n.;Die Delfter Steingut ist sehr berühmt.
+2;31;nom;vente aux enchères;f.;FALSCH;La vente aux enchères a eu lieu hier.;Auktion;f.;Die Auktion fand gestern statt.
+2;32;verbe;sauvegarder;;;Je dois sauvegarder mes fichiers.;speichern;;Ich muss meine Dateien speichern.
+2;33;nom;drap;m.;FALSCH;Les draps sont propres et frais.;Bettlaken;n.;Die Bettlaken sind sauber und frisch.
+2;34;verbe;marchander;;;Il aime marchander les prix au marché.;feilschen;;Er feilscht gern um die Preise auf dem Markt.
+2;36;nom;cigogne;f.;FALSCH;Une cigogne a niché sur le toit.;Storch;m.;Ein Storch hat auf dem Dach genistet.
+2;37;verbe;faire la poussière;;;Je dois faire la poussière dans le salon.;Staub wischen;;Ich muss im Wohnzimmer Staub wischen.
+2;38;nom;mouchoir;m.;FALSCH;Il a sorti un mouchoir de sa poche.;Taschentuch;n.;Er zog ein Taschentuch aus seiner Tasche.
+2;38;nom;trousseau;m.;FALSCH;Elle a reçu un trousseau complet pour son mariage.;Aussteuer;f.;Sie hat zu ihrer Hochzeit eine komplette Aussteuer erhalten.
+2;39;nom;nappe;f.;FALSCH;La nappe blanche est sur la table.;Tischdecke;f.;Die weiße Tischdecke liegt auf dem Tisch.
+2;40;nom;tasse;f.;FALSCH;Je bois mon café dans une tasse.;Tasse;f.;Ich trinke meinen Kaffee aus einer Tasse.
+3;1;verbe;traîner;;;Il aime simplement traîner le week-end.;herumhängen;;Er hängt am Wochenende einfach nur herum.
+3;2;nom;bague;f.;FALSCH;Elle porte une bague en or.;Ring;m.;Sie trägt einen Goldring.
+3;3;nom;scientifique;m.;FALSCH;Le scientifique étudie le climat.;Wissenschaftler;m.;Der Wissenschaftler untersucht das Klima.
+3;4;nom;réchauffement climatique;m.;FALSCH;Le réchauffement climatique est une menace mondiale.;Erderwärmung;f.;Die Erderwärmung ist eine weltweite Bedrohung.
+3;5;nom;changement climatique;m.;FALSCH;Le changement climatique affecte toute la planète.;Klimawandel;m.;Der Klimawandel betrifft den ganzen Planeten.
+3;6;nom;inondation;f.;WAHR;L’inondation a endommagé de nombreuses maisons.;Überschwemmung;f.;Die Überschwemmung hat viele Häuser beschädigt.
+3;7;expression;dû à la;;;Les retards sont dûs à la pluie.;aufgrund von;;Die Verspätungen sind aufgrund des Regens.
+3;8;nom;sécheresse;f.;FALSCH;La sécheresse dure depuis plusieurs mois.;Dürre;f.;Die Dürre hält seit mehreren Monaten an.
+3;9;adjectif;sec / sèche;;;Le climat est très sec en été.;trocken;;Das Klima ist im Sommer sehr trocken.
+3;10;nom;oiseau migrateur;m.;WAHR;Un oiseau migrateur revient au printemps.;Zugvogel;m.;Ein Zugvogel kehrt im Frühling zurück.
+3;11;nom;forêt mixte;f.;FALSCH;La région est couverte d’une forêt mixte.;Mischwald;m.;Die Region ist von einem Mischwald bedeckt.
+3;12;nom;glacier;m.;FALSCH;Le glacier fond rapidement.;Gletscher;m.;Der Gletscher schmilzt schnell.
+3;13;nom;viking;m.;FALSCH;Les Vikings ont voyagé en Europe.;Wikinger;m.;Die Wikinger reisten durch Europa.
+3;14;verbe;s’installer;;;Les colons se sont installés près du fleuve.;sich niederlassen;;Die Siedler haben sich am Fluss niedergelassen.
+3;15;nom;période glaciaire;f.;FALSCH;La période glaciaire a duré plusieurs millénaires.;Eiszeit;f.;Die Eiszeit dauerte mehrere Jahrtausende.
+3;16;nom;marais;m.;FALSCH;Un marais s’étend derrière la forêt.;Sumpf;m.;Hinter dem Wald erstreckt sich ein Sumpf.
+3;17;expression;entendre dire;;;J’ai entendu dire qu’il va neiger.;gehört haben, dass;;Ich habe gehört, dass es schneien wird.
+3;18;nom;mer Baltique;f.;FALSCH;Nous passons nos vacances à la mer Baltique.;Ostsee;f.;Wir verbringen unsere Ferien an der Ostsee.
+3;19;nom;chute de pierres;f.;FALSCH;Une chute de pierres a bloqué la route.;Steinschlag;m.;Ein Steinschlag hat die Straße blockiert.
+3;20;nom;froid;m.;FALSCH;Le froid de l’hiver est intense.;Kälte;f.;Die Winterkälte ist heftig.
+3;21;verbe;retenir un matériau;;;Ce mur retient bien le matériau isolant.;ein Material zurückhalten;;Diese Wand hält das Dämmmaterial gut zurück.
+3;22;nom;fissure;f.;FALSCH;Une fissure est apparue dans le mur.;Riss;m.;Ein Riss ist in der Wand entstanden.
+3;23;verbe;geler;;;L’eau commence à geler.;gefrieren;;Das Wasser beginnt zu gefrieren.
+3;24;verbe;patiner;;;Nous aimons patiner en hiver.;Schlittschuh laufen;;Wir laufen im Winter gern Schlittschuh.
+3;25;verbe;déneiger;;;Il faut déneiger l’allée.;Schnee räumen;;Man muss den Weg vom Schnee befreien.
+3;26;verbe;faire de la luge;;;Les enfants adorent faire de la luge.;Schlitten fahren;;Die Kinder rodeln gern.
+3;27;nom;téléphérique;m.;FALSCH;Le téléphérique monte jusqu’au sommet.;Seilbahn;f.;Die Seilbahn fährt bis zum Gipfel.
+3;28;nom;canon à neige;m.;FALSCH;Un canon à neige fonctionne toute la nuit.;Schneekanone;f.;Die Schneekanone läuft die ganze Nacht.
+3;29;nom;borne de recharge;f.;FALSCH;Une borne de recharge est installée près du parking.;Ladestation;f.;Neben dem Parkplatz steht eine Ladestation.
+3;30;verbe;s’échapper;;;La fumée s’échappe de la cheminée.;entweichen;;Der Rauch entweicht aus dem Schornstein.
+3;31;verbe;démarrer;;;La voiture démarre sans problème.;starten;;Das Auto startet ohne Probleme.
+3;32;verbe;décoller;;;L’avion décolle à 15 heures.;abheben;;Das Flugzeug hebt um 15 Uhr ab.
+3;33;nom;décollage;m.;FALSCH;Le décollage de l’avion a été retardé.;Start;m.;Der Start des Flugzeugs hat sich verzögert.
+3;34;verbe;atterrir;;;L’avion va atterrir dans quelques minutes.;landen;;Das Flugzeug wird in wenigen Minuten landen.
+3;35;nom;atterrissage;m.;WAHR;L’atterrissage s’est bien passé.;Landung;f.;Die Landung ist gut verlaufen.
+3;36;nom;méduse;f.;FALSCH;Une méduse flotte près de la plage.;Qualle;f.;Eine Qualle treibt in der Nähe des Strands.
+3;37;nom;double/triple vitrage;m.;FALSCH;Un double vitrage améliore l’isolation.;Doppel-/Dreifachverglasung;f.;Eine Doppel- oder Dreifachverglasung verbessert die Dämmung.
+3;38;nom;kérosène;m.;FALSCH;Le kérosène est utilisé comme carburant d’avion.;Kerosin;n.;Kerosin wird als Flugzeugtreibstoff verwendet.
+3;39;nom;pompe à chaleur;f.;FALSCH;Une pompe à chaleur chauffe la maison.;Wärmepumpe;f.;Eine Wärmepumpe heizt das Haus.
+3;40;verbe;enlever des arbres;;;Il faut enlever des arbres pour construire la route.;Bäume entfernen;;Man muss Bäume entfernen, um die Straße zu bauen.
+3;41;nom;arbuste;m.;WAHR;Un arbuste pousse près de la haie.;Strauch;m.;Ein Strauch wächst neben der Hecke.
+3;42;nom;verdure;f.;FALSCH;La verdure du parc est magnifique.;Grün;n.;Das Grün des Parks ist wunderschön.
+3;43;nom;couronne (d’un arbre);f.;FALSCH;La couronne de l’arbre est très large.;Baumkrone;f.;Die Baumkrone ist sehr ausladend.
+3;44;verbe;déborder;;;La rivière a débordé après la pluie.;über die Ufer treten;;Der Fluss ist nach dem Regen über die Ufer getreten.
+3;45;verbe;abattre;;;Il faut abattre cet arbre malade.;fällen;;Dieser kranke Baum muss gefällt werden.
+3;46;nom;panneau solaire;m.;FALSCH;Un panneau solaire produit de l’électricité.;Solarpanel;n.;Ein Solarpanel erzeugt Strom.
+3;47;nom;forage;m.;FALSCH;Le forage a atteint une nappe d’eau.;Bohrung;f.;Die Bohrung hat eine Wasserader erreicht.
+3;48;adjectif;abîmé;;;Le meuble est abîmé par l’humidité.;beschädigt;;Das Möbelstück ist durch die Feuchtigkeit beschädigt.
+3;49;nom;rail;m.;FALSCH;Les rails du train doivent être entretenus.;Schiene;f.;Die Bahnschienen müssen gewartet werden.
+3;50;verbe;soutenir;;;Il faut soutenir ce projet.;unterstützen;;Man muss dieses Projekt unterstützen.
+3;51;nom;stockage;m.;FALSCH;Le stockage de l’énergie est un défi.;Speicher;m.;Die Energiespeicherung ist eine Herausforderung.
+3;52;nom;tier;m.;FALSCH;Un tiers des habitants a signé la pétition.;Drittel;n.;Ein Drittel der Einwohner hat die Petition unterschrieben.
+3;53;nom;chauffe-eau instantané;m.;FALSCH;Un chauffe-eau instantané fournit de l’eau chaude immédiatement.;Durchlauferhitzer;m.;Ein Durchlauferhitzer liefert sofort heißes Wasser.
+3;54;expression;Ça nous arrange bien;;;Ça nous arrange bien que tu puisses venir.;das passt uns gut;;Es passt uns gut, dass du kommen kannst.
+3;55;nom;amortissement;m.;WAHR;L’amortissement de l’investissement est prévu en cinq ans.;Amortisation;f.;Die Amortisation der Investition ist in fünf Jahren geplant.
+3;56;nom;carrelage;m.;FALSCH;Le carrelage de la cuisine est neuf.;Kachel;f.;Die Kacheln in der Küche sind neu.
+3;57;nom;haut-parleur;m.;WAHR;Un haut-parleur diffuse la musique.;Lautsprecher;m.;Ein Lautsprecher gibt die Musik wieder.
+3;58;nom;épaisseur;f.;WAHR;L’épaisseur du mur est de 40 centimètres.;Dicke;f.;Die Dicke der Wand beträgt 40 cm.
+3;59;expression;ne guère pousser à qc;;;Il ne pousse guère à la prudence.;kaum zu etwas drängen;;Er drängt kaum zu Vorsicht.
+3;60;nom;prévision;f.;FALSCH;La prévision météo annonce de la pluie.;Vorhersage;f.;Die Wettervorhersage meldet Regen.
+3;61;nom;prédiction;f.;FALSCH;La prédiction s’est révélée exacte.;Prognose;f.;Die Prognose hat sich als zutreffend erwiesen.
+3;62;nom;dégât;m.;FALSCH;Les dégâts de la tempête sont importants.;Schaden;m.;Die Sturmschäden sind erheblich.
+4;1;verbe;fournir;;;L’entreprise doit fournir des preuves.;liefern;;Die Firma muss Beweise liefern.
+4;2;phrase;;;;On dit qu’on parle le meilleur français à Tours, sur la Loire.;;;Man sagt, in Tours an der Loire spricht man das beste Französisch.
+4;3;nom;maternelle;f.;FALSCH;Mon fils va à la maternelle depuis septembre.;Kindergarten;m.;Mein Sohn geht seit September in den Kindergarten.
+4;4;nom;tisane;f.;FALSCH;Elle boit une tisane avant de dormir.;Kräutertee;m.;Sie trinkt vor dem Schlafengehen einen Kräutertee.
+4;5;nom;infusion;f.;WAHR;J’aime les infusions à la menthe.;Tee;m.;Ich mag Pfefferminztee.
+4;6;verbe;agrandir;;;Ils veulent agrandir la maison.;vergrößern;;Sie wollen das Haus vergrößern.
+4;7;verbe;guérir;;;Ce médicament aide à guérir rapidement.;heilen;;Dieses Medikament hilft, schnell zu heilen.
+4;8;nom;skieur;m;FALSCH;Le skieur descend la piste à toute vitesse.;Skifahrer;m.;Der Skifahrer fährt mit voller Geschwindigkeit die Piste hinunter.
+4;9;adverbe;subitement;;;Il est tombé subitement malade.;plötzlich;;Er ist plötzlich krank geworden.
+4;10;expression;au mois d’octobre;;;Il neige souvent au mois d’octobre ici.;im Oktober;;Hier schneit es oft im Oktober.
+4;11;nom;couche;f.;FALSCH;Une couche de neige couvre les toits.;Schicht;f.;Eine Schneeschicht bedeckt die Dächer.
+4;12;nom;tabouret;m;FALSCH;Peux-tu me passer le tabouret ?;Hocker;m.;Kannst du mir den Hocker reichen?
+4;13;nom;rouille;f.;FALSCH;Il y a de la rouille sur le métal.;Rost;m.;Auf dem Metall ist Rost.
+4;14;verbe;rouiller;;;Les vieilles chaînes ont commencé à rouiller.;rosten;;Die alten Ketten haben angefangen zu rosten.
+4;15;nom;souliers;m. pl.;FALSCH;Il a mis ses souliers neufs pour la fête.;Schuhe;m. pl.;Er hat seine neuen Schuhe für die Feier angezogen.
+4;16;nom;semelle;f.;FALSCH;La semelle de mes bottes est cassée.;Sohle;f.;Die Sohle meiner Stiefel ist kaputt.
+4;17;nom;talon;m;FALSCH;Elle porte des chaussures à talon haut.;Absatz;m.;Sie trägt Schuhe mit hohen Absätzen.
+4;18;nom;guêtres;f. pl.;FALSCH;Les guêtres protègent les jambes de la neige.;Gamaschen;f. pl.;Die Gamaschen schützen die Beine vor Schnee.
+4;19;nom;boue;f.;FALSCH;Le chemin est plein de boue après la pluie.;Schlamm;m.;Der Weg ist nach dem Regen voller Schlamm.
+4;20;nom;filet;m.;FALSCH;Il a attrapé le poisson avec un filet.;Netz;n.;Er hat den Fisch mit einem Netz gefangen.
+4;21;nom;saisonnier;m.;FALSCH;Les travailleurs saisonniers viennent chaque hiver.;Saisonarbeiter;m.;Die Saisonarbeiter kommen jeden Winter.
+4;22;nom;mètre cube;m.;FALSCH;On a besoin de dix mètres cubes de bois.;Kubikmeter;m.;Wir brauchen zehn Kubikmeter Holz.
+4;23;nom;stockage;m.;FALSCH;Le stockage des données est sécurisé.;Speicherung;f.;Die Datenspeicherung ist sicher.
+4;24;nom;retenue;f.;FALSCH;La retenue d’eau sert à produire de l’électricité.;Rückhaltebecken;n.;Das Rückhaltebecken dient der Stromerzeugung.
+4;25;nom;acheminement;m.;WAHR;L’acheminement du courrier prend deux jours.;Transport;m.;Der Transport der Post dauert zwei Tage.
+4;26;verbe;équilibrer;;;Il faut équilibrer le budget.;ausgleichen;;Man muss das Budget ausgleichen.
+4;27;nom;sommet;m.;FALSCH;Du sommet, la vue est magnifique.;Gipfel;m.;Vom Gipfel aus ist die Aussicht wunderschön.
+4;28;expression;en abondance;;;Les fleurs poussent en abondance au printemps.;im Überfluss;;Im Frühling wachsen die Blumen im Überfluss.
+5;1;nom;otorhino;m.;WAHR;J’ai pris rendez-vous chez l’otorhino.;HNO-Arzt;m.;Ich habe einen Termin beim HNO-Arzt.
+5;2;adjectif;utilisable;;;L’eau de pluie est utilisable après filtration.;verwendbar;;Regenwasser ist nach der Filterung verwendbar.
+5;3;nom;héliportage;m.;WAHR;L’héliportage permet d’apporter du matériel en altitude.;Helikoptertransport;m.;Der Helikoptertransport ermöglicht den Materialtransport in der Höhe.
+5;4;nom;coucher de soleil;m.;FALSCH;On admire le coucher de soleil sur la montagne.;Sonnenuntergang;m.;Man bewundert den Sonnenuntergang über dem Berg.
+5;5;nom;mémoire;f.;FALSCH;Ce disque a une grande mémoire.;Datenspeicher;m.;Diese Festplatte hat einen großen Datenspeicher.
+5;6;nom;accumulateur;m.;WAHR;Les accumulateurs stockent l’énergie solaire.;Energiespeicher;m.;Energiespeicher speichern Solarenergie.
+5;7;verbe;accumuler;;;Il a accumulé beaucoup d’expérience.;ansammeln;;Er hat viel Erfahrung angesammelt.
+5;8;nom;barque;f.;FALSCH;Ils traversent le lac en barque.;Boot;n.;Sie überqueren den See mit einem Boot.
+5;9;nom;extension;f.;WAHR;L’extension du réseau est en cours.;Erweiterung;f.;Die Erweiterung des Netzes ist im Gange.
+5;10;nom;damage;m.;FALSCH;Le damage des pistes commence à l’aube.;Präparierung;f.;Die Präparierung der Pisten beginnt im Morgengrauen.
+5;11;nom;dameuse;f.;FALSCH;La dameuse passe chaque nuit.;Pistenraupe;f.;Die Pistenraupe fährt jede Nacht.
+5;12;verbe;abattre des arbres;;;Ils ont dû abattre des arbres malades.;Bäume fällen;;Sie mussten kranke Bäume fällen.
+5;13;verbe;débloquer;;;Il faut débloquer le compte avant de continuer.;entsperren;;Man muss das Konto entsperren, bevor man weitermacht.
+5;14;nom;thermalisme;m.;FALSCH;Le thermalisme attire beaucoup de curistes.;Thermalwesen;n.;Das Thermalwesen zieht viele Kurgäste an.
+5;15;nom;VTT (Vélo Tout Terrain);m.;FALSCH;Le VTT est très populaire en montagne.;Mountainbike;n.;Mountainbiken ist in den Bergen sehr beliebt.
+5;16;nom;moniteur de parapente;m.;FALSCH;Le moniteur de parapente explique les consignes de sécurité.;Gleitschirmlehrer;m.;Der Gleitschirmlehrer erklärt die Sicherheitsregeln.
+5;17;expression;étaler qc. sur l’année;;;Ils veulent étaler la fréquentation sur toute l’année.;über das Jahr verteilen;;Sie wollen den Besuch über das ganze Jahr verteilen.
+5;18;expression;pas de / beaucoup de;;;Il n’y a pas de neige, mais beaucoup de vent.;kein / viel von;;Es gibt keinen Schnee, aber viel Wind.
+5;19;nom;habits de ski;m. pl.;WAHR;Les habits de ski doivent être imperméables.;Skibekleidung;f.;Skibekleidung muss wasserdicht sein.
+5;20;nom;raquettes;f. pl.;FALSCH;On marche avec des raquettes dans la neige.;Schneeschuhe;f. pl.;Man geht mit Schneeschuhen durch den Schnee.
+5;21;nom;confinement;m.;FALSCH;Le confinement a changé nos habitudes.;Lockdown;m.;Der Lockdown hat unsere Gewohnheiten verändert.
+5;22;nom;bottes de ski;f. pl.;FALSCH;Les bottes de ski sont lourdes à porter.;Skischuhe;f. pl.;Skischuhe sind schwer zu tragen.
+5;23;nom;matériel;m.;FALSCH;Le matériel de ski est prêt.;Ausrüstung;f.;Die Skiausrüstung ist bereit.
+5;24;nom;matériau;m.;FALSCH;Ce matériau est très résistant.;Material;n.;Dieses Material ist sehr widerstandsfähig.
+5;25;expression;sans forfait;;;Ils skient sans forfait aujourd’hui.;ohne Skipass;;Sie fahren heute ohne Skipass Ski.
+5;26;adverbe;suffisamment;;;Il n’a pas suffisamment dormi.;ausreichend;;Er hat nicht ausreichend geschlafen.
+5;27;nom;bilan économique;m.;FALSCH;Le bilan économique de la station est positif.;wirtschaftliche Bilanz;f.;Die wirtschaftliche Bilanz des Skigebiets ist positiv.
+5;28;expression;être dans le déni;;;Il est dans le déni de la réalité.;etwas leugnen;;Er leugnet die Realität.
+5;29;verbe;avoir du mal à faire qc;;;J’ai du mal à me lever tôt.;Schwierigkeiten haben;;Ich habe Schwierigkeiten, früh aufzustehen.
+5;30;nom;hydrogène;m.;WAHR;L’hydrogène est une énergie propre.;Wasserstoff;m.;Wasserstoff ist eine saubere Energiequelle.
+5;31;expression;faire perdurer qc;;;Ils veulent faire perdurer la tradition.;etwas fortbestehen lassen;;Sie wollen die Tradition fortbestehen lassen.
+5;32;nom;sobriété;f.;FALSCH;La sobriété énergétique est un objectif national.;Genügsamkeit;f.;Energetische Genügsamkeit ist ein nationales Ziel.
+5;33;nom;gaz à effet de serre;m. pl.;FALSCH;Les gaz à effet de serre augmentent la température.;Treibhausgase;m. pl.;Die Treibhausgase erhöhen die Temperatur.
+5;34;expression;faire figure de bon élève;;;La France fait figure de bon élève en matière d’écologie.;als Musterschüler gelten;;Frankreich gilt in Sachen Ökologie als Musterschüler.
+5;35;nom;éolienne;f.;WAHR;Une éolienne produit de l’électricité grâce au vent.;Windkraftanlage;f.;Eine Windkraftanlage erzeugt Strom durch Wind.
