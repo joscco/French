@@ -8,12 +8,12 @@
 1;7;adjectif;viticole;;;C’est une région viticole.;weinbau-;;Das ist eine Weinbauregion.
 1;8;verbe;faire des randonnées;;;Nous aimons faire des randonnées en montagne.;wandern;;Wir gehen gern in den Bergen wandern.
 1;9;verbe;randonner;;;On peut randonner dans le parc naturel.;wandern;;Man kann im Naturpark wandern.
-1;10;nom;dénivelé;m.;FALSCH;Au cours de leur randonnée, ils ont parcouru un bon nombre de mètres de dénivelé.;Höhenunterschied;m.;Während ihrer Wanderung haben sie ordentlich Höhenmeter gemacht.
+1;10;nom;dénivelé;m.;FALSCH;Au cours de leur randonnée, ils ont parcouru un bon nombre de mètres de dénivelé.;Höhenunterschied;m.;Während ihrer Wanderung haben sie ordentlich viele Meter Höhenunterschied zurückgelegt.
 1;11;nom;chapelle;f.;FALSCH;Nous avons visité une petite chapelle.;Kapelle;f.;Wir haben eine kleine Kapelle besichtigt.
 1;12;expression;en Bavière;;;J’habite en Bavière.;in Bayern;;Ich wohne in Bayern.
 1;13;nom;station thermale;f.;FALSCH;Cette ville est une station thermale célèbre.;Kurort;m.;Diese Stadt ist ein bekannter Kurort.
 1;14;verbe;aller en cure;;;Ma grand-mère est allée en cure.;zur Kur fahren;;Meine Oma ist zur Kur gefahren.
-1;15;adjectif;crevant;;;Le voyage était crevant.;erschöpfend;;Die Reise war anstrengend/erschöpfend.
+1;15;adjectif;crevant;;;Le voyage était crevant.;anstrengend;;Die Reise war anstrengend.
 1;16;adjectif;fatiguant;;;C’est un travail très fatiguant.;ermüdend;;Das ist eine sehr ermüdende Arbeit.
 1;17;adjectif;dur;;;L’examen était très dur.;schwer, hart;;Die Prüfung war sehr schwer.
 1;18;nom;rôle;m.;FALSCH;Il a joué un rôle important.;Rolle;f.;Er hat eine wichtige Rolle gespielt.
@@ -28,12 +28,10 @@
 1;27;nom;casquette;f.;FALSCH;Il porte une casquette bleue.;Kappe;f.;Er trägt eine blaue Kappe.
 1;28;adjectif;lourd;;;Ce sac est très lourd.;schwer;;Diese Tasche ist sehr schwer.
 1;29;adjectif;léger;;;Ce tissu est très léger.;leicht;;Dieser Stoff ist sehr leicht.
-1;30;nom;borne;f.;FALSCH;Nous avons trouvé une borne kilométrique.;Kilometerstein;m.;Wir haben einen Kilometerstein gefunden.
 1;31;nom;aménagement;m.;WAHR;Les aménagements du parc sont modernes.;Anlage;f.;Die Anlagen des Parks sind modern.
 1;32;nom;estuaire;m.;WAHR;L’estuaire de la Loire est magnifique.;Mündung;f.;Die Mündung der Loire ist wunderschön.
 1;33;expression;en Grèce;;;Je vais en Grèce cet été.;in Griechenland;;Ich fahre diesen Sommer nach Griechenland.
 1;34;adjectif;grec/grecque;;;Elle est grecque.;griechisch;;Sie ist Griechin.
-1;35;nom;mer Baltique;f.;FALSCH;Nous passons nos vacances à la mer Baltique.;Ostsee;f.;Wir machen Urlaub an der Ostsee.
 1;36;expression;être en rénovation;;;Le musée est en rénovation.;renoviert werden;;Das Museum wird gerade renoviert.
 1;37;nom;marzipan;f.;FALSCH;La pâte de marzipan est sucrée.;Marzipan;n.;Marzipan ist süß.
 1;38;nom;camping-car;m.;FALSCH;Ils voyagent en camping-car.;Wohnmobil;n.;Sie reisen mit dem Wohnmobil.
@@ -82,12 +80,12 @@
 1;81;nom;billet;m.;FALSCH;Il a payé avec un billet de 20 euros.;Geldschein;m.;Er hat mit einem 20-Euro-Geldschein bezahlt.
 1;82;nom;lieu d’achat;m.;FALSCH;Le reçu indique le lieu d’achat.;Kaufort;m.;Der Kassenzettel zeigt den Kaufort.
 1;83;nom;périphérie;f.;FALSCH;Ils habitent à la périphérie de la ville.;Stadtrand;m.;Sie wohnen am Stadtrand.
-1;84;nom;phénomène;m.;FALSCH;Le marché est devenu un vrai phénomène culturel.;ein Phänomen;n.;Der Markt ist zu einem echten kulturellen Phänomen geworden.
+1;84;nom;phénomène;m.;FALSCH;Le marché est devenu un vrai phénomène culturel.;Phänomen;n.;Der Markt ist zu einem echten kulturellen Phänomen geworden.
 1;85;verbe;se répandre;;;La nouvelle s’est rapidement répandue.;sich verbreiten;;Die Nachricht hat sich schnell verbreitet.
 1;86;expression;milliers;;;Des milliers de personnes visitent le marché.;Tausende;;Tausende Menschen besuchen den Markt.
 1;87;nom;coin;m.;FALSCH;Nous nous retrouvons dans un coin tranquille.;Ecke;f.;Wir treffen uns in einer ruhigen Ecke.
 1;88;verbe;chuchoter;;;Les enfants chuchotent dans la bibliothèque.;flüstern;;Die Kinder flüstern in der Bibliothek.
-1;89;verbe;ébrécher;;;J’ai une assiette ébréchée.;an einer Kante angeschlagen;;Ich habe einen Teller mit einer abgesprungenen Ecke.
+1;89;verbe;ébrécher;;;J’ai une assiette ébréchée.;angeschlagen;;Ich habe einen angeschlagenen Teller.
 1;90;verbe;évoquer;;;Il évoque souvent ses voyages.;erwähnen, ins Gedächtnis rufen;;Er erwähnt oft seine Reisen.
 1;91;nom;âme;f.;WAHR;Cette maison a une âme.;Seele;f.;Dieses Haus hat eine Seele.
 1;92;nom;horloge;f.;WAHR;L’horloge sonne midi.;Uhr;f.;Die Uhr schlägt zwölf.
@@ -98,13 +96,13 @@
 1;97;phrase;;;;Les vendeurs partagent volontiers des anecdotes sur leurs trésors.;;;Die Verkäufer erzählen gerne Anekdoten über ihre Schätze.
 1;98;nom;convivialité;f.;FALSCH;La convivialité est au cœur de cet événement.;Geselligkeit;f.;Die Geselligkeit steht im Mittelpunkt dieser Veranstaltung.
 1;99;phrase;;;;Le temps semble suspendu au fil des conversations.;;;Die Zeit scheint während der Gespräche stillzustehen.
-1;100;nom;frisson;m.;FALSCH;J’ai ressenti un frisson de joie.;Kribbeln;n.;Ich habe einen Freudenschauer gespürt.
+1;100;nom;frisson;m.;FALSCH;J’ai ressenti un frisson de joie.;Kribbeln;n.;Ich habe einen Freudenkribblen gespürt.
 1;101;nom;rotin;m.;FALSCH;Elle s’assoit sur une chaise en rotin.;Rattan;n.;Sie setzt sich auf einen Rattanstuhl.
 1;102;expression;malgré moi;;;J’ai souri malgré moi.;unwillkürlich;;Ich habe unwillkürlich gelächelt.
 1;103;expression;une passion m’a gagnée;;;Peu à peu, une passion m’a gagnée.;eine Leidenschaft hat mich gepackt;;Nach und nach hat mich eine Leidenschaft ergriffen.
 1;104;adjectif;rayonnante;;;Elle est rayonnante de bonheur.;strahlend;;Sie strahlt vor Glück.
 1;105;expression;céder à une tentation;;;Il a cédé à la tentation d’acheter ce tableau.;einer Versuchung erliegen;;Er ist der Versuchung erlegen, das Bild zu kaufen.
-1;106;adjectif;embrumé;;;Le paysage est embrumé ce matin.;neblig, benebelt;;Die Landschaft ist heute Morgen neblig.
+1;106;adjectif;embrumé;;;Le paysage est embrumé ce matin.;neblig;;Die Landschaft ist heute Morgen neblig.
 1;107;nom;portefeuille;m.;FALSCH;J’ai perdu mon portefeuille.;Brieftasche;f.;Ich habe meine Brieftasche verloren.
 1;108;nom;coupure;f.;FALSCH;Il a payé en petites coupures.;Geldschein;m.;Er hat mit kleinen Scheinen bezahlt.
 1;109;verbe;arpenter;;;Ils arpentent les allées du marché.;schlendern;;Sie schlendern durch die Gänge des Marktes.
@@ -129,7 +127,7 @@
 2;128;verbe;fondre;;;Le chocolat fond au soleil.;schmelzen;;Die Schokolade schmilzt in der Sonne.
 2;129;nom;couvert;m.;FALSCH;Chaque invité a un couvert complet.;Besteck;n.;Zu jedem Gast gehört ein komplettes Besteck.
 2;130;nom;argent;m.;WAHR;L’argent est un métal précieux.;Silber;n.;Silber ist ein Edelmetall.
-2;131;nom;argenterie;f.;WAHR;Les couverts en argent sont rangés dans le tiroir.;Silberbesteck;n.;Das Silberbesteck liegt in der Schublade.
+2;131;nom;argenterie;f.;WAHR;L'argenterie est rangée dans le tiroir.;Silberbesteck;n.;Das Silberbesteck liegt in der Schublade.
 2;132;nom;fourchette;f.;FALSCH;Je n’ai pas de fourchette propre.;Gabel;f.;Ich habe keine saubere Gabel.
 2;133;nom;couteau;m.;FALSCH;Le couteau n’est pas bien aiguisé.;Messer;n.;Das Messer ist nicht gut geschärft.
 2;134;nom;cuillère;f.;FALSCH;Je prends une cuillère de sucre.;Löffel;m.;Ich nehme einen Löffel Zucker.
@@ -157,7 +155,7 @@
 3;156;nom;réchauffement climatique;m.;FALSCH;Le réchauffement climatique est une menace mondiale.;Erderwärmung;f.;Die Erderwärmung ist eine weltweite Bedrohung.
 3;157;nom;changement climatique;m.;FALSCH;Le changement climatique affecte toute la planète.;Klimawandel;m.;Der Klimawandel betrifft den ganzen Planeten.
 3;158;nom;inondation;f.;WAHR;L’inondation a endommagé de nombreuses maisons.;Überschwemmung;f.;Die Überschwemmung hat viele Häuser beschädigt.
-3;159;expression;dû à la;;;Les retards sont dûs à la pluie.;aufgrund von;;Die Verspätungen sind aufgrund des Regens.
+3;159;expression;dû à;;;Les retards sont dûs à la pluie.;aufgrund von;;Die Verspätungen sind aufgrund des Regens.
 3;160;nom;sécheresse;f.;FALSCH;La sécheresse dure depuis plusieurs mois.;Dürre;f.;Die Dürre hält seit mehreren Monaten an.
 3;161;adjectif;sec / sèche;;;Le climat est très sec en été.;trocken;;Das Klima ist im Sommer sehr trocken.
 3;162;nom;oiseau migrateur;m.;WAHR;Un oiseau migrateur revient au printemps.;Zugvogel;m.;Ein Zugvogel kehrt im Frühling zurück.
@@ -201,15 +199,14 @@
 3;200;adjectif;abîmé;;;Le meuble est abîmé par l’humidité.;beschädigt;;Das Möbelstück ist durch die Feuchtigkeit beschädigt.
 3;201;nom;rail;m.;FALSCH;Les rails du train doivent être entretenus.;Schiene;f.;Die Bahnschienen müssen gewartet werden.
 3;202;verbe;soutenir;;;Il faut soutenir ce projet.;unterstützen;;Man muss dieses Projekt unterstützen.
-3;203;nom;stockage;m.;FALSCH;Le stockage de l’énergie est un défi.;Speicher;m.;Die Energiespeicherung ist eine Herausforderung.
 3;204;nom;tier;m.;FALSCH;Un tiers des habitants a signé la pétition.;Drittel;n.;Ein Drittel der Einwohner hat die Petition unterschrieben.
 3;205;nom;chauffe-eau instantané;m.;FALSCH;Un chauffe-eau instantané fournit de l’eau chaude immédiatement.;Durchlauferhitzer;m.;Ein Durchlauferhitzer liefert sofort heißes Wasser.
-3;206;expression;Ça nous arrange bien;;;Ça nous arrange bien que tu puisses venir.;das passt uns gut;;Es passt uns gut, dass du kommen kannst.
+3;206;expression;Ça nous arrange bien.;;;Ça nous arrange bien que tu puisses venir.;Das passt uns gut.;;Es passt uns gut, dass du kommen kannst.
 3;207;nom;amortissement;m.;WAHR;L’amortissement de l’investissement est prévu en cinq ans.;Amortisation;f.;Die Amortisation der Investition ist in fünf Jahren geplant.
 3;208;nom;carrelage;m.;FALSCH;Le carrelage de la cuisine est neuf.;Kachel;f.;Die Kacheln in der Küche sind neu.
 3;209;nom;haut-parleur;m.;WAHR;Un haut-parleur diffuse la musique.;Lautsprecher;m.;Ein Lautsprecher gibt die Musik wieder.
 3;210;nom;épaisseur;f.;WAHR;L’épaisseur du mur est de 40 centimètres.;Dicke;f.;Die Dicke der Wand beträgt 40 cm.
-3;211;expression;ne guère pousser à qc;;;Il ne pousse guère à la prudence.;kaum zu etwas drängen;;Er drängt kaum zu Vorsicht.
+3;211;expression;ne guère;;;Il ne parle guère de sa famille.;kaum;;Er spricht kaum über seine Familie.
 3;212;nom;prévision;f.;FALSCH;La prévision météo annonce de la pluie.;Vorhersage;f.;Die Wettervorhersage meldet Regen.
 3;213;nom;prédiction;f.;FALSCH;La prédiction s’est révélée exacte.;Prognose;f.;Die Prognose hat sich als zutreffend erwiesen.
 3;214;nom;dégât;m.;FALSCH;Les dégâts de la tempête sont importants.;Schaden;m.;Die Sturmschäden sind erheblich.
@@ -276,3 +273,4 @@
 5;275;nom;gaz à effet de serre;m. pl.;FALSCH;Les gaz à effet de serre augmentent la température.;Treibhausgase;m. pl.;Die Treibhausgase erhöhen die Temperatur.
 5;276;expression;faire figure de bon élève;;;La France fait figure de bon élève en matière d’écologie.;als Musterschüler gelten;;Frankreich gilt in Sachen Ökologie als Musterschüler.
 5;277;nom;éolienne;f.;WAHR;Une éolienne produit de l’électricité grâce au vent.;Windkraftanlage;f.;Eine Windkraftanlage erzeugt Strom durch Wind.
+5;278;verbe;pousser;;;Les fleurs poussent vite au printemps.;wachsen;;Die Blumen wachsen im Frühling schnell.
