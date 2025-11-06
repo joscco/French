@@ -274,3 +274,65 @@
 5;276;expression;faire figure de bon élève;;;La France fait figure de bon élève en matière d’écologie.;als Musterschüler gelten;;Frankreich gilt in Sachen Ökologie als Musterschüler.
 5;277;nom;éolienne;f.;WAHR;Une éolienne produit de l’électricité grâce au vent.;Windkraftanlage;f.;Eine Windkraftanlage erzeugt Strom durch Wind.
 5;278;verbe;pousser;;;Les fleurs poussent vite au printemps.;wachsen;;Die Blumen wachsen im Frühling schnell.
+6;279;verbe;gâter qn;;false;Ses grands-parents aiment le gâter à Noël.;jemanden verwöhnen;;Seine Großeltern verwöhnen ihn gern zu Weihnachten.
+6;280;adjectif;artisanal;;false;Ce fromage est produit de façon artisanale.;handwerklich;;Dieser Käse wird handwerklich hergestellt.
+6;281;famille;fils/fille unique;;false;Elle est fille unique et vit seule.;Einzelkind;;Sie ist Einzelkind und lebt allein.
+6;282;famille;demi-frère / demie-sœur;;false;J’ai un demi-frère qui habite à Lyon.;Halbbruder / Halbschwester;;Ich habe einen Halbbruder, der in Lyon wohnt.
+6;283;adjectif;franc / franche;;false;Elle est toujours très franche avec ses amis.;offen / ehrlich;;Sie ist immer sehr ehrlich zu ihren Freunden.
+6;284;nomen;franchise;f;true;J’apprécie sa franchise.;Ehrlichkeit;f;Ich schätze ihre Ehrlichkeit.
+6;285;société;taux de natalité;m;true;Le taux de natalité baisse depuis dix ans.;Geburtenrate;f;Die Geburtenrate sinkt seit zehn Jahren.
+6;286;politique;fédéralisme;m;true;Le fédéralisme donne plus de pouvoir aux régions.;Föderalismus;m;Der Föderalismus gibt den Regionen mehr Macht.
+6;287;verbe;déborder;;false;Il se sent débordé par le travail.;überfordert sein;;Er fühlt sich von der Arbeit überfordert.
+6;288;santé;cabinet;m;true;Le cabinet du docteur est au deuxième étage.;Praxis;f;Die Arztpraxis ist im zweiten Stock.
+6;289;société;bagarre;f;true;Une bagarre a éclaté devant l’école.;Schlägerei;f;Vor der Schule ist eine Schlägerei ausgebrochen.
+6;290;verbe;cafter;;false;Il a cafte à la maîtresse !;petzen;;Er hat bei der Lehrerin gepetzt!
+6;291;nomen;cafteuse;f;true;Quelle cafteuse !;Petze;f;Was für eine Petze!
+6;292;expression;avoir le cafard;;false;J’ai le cafard depuis lundi.;schlecht drauf sein;;Ich bin seit Montag schlecht drauf.
+6;293;animal;cafard;m;true;Un cafard court sur le mur !;Kakerlake;f;Eine Kakerlake läuft über die Wand!
+6;294;adjectif;désinhibé;;false;Il devient désinhibé après quelques verres.;hemmungslos;;Nach ein paar Gläsern wird er hemmungslos.
+6;295;expression;ne pas prendre de gants;;false;Elle ne prend pas de gants pour dire ce qu’elle pense.;kein Blatt vor den Mund nehmen;;Sie nimmt kein Blatt vor den Mund.
+6;296;travail;gérer un conflit;;false;Il sait bien gérer les conflits au travail.;einen Konflikt lösen;;Er kann Konflikte bei der Arbeit gut lösen.
+6;297;relation;complicité;f;true;Il y a une vraie complicité entre eux.;Vertrautheit;f;Zwischen ihnen besteht echte Vertrautheit.
+6;298;travail;parcourir une étude;;false;J’ai parcouru l’étude rapidement.;eine Studie durchsehen;;Ich habe die Studie kurz durchgesehen.
+6;299;verbe;atteindre;;false;Il a atteint son objectif.;erreichen;;Er hat sein Ziel erreicht.
+6;300;adverbe;tantôt;;false;Il est tantôt calme, tantôt nerveux.;mal so, mal so;;Er ist mal ruhig, mal nervös.
+6;301;société;entraide;f;true;L’entraide est essentielle dans notre équipe.;gegenseitige Hilfe;f;Gegenseitige Hilfe ist in unserem Team wichtig.
+6;302;expression;dresser un constat;;false;La police a dressé un constat après l’accident.;eine Feststellung machen;;Die Polizei hat nach dem Unfall eine Feststellung aufgenommen.
+7;303;transport;cargaison;f;true;La cargaison est arrivée au port.;Ladung / Fracht;f;Die Fracht ist im Hafen angekommen.
+7;304;expression;être le/la bienvenue;;false;Vous êtes les bienvenus chez nous !;willkommen sein;;Ihr seid bei uns willkommen!
+7;305;culture;celte;;false;Les traditions celtes sont encore présentes en Bretagne.;keltisch;;Die keltischen Traditionen sind in der Bretagne noch lebendig.
+7;306;communication;par intermédiaire;f;true;Ils communiquent par l’intermédiaire d’un avocat.;über eine Vermittlung;;Sie kommunizieren über einen Anwalt.
+7;307;verbe;entretenir;;false;Il entretient de bonnes relations avec ses voisins.;pflegen / unterhalten;;Er pflegt gute Beziehungen zu seinen Nachbarn.
+7;308;nomen;entretien;m;true;L’entretien a duré une heure.;Gespräch; n;Das Gespräch dauerte eine Stunde.
+7;309;travail;entretien d’embauche;m;true;Elle a réussi son entretien d’embauche.;Bewerbungsgespräch;n;Sie hat ihr Bewerbungsgespräch bestanden.
+7;310;verbe;s’entretenir;;false;Ils se sont entretenus longuement.;sich unterhalten;;Sie haben sich lange unterhalten.
+7;311;santé;rage de dents;f;true;Il souffre d’une rage de dents terrible.;Zahnschmerzen;pl;Er hat furchtbare Zahnschmerzen.
+7;312;émotion;fâché;;false;Elle est fâchée contre lui.;verärgert;;Sie ist wütend auf ihn.
+7;313;famille;éduquer;;false;Il veut bien éduquer ses enfants.;erziehen;;Er will seine Kinder gut erziehen.
+7;314;famille;éducation;f;true;L’éducation des enfants n’est pas facile.;Erziehung;f;Die Erziehung der Kinder ist nicht einfach.
+7;315;relation;se disputer;;false;Ils se disputent souvent pour des broutilles.;sich streiten;;Sie streiten sich oft wegen Kleinigkeiten.
+7;316;verbe;hésiter à faire qc;;false;N’hésite pas à poser des questions.;zögern, etwas zu tun;;Zögere nicht, Fragen zu stellen.
+7;317;famille;hors de la famille;;false;Il a grandi hors de la famille.;außerhalb der Familie;;Er ist außerhalb der Familie aufgewachsen.
+7;318;travail;apprendre sur le tas;;false;Il a appris le métier sur le tas.;learning by doing;;Er hat den Beruf durch Praxis gelernt.
+7;319;nomen;tas;m;true;Il y a un tas de papiers sur la table.;Haufen;m;Auf dem Tisch liegt ein Haufen Papiere.
+7;320;adjectif;réjouissant;;false;C’est une nouvelle très réjouissante.;erfreulich;;Das ist eine sehr erfreuliche Nachricht.
+7;321;verbe;demeurer;;false;Il demeure à Paris depuis cinq ans.;wohnen / bleiben;;Er wohnt seit fünf Jahren in Paris.
+7;322;adjectif;affectif;;false;Il a besoin d’un soutien affectif.;emotional;;Er braucht emotionale Unterstützung.
+7;323;travail;gérer des désaccords;;false;Elle sait gérer les désaccords dans son équipe.;Uneinigkeiten managen;;Sie kann Unstimmigkeiten in ihrem Team managen.
+7;324;famille;fratrie;f;true;La fratrie compte trois enfants.;Geschwister;pl;Die Geschwister sind zu dritt.
+7;325;verbe;pénaliser qc;;false;Cette erreur pourrait le pénaliser.;benachteiligen;;Dieser Fehler könnte ihn benachteiligen.
+7;326;expression;pour autant;;false;Ce n’est pas grave, mais ce n’est pas normal pour autant.;trotzdem / dennoch;;Es ist nicht schlimm, aber dennoch nicht normal.
+7;327;famille;rang de naissance;m;true;Son rang de naissance influence son caractère.;Geburtsrang;m;Sein Geburtsrang beeinflusst seinen Charakter.
+7;328;verbe;répandre;;false;Les enfants répandent leurs jouets partout.;verstreuen / verbreiten;;Die Kinder verteilen ihr Spielzeug überall.
+7;329;famille;aîné;m;true;L’aîné aide souvent les plus jeunes.;Ältester;m;Der Älteste hilft oft den Jüngeren.
+7;330;famille;cadet;m;true;Le cadet est plus timide que son frère.;Jüngster;m;Der Jüngste ist schüchterner als sein Bruder.
+7;331;adjectif;rebelle;;false;À l’adolescence, il était très rebelle.;rebellisch;;In der Jugend war er sehr rebellisch.
+7;332;nomen;cible;f;true;Cette campagne vise une large cible.;Zielgruppe;f;Diese Kampagne richtet sich an eine breite Zielgruppe.
+7;333;expression;davantage de;;false;Il faut davantage de temps pour finir ce projet.;mehr von;;Man braucht mehr Zeit, um dieses Projekt zu beenden.
+7;334;verbe;gronder;;false;La mère gronde son fils.;schimpfen;;Die Mutter schimpft mit ihrem Sohn.
+7;335;verbe;blâmer;;false;Il ne faut pas le blâmer pour cette erreur.;beschuldigen / tadeln;;Man sollte ihn für diesen Fehler nicht tadeln.
+7;336;expression;à son égard;;false;Elle a toujours été gentille à son égard.;ihm gegenüber;;Sie war immer nett zu ihm.
+7;337;famille;se rapprocher à l’âge adulte;;false;Ils se sont rapprochés à l’âge adulte.;sich im Erwachsenenalter annähern;;Sie haben sich im Erwachsenenalter angenähert.
+7;338;expression;détendre les liens;;false;Le temps a détendu les liens entre eux.;Bindungen lockern;;Die Zeit hat die Bindung zwischen ihnen gelockert.
+7;339;verbe;rassembler;;false;Ils veulent rassembler la famille pour Noël.;versammeln;;Sie wollen die Familie zu Weihnachten versammeln.
+7;340;expression;par convention;;false;Ils sont mariés par convention, pas par amour.;aus Konvention;;Sie sind aus Konvention verheiratet, nicht aus Liebe.
