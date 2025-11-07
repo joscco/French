@@ -14,21 +14,30 @@
       (next)="next()"
       (prev)="prev()"
     ></app-flashcard-container>
-    <div *ngIf="!isTouchScreen" class="flex items-center justify-center gap-3 mb-3">
-      <app-nav-button label="Zurück" (btnClick)="prev()"></app-nav-button>
-      <div class="min-w-[80px] text-center font-semibold">
-        {{ index() + 1 }} / {{ oriented().length }}
-      </div>
-      <app-nav-button label="Weiter" (btnClick)="next()"></app-nav-button>
-    </div>
-    <div *ngIf="isTouchScreen" class="flex items-center w-full justify-between mb-3">
-      <div class="px-3 text-center font-semibold">
-        {{ index() + 1 }} / {{ oriented().length }}
-      </div>
-      <div class="px-3 flex items-center text-sm italic opacity-50">
-        <mat-icon>swap_horiz</mat-icon>
-        <span class="ml-1">Change card</span>
-      </div>
+    <div class="flex items-center w-full justify-center gap-3 mb-3">
+      @if (!isTouchScreen) {
+        <app-nav-button label="Zurück" (btnClick)="prev()"></app-nav-button>
+        <div class="min-w-[80px] text-center font-semibold">
+          {{ index() + 1 }} / {{ oriented().length }}
+        </div>
+        <app-nav-button label="Weiter" (btnClick)="next()"></app-nav-button>
+      } @else {
+        <div class="px-3 text-center font-semibold">
+          {{ index() + 1 }} / {{ oriented().length }}
+        </div>
+        <div class="px-3 flex items-center text-sm italic opacity-50">
+          <mat-icon>swap_horiz</mat-icon>
+          <span class="ml-1">Change card</span>
+        </div>
+      }
+      <button
+        class="rounded-3xl w-10 h-10 border-1 border-neutral-300 transition-colors duration-150 bg-transparent hover:bg-neutral-200 active:bg-neutral-300"
+        (click)="shuffleCards()"
+      >
+        <mat-icon class="leading-none align-middle">
+          shuffle
+        </mat-icon>
+      </button>
     </div>
   </section>
 } @else {

@@ -1,10 +1,12 @@
-import {Component, computed, signal, inject} from '@angular/core';
+import {Component, computed, inject, signal} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {LessonOption, LessonSelectorComponent} from '../lesson-selector/lesson-selector.component';
 import {ModeSelectorComponent, PracticeMode} from '../mode-selector/mode-selector.component';
 import {PracticeCard, PracticeComponent} from '../practice/practice.component';
 import {VocabService} from './vocab.service';
-import { ExportPdfService } from './export-pdf.service';
+import {ExportPdfService} from './export-pdf.service';
+
+export type SortMode = 'random' | 'asc';
 
 @Component({
   selector: 'app-root',
@@ -16,46 +18,60 @@ import { ExportPdfService } from './export-pdf.service';
 export class AppComponent {
   private vocab = inject(VocabService);
   private pdf = inject(ExportPdfService);
+
   loading = signal(true);
+  selectedLessons = signal<LessonOption>('Alle');
+  mode = signal<PracticeMode>('de-fr');
+  sortMode = signal<SortMode>('random');
 
-  constructor() {
-    // CSV Dateien laden
-    this.vocab.loadAll().finally(() => this.loading.set(false));
-  }
-
-  // Alle Lektionen aus geladenen Rows ableiten
   lessons = computed<LessonOption[]>(() => {
     const rows = this.vocab.rows();
     const set = new Set(rows.map(r => r.lesson));
-    return ['Alle', ...Array.from(set).sort((a,b)=>a-b).map(n => `Lektion ${n}` as LessonOption)];
+    return ['Alle', ...Array.from(set).sort().map(n => `Lektion ${n}` as LessonOption)];
   });
-
-  selectedLessons = signal<LessonOption>('Alle');
-  mode = signal<PracticeMode>('fr-de');
 
   practiceCards = computed<PracticeCard[]>(() => {
     const rows = this.vocab.rows();
     const sel = this.selectedLessons();
-    return rows.filter(r => {
-      if (sel === 'Alle') return true;
-      const n = Number(sel.replace('Lektion ', ''));
-      return r.lesson === n;
-    }).map<PracticeCard>(r => ({
-      id: r.id,
-      frenchPrimary: r.fr_word,
-      frenchSecondary: r.fr_sentence ?? '',
-      germanPrimary: r.de_word,
-      germanSecondary: r.de_sentence ?? '',
-      meta: { id: r.id, category: r.category, fr_genus: r.fr_genus, de_genus: r.de_genus, fr_needs_vowel_article: r.fr_needs_vowel_article, lesson: r.lesson }
-    }));
+    return rows.filter(row => {
+      if (sel === 'Alle') {
+        return true;
+      }
+      const lessonNumber = Number(sel.replace('Lektion ', ''));
+      return row.lesson === lessonNumber;
+    })
+      .map<PracticeCard>(r => ({
+        id: r.id,
+        frenchPrimary: r.fr_word,
+        frenchSecondary: r.fr_sentence ?? '',
+        germanPrimary: r.de_word,
+        germanSecondary: r.de_sentence ?? '',
+        meta: {
+          id: r.id,
+          category: r.category,
+          fr_genus: r.fr_genus,
+          de_genus: r.de_genus,
+          fr_needs_vowel_article: r.fr_needs_vowel_article,
+          lesson: r.lesson
+        }
+      }));
   });
 
-  onLessonsChange(sel: LessonOption) { this.selectedLessons.set(sel); }
+  constructor() {
+    this.vocab
+      .loadAll()
+      .finally(() => this.loading.set(false));
+  }
 
-  // Delegiert PDF-Export an Service (mit Artikeln und Layout)
+  onLessonsChange(selectedLesson: LessonOption) {
+    this.selectedLessons.set(selectedLesson);
+  }
+
   exportPdf() {
     const cards = this.practiceCards();
-    if (!cards || cards.length === 0) return;
+    if (!cards || cards.length === 0) {
+      return;
+    }
     this.pdf.exportVocab(cards, this.selectedLessons());
   }
 }

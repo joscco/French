@@ -80,40 +80,60 @@ export class ExportPdfService {
   }
 
   private withFrenchArticle(word: string, genus?: string, needsVowelArticle?: boolean): string {
-    const w = (word || '').trim();
-    if (!w) return w;
-    const g = (genus || '').toLowerCase();
-    if (!g) return w; // kein Artikel für verbe/adjectif etc.
+    const frenchWord = (word || '').trim();
+    if (!frenchWord) {
+      return frenchWord;
+    }
+    const frenchGender = (genus || '').toLowerCase();
+    if (!frenchGender) return frenchWord; // kein Artikel für verbe/adjectif etc.
 
-    const isPlural = g.includes('pl');
-    const isMasc = g.includes('m');
-    const isFem = g.includes('f');
+    const isPlural = frenchGender.includes('pl');
+    const isMasc = frenchGender.includes('m');
+    const isFem = frenchGender.includes('f');
 
-    if (isPlural) return `les ${w} (${genus})`;
+    if (isPlural) {
+      return `les ${frenchWord} (${genus})`;
+    }
 
     // Nur auf den Flag fr_needs_vowel_article achten (kein Heuristik-Check des ersten Buchstabens)
-    if (needsVowelArticle) return `l'${w} (${genus})`;
+    if (needsVowelArticle) return `l'${frenchWord} (${genus})`;
 
-    if (isMasc) return `le ${w}`;
-    if (isFem) return `la ${w}`;
-    return w;
+    if (isMasc) {
+      return `le ${frenchWord}`;
+    }
+    if (isFem) {
+      return `la ${frenchWord}`;
+    }
+    return frenchWord;
   }
 
   private withGermanArticle(word: string, genus?: string): string {
-    const w = (word || '').trim();
-    if (!w) return w;
-    const g = (genus || '').toLowerCase();
-    if (!g) return w;
+    const germanWord = (word || '').trim();
+    if (!germanWord) {
+      return germanWord;
+    }
+    const germanGender = (genus || '').toLowerCase();
+    if (!germanGender) {
+      return germanWord;
+    }
 
-    const isPlural = g.includes('pl');
-    const isMasc = g.includes('m') && !isPlural;
-    const isFem = g.includes('f') && !isPlural;
-    const isNeut = g.includes('n') && !isPlural;
+    const isPlural = germanGender.includes('pl');
+    const isMasc = germanGender.includes('m') && !isPlural;
+    const isFem = germanGender.includes('f') && !isPlural;
+    const isNeut = germanGender.includes('n') && !isPlural;
 
-    if (isPlural) return `die ${w}`;
-    if (isMasc) return `der ${w}`;
-    if (isFem) return `die ${w}`;
-    if (isNeut) return `das ${w}`;
-    return w;
+    if (isPlural) {
+      return `die ${germanWord}`;
+    }
+    if (isMasc) {
+      return `der ${germanWord}`;
+    }
+    if (isFem) {
+      return `die ${germanWord}`;
+    }
+    if (isNeut) {
+      return `das ${germanWord}`;
+    }
+    return germanWord;
   }
 }

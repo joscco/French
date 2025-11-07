@@ -1,7 +1,7 @@
 import {Component, Input, OnChanges, SimpleChanges, ViewChild, signal, OnInit} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {MatButtonModule} from '@angular/material/button';
-import {PracticeMode} from '../mode-selector/mode-selector.component';
+import {ModeSelectorComponent, PracticeMode} from '../mode-selector/mode-selector.component';
 import {FlashcardContainerComponent} from '../flashcard-container/flashcard-container.component';
 import {NavButtonComponent} from './nav-button/nav-button.component';
 import {MatIcon} from '@angular/material/icon';
@@ -25,7 +25,7 @@ export interface PracticeCard {
 @Component({
   selector: 'app-practice',
   standalone: true,
-  imports: [CommonModule, MatButtonModule, FlashcardContainerComponent, FlashcardContainerComponent, NavButtonComponent, MatIcon],
+  imports: [CommonModule, MatButtonModule, FlashcardContainerComponent, FlashcardContainerComponent, NavButtonComponent, MatIcon, ModeSelectorComponent],
   templateUrl: './practice.component.html'
 })
 export class PracticeComponent implements OnInit, OnChanges {
@@ -83,6 +83,17 @@ export class PracticeComponent implements OnInit, OnChanges {
   next() {
     this.navDirection.set('next');
     this.index.update(i => Math.min(this.oriented().length - 1, i + 1));
+  }
+
+  shuffleCards() {
+    const arr = [...this.oriented()];
+    for (let i = arr.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+    this.oriented.set(arr);
+    this.index.set(0);
+    this.flashcard?.resetFlip();
   }
 
   private orientCard(card: PracticeCard, mode: PracticeMode): PracticeCard {
