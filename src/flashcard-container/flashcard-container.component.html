@@ -2,8 +2,10 @@
   <div
     #cardRef
     class="relative overflow-hidden will-change-transform h-full"
-    (mouseenter)="hoverOn()" (mouseleave)="hoverOff()"
-    (click)="toggleOnClick(); $event.stopPropagation()"
+    (pointerenter)="hoverOn(); $event.preventDefault()"
+    (pointermove)="$event.preventDefault()"
+    (pointerleave)="hoverOff(); $event.preventDefault()"
+    (click)="toggleOnClick(); $event.preventDefault()"
   >
     <app-flashcard-card
       [meta]="getMeta()"
