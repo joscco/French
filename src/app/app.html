@@ -1,12 +1,13 @@
 @if (!loading()) {
   <div class="flex flex-col items-center h-full max-w-[960px] p-6">
     <header class="self-center flex flex-col gap-6 items-center">
-      <app-lesson-selector
-        [lessons]="lessons()"
-        [selected]="selectedLessons()"
-        (selectedChange)="onLessonsChange($event)"
-        (exportPdfRequested)="exportPdf()"
-      />
+      <div class="flex flex-row items-end justify-between w-full gap-4">
+        <app-lesson-selector
+          [lessons]="lessons()"
+          [selected]="selectedLessons()"
+          (selectedChange)="onLessonsChange($event)"/>
+        <app-icon-button iconName="download" (onClick)="exportPdf()" />
+      </div>
       <app-mode-selector
         [mode]="mode()"
         (modeChange)="mode.set($event)"

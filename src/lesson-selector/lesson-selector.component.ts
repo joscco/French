@@ -10,7 +10,7 @@ export type LessonOption = 'Alle' | `Lektion ${number}`;
 @Component({
   selector: 'app-lesson-selector',
   standalone: true,
-  imports: [CommonModule, MatSelectModule, MatFormFieldModule, MatTooltipModule, MatIcon],
+  imports: [CommonModule, MatSelectModule, MatFormFieldModule, MatTooltipModule],
   templateUrl: './lesson-selector.component.html'
 })
 export class LessonSelectorComponent {
@@ -20,9 +20,4 @@ export class LessonSelectorComponent {
   public selected: LessonOption = 'Alle';
   @Output()
   public selectedChange = new EventEmitter<LessonOption>();
-  @Output()
-  public exportPdfRequested = new EventEmitter<void>();
-
-  // Hover-Text für Tooltip und title
-  tooltipText = 'Vokabeln als PDF herunterladen';
 }

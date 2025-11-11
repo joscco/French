@@ -1,10 +1,10 @@
-import {Component, Input, OnChanges, SimpleChanges, ViewChild, signal, OnInit} from '@angular/core';
+import {Component, Input, OnChanges, OnInit, signal, SimpleChanges, ViewChild} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {MatButtonModule} from '@angular/material/button';
-import {ModeSelectorComponent, PracticeMode} from '../mode-selector/mode-selector.component';
+import {PracticeMode} from '../mode-selector/mode-selector.component';
 import {FlashcardContainerComponent} from '../flashcard-container/flashcard-container.component';
-import {NavButtonComponent} from './nav-button/nav-button.component';
 import {MatIcon} from '@angular/material/icon';
+import {IconButtonComponent} from '../app/icon-button/icon-button.component';
 
 export type Language = 'french' | 'german';
 
@@ -25,7 +25,7 @@ export interface PracticeCard {
 @Component({
   selector: 'app-practice',
   standalone: true,
-  imports: [CommonModule, MatButtonModule, FlashcardContainerComponent, FlashcardContainerComponent, NavButtonComponent, MatIcon, ModeSelectorComponent],
+  imports: [CommonModule, MatButtonModule, FlashcardContainerComponent, FlashcardContainerComponent, MatIcon, IconButtonComponent],
   templateUrl: './practice.component.html'
 })
 export class PracticeComponent implements OnInit, OnChanges {

@@ -1,26 +1,16 @@
-<div class="flex flex-row items-end justify-between w-full gap-4">
-  <div class="relative pt-6">
-    <select
-      class="block w-full px-4 py-3 text-base bg-white border border-gray-300 rounded-lg shadow-sm appearance-none
+<div class="relative pt-6">
+  <select
+    class="block w-full px-4 py-3 text-base bg-white border border-gray-300 rounded-lg shadow-sm appearance-none
     focus:outline-none focus:border-primary-500 focus:ring-2 focus:ring-primary-500 peer"
-      [value]="selected"
-      (change)="selectedChange.emit($any($event.target).value)">
-      @for (lesson of lessons; track lesson) {
-        <option [value]="lesson">{{ lesson }}</option>
-      }
-    </select>
-    <label class="absolute left-4 top-2 text-gray-500 text-base transition-all duration-200
+    [value]="selected"
+    (change)="selectedChange.emit($any($event.target).value)">
+    @for (lesson of lessons; track lesson) {
+      <option [value]="lesson">{{ lesson }}</option>
+    }
+  </select>
+  <label class="absolute left-4 top-2 text-gray-500 text-base transition-all duration-200
            peer-focus:text-primary-500 peer-focus:text-sm peer-focus:-top-2
            peer-[value]:text-sm peer-[value]:-top-2 bg-white px-1 pointer-events-none">
-      Lektion
-    </label>
-  </div>
-  <div class="flex flex-row items-center justify-center">
-    <button
-      class="w-12 h-12 flex flex-row justify-center items-center gap-1 rounded-2xl border shadow-sm border-neutral-300 transition-colors duration-150 bg-transparent hover:bg-neutral-200 active:bg-neutral-300"
-      (click)="exportPdfRequested.emit()"
-    >
-      <mat-icon>download</mat-icon>
-    </button>
-  </div>
+    Lektion
+  </label>
 </div>

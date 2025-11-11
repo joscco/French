@@ -5,13 +5,14 @@ import {ModeSelectorComponent, PracticeMode} from '../mode-selector/mode-selecto
 import {PracticeCard, PracticeComponent} from '../practice/practice.component';
 import {VocabService} from './vocab.service';
 import {ExportPdfService} from './export-pdf.service';
+import {IconButtonComponent} from './icon-button/icon-button.component';
 
 export type SortMode = 'random' | 'asc';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, LessonSelectorComponent, ModeSelectorComponent, PracticeComponent],
+  imports: [CommonModule, LessonSelectorComponent, ModeSelectorComponent, PracticeComponent, IconButtonComponent, IconButtonComponent],
   templateUrl: './app.html',
   host: {'class': 'h-full'},
 })

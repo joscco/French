@@ -15,23 +15,27 @@
   </div>
 
   <div class="grow flex flex-col items-center justify-center">
-    <div #faceContainer class="relative min-w-[360px] min-h-[160px] select-none" [ngClass]="{ 'cursor-pointer': interactive }">
-      <app-card-face
-        *ngIf="currentFace === 'french'"
-        [primary]="frenchPrimary"
-        [secondary]="frenchSecondary"
-        [language]="'french'"
-        [needsVowelArticle] = "meta?.['fr_needs_vowel_article']"
-        [genus]="meta?.['fr_genus']"
-      />
-      <app-card-face
-        *ngIf="currentFace === 'german'"
-        [primary]="germanPrimary"
-        [secondary]="germanSecondary"
-        [language]="'german'"
-        [needsVowelArticle] = "false"
-        [genus]="meta?.['de_genus']"
-      />
+    <div #faceContainer
+         class="relative min-w-[360px] min-h-[160px] select-none"
+         [ngClass]="{ 'cursor-pointer': interactive }">
+      @if (currentFace === 'french') {
+        <app-card-face
+          [primary]="frenchPrimary"
+          [secondary]="frenchSecondary"
+          [language]="'french'"
+          [needsVowelArticle]="meta?.['fr_needs_vowel_article']"
+          [genus]="meta?.['fr_genus']"
+        />
+      } @else {
+        <app-card-face
+          [primary]="germanPrimary"
+          [secondary]="germanSecondary"
+          [language]="'german'"
+          [needsVowelArticle]="false"
+          [genus]="meta?.['de_genus']"
+        />
+      }
+
     </div>
   </div>
 
@@ -49,7 +53,6 @@
 
     <!-- Lautsprecher unten rechts nur einblenden, wenn verfügbar -->
     <button
-      mat-icon-button
       class="w-10 h-10 flex items-center justify-center rounded-full border border-neutral-300
       bg-white/80 hover:bg-neutral-200 active:bg-neutral-300
       transition-opacity duration-150"
