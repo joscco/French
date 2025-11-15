@@ -24,6 +24,10 @@ export class CardFaceComponent {
           return 'die';
         case 'n.':
           return 'das';
+        case 'm. pl.':
+        case 'f. pl.':
+        case 'n. pl.':
+          return 'die';
         default:
           return '';
       }
