@@ -6,7 +6,7 @@
           [lessons]="lessons()"
           [selected]="selectedLessons()"
           (selectedChange)="onLessonsChange($event)"/>
-        <app-icon-button iconName="download" (onClick)="exportPdf()" />
+        <app-icon-button iconName="download" (onClick)="exportPdf()" tooltip="Download" />
       </div>
       <app-mode-selector
         [mode]="mode()"

@@ -16,11 +16,11 @@
     ></app-flashcard-container>
     <div class="flex items-center w-full justify-center gap-3 mb-3">
       @if (!isTouchScreen) {
-        <app-icon-button iconName="arrow_back" (onClick)="prev()"></app-icon-button>
+        <app-icon-button iconName="arrow_back" (onClick)="prev()" tooltip="Zurück"></app-icon-button>
         <div class="px-3 min-w-[80px] text-right font-semibold text-neutral-500">
           {{ index() + 1 }} / {{ oriented().length }}
         </div>
-        <app-icon-button iconName="arrow_forward" (onClick)="next()"></app-icon-button>
+        <app-icon-button iconName="arrow_forward" (onClick)="next()" tooltip="Weiter"></app-icon-button>
       } @else {
         <div class="px-3 min-w-[80px] text-right font-semibold text-neutral-500">
           {{ index() + 1 }} / {{ oriented().length }}
@@ -30,7 +30,7 @@
           <span class="ml-1">Change card</span>
         </div>
       }
-      <app-icon-button iconName="shuffle" (onClick)="shuffleCards()"></app-icon-button>
+      <app-icon-button iconName="shuffle" (onClick)="shuffleCards()" tooltip="Mischen"></app-icon-button>
     </div>
   </section>
 } @else {
