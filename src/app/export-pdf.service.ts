@@ -13,7 +13,7 @@ export class ExportPdfService {
       (a.frenchPrimary || '').localeCompare(b.frenchPrimary || '', 'fr', {sensitivity: 'base'})
     );
 
-    const title = `Vokabelliste${selected.id === 'all' ? '' : ' – ' + selected}`;
+    const title = `Vokabelliste${selected.id === 'all' ? '' : ' – ' + selected.label}`;
 
     const doc = new jsPDF({orientation: 'portrait', unit: 'pt', format: 'a4'});
     const marginLeft = 40;
