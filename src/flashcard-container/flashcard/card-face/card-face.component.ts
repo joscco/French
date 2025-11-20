@@ -28,6 +28,8 @@ export class CardFaceComponent {
         case 'f. pl.':
         case 'n. pl.':
           return 'die';
+        case 'm./f.':
+          return 'der/die';
         default:
           return '';
       }
@@ -45,6 +47,8 @@ export class CardFaceComponent {
           return 'les';
         case 'f. pl.':
           return 'les';
+        case 'm./f.':
+          return 'le/la';
         default:
           return '';
       }

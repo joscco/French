@@ -32,7 +32,6 @@ export class VocabService {
         throw new Error(`Fehler beim Laden ${wordFile} oder ${lessonFile}`);
       }
       const records = this.parseCSV(await wordFile.text());
-      const lessons = this.parseCSV(await lessonFile.text());
       const all: VocabRow[] = [];
       for (const record of records) {
         // Header: id;category;genus;fr_word;fr_sentence;de_word;de_sentence  (Semikolon getrennt)
@@ -42,7 +41,7 @@ export class VocabService {
           category: (record['category'] || '').trim(),
           fr_genus: (record['fr_genus'] || '').trim() || undefined,
           de_genus: (record['de_genus'] || '').trim() || undefined,
-          fr_needs_vowel_article: record['fr_needs_vowel_article']?.trim().toLowerCase() === 'wahr',
+          fr_needs_vowel_article: record['fr_needs_vowel_article']?.trim().toLowerCase() === 'true',
           fr_word: (record['fr_word'] || '').trim(),
           fr_sentence: (record['fr_sentence'] || '').trim() || undefined,
           de_word: (record['de_word'] || '').trim(),
