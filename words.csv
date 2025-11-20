@@ -354,3 +354,50 @@
 8;356;nom;haie;f.;WAHR;Une haie sépare les deux jardins.;Hecke;f.;Eine Hecke trennt die beiden Gärten.
 8;357;expression;changer de sujet;;;Il a changé de sujet pour éviter la question.;das Thema wechseln;;Er hat das Thema gewechselt, um der Frage auszuweichen.
 8;358;expression;faire le malade;;;Il fait le malade pour ne pas aller à l’école.;krank spielen;;Er stellt sich krank, um nicht in die Schule zu gehen.
+9;359;expression;répondre à un besoin;;;Ce projet répond à un vrai besoin.;einen Bedarf decken;;Dieses Projekt deckt einen echten Bedarf.
+9;360;expression;prendre fin;;;La réunion vient de prendre fin.;enden;;Die Besprechung ist gerade zu Ende gegangen.
+9;361;expression;loin d’être le cas;;;On pense que tout est simple, mais c’est loin d’être le cas.;bei weitem nicht der Fall sein;;Man denkt, alles sei einfach, aber das ist bei weitem nicht der Fall.
+9;362;expression;lorsque / afin que;;;Je pars lorsque tu arrives, afin que tu ne sois pas seul.;wenn / damit;;Ich gehe, wenn du kommst, damit du nicht allein bist.
+9;363;verbe;dissimuler;;;Il a dissimulé son identité pendant des années.;verbergen / tarnen;;Er hat seine Identität jahrelang verborgen.
+9;364;verbe;changer de place;;;Peux-tu changer de place avec moi ?;den Platz wechseln;;Kannst du mit mir den Platz tauschen?
+9;365;verbe;ralentir;;;Le conducteur a ralenti avant le virage.;langsamer werden;;Der Fahrer wurde vor der Kurve langsamer.
+9;366;expression;faire des appels de phare;;;Il m’a fait des appels de phare pour me prévenir.;Lichthupe geben;;Er hat mir mit der Lichthupe Bescheid gegeben.
+9;367;nom;gyrophare;m.;false;Le gyrophare bleu clignote sur la voiture de police.;Blaulicht;n.;Das Blaulicht blinkt auf dem Polizeiauto.
+9;368;nom;généalogie;f.;false;Elle s’intéresse beaucoup à la généalogie de sa famille.;Ahnenforschung;f.;Sie interessiert sich sehr für die Ahnenforschung ihrer Familie.
+9;369;nom;arbre généalogique;m.;true;Ils ont créé un arbre généalogique détaillé.;Stammbaum;m.;Sie haben einen detaillierten Stammbaum erstellt.
+9;370;nom;avis de décès;m.;true;L’avis de décès a été publié dans le journal.;Todesanzeige;f.;Die Todesanzeige wurde in der Zeitung veröffentlicht.
+9;371;adverbe;d’autrefois;;;C’est une coutume d’autrefois.;von früher;;Das ist ein Brauch von früher.
+9;372;expression;au lieu de;;;Il regarde la télé au lieu de faire ses devoirs.;anstatt;;Er schaut fern, anstatt seine Hausaufgaben zu machen.
+9;373;nom;brouillon;m.;false;J’ai écrit la lettre au brouillon avant de la recopier.;Entwurf;m.;Ich habe den Brief im Entwurf geschrieben, bevor ich ihn abgeschrieben habe.
+9;374;nom;lettre de condoléances;f.;false;Elle a envoyé une lettre de condoléances à la famille.;Beileidsbrief;m.;Sie hat der Familie einen Beileidsbrief geschickt.
+9;375;nom;arbitre;m.;true;L’arbitre a arrêté le match.;Schiedsrichter;m.;Der Schiedsrichter hat das Spiel unterbrochen.
+9;376;nom;coupure d’électricité;f.;false;Il y a eu une coupure d’électricité hier soir.;Stromausfall;m.;Gestern Abend gab es einen Stromausfall.
+9;377;expression;s’interroger en continu;;;Il s’interroge en continu sur le sens de la vie.;ständig über etwas nachdenken;;Er denkt ständig über den Sinn des Lebens nach.
+9;378;nom;conseiller / conseillère de vie;m./f.;false;Elle travaille comme conseillère de vie.;Lebensberater/in;;Sie arbeitet als Lebensberaterin.
+9;379;nom;confident / confidente;m./f.;false;C’est son confident depuis des années.;Vertrauter / Vertraute;;Er ist seit Jahren ihr Vertrauter.
+9;380;nom;cadre;m.;false;Les cadres ont souvent des horaires chargés.;leitender Angestellter;m.;Leitende Angestellte haben oft volle Arbeitszeiten.
+9;381;verbe;nouer qc avec qc;;;Il a noué une relation de confiance avec son équipe.;etwas knüpfen;;Er hat ein Vertrauensverhältnis zu seinem Team aufgebaut.
+9;382;verbe;se dérouler;;;La conférence s’est déroulée sans problème.;stattfinden / verlaufen;;Die Konferenz verlief ohne Probleme.
+9;383;expression;se tailler une place;;;Elle s’est taillé une place dans le milieu artistique.;sich einen Platz erkämpfen;;Sie hat sich in der Kunstszene einen Platz erkämpft.
+9;384;nom;interlocuteur;m.;true;L’interlocuteur a bien compris la question.;Gesprächspartner;m.;Der Gesprächspartner hat die Frage gut verstanden.
+9;385;nom;bavardage;m.;false;Le professeur n’aime pas le bavardage en classe.;Plauderei;f.;Der Lehrer mag kein Geplauder im Unterricht.
+9;386;nom;confidence;f.;false;Elle m’a fait une confidence profonde.;Vertrauliches Geständnis;n.;Sie hat mir ein vertrauliches Geständnis gemacht.
+9;387;nom;autrui;m.;true;Il faut toujours respecter autrui.;Mitmenschen;pl.;Man sollte immer andere Menschen respektieren.
+9;388;expression;par intérim;;;Il occupe ce poste par intérim.;übergangsweise;;Er besetzt diese Stelle vorübergehend.
+9;389;verbe;combler;;;Ce cadeau a comblé ses attentes.;erfüllen / ausgleichen;;Dieses Geschenk hat seine Erwartungen erfüllt.
+9;390;nom;émulation;f.;true;L’émulation entre collègues peut être positive.;Wettstreit;m.;Wettstreit unter Kollegen kann positiv sein.
+9;391;nom;épanchement;m.;true;Son épanchement de sentiments m’a touché.;Gefühlsausbruch;m.;Sein Gefühlsausbruch hat mich berührt.
+9;392;nom;épopée;f.;true;L’Odyssée est une grande épopée grecque.;Epos;n.;Die Odyssee ist ein großes griechisches Epos.
+9;393;adjectif;emprunté;;;Il était un peu emprunté pendant la réunion.;gehemmt;;Er war während der Besprechung etwas gehemmt.
+9;394;verbe;challenger une réponse;;;L’enseignant l’a invité à challenger la réponse donnée.;eine Antwort hinterfragen;;Der Lehrer forderte ihn auf, die gegebene Antwort zu hinterfragen.
+9;395;verbe;rebondir;;;Après un échec, il a su rebondir.;sich wieder fangen;;Nach einem Misserfolg hat er sich wieder aufgerappelt.
+9;396;adjectif;esthétique;;;Ce bâtiment a une forme très esthétique.;ästhetisch;;Dieses Gebäude hat eine sehr ästhetische Form.
+9;397;nom;arabesque;f.;true;Les arabesques décorent le plafond du palais.;Arabeske;f.;Die Arabesken schmücken die Decke des Palastes.
+9;398;adjectif;négligeable;;;Le risque est faible, presque négligeable.;vernachlässigbar;;Das Risiko ist gering, fast vernachlässigbar.
+9;399;expression;avoir mal à s’en passer;;;Il a du mal à s’en passer depuis qu’il a commencé.;schwer darauf verzichten können;;Er kann nur schwer darauf verzichten, seit er angefangen hat.
+9;400;verbe;valoriser;;;Cette expérience valorise ton parcours professionnel.;aufwerten;;Diese Erfahrung wertet deinen beruflichen Werdegang auf.
+9;401;expression;mettre qc à l’épreuve;;;Cette situation met sa patience à l’épreuve.;etwas auf die Probe stellen;;Diese Situation stellt seine Geduld auf die Probe.
+9;402;adjectif;reclus socialement;;;Depuis son divorce, il est reclus socialement.;gesellschaftlich zurückgezogen;;Seit seiner Scheidung lebt er sozial zurückgezogen.
+9;403;adjectif;complaisant;;;Il est trop complaisant avec ses collègues.;nachsichtig / gefällig;;Er ist zu nachsichtig mit seinen Kollegen.
+9;404;adverbe;or;;;Il voulait venir, or il était malade.;jedoch / aber;;Er wollte kommen, war aber krank.
+9;405;nom;avis appuyé;m.;true;Il a donné un avis appuyé sur la question.;nachdrückliche Meinung;f.;Er hat eine nachdrückliche Meinung zu der Frage geäußert.
