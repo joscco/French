@@ -1,4 +1,5 @@
 import {Injectable, signal} from '@angular/core';
+import Papa from 'papaparse';
 
 export interface VocabRow {
   lesson: number; // lesson number
@@ -20,84 +21,63 @@ export class VocabService {
   private loaded = false;
 
   async loadAll(): Promise<void> {
-    if (this.loaded) return;
+    if (this.loaded) {
+      return;
+    }
     this.loaded = true;
     try {
-      const res = await fetch(`words.csv`);
-      if (!res.ok) throw new Error(`Fehler beim Laden ${res}`);
-      const text = await res.text();
-      const records = parseCSV(text);
+      const wordFile = await fetch(`words.csv`);
+      const lessonFile = await fetch(`termine.csv`);
+      if (!wordFile.ok || !lessonFile.ok) {
+        throw new Error(`Fehler beim Laden ${wordFile} oder ${lessonFile}`);
+      }
+      const records = this.parseCSV(await wordFile.text());
+      const lessons = this.parseCSV(await lessonFile.text());
       const all: VocabRow[] = [];
-      for (const r of records) {
+      for (const record of records) {
         // Header: id;category;genus;fr_word;fr_sentence;de_word;de_sentence  (Semikolon getrennt)
         const row: VocabRow = {
-          lesson: r['lesson'] ? Number(r['lesson']) : 0,
-          id: Number(r['id']),
-          category: (r['category'] || '').trim(),
-          fr_genus: (r['fr_genus'] || '').trim() || undefined,
-          de_genus: (r['de_genus'] || '').trim() || undefined,
-          fr_needs_vowel_article: r['fr_needs_vowel_article']?.trim().toLowerCase() === 'wahr',
-          fr_word: (r['fr_word'] || '').trim(),
-          fr_sentence: (r['fr_sentence'] || '').trim() || undefined,
-          de_word: (r['de_word'] || '').trim(),
-          de_sentence: (r['de_sentence'] || '').trim() || undefined,
+          lesson: record['lesson'] ? Number(record['lesson']) : 0,
+          id: Number(record['id']),
+          category: (record['category'] || '').trim(),
+          fr_genus: (record['fr_genus'] || '').trim() || undefined,
+          de_genus: (record['de_genus'] || '').trim() || undefined,
+          fr_needs_vowel_article: record['fr_needs_vowel_article']?.trim().toLowerCase() === 'wahr',
+          fr_word: (record['fr_word'] || '').trim(),
+          fr_sentence: (record['fr_sentence'] || '').trim() || undefined,
+          de_word: (record['de_word'] || '').trim(),
+          de_sentence: (record['de_sentence'] || '').trim() || undefined,
         };
         if (!isNaN(row.id) && row.fr_word && row.de_word) {
           all.push(row);
         }
       }
       this._rows.set(all);
-    } catch (e) {
-      console.error('Laden fehlgeschlagen', e);
+    } catch (err) {
+      console.error('Laden fehlgeschlagen', err);
       this._rows.set([]);
     }
   }
-}
 
-// Parser für Semikolon-getrennte CSV mit Quotes ("...") und doppelten Quotes zum Escapen
-function parseCSV(input: string): Record<string, string>[] {
-  input = input.replace(/^\uFEFF/, '').trim();
-  if (!input) return [];
-  const lines = input.split(/\r?\n/).filter(l => l.trim().length > 0);
-  if (lines.length === 0) return [];
-  const header = splitCSVLine(lines[0]);
-  const out: Record<string, string>[] = [];
-  for (let i = 1; i < lines.length; i++) {
-    const cols = splitCSVLine(lines[i]);
-    if (cols.length === 1 && cols[0].trim() === '') continue;
-    const rec: Record<string, string> = {};
-    header.forEach((h, idx) => {
-      rec[h.trim()] = cols[idx] ?? '';
+  private parseCSV(input: string): Record<string, string>[] {
+    const cleaned = input.replace(/^\uFEFF/, '');
+    const res = Papa.parse<Record<string, string>>(cleaned, {
+      delimiter: ';',
+      header: true,
+      skipEmptyLines: true,
+      quoteChar: '"',
     });
-    out.push(rec);
-  }
-  return out;
-}
 
-const DELIM = ';';
+    if (res.errors && res.errors.length) {
+      console.warn('CSV parse errors', res.errors);
+    }
 
-function splitCSVLine(line: string): string[] {
-  const result: string[] = [];
-  let cur = '';
-  let inQuotes = false;
-  for (let i = 0; i < line.length; i++) {
-    const ch = line[i];
-    if (ch === '"') {
-      if (inQuotes && line[i + 1] === '"') { // escaped quote
-        cur += '"';
-        i++; // skip next
-      } else {
-        inQuotes = !inQuotes;
-      }
-      continue;
-    }
-    if (ch === DELIM && !inQuotes) {
-      result.push(cur);
-      cur = '';
-      continue;
-    }
-    cur += ch;
+    return (res.data || []).map((row: any) => {
+      const rec: Record<string, string> = {};
+      Object.entries(row).forEach(([key, value]) => {
+        rec[key.trim()] = (value ?? '').toString().trim();
+      });
+      return rec;
+    });
   }
-  result.push(cur);
-  return result.map(c => c.trim());
 }

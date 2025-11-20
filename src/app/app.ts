@@ -1,13 +1,13 @@
 import {Component, computed, inject, signal} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {LessonOption, LessonSelectorComponent} from '../lesson-selector/lesson-selector.component';
+import { LessonSelectorComponent} from '../lesson-selector/lesson-selector.component';
 import {ModeSelectorComponent, PracticeMode} from '../mode-selector/mode-selector.component';
 import {PracticeCard, PracticeComponent} from '../practice/practice.component';
 import {VocabService} from './vocab.service';
 import {ExportPdfService} from './export-pdf.service';
 import {IconButtonComponent} from './icon-button/icon-button.component';
-
-export type SortMode = 'random' | 'asc';
+import {TerminService} from './termin.service';
+import {LessonOption} from '../lesson-option';
 
 @Component({
   selector: 'app-root',
@@ -19,28 +19,37 @@ export type SortMode = 'random' | 'asc';
 export class AppComponent {
   private vocab = inject(VocabService);
   private pdf = inject(ExportPdfService);
+  private termine = inject(TerminService);
 
   loading = signal(true);
-  selectedLessons = signal<LessonOption>('Alle');
+  selectedLessons = signal<LessonOption>({ id: 'all', label: 'Alle' });
   mode = signal<PracticeMode>('de-fr');
-  sortMode = signal<SortMode>('random');
 
   lessons = computed<LessonOption[]>(() => {
     const rows = this.vocab.rows();
-    const set = new Set(rows.map(r => r.lesson));
-    return ['Alle', ...Array.from(set).sort().map(n => `Lektion ${n}` as LessonOption)];
+    const termineByLesson = this.termine.byLesson();
+    const lessonNumbers = Array.from(new Set(rows.map(r => r.lesson))).sort((a, b) => a - b);
+
+    const allOption: LessonOption = { id: 'all', label: 'Alle' };
+
+    const lessonOptions: LessonOption[] = lessonNumbers.map(lesson => {
+      const meta = termineByLesson[lesson];
+      const baseLabel = `Lektion ${lesson}`;
+      return {
+        id: lesson,
+        lesson,
+        date: meta?.date,
+        label: `${baseLabel} - ${meta?.date}`,
+      };
+    });
+    return [allOption, ...lessonOptions];
   });
 
   practiceCards = computed<PracticeCard[]>(() => {
     const rows = this.vocab.rows();
     const sel = this.selectedLessons();
-    return rows.filter(row => {
-      if (sel === 'Alle') {
-        return true;
-      }
-      const lessonNumber = Number(sel.replace('Lektion ', ''));
-      return row.lesson === lessonNumber;
-    })
+    const cards = rows
+      .filter(row => sel.id === 'all' ? true : row.lesson === sel.lesson)
       .map<PracticeCard>(r => ({
         id: r.id,
         frenchPrimary: r.fr_word,
@@ -56,15 +65,19 @@ export class AppComponent {
           lesson: r.lesson
         }
       }));
+    return cards;
   });
 
   constructor() {
     this.vocab
       .loadAll()
       .finally(() => this.loading.set(false));
+    this.termine
+      .loadAll();
   }
 
-  onLessonsChange(selectedLesson: LessonOption) {
+  onLessonsChange(event: any) {
+    const selectedLesson: LessonOption = event;
     this.selectedLessons.set(selectedLesson);
   }
 

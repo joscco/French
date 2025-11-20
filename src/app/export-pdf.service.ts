@@ -2,19 +2,18 @@ import {Injectable} from '@angular/core';
 import {jsPDF} from 'jspdf';
 import autoTable, {CellInput, HookData} from 'jspdf-autotable';
 import {PracticeCard} from '../practice/practice.component';
-import {LessonOption} from '../lesson-selector/lesson-selector.component';
+import {LessonOption} from '../lesson-option';
 
 @Injectable({providedIn: 'root'})
 export class ExportPdfService {
   exportVocab(cards: PracticeCard[], selected: LessonOption): void {
     if (!cards || cards.length === 0) return;
 
-    // Nach französischem Begriff alphabetisch sortieren (case-insensitive, fr-Locale)
     const sorted = [...cards].sort((a, b) =>
       (a.frenchPrimary || '').localeCompare(b.frenchPrimary || '', 'fr', {sensitivity: 'base'})
     );
 
-    const title = `Vokabelliste${selected === 'Alle' ? '' : ' – ' + selected}`;
+    const title = `Vokabelliste${selected.id === 'all' ? '' : ' – ' + selected}`;
 
     const doc = new jsPDF({orientation: 'portrait', unit: 'pt', format: 'a4'});
     const marginLeft = 40;
@@ -74,7 +73,7 @@ export class ExportPdfService {
       }
     } as any);
 
-    const safeSel = selected === 'Alle' ? 'alle' : selected.replace(/\s+/g, '_').toLowerCase();
+    const safeSel = selected.id === 'all' ? 'alle' : selected.id;
     const filename = `vokabelliste_${safeSel}.pdf`;
     doc.save(filename);
   }
