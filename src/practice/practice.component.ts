@@ -77,12 +77,26 @@ export class PracticeComponent implements OnInit, OnChanges {
 
   prev() {
     this.navDirection.set('prev');
-    this.index.update(i => Math.max(0, i - 1));
+    this.navigate(-1);
   }
 
   next() {
     this.navDirection.set('next');
-    this.index.update(i => Math.min(this.oriented().length - 1, i + 1));
+    this.navigate(1);
+  }
+
+  private navigate(delta: 1 | -1) {
+    this.index.update(i => {
+      const len = this.oriented().length;
+      if (len === 0) {
+        return 0;
+      }
+      let next = (i + delta) % len;
+      if (next < 0) {
+        next += len;
+      }
+      return next;
+    });
   }
 
   shuffleCards() {
