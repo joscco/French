@@ -181,7 +181,10 @@ export class FlashcardContainerComponent implements OnInit, OnChanges, AfterView
   }
 
   toggleOnClick() {
-    if (this.isTouchScreen) return; // kein Klick auf Touchscreens
+    if (this.isTouchScreen) {
+      // kein Klick auf Touchscreens
+      return;
+    }
     this.toggle('up');
   }
 
@@ -215,13 +218,14 @@ export class FlashcardContainerComponent implements OnInit, OnChanges, AfterView
   };
 
   private onTouchEnd = (e: TouchEvent) => {
-    if (!this.touchActive) return;
+    if (!this.touchActive) {
+      return;
+    }
     this.touchActive = false;
     const dx = this.touchEndX - this.touchStartX;
     const dy = this.touchEndY - this.touchStartY;
     const absDx = Math.abs(dx);
     const absDy = Math.abs(dy);
-    console.log('dx', dx, absDx, absDy);
     const minDist = 40; // Mindestdistanz für Swipe
     if (absDx > absDy && absDx > minDist) {
       // Horizontaler Swipe
@@ -237,6 +241,9 @@ export class FlashcardContainerComponent implements OnInit, OnChanges, AfterView
       } else {
         this.toggle('down'); // Swipe runter
       }
+    } else if (absDx < 10 && absDy < 10) {
+      // Tap
+      this.toggle('up');
     }
     // Reset
     this.touchStartX = this.touchStartY = this.touchEndX = this.touchEndY = 0;
