@@ -1,3 +1,4 @@
+from array import array
 import argparse
 import csv
 import os
@@ -93,14 +94,53 @@ def convert_to_mp3(wav_path: Path, mp3_path: Path, bitrate="96k"):
     str(mp3_path)
   ], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
 
-def trim_start(pcm_data: bytes, milliseconds: int = 100) -> bytes:
+def find_speech_start_sample(
+  pcm_data: bytes,
+  sample_rate: int,
+  silence_threshold: int = 500,
+  min_speech_ms: int = 20,
+  search_ms: int = 200,
+) -> int:
   """
-  Schneidet die ersten Millisekunden des PCM-Signals ab,
-  um Knackser am Anfang zu eliminieren.
+  Sucht im ersten search_ms-Fenster nach dem Beginn „echter“ Sprache.
+  Sprache = in einem min_speech_ms-Fenster sind überwiegend Samples
+  über silence_threshold.
+  Gibt den Sample-Index zurück, ab dem wir schneiden können.
   """
-  bytes_per_sample = 2  # 16 bit
-  num_samples = int(TTS_SAMPLE_RATE * (milliseconds / 1000.0))
-  byte_offset = num_samples * bytes_per_sample
+  samples = array("h")
+  samples.frombytes(pcm_data)
+
+  total_samples = len(samples)
+  max_search_samples = min(int(sample_rate * search_ms / 1000), total_samples)
+  min_speech_samples = max(1, int(sample_rate * min_speech_ms / 1000))
+
+  for i in range(0, max_search_samples):
+    window_end = min(i + min_speech_samples, max_search_samples)
+    window = samples[i:window_end]
+    if not window:
+      break
+
+    non_silent = sum(1 for s in window if abs(s) > silence_threshold)
+    ratio = non_silent / len(window)
+
+    # z.B. > 60% der Samples in diesem Fenster sind „laut genug“
+    if ratio > 0.6:
+      return i
+
+  # Falls nichts gefunden wird, lieber gar nicht trimmen
+  return 0
+
+
+def smart_trim_start(pcm_data: bytes) -> bytes:
+  sample_index = find_speech_start_sample(
+    pcm_data,
+    sample_rate=TTS_SAMPLE_RATE,
+    silence_threshold=500,  # 500 ist ein guter Wert für 16-bit PCM
+    min_speech_ms=20, # mindestens 20ms „Sprache“ nötig
+    search_ms=1500, # Suche in den ersten 1,5 Sekunden
+  )
+  bytes_per_sample = 2  # 16-bit PCM
+  byte_offset = sample_index * bytes_per_sample
   return pcm_data[byte_offset:]
 
 def generate_for_rows(rows):
@@ -117,7 +157,7 @@ def generate_for_rows(rows):
     print(f"Generiere Audio für ID {row_id}…")
 
     pcm = synthesize_fr(fr_sentence, client)
-    pcm = trim_start(pcm, milliseconds=100)
+    pcm = smart_trim_start(pcm)
 
     base = f"fr{row_id}"
     wav_path = OUTPUT_BASE / f"wav/{base}.wav"
