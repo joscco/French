@@ -11,6 +11,15 @@ The Google Cloud Text-to-Speech API is used to generate the files, using a varie
 When using the console, set the settings as follows:
 ![img.png](tts-google-screenshot.png)
 
+### Updating sound files via script
+```python
+source venv/bin/activate
+python scripts/tts_generate.py --ids 1-10
+
+# When finished
+deactivate
+```
+
 ## Favourite Voices:
 Very subjective, but these are my favourites:
 
