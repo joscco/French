@@ -78,24 +78,50 @@ export class ExportPdfService {
     doc.save(filename);
   }
 
+  private beautifyFrenchArticle(genus?: string): string {
+    if (!genus) {
+      return '';
+    }
+    switch (genus) {
+      case 'm':
+        return 'm.';
+      case 'f':
+        return 'f.';
+      case 'pl':
+        return 'pl.';
+      case 'mpl':
+        return 'm.pl.';
+      case 'fpl':
+        return 'f.pl.';
+      case 'm/f':
+        return 'm./f.';
+      default:
+        return '';
+    }
+  }
+
   private withFrenchArticle(word: string, genus?: string, needsVowelArticle?: boolean): string {
     const frenchWord = (word || '').trim();
     if (!frenchWord) {
       return frenchWord;
     }
     const frenchGender = (genus || '').toLowerCase();
-    if (!frenchGender) return frenchWord; // kein Artikel für verbe/adjectif etc.
+    if (!frenchGender) {
+      return frenchWord;
+    } // kein Artikel für verbe/adjectif etc.
 
     const isPlural = frenchGender.includes('pl');
     const isMasc = frenchGender.includes('m');
     const isFem = frenchGender.includes('f');
 
     if (isPlural) {
-      return `les ${frenchWord} (${genus})`;
+      return `les ${frenchWord} (${this.beautifyFrenchArticle(genus)})`;
     }
 
     // Nur auf den Flag fr_needs_vowel_article achten (kein Heuristik-Check des ersten Buchstabens)
-    if (needsVowelArticle) return `l'${frenchWord} (${genus})`;
+    if (needsVowelArticle) {
+      return `l'${frenchWord} (${this.beautifyFrenchArticle(genus)})`;
+    }
 
     if (isMasc) {
       return `le ${frenchWord}`;

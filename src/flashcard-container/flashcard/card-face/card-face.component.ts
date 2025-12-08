@@ -18,17 +18,17 @@ export class CardFaceComponent {
   public getArticle(): string {
     if (this.language === 'german') {
       switch (this.genus) {
-        case 'm.':
+        case 'm':
           return 'der';
-        case 'f.':
+        case 'f':
           return 'die';
-        case 'n.':
+        case 'n':
           return 'das';
-        case 'm. pl.':
-        case 'f. pl.':
-        case 'n. pl.':
+        case 'mpl':
+        case 'fpl':
+        case 'npl':
           return 'die';
-        case 'm./f.':
+        case 'm/f':
           return 'der/die';
         default:
           return '';
@@ -39,15 +39,15 @@ export class CardFaceComponent {
         return 'l\'';
       }
       switch (this.genus) {
-        case 'm.':
+        case 'm':
           return 'le';
-        case 'f.':
+        case 'f':
           return 'la';
-        case 'm. pl.':
+        case 'mpl':
           return 'les';
-        case 'f. pl.':
+        case 'fpl':
           return 'les';
-        case 'm./f.':
+        case 'm/f':
           return 'le/la';
         default:
           return '';

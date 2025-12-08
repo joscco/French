@@ -112,7 +112,9 @@ export class FlashcardCardComponent implements OnChanges, OnDestroy {
   }
 
   private startSpeaking() {
-    if (!this.canSpeak()) return;
+    if (!this.canSpeak()) {
+      return;
+    }
     const id = this.meta?.['id'];
     const src = new URL(`sounds/fr${id}.mp3`, document.baseURI).toString();
 
