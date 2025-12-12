@@ -265,16 +265,16 @@ id;lesson;category;term;genus
 267;5;expression;ohne Skipass;
 268;5;adverbe;ausreichend;
 269;5;nom;wirtschaftliche Bilanz;f
-270;5;expression;etwas leugnen;
+270;5;expression;etw. leugnen;
 271;5;verbe;Schwierigkeiten haben, etw. zu tun;
 272;5;nom;Wasserstoff;m
-273;5;expression;etwas fortbestehen lassen;
+273;5;expression;etw. fortbestehen lassen;
 274;5;nom;Genügsamkeit;f
 275;5;nom;Treibhausgase;mpl
 276;5;expression;als Musterschüler gelten;
 277;5;nom;Windkraftanlage;f
 278;5;verbe;wachsen;
-279;6;verbe;jemanden verwöhnen;
+279;6;verbe;jmdn. verwöhnen;
 280;6;adjectif;handwerklich;
 281;6;nom;Einzelkind;n
 282;6;nom;Halbbruder / Halbschwester;m/f
@@ -311,7 +311,7 @@ id;lesson;category;term;genus
 313;7;verbe;erziehen;
 314;7;nom;Erziehung;f
 315;7;verbe;sich streiten;
-316;7;verbe;zögern, etwas zu tun;
+316;7;verbe;zögern, etw. zu tun;
 317;7;expression;außerhalb der Familie;
 318;7;expression;learning by doing;
 319;7;nom;Haufen;m
@@ -338,15 +338,15 @@ id;lesson;category;term;genus
 340;7;expression;aus Konvention;
 341;8;nom;Plappermaul;f
 342;8;nom;Party;f
-343;8;expression;sich gut mit jemandem verstehen;
-344;8;expression;sich schlecht mit jemandem verstehen;
+343;8;expression;sich gut mit jmdm. verstehen;
+344;8;expression;sich schlecht mit jmdm. verstehen;
 345;8;nom;Zwillinge;mpl
 346;8;nom;Zwillingsschwestern;fpl
 347;8;nom;eineiige Zwillinge;mpl
 348;8;nom;zweieiige Zwillinge;mpl
-349;8;verbe;etwas verwechseln;
+349;8;verbe;etw. verwechseln;
 350;8;expression;frühgeboren sein;
-351;8;verbe;etwas erkennen / unterscheiden;
+351;8;verbe;etw. erkennen / unterscheiden;
 352;8;adjectif;gleich;
 353;8;nom;Kindergarten;f
 354;8;nom;Kinderkrippe;f
@@ -372,11 +372,11 @@ id;lesson;category;term;genus
 374;9;nom;Beileidsbrief;m
 375;9;nom;Schiedsrichter;m
 376;9;nom;Stromausfall;m
-377;9;expression;ständig über etwas nachdenken;
+377;9;expression;ständig über etw. nachdenken;
 378;9;nom;Lebensberater/in;m/f
 379;9;nom;Vertraute;m/f
 380;9;nom;leitende Angestellte;m
-381;9;verbe;etwas knüpfen;
+381;9;verbe;etw. knüpfen;
 382;9;verbe;stattfinden / verlaufen;
 383;9;expression;sich einen Platz erkämpfen;
 384;9;nom;Gesprächspartner;m
@@ -396,7 +396,7 @@ id;lesson;category;term;genus
 398;9;adjectif;vernachlässigbar;
 399;9;expression;schwer darauf verzichten können;
 400;9;verbe;aufwerten;
-401;9;expression;etwas auf die Probe stellen;
+401;9;expression;etw. auf die Probe stellen;
 402;9;adjectif;gesellschaftlich zurückgezogen;
 403;9;adjectif;nachsichtig;
 404;9;adverbe;jedoch;
@@ -415,7 +415,7 @@ id;lesson;category;term;genus
 417;11;nom;Fahrradweg;m
 418;11;nom;Einbahnstraße;f
 419;11;nom;Autofahrer;m
-420;11;verbe;jemandem begegnen;
+420;11;verbe;jmdm. begegnen;
 421;11;verbe;überfahren;
 422;11;verbe;herumschleichen;
 423;11;expression;am Rheinufer;
@@ -451,10 +451,10 @@ id;lesson;category;term;genus
 453;11;adjectif;in Kraft;
 454;11;nom;Sperre;f
 455;11;nom;Anwohner;m
-456;11;expression;etwas bei sich haben;
+456;11;expression;etw. bei sich haben;
 457;11;nom;Wohnsitznachweis;m
 458;11;verbe;genervt sein;
-459;11;expression;jemanden anschreien;
+459;11;expression;jmdn. anschreien;
 460;11;adjectif;gut gelaunt / fröhlich;
 461;11;nom;Spur / Fahrbahn;f
 462;11;phrase;Die Markierung der Fahrbahnen fällt auf;
@@ -470,7 +470,7 @@ id;lesson;category;term;genus
 472;11;verbe;begrünen;
 473;11;adjectif;zur Fußgängerzone gemacht;
 474;11;phrase;das Gelände ist abschüssig;
-475;11;verbe;etwas entfernen / wegnehmen;
+475;11;verbe;etw. entfernen / wegnehmen;
 476;11;verbe;sich empören;
 477;11;nom;Entfernung;f
 478;11;adjectif;unsicher (körperlich);

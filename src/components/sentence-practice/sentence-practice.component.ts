@@ -6,9 +6,6 @@ import {
   inject,
   input,
   signal,
-  viewChild,
-  ElementRef,
-  afterNextRender,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -23,24 +20,27 @@ import { TermLookupService, TermTooltipVm } from '../../services/term-lookup.ser
 import { TermRef } from '../../models/term-ref';
 import { buildPromptSegments, PromptSegment } from '../../helpers/prompt-markup';
 
-import { gsap } from 'gsap';
+import { TermTooltipOverlayComponent } from '../term-tooltip-overlay/term-tooltip-overlay.component';
+import { PromptMarkupComponent } from '../prompt-markup/prompt-markup.component';
 
 @Component({
   selector: 'app-sentence-practice',
   standalone: true,
-  imports: [CommonModule, FormsModule, MatButtonModule],
-  templateUrl: './sentence-practice.component.html'
+  imports: [
+    CommonModule,
+    FormsModule,
+    MatButtonModule,
+    PromptMarkupComponent,
+    TermTooltipOverlayComponent,
+  ],
+  templateUrl: './sentence-practice.component.html',
 })
 export class SentencePracticeComponent {
-  // ✅ Input Signals
   sentences = input<Sentence[]>([]);
   mode = input<PracticeMode>('de-fr');
 
-  // services
   termLookup = inject(TermLookupService);
-
-  // Tooltip panel ref (exists only while tooltipVisible() is true)
-  tooltipPanel = viewChild<ElementRef<HTMLElement>>('tooltipPanel');
+  textForRef = (ref: TermRef) => this.termLookup.getText(ref);
 
   // state
   index = signal(0);
@@ -51,18 +51,17 @@ export class SentencePracticeComponent {
   promptSegments = signal<PromptSegment[]>([]);
 
   // tooltip state
-  hoverCloseTimer?: number;
-
   tooltipPinned = signal(false);
-
-  // IMPORTANT: render != open (damit close-Animation möglich ist)
-  tooltipVisible = signal(false); // steuert @if im Template
+  tooltipOpen = signal(false);
   tooltipVm = signal<TermTooltipVm | undefined>(undefined);
   tooltipX = signal(0);
   tooltipY = signal(0);
-
-  // für "Ref-Gruppe aktiv" (Split refs)
   tooltipAnchorRef = signal<TermRef | undefined>(undefined);
+
+  activeRefKey = computed(() => {
+    const r = this.tooltipAnchorRef();
+    return r ? `${r.lang}:${r.id}` : undefined;
+  });
 
   // audio
   isPlaying = signal(false);
@@ -73,8 +72,6 @@ export class SentencePracticeComponent {
     const i = this.index();
     return list[i] ?? list[0];
   });
-
-  promptLang = computed<TermRef['lang']>(() => (this.mode() === 'de-fr' ? 'de' : 'fr'));
 
   promptText = computed(() => {
     const cur = this.current();
@@ -91,11 +88,10 @@ export class SentencePracticeComponent {
   promptRefs = computed<TermRef[]>(() => {
     const cur = this.current();
     const refs = cur?.refs ?? [];
-    const lang = this.promptLang();
+    const lang: TermRef['lang'] = this.mode() === 'de-fr' ? 'de' : 'fr';
     return refs.filter(r => r.lang === lang);
   });
 
-  // bridge für ngModel
   get answerModel(): string {
     return this.answer();
   }
@@ -104,14 +100,10 @@ export class SentencePracticeComponent {
   }
 
   constructor() {
-    // Prompt-Markup immer aktuell halten
     effect(() => {
-      const prompt = this.promptText();
-      const refs = this.promptRefs();
-      this.promptSegments.set(buildPromptSegments(prompt, refs));
+      this.promptSegments.set(buildPromptSegments(this.promptText(), this.promptRefs()));
     });
 
-    // Overlay + correctness nur updaten, wenn checked
     effect(() => {
       if (!this.isChecked()) return;
 
@@ -140,155 +132,55 @@ export class SentencePracticeComponent {
     });
   }
 
-  // ---------- helpers: ref-key (für Split-Reihen) ----------
-  private refKey(ref: TermRef | undefined): string | undefined {
-    if (!ref) return undefined;
-    return `${ref.lang}:${ref.id}`;
-  }
-
-  isRefActive(ref: TermRef | undefined): boolean {
-    // Wenn Tooltip sichtbar ist, gilt AnchorRef als "aktive" Referenzgruppe
-    return !!ref && this.tooltipVisible() && this.refKey(ref) === this.refKey(this.tooltipAnchorRef());
-  }
-
-  // ---------- tooltip animation ----------
-  private animateTooltipIn() {
-    afterNextRender(() => {
-      const el = this.tooltipPanel()?.nativeElement;
-      if (!el) return;
-
-      gsap.killTweensOf(el);
-      gsap.set(el, { opacity: 0, scale: 0.96, transformOrigin: '50% 100%' });
-      gsap.to(el, { opacity: 1, scale: 1, duration: 0.14, ease: 'power2.out' });
-    });
-  }
-
-  private animateTooltipOut(onDone: () => void) {
-    const el = this.tooltipPanel()?.nativeElement;
-    if (!el) {
-      onDone();
-      return;
-    }
-
-    gsap.killTweensOf(el);
-    gsap.to(el, {
-      opacity: 0,
-      scale: 0.96,
-      duration: 0.12,
-      ease: 'power2.out',
-      onComplete: onDone,
-    });
-  }
-
-  // ---------- tooltip open/close ----------
-  openTooltipForRef(ref: TermRef, anchorEl: HTMLElement) {
+  // ---- tooltip behavior ----
+  private openTooltipForRef(ref: TermRef, anchorEl: HTMLElement) {
     const rect = anchorEl.getBoundingClientRect();
     this.tooltipX.set(rect.left + rect.width / 2);
     this.tooltipY.set(rect.top);
-
     this.tooltipVm.set(this.termLookup.getTooltipVm(ref));
     this.tooltipAnchorRef.set(ref);
-
-    if (!this.tooltipVisible()) {
-      this.tooltipVisible.set(true);
-      this.animateTooltipIn();
-    } else {
-      // already visible: just retarget (no big animation needed)
-      // optional: tiny "pop" if you want:
-      // this.animateTooltipIn();
-    }
+    this.tooltipOpen.set(true);
   }
 
-  openTooltipAt(ref: TermRef, x: number, y: number) {
+  private openTooltipAt(ref: TermRef, x: number, y: number) {
     this.tooltipX.set(x);
     this.tooltipY.set(y);
-
     this.tooltipVm.set(this.termLookup.getTooltipVm(ref));
     this.tooltipAnchorRef.set(ref);
-
-    if (!this.tooltipVisible()) {
-      this.tooltipVisible.set(true);
-      this.animateTooltipIn();
-    } else {
-      // already visible: update content
-    }
+    this.tooltipOpen.set(true);
   }
 
-  onTermEnter(_ev: MouseEvent, ref: TermRef, el: HTMLElement) {
-    if (this.tooltipPinned()) {
-      return;
-    }
-    this.cancelHoverClose();
-    this.openTooltipForRef(ref, el);
-  }
-
-  onTermLeave() {
-    if (this.tooltipPinned()) {
-      return;
-    }
-    this.scheduleHoverClose();
-  }
-
-  onTooltipEnter() {
-    this.cancelHoverClose();
-  }
-
-  onTooltipLeave() {
+  onPromptTermEnter(e: { ref: TermRef; el: HTMLElement }) {
     if (this.tooltipPinned()) return;
-    this.scheduleHoverClose();
+    this.openTooltipForRef(e.ref, e.el);
   }
 
-  onTermClick(ev: MouseEvent, ref: TermRef) {
-    ev.preventDefault();
-    ev.stopPropagation();
+  onPromptTermLeave() {
+    if (this.tooltipPinned()) return;
+    this.closeTooltip();
+  }
+
+  onPromptTermClick(e: { ref: TermRef; x: number; y: number }) {
     this.tooltipPinned.set(true);
-    this.cancelHoverClose();
-    this.openTooltipAt(ref, ev.clientX, ev.clientY);
+    this.openTooltipAt(e.ref, e.x, e.y);
   }
 
-  closeTooltip(animated = true) {
-    this.cancelHoverClose();
+  onTooltipTranslationClick(tr: TermRef) {
+    // keep pinned, same position
+    this.tooltipPinned.set(true);
+    this.openTooltipAt(tr, this.tooltipX(), this.tooltipY());
+  }
+
+  closeTooltip() {
     this.tooltipPinned.set(false);
-
-    const done = () => {
-      this.tooltipVisible.set(false);
-      this.tooltipVm.set(undefined);
-      this.tooltipAnchorRef.set(undefined);
-    };
-
-    if (!this.tooltipVisible()) {
-      return;
-    }
-
-    if (!animated) {
-      done();
-      return;
-    }
-
-    this.animateTooltipOut(done);
-  }
-
-  private scheduleHoverClose() {
-    this.cancelHoverClose();
-    this.hoverCloseTimer = window.setTimeout(() => {
-      if (!this.tooltipPinned()) {
-        this.closeTooltip(true);
-      }
-    }, 120);
-  }
-
-  private cancelHoverClose() {
-    if (this.hoverCloseTimer) {
-      window.clearTimeout(this.hoverCloseTimer);
-      this.hoverCloseTimer = undefined;
-    }
+    this.tooltipOpen.set(false);
+    this.tooltipVm.set(undefined);
+    this.tooltipAnchorRef.set(undefined);
   }
 
   @HostListener('document:pointerdown', ['$event'])
   onDocPointerDown(ev: PointerEvent) {
-    if (!this.tooltipVisible()) {
-      return;
-    }
+    if (!this.tooltipOpen()) return;
 
     const target = ev.target as HTMLElement | null;
     if (!target) return;
@@ -296,17 +188,15 @@ export class SentencePracticeComponent {
     if (target.closest('[data-tooltip]')) return;
     if (target.closest('[data-term]')) return;
 
-    this.closeTooltip(true);
+    this.closeTooltip();
   }
 
   @HostListener('document:keydown', ['$event'])
   onDocKeydown(ev: KeyboardEvent) {
-    if (ev.key === 'Escape') {
-      this.closeTooltip(true);
-    }
+    if (ev.key === 'Escape') this.closeTooltip();
   }
 
-  // ---------- audio ----------
+  // ---- audio ----
   canPlay(): boolean {
     return !!this.current()?.id;
   }
@@ -358,11 +248,10 @@ export class SentencePracticeComponent {
     }
   }
 
-  // ---------- actions ----------
+  // ---- actions ----
   check() {
     if (!this.current()) return;
     this.isChecked.set(true);
-
     queueMicrotask(() => {
       if (!this.isCorrect()) this.togglePlay();
     });
@@ -390,7 +279,7 @@ export class SentencePracticeComponent {
 
   private resetForNext() {
     this.stopAudio();
-    this.closeTooltip(false);
+    this.closeTooltip();
     this.answer.set('');
     this.isChecked.set(false);
     this.isCorrect.set(false);

@@ -1,0 +1,40 @@
+@if (shouldRender() && vm(); as m) {
+  <div data-tooltip class="fixed inset-0 z-[9999] pointer-events-none">
+    <div
+      #panel
+      data-tooltip
+      class="absolute pointer-events-auto max-w-[320px]
+             bg-white border rounded-xl shadow-lg px-3 py-2 text-sm"
+      [style.left.px]="x()"
+      [style.top.px]="y()"
+      style="transform: translate(-50%, calc(-100% - 10px));"
+      (mouseenter)="tooltipEnter.emit()"
+      (mouseleave)="tooltipLeave.emit()"
+    >
+      <div class="font-semibold">
+        {{ m.title }}
+        <span class="ml-2 text-xs opacity-60">({{ m.lang }})</span>
+      </div>
+
+      @if (m.subtitle) {
+        <div class="text-xs opacity-70 mt-0.5">{{ m.subtitle }}</div>
+      }
+
+      @if (m.translations.length) {
+        <div class="mt-2 text-xs font-semibold opacity-70">Übersetzungen</div>
+        <div class="mt-1 flex flex-wrap gap-2">
+          @for (tr of m.translations; track $index) {
+            <button
+              type="button"
+              data-tooltip
+              class="px-2 py-1 rounded-full border bg-neutral-50 hover:bg-neutral-100 transition text-xs"
+              (click)="translationClick.emit(tr)"
+            >
+              {{ textForRef()(tr) }}
+            </button>
+          }
+        </div>
+      }
+    </div>
+  </div>
+}

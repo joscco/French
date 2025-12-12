@@ -1,49 +1,14 @@
 @if (sentences().length && current(); as cur) {
   <section class="flex flex-col gap-4 max-w-xl mx-auto">
 
-    <!-- Tooltip Host: fixed, außerhalb der Card -->
-    @if (tooltipVisible() && tooltipVm(); as vm) {
-      <div data-tooltip class="fixed inset-0 z-[9999] pointer-events-none">
-        <div
-          #tooltipPanel
-          data-tooltip
-          class="absolute pointer-events-auto max-w-[320px]
-             bg-white border rounded-xl shadow-lg px-3 py-2 text-sm"
-          [style.left.px]="tooltipX()"
-          [style.top.px]="tooltipY()"
-          style="transform: translate(-50%, calc(-100% - 10px));"
-          (mouseenter)="onTooltipEnter()"
-          (mouseleave)="onTooltipLeave()"
-        >
-          <!-- content unverändert -->
-          <div class="font-semibold">
-            {{ vm.title }}
-            <span class="ml-2 text-xs opacity-60">({{ vm.lang }})</span>
-          </div>
-
-          @if (vm.subtitle) {
-            <div class="text-xs opacity-70 mt-0.5">{{ vm.subtitle }}</div>
-          }
-
-          @if (vm.translations.length) {
-            <div class="mt-2 text-xs font-semibold opacity-70">Übersetzungen</div>
-            <div class="mt-1 flex flex-wrap gap-2">
-              @for (tr of vm.translations; track $index) {
-                <button
-                  type="button"
-                  data-tooltip
-                  class="px-2 py-1 rounded-full border bg-neutral-50 hover:bg-neutral-100 transition text-xs"
-                  (click)="openTooltipAt(tr, tooltipX(), tooltipY())"
-                >
-                  {{ termLookup.getText(tr) }}
-                </button>
-              }
-            </div>
-          }
-        </div>
-      </div>
-    }
-
+    <app-term-tooltip-overlay
+      [open]="tooltipOpen()"
+      [vm]="tooltipVm()"
+      [x]="tooltipX()"
+      [y]="tooltipY()"
+      [textForRef]="textForRef"
+      (translationClick)="onTooltipTranslationClick($event)"
+    ></app-term-tooltip-overlay>
 
     <div class="text-sm text-neutral-500">
       Satz {{ index() + 1 }} / {{ sentences().length }}
@@ -51,33 +16,14 @@
 
     <div class="p-4 rounded-xl bg-neutral-50 border">
 
-      <!-- PROMPT (markiert) -->
-      <div class="font-semibold mb-3 leading-relaxed">
-        @if (promptSegments().length) {
-          @for (seg of promptSegments(); track $index) {
-            @if (seg.ref) {
-              <span
-                data-term
-                class="inline-block cursor-pointer
-               underline decoration-dotted decoration-2 underline-offset-4
-               transition-colors duration-200"
-                [class.decoration-neutral-400]="!isRefActive(seg.ref)"
-                [class.hover:decoration-neutral-800]="true"
-                [class.decoration-neutral-900]="isRefActive(seg.ref)"
-                (click)="onTermClick($event, seg.ref!)"
-                (mouseenter)="onTermEnter($event, seg.ref!, $any($event.target))"
-                (mouseleave)="onTermLeave()"
-              >
-        {{ seg.text }}
-      </span>
-            } @else {
-              <span>{{ seg.text }}</span>
-            }
-          }
-        } @else {
-          {{ mode() === 'de-fr' ? cur.de : cur.fr }}
-        }
-      </div>
+      <app-prompt-markup
+        [segments]="promptSegments()"
+        [fallbackText]="mode() === 'de-fr' ? cur.de : cur.fr"
+        [activeRefKey]="activeRefKey()"
+        (termEnter)="onPromptTermEnter($event)"
+        (termLeave)="onPromptTermLeave()"
+        (termClick)="onPromptTermClick($event)"
+      ></app-prompt-markup>
 
       <!-- Deine Eingabe -->
       <div class="mb-3">

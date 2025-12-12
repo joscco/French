@@ -11,7 +11,7 @@ from google.cloud import texttospeech
 
 load_dotenv()
 
-CSV_PATH = Path("public/words.csv")
+CSV_PATH = Path("public/data/sentences.csv")
 OUTPUT_BASE = Path("public/sounds")
 
 TTS_VOICE = os.getenv("TTS_VOICE", "fr-FR-Chirp3-HD-Enceladus")
@@ -148,10 +148,10 @@ def generate_for_rows(rows):
 
   for row in rows:
     row_id = int(row["id"])
-    fr_sentence = (row.get("fr_sentence") or "").strip()
+    fr_sentence = (row.get("fr") or "").strip()
 
     if not fr_sentence:
-      print(f"Überspringe ID {row_id} – kein fr_sentence")
+      print(f"Überspringe ID {row_id} – kein fr")
       continue
 
     print(f"Generiere Audio für ID {row_id}…")

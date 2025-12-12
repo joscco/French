@@ -33,7 +33,7 @@ export class AppComponent {
   private sentenceService = inject(SentenceService);
 
   loading = signal(true);
-  practiceKind = signal<PracticeKind>('vocab');
+  practiceKind = signal<PracticeKind>('sentence');
   practiceMode = this.practiceCardsService.mode;
 
   lessons = computed<LessonOption[]>(() => {

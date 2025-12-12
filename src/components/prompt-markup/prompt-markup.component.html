@@ -1,0 +1,30 @@
+<div
+  class="font-semibold mb-3 leading-relaxed"
+  (pointermove)="onPointerMove($event)"
+  (pointerleave)="onPointerLeave()"
+  (click)="onClick($event)"
+>
+  @if (segments().length) {
+    @for (seg of segments()!; track $index) {
+      @if (seg.ref) {
+        <span
+          data-term
+          class="inline-block cursor-pointer rounded-md px-1 transition-colors duration-150
+         bg-amber-100
+         hover:bg-amber-300"
+          [class.bg-amber-200]="activeRefKey() === refKey(seg.ref)"
+          (mouseenter)="termEnter.emit({ ref: seg.ref!, el: $any($event.target) })"
+          (mouseleave)="termLeave.emit()"
+          (click)="termClick.emit({ ref: seg.ref!, x: $event.clientX, y: $event.clientY })"
+        >
+          {{ seg.text }}
+        </span>
+
+      } @else {
+        <span>{{ seg.text }}</span>
+      }
+    }
+  } @else {
+    <span>{{ fallbackText() }}</span>
+  }
+</div>
