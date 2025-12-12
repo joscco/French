@@ -1,7 +1,7 @@
-﻿lesson;id;fr;de
-1;1;Je vais m'inscrire à un cours de français.;Ich melde mich zu einem Französischkurs an.
-1;2;Il y avait une manifestation dans la rue principale.;In der Hauptstraße gab es eine Demonstration.
-1;3;Il faut désinfecter la plaie.;Man muss die Wunde desinfizieren.
+﻿lesson;sid;fr;de
+1;1;Je vais [m'inscrire]{s'inscrire} à un [cours de français].;Ich [melde mich]{sich anmelden#A} zu einem [Französischkurs] [an]{#A}.
+1;2;Il y avait une [manifestation] dans la [rue principale].;In der [Hauptstraße] gab es eine [Demonstration].
+1;3;Il faut [désinfecter]{désinfecter qc.} la [plaie].;Man muss die [Wunde] [desinfizieren]{etw. desinfizieren}.
 1;4;Le frigidaire est plein de légumes.;Der Kühlschrank ist voller Gemüse.
 1;5;Nous faisons du camping au bord du lac.;Wir machen Camping am See.
 1;6;J’ai oublié mon sac de couchage.;Ich habe meinen Schlafsack vergessen.

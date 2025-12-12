@@ -1,39 +1,35 @@
-import {Injectable, signal} from '@angular/core';
 import {FrenchTerm} from '../models/french-term';
+import {computed, Injectable, signal} from '@angular/core';
 import {parseCSV} from '../helpers/csv-utils';
 
 @Injectable({ providedIn: 'root' })
 export class FrenchTermService {
-  private readonly _terms = signal<FrenchTerm[]>([]);
-  readonly terms = this._terms.asReadonly();
-  private loaded = false;
+  private readonly _byKey = signal<Record<string, FrenchTerm>>({});
+  readonly byKey = this._byKey.asReadonly();
+  readonly terms = computed(() => Object.values(this._byKey()));
 
   async loadAll(): Promise<void> {
-    if (this.loaded) {
-      return;
-    }
-    this.loaded = true;
+    const res = await fetch('data/generated/terms-fr.csv');
+    const records = parseCSV(await res.text());
 
-    try {
-      const res = await fetch('data/french-terms.csv');
-      if (!res.ok) {
-        throw new Error('Fehler beim Laden `french-terms.csv`');
-      }
+    const map: Record<string, FrenchTerm> = {};
+    for (const r of records) {
+      const key = (r['key'] || '').trim();
+      const term = (r['term'] || '').trim();
+      if (!key || !term) continue;
 
-      const records = parseCSV(await res.text());
-      const all: FrenchTerm[] = records.map(r => ({
-        id: Number(r['id']),
-        lesson: Number(r['lesson']),
+      map[key] = {
+        key,
+        term,
         category: (r['category'] || '').trim(),
-        term: (r['term'] || '').trim(),
         genus: (r['genus'] || '').trim() || undefined,
         needsVowelArticle: (r['needs_vowel_article'] || '').trim().toLowerCase() === 'true',
-      })).filter(t => !!t.id && !!t.term);
-
-      this._terms.set(all);
-    } catch (e) {
-      console.error('French terms load failed', e);
-      this._terms.set([]);
+      };
     }
+    this._byKey.set(map);
+  }
+
+  getByKey(key: string): FrenchTerm | undefined {
+    return this._byKey()[key];
   }
 }

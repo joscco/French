@@ -6,10 +6,10 @@ import { TranslationService } from './translation.service';
 import { TermRef } from '../models/term-ref';
 
 export interface TermTooltipVm {
-  title: string;              // Grundform
-  subtitle?: string;          // z.B. Kategorie/Genus
+  title: string;
+  subtitle?: string;
   lang: 'fr' | 'de';
-  translations: TermRef[];    // klickbare Gegen-Links
+  translations: TermRef[];
 }
 
 @Injectable({ providedIn: 'root' })
@@ -21,19 +21,17 @@ export class TermLookupService {
   ) {}
 
   getText(ref: TermRef): string {
-    // im Text wollen wir die Satz-Phrase markieren
     if (ref.label) return ref.label;
-
     const t = this.getTerm(ref);
-    return t?.term ?? `${ref.lang}:${ref.id}`;
+    return t?.term ?? `${ref.lang}:${ref.key}`;
   }
 
   getTooltipVm(ref: TermRef): TermTooltipVm {
     const t = this.getTerm(ref);
-    const title = t?.term ?? `${ref.lang}:${ref.id}`;
+    const title = t?.term ?? `${ref.lang}:${ref.key}`;
 
     const genus = (t as any)?.genus ? `${(t as any).genus}` : '';
-    const cat = t?.category ? `${t.category}` : '';
+    const cat = (t as any)?.category ? `${(t as any).category}` : '';
     const subtitle = [genus, cat].filter(Boolean).join(' · ') || undefined;
 
     return {
@@ -45,21 +43,15 @@ export class TermLookupService {
   }
 
   private getTranslations(ref: TermRef): TermRef[] {
-    const links = this.translations.links();
-
     if (ref.lang === 'fr') {
-      const germanIds = links.filter(l => l.frenchId === ref.id).map(l => l.germanId);
-      return germanIds.map(id => ({ lang: 'de', id }));
-    } else {
-      const frenchIds = links.filter(l => l.germanId === ref.id).map(l => l.frenchId);
-      return frenchIds.map(id => ({ lang: 'fr', id }));
+      return this.translations.getGermanKeys(ref.key).map(key => ({ lang: 'de', key }));
     }
+    return this.translations.getFrenchKeys(ref.key).map(key => ({ lang: 'fr', key }));
   }
 
   private getTerm(ref: TermRef): { term: string; category?: string } | undefined {
-    if (ref.lang === 'fr') {
-      return this.frenchTermService.terms().find(t => t.id === ref.id);
-    }
-    return this.germanTermService.terms().find(t => t.id === ref.id);
+    return ref.lang === 'fr'
+      ? this.frenchTermService.getByKey(ref.key)
+      : this.germanTermService.getByKey(ref.key);
   }
 }

@@ -1,6 +1,5 @@
 export interface FrenchTerm {
-  id: number;
-  lesson: number;
+  key: string;
   category: string;
   term: string;
   genus?: string;

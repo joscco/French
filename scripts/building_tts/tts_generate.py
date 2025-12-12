@@ -11,7 +11,7 @@ from google.cloud import texttospeech
 
 load_dotenv()
 
-CSV_PATH = Path("public/data/sentences.csv")
+CSV_PATH = Path("public/data/annotated-sentences.csv")
 OUTPUT_BASE = Path("public/sounds")
 
 TTS_VOICE = os.getenv("TTS_VOICE", "fr-FR-Chirp3-HD-Enceladus")

@@ -1,5 +1,5 @@
 export interface TermRef {
   lang: 'fr' | 'de';
-  id: number;
-  label?: string;
+  key: string;        // z.B. "s'inscrire" oder "Wandern|nom"
+  label?: string;     // phrase aus dem Satz (surface oder "…"-join)
 }

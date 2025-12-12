@@ -60,7 +60,7 @@ export class SentencePracticeComponent {
 
   activeRefKey = computed(() => {
     const r = this.tooltipAnchorRef();
-    return r ? `${r.lang}:${r.id}` : undefined;
+    return r ? `${r.lang}:${r.key}` : undefined;
   });
 
   // audio

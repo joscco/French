@@ -35,46 +35,55 @@ export function beautifyGenus(genus?: string): string {
   }
 }
 
-export function indexBy<T extends {id: number}>(items: T[], getId: (t: T) => number): Record<number, T> {
-  return items.reduce((acc, item) => {
-    acc[getId(item)] = item;
-    return acc;
-  }, {} as Record<number, T>);
+export function indexByKey<T extends { key: string }>(items: T[]): Record<string, T> {
+  const out: Record<string, T> = {};
+  for (const item of items) {
+    out[item.key] = item;
+  }
+  return out;
+}
+
+function buildLinkIndex(links: TranslationLink[]) {
+  const frToDe = new Map<string, string[]>();
+  const deToFr = new Map<string, string[]>();
+
+  for (const l of links) {
+    const fr = (l as any).frKey ?? (l as any).fr; // falls du noch umstellst
+    const de = (l as any).deKey ?? (l as any).de;
+
+    if (!fr || !de) continue;
+
+    (frToDe.get(fr) ?? frToDe.set(fr, []).get(fr)!).push(de);
+    (deToFr.get(de) ?? deToFr.set(de, []).get(de)!).push(fr);
+  }
+
+  return { frToDe, deToFr };
 }
 
 export function buildCardsFromFrench(
   frenchTerms: FrenchTerm[],
-  germanTermById: Record<number, GermanTerm>,
+  germanByKey: Record<string, GermanTerm>,
   links: TranslationLink[]
 ): PracticeCard[] {
+  const { frToDe } = buildLinkIndex(links);
+
   const cards: PracticeCard[] = [];
 
   for (const fr of frenchTerms) {
-    const linkedGerman = links
-      .filter(l => l.frenchId === fr.id)
-      .map(l => germanTermById[l.germanId])
-      .filter(Boolean);
-
-    // Wenn du willst, kannst du hier entscheiden:
-    // - keine Links → Karte trotzdem, aber ohne Übersetzungen?
-    // - oder solche Terms ignorieren
-    if (!linkedGerman.length) {
-      // optional: skip
-      // continue;
-    }
+    const deKeys = frToDe.get(fr.key) ?? [];
+    const linkedGerman = deKeys.map(k => germanByKey[k]).filter(Boolean);
 
     const germanText = linkedGerman.map(g => g.term).join(', ');
 
     cards.push({
-      id: `fr-${fr.id}`,
+      id: `fr-${fr.key}`,
       headLanguage: 'fr',
       frenchPrimary: fr.term,
       frenchSecondary: '',
       germanPrimary: germanText,
       germanSecondary: '',
-
       meta: {
-        lesson: fr.lesson,
+        // lesson: ??? -> nur sinnvoll, wenn du sie aus SentenceRefs herleitest
         category: fr.category,
         fr_genus: fr.genus,
         de_genus: linkedGerman[0]?.genus,
@@ -87,31 +96,30 @@ export function buildCardsFromFrench(
   return cards;
 }
 
+
 export function buildCardsFromGerman(
   germanTerms: GermanTerm[],
-  frenchTermById: Record<number, FrenchTerm>,
+  frenchByKey: Record<string, FrenchTerm>,
   links: TranslationLink[]
 ): PracticeCard[] {
+  const { deToFr } = buildLinkIndex(links);
+
   const cards: PracticeCard[] = [];
 
   for (const de of germanTerms) {
-    const linkedFrench = links
-      .filter(l => l.germanId === de.id)
-      .map(l => frenchTermById[l.frenchId])
-      .filter(Boolean);
+    const frKeys = deToFr.get(de.key) ?? [];
+    const linkedFrench = frKeys.map(k => frenchByKey[k]).filter(Boolean);
 
     const frenchText = linkedFrench.map(f => f.term).join(', ');
 
     cards.push({
-      id: `de-${de.id}`,
+      id: `de-${de.key}`,
       headLanguage: 'de',
       frenchPrimary: frenchText,
       frenchSecondary: '',
       germanPrimary: de.term,
       germanSecondary: '',
-
       meta: {
-        lesson: de.lesson,
         category: de.category,
         fr_genus: linkedFrench[0]?.genus,
         de_genus: de.genus,

@@ -8,8 +8,6 @@ export class SentenceService {
   private refs = inject(SentenceRefService);
 
   private readonly _sentences = signal<Sentence[]>([]);
-  readonly sentences = this._sentences.asReadonly();
-
   readonly sentencesWithRefs = computed<Sentence[]>(() => {
     const base = this._sentences();
     const byId = this.refs.bySentenceId();
@@ -30,11 +28,11 @@ export class SentenceService {
     try {
       // parallel laden
       const [sentRes] = await Promise.all([
-        fetch('data/sentences.csv'),
+        fetch('data/generated/sentences.csv'),
         this.refs.loadAll(),
       ]);
 
-      if (!sentRes.ok) throw new Error('Fehler beim Laden `sentences.csv`');
+      if (!sentRes.ok) throw new Error('Fehler beim Laden `annotated-sentences.csv`');
 
       const records = parseCSV(await sentRes.text());
       const all: Sentence[] = records.map(r => ({

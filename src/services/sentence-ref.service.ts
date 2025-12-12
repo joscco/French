@@ -1,13 +1,17 @@
-// sentence-ref.service.ts
 import { Injectable, signal } from '@angular/core';
-import { SentenceRefRow } from '../models/sentence-ref-row';
 import { parseCSV } from '../helpers/csv-utils';
 import { TermRef } from '../models/term-ref';
 
+type BySentenceId = Record<number, TermRef[]>;
+type SentenceLessonMap = Record<number, number>;
+
 @Injectable({ providedIn: 'root' })
 export class SentenceRefService {
-  private readonly _rows = signal<SentenceRefRow[]>([]);
-  readonly rows = this._rows.asReadonly();
+  private readonly _bySentenceId = signal<BySentenceId>({});
+  readonly bySentenceId = this._bySentenceId.asReadonly();
+
+  private readonly _lessonBySentenceId = signal<SentenceLessonMap>({});
+  readonly lessonBySentenceId = this._lessonBySentenceId.asReadonly();
 
   private loaded = false;
 
@@ -16,43 +20,74 @@ export class SentenceRefService {
     this.loaded = true;
 
     try {
-      const res = await fetch('data/sentence-refs.csv');
-      if (!res.ok) throw new Error('Fehler beim Laden `sentence-refs.csv`');
+      const [refsRes, sentRes] = await Promise.all([
+        fetch('data/generated/sentence-refs.csv'),
+        fetch('data/generated/sentences.csv'),
+      ]);
 
-      const records = parseCSV(await res.text());
-      const all: SentenceRefRow[] = records
-        .map(r => ({
-          id: Number(r['id']),
-          sentenceId: Number(r['sentence_id']),
-          termLanguage: (r['term_language'] || '').trim() as any,
-          termId: Number(r['term_id']),
-          phrase: (r['phrase'] || '').trim() || undefined,
-        }))
-        .filter(
-          x =>
-            !!x.id &&
-            !!x.sentenceId &&
-            (x.termLanguage === 'fr' || x.termLanguage === 'de') &&
-            !!x.termId
-        );
+      if (!refsRes.ok) throw new Error('Fehler beim Laden `sentence-refs.csv`');
+      if (!sentRes.ok) throw new Error('Fehler beim Laden `sentences.csv`');
 
-      this._rows.set(all);
+      // 1) sentenceId -> lesson
+      const sentRecords = parseCSV(await sentRes.text());
+      const lessonMap: SentenceLessonMap = {};
+      for (const r of sentRecords) {
+        const id = Number(r['id']);
+        const lesson = Number(r['lesson']);
+        if (!id || !lesson) continue;
+        lessonMap[id] = lesson;
+      }
+      this._lessonBySentenceId.set(lessonMap);
+
+      // 2) sentenceId -> refs[]
+      const refRecords = parseCSV(await refsRes.text());
+      const map: BySentenceId = {};
+
+      for (const r of refRecords) {
+        const sid = Number(r['sentence_id']);
+        const lang = (r['term_language'] || '').trim() as 'fr' | 'de';
+        const key = (r['term_key'] || '').trim();
+        const phrase = (r['phrase'] || '').trim();
+
+        if (!sid || (lang !== 'fr' && lang !== 'de') || !key) continue;
+
+        (map[sid] ??= []).push({
+          lang,
+          key,
+          label: phrase || undefined,
+        });
+      }
+
+      console.log(refRecords);
+
+      this._bySentenceId.set(map);
     } catch (e) {
       console.error('Sentence refs load failed', e);
-      this._rows.set([]);
+      this._bySentenceId.set({});
+      this._lessonBySentenceId.set({});
     }
   }
 
-  /** Map: sentenceId -> TermRef[] */
-  bySentenceId(): Record<number, TermRef[]> {
-    const map: Record<number, TermRef[]> = {};
-    for (const r of this._rows()) {
-      (map[r.sentenceId] ??= []).push({
-        lang: r.termLanguage,
-        id: r.termId,
-        label: r.phrase,
-      });
+  allowedTermKeysForLessons(lessons: number[]): { fr: Set<string>; de: Set<string> } {
+    const lessonSet = new Set(lessons);
+    const byId = this._bySentenceId();
+    const lessonBySid = this._lessonBySentenceId();
+
+    const fr = new Set<string>();
+    const de = new Set<string>();
+
+    for (const [sidStr, refs] of Object.entries(byId)) {
+      const sid = Number(sidStr);
+      const lesson = lessonBySid[sid];
+      if (!lesson || !lessonSet.has(lesson)) continue;
+
+      for (const ref of refs) {
+        // only works if refs actually have keys (optional)
+        if (!ref.key) continue;
+        (ref.lang === 'fr' ? fr : de).add(ref.key);
+      }
     }
-    return map;
+
+    return { fr, de };
   }
 }

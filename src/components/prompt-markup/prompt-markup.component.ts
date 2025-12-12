@@ -22,7 +22,7 @@ export class PromptMarkupComponent {
   private lastIdx?: number;
 
   refKey(ref?: TermRef) {
-    return ref ? `${ref.lang}:${ref.id}` : undefined;
+    return ref ? `${ref.lang}:${ref.key}` : undefined;
   }
 
   private findTermElFromEventTarget(target: EventTarget | null): HTMLElement | null {

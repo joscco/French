@@ -72,10 +72,6 @@ export class AppComponent {
     return all.filter(s => s.lesson === sel.lesson);
   });
 
-  v = effect(() => {
-    console.log(this.sentences())
-  })
-
   constructor() {
     Promise.all([
       this.lessonService.loadAll(),
