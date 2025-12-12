@@ -2,18 +2,20 @@
   <section class="flex flex-col gap-4 max-w-xl mx-auto">
 
     <!-- Tooltip Host: fixed, außerhalb der Card -->
-    @if (tooltipOpen() && tooltipVm(); as vm) {
+    @if (tooltipVisible() && tooltipVm(); as vm) {
       <div data-tooltip class="fixed inset-0 z-[9999] pointer-events-none">
         <div
+          #tooltipPanel
           data-tooltip
           class="absolute pointer-events-auto max-w-[320px]
-         bg-white border rounded-xl shadow-lg px-3 py-2 text-sm"
+             bg-white border rounded-xl shadow-lg px-3 py-2 text-sm"
           [style.left.px]="tooltipX()"
           [style.top.px]="tooltipY()"
           style="transform: translate(-50%, calc(-100% - 10px));"
           (mouseenter)="onTooltipEnter()"
           (mouseleave)="onTooltipLeave()"
         >
+          <!-- content unverändert -->
           <div class="font-semibold">
             {{ vm.title }}
             <span class="ml-2 text-xs opacity-60">({{ vm.lang }})</span>
@@ -42,6 +44,7 @@
       </div>
     }
 
+
     <div class="text-sm text-neutral-500">
       Satz {{ index() + 1 }} / {{ sentences().length }}
     </div>
@@ -56,16 +59,17 @@
               <span
                 data-term
                 class="inline-block cursor-pointer
-                       underline decoration-dotted decoration-2 underline-offset-4
-                       decoration-neutral-400
-                       hover:decoration-neutral-600
-                       transition-colors"
-                              (click)="onTermClick($event, seg.ref!)"
-                              (mouseenter)="onTermEnter($event, seg.ref!, $any($event.target))"
-                              (mouseleave)="onTermLeave()"
-                            >
-                {{ seg.text }}
-              </span>
+               underline decoration-dotted decoration-2 underline-offset-4
+               transition-colors duration-200"
+                [class.decoration-neutral-400]="!isRefActive(seg.ref)"
+                [class.hover:decoration-neutral-800]="true"
+                [class.decoration-neutral-900]="isRefActive(seg.ref)"
+                (click)="onTermClick($event, seg.ref!)"
+                (mouseenter)="onTermEnter($event, seg.ref!, $any($event.target))"
+                (mouseleave)="onTermLeave()"
+              >
+        {{ seg.text }}
+      </span>
             } @else {
               <span>{{ seg.text }}</span>
             }
@@ -180,7 +184,11 @@
           [class.text-red-600]="isChecked() && !isCorrect()"
         >
           @if (isChecked()) {
-            @if (isCorrect()) { ✅ Korrekt! } @else { ❌ Nicht ganz. }
+            @if (isCorrect()) {
+              ✅ Korrekt!
+            } @else {
+              ❌ Nicht ganz.
+            }
           }
         </div>
       </div>
@@ -194,7 +202,11 @@
           (click)="togglePlay($event)"
         >
           <span class="mr-1">🔊</span>
-          @if (isPlaying()) { Stop } @else { Audio }
+          @if (isPlaying()) {
+            Stop
+          } @else {
+            Audio
+          }
         </button>
 
         <div class="mt-4">
