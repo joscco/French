@@ -1,0 +1,15 @@
+<div class="absolute left-0 top-1/2 -translate-y-1/2 px-8 py-4
+            flex flex-col items-start justify-center gap-2">
+  <div class="flex flex-row items-baseline">
+    @if (getArticle() !== '') {
+      <div class="text-base opacity-50 mr-1"> {{ getArticle() }}</div>
+    }
+    <div class="text-xl font-semibold">{{ primary }}</div>
+    @if (needsVowelArticle || genus === 'mpl' || genus === 'fpl') {
+      <div class="text-base italic opacity-50 ml-2">{{ '(' + beautifyGenus(genus) + ')' }}</div>
+    }
+  </div>
+  @if (secondary) {
+    <div>{{ secondary }}</div>
+  }
+</div>

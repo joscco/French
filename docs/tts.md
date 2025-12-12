@@ -28,5 +28,5 @@ Very subjective, but these are my favourites:
 * Callirhoe: very clear
 
 ### Male Voices:
-* Enceladus: deep, sexy <- my personal favourite
+* Enceladus: clear, deep <- my personal favourite
 * Schelar: clear, youthful
