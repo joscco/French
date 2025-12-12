@@ -1,0 +1,477 @@
+id;lesson;category;term;genus;needs_vowel_article
+1;1;verbe;s'inscrire;;
+2;1;nom;manifestation;f;false
+3;1;verbe;désinfecter qc.;;false
+4;1;nom;frigidaire;m;false
+5;1;nom;camping;m;false
+6;1;nom;sac de couchage;m;false
+7;1;adjectif;viticole;;
+8;1;verbe;faire des randonnées;;
+9;1;verbe;randonner;;
+10;1;nom;dénivelé;m;false
+11;1;nom;chapelle;f;false
+12;1;expression;en Bavière;;
+13;1;nom;station thermale;f;false
+14;1;verbe;aller en cure;;
+15;1;adjectif;crevant;;
+16;1;adjectif;fatigant;;
+17;1;adjectif;dur;;
+18;1;nom;rôle;m;false
+19;1;adjectif;dégoûtant;;
+20;1;nom;colline;f;false
+21;1;nom;sacoche;f;false
+22;1;nom;bagages;mpl;false
+23;1;verbe;pousser (un vélo);;
+24;1;verbe;rouler;;
+25;1;nom;frein;m;false
+26;1;nom;casque;m;false
+27;1;nom;casquette;f;false
+28;1;adjectif;lourd;;
+29;1;adjectif;léger;;
+31;1;nom;aménagement;m;true
+32;1;nom;estuaire;m;true
+33;1;expression;en Grèce;;
+34;1;adjectif;grec/grecque;;
+36;1;expression;être en rénovation;;
+37;1;nom;pâte d'amandes;f;false
+38;1;nom;camping-car;m;false
+39;1;adjectif;bondé;;
+40;1;expression;sur la côte;;
+41;1;expression;aller en avion;;
+42;1;expression;dans le centre;;
+43;1;nom;enquêteur;m;true
+44;1;nom;désert;m;false
+45;1;nom;vol;m;false
+46;1;nom;exposition;f;true
+47;1;nom;tableau;m;false
+48;1;adjectif;scandinave;;
+49;1;nom;parquet;m;false
+50;1;nom;parquet flottant;m;false
+51;1;nom;chêne;m;false
+52;1;nom;aulne;m;true
+53;1;nom;hêtre;m;false
+54;1;nom;pin;m;false
+55;1;nom;érable;m;true
+56;1;nom;épicéa;m;true
+57;1;nom;pin parasol;m;false
+58;1;nom;bouleau;m;false
+59;1;nom;cerisier;m;false
+60;1;nom;merisier;m;false
+61;1;nom;mélange;m;false
+62;1;nom;marché aux puces;m;false
+63;1;nom;vaisselle;f;false
+64;1;nom;marque;f;false
+65;1;adjectif;bon marché;;
+66;1;adjectif;meilleur marché;;
+67;1;nom;TVA;f;false
+68;1;nom;pancarte;f;false
+69;1;nom;brocante;f;false
+70;1;nom;vide-greniers;f;false
+71;1;expression;dès que;;
+72;1;expression;son regard s’illumine;;
+73;1;phrase;;;
+74;1;adjectif;fiévreusement;;
+75;1;adjectif;lointain;;
+76;1;nom;trouvaille;f;false
+77;1;expression;faire la route;;
+78;1;expression;avant même que + subj.;;
+79;1;nom;cabas en toile;m;false
+80;1;nom;thermos;m;false
+81;1;nom;billet;m;false
+82;1;nom;lieu d’achat;m;false
+83;1;nom;périphérie;f;false
+84;1;nom;phénomène;m;false
+85;1;verbe;se répandre;;
+86;1;expression;milliers;;
+87;1;nom;coin;m;false
+88;1;verbe;chuchoter;;
+89;1;verbe;ébrécher;;
+90;1;verbe;évoquer;;
+91;1;nom;âme;f;true
+92;1;nom;horloge;f;true
+93;1;verbe;se patiner;;
+94;1;expression;apporter du caractère;;
+95;1;verbe;plaisanter;;
+96;1;expression;avec ferveur;;
+97;1;phrase;;;
+98;1;nom;convivialité;f;false
+99;1;phrase;;;
+100;1;nom;frisson;m;false
+101;1;nom;rotin;m;false
+102;1;expression;malgré moi;;
+103;1;expression;une passion m’a gagnée;;
+104;1;adjectif;rayonnante;;
+105;1;expression;céder à une tentation;;
+106;1;adjectif;embrumé;;
+107;1;nom;portefeuille;m;false
+108;1;nom;coupure;f;false
+109;1;verbe;arpenter;;
+110;1;adjectif;insolite;;
+111;1;verbe;rapporter;;
+112;1;nom;magie;f;false
+113;2;expression;au fil des années;;
+114;2;verbe;vous étiez;;
+115;2;expression;en Croatie;;
+116;2;nom;maison de vacances;f;false
+117;2;nom;attente;f;true
+118;2;nom;réderie;f;false
+119;2;nom;braderie;f;false
+120;2;nom;chiffre d’affaires;m;false
+121;2;nom;cabas;m;false
+122;2;nom;tissu;m;false
+123;2;adjectif;brut;;
+124;2;nom;levure;f;false
+125;2;nom;biberon;m;false
+126;2;nom;remorque;f;false
+127;2;verbe;se débarrasser de qc.;;
+128;2;verbe;fondre;;
+129;2;nom;couvert;m;false
+130;2;nom;argent;m;true
+131;2;nom;argenterie;f;true
+132;2;nom;fourchette;f;false
+133;2;nom;couteau;m;false
+134;2;nom;cuillère;f;false
+135;2;nom;dot;f;false
+136;2;nom;porcelaine;f;false
+137;2;verbe;polir;;
+138;2;nom;lustre;m;false
+139;2;adjectif;insolent;;
+140;2;nom;perte;f;false
+141;2;nom;début;m;false
+142;2;nom;faïence;f;false
+143;2;nom;vente aux enchères;f;false
+144;2;verbe;sauvegarder;;
+145;2;nom;drap;m;false
+146;2;verbe;marchander;;
+147;2;nom;cigogne;f;false
+148;2;verbe;faire la poussière;;
+149;2;nom;mouchoir;m;false
+150;2;nom;trousseau;m;false
+151;2;nom;nappe;f;false
+152;2;nom;tasse;f;false
+153;3;verbe;traîner;;
+154;3;nom;bague;f;false
+155;3;nom;scientifique;m;false
+156;3;nom;réchauffement climatique;m;false
+157;3;nom;changement climatique;m;false
+158;3;nom;inondation;f;true
+159;3;expression;dû à;;
+160;3;nom;sécheresse;f;false
+161;3;adjectif;sec / sèche;;
+162;3;nom;oiseau migrateur;m;true
+163;3;nom;forêt mixte;f;false
+164;3;nom;glacier;m;false
+165;3;nom;viking;m;false
+166;3;verbe;s’installer;;
+167;3;nom;période glaciaire;f;false
+168;3;nom;marais;m;false
+169;3;expression;entendre dire;;
+170;3;nom;mer Baltique;f;false
+171;3;nom;chute de pierres;f;false
+172;3;nom;froid;m;false
+173;3;verbe;retenir un matériau;;
+174;3;nom;fissure;f;false
+175;3;verbe;geler;;
+176;3;verbe;patiner;;
+177;3;verbe;déneiger;;
+178;3;verbe;faire de la luge;;
+179;3;nom;téléphérique;m;false
+180;3;nom;canon à neige;m;false
+181;3;nom;borne de recharge;f;false
+182;3;verbe;s’échapper;;
+183;3;verbe;démarrer;;
+184;3;verbe;décoller;;
+185;3;nom;décollage;m;false
+186;3;verbe;atterrir;;
+187;3;nom;atterrissage;m;true
+188;3;nom;méduse;f;false
+189;3;nom;double/triple vitrage;m;false
+190;3;nom;kérosène;m;false
+191;3;nom;pompe à chaleur;f;false
+192;3;verbe;enlever des arbres;;
+193;3;nom;arbuste;m;true
+194;3;nom;verdure;f;false
+195;3;nom;couronne (d’un arbre);f;false
+196;3;verbe;déborder;;
+197;3;verbe;abattre;;
+198;3;nom;panneau solaire;m;false
+199;3;nom;forage;m;false
+200;3;adjectif;abîmé;;
+201;3;nom;rail;m;false
+202;3;verbe;soutenir;;
+204;3;nom;tier;m;false
+205;3;nom;chauffe eau instantané;m;false
+206;3;expression;Ça nous arrange bien.;;
+207;3;nom;amortissement;m;true
+208;3;nom;carrelage;m;false
+209;3;nom;haut-parleur;m;true
+210;3;nom;épaisseur;f;true
+211;3;expression;ne guère;;
+212;3;nom;prévision;f;false
+213;3;nom;prédiction;f;false
+214;3;nom;dégât;m;false
+215;4;verbe;fournir;;
+216;4;phrase;;;
+217;4;nom;maternelle;f;false
+218;4;nom;tisane;f;false
+219;4;nom;infusion;f;true
+220;4;verbe;agrandir;;
+221;4;verbe;guérir;;
+222;4;nom;skieur;m;false
+223;4;adverbe;subitement;;
+224;4;expression;au mois d’octobre;;
+225;4;nom;couche;f;false
+226;4;nom;tabouret;m;false
+227;4;nom;rouille;f;false
+228;4;verbe;rouiller;;
+229;4;nom;souliers;mpl;false
+230;4;nom;semelle;f;false
+231;4;nom;talon;m;false
+232;4;nom;guêtres;fpl;false
+233;4;nom;boue;f;false
+234;4;nom;filet;m;false
+235;4;nom;saisonnier;m;false
+236;4;nom;mètre cube;m;false
+237;4;nom;stockage;m;false
+238;4;nom;retenue;f;false
+239;4;nom;acheminement;m;true
+240;4;verbe;équilibrer;;
+241;4;nom;sommet;m;false
+242;4;expression;en abondance;;
+243;5;nom;otorhino;m;true
+244;5;adjectif;utilisable;;
+245;5;nom;héliportage;m;true
+246;5;nom;coucher de soleil;m;false
+247;5;nom;mémoire;f;false
+248;5;nom;accumulateur;m;true
+249;5;verbe;accumuler;;
+250;5;nom;barque;f;false
+251;5;nom;extension;f;true
+252;5;nom;damage;m;false
+253;5;nom;dameuse;f;false
+254;5;verbe;abattre des arbres;;
+255;5;verbe;débloquer;;
+256;5;nom;thermalisme;m;false
+257;5;nom;VTT (Vélo Tout Terrain);m;false
+258;5;nom;moniteur de parapente;m;false
+259;5;expression;étaler qc. sur l’année;;
+260;5;expression;pas de / beaucoup de;;
+261;5;nom;habits de ski;mpl;true
+262;5;nom;raquettes;fpl;false
+263;5;nom;confinement;m;false
+264;5;nom;bottes de ski;fpl;false
+265;5;nom;matériel;m;false
+266;5;nom;matériau;m;false
+267;5;expression;sans forfait;;
+268;5;adverbe;suffisamment;;
+269;5;nom;bilan économique;m;false
+270;5;expression;être dans le déni;;
+271;5;verbe;avoir du mal à faire qc;;
+272;5;nom;hydrogène;m;true
+273;5;expression;faire perdurer qc;;
+274;5;nom;sobriété;f;false
+275;5;nom;gaz à effet de serre;mpl;false
+276;5;expression;faire figure de bon élève;;
+277;5;nom;éolienne;f;true
+278;5;verbe;pousser;;
+279;6;verbe;gâter qn;;
+280;6;adjectif;artisanal;;
+281;6;nom;fils/fille unique;m/f;false
+282;6;nom;demi-frère / demie-sœur;m/f;false
+283;6;adjectif;franc / franche;;
+284;6;nom;franchise;f;false
+285;6;nom;taux de natalité;m;false
+286;6;nom;fédéralisme;m;false
+287;6;verbe;déborder;;
+288;6;nom;cabinet;m;false
+289;6;nom;bagarre;f;false
+290;6;verbe;cafter;;
+291;6;nom;cafteuse;f;false
+292;6;expression;avoir le cafard;;
+293;6;nom;cafard;m;false
+294;6;adjectif;désinhibé;;
+295;6;expression;ne pas prendre de gants;;
+296;6;expression;gérer un conflit;;
+297;6;nom;complicité;f;false
+298;6;travail;parcourir une étude;;
+299;6;verbe;atteindre;;
+300;6;adverbe;tantôt;;
+301;6;nom;entraide;f;true
+302;6;expression;dresser un constat;;
+303;7;nom;cargaison;f;false
+304;7;expression;être le/la bienvenue;;
+305;7;adjectif;celte;;
+306;7;expression;par intermédiaire;;
+307;7;verbe;entretenir;;
+308;7;nom;entretien;m;true
+309;7;nom;entretien d’embauche;m;true
+310;7;verbe;s’entretenir;;
+311;7;nom;rage de dents;f;false
+312;7;adjectif;fâché;;
+313;7;verbe;éduquer;;
+314;7;nom;éducation;f;true
+315;7;verbe;se disputer;;
+316;7;verbe;hésiter à faire qc;;
+317;7;expression;hors de la famille;;
+318;7;expression;apprendre sur le tas;;
+319;7;nom;tas;m;false
+320;7;adjectif;réjouissant;;
+321;7;verbe;demeurer;;
+322;7;adjectif;affectif;;
+323;7;expression;gérer des désaccords;;
+324;7;nom;fratrie;f;false
+325;7;verbe;pénaliser qc;;
+326;7;expression;pour autant;;
+327;7;nom;rang de naissance;m;false
+328;7;verbe;répandre;;
+329;7;nom;aîné;m;true
+330;7;nom;cadet;m;false
+331;7;adjectif;rebelle;;
+332;7;nom;cible;f;false
+333;7;expression;davantage de;;
+334;7;verbe;gronder;;
+335;7;verbe;blâmer;;
+336;7;expression;à son égard;;
+337;7;expression;se rapprocher à l’âge adulte;;
+338;7;expression;détendre les liens;;
+339;7;verbe;rassembler;;
+340;7;expression;par convention;;
+341;8;nom;pipelette;f;false
+342;8;nom;boum;f;false
+343;8;expression;bien s’entendre avec qn.;;
+344;8;expression;mal s’entendre avec qn.;;
+345;8;nom;jumeaux;mpl;false
+346;8;nom;jumelles;fpl;false
+347;8;nom;vrais jumeaux;mpl;false
+348;8;nom;faux jumeaux;mpl;false
+349;8;verbe;confondre qc.;;
+350;8;expression;être prématuré;;
+351;8;verbe;distinguer qc.;;
+352;8;adjectif;égal / égaux;;
+353;8;nom;maternelle;f;false
+354;8;nom;crèche;f;false
+355;8;expression;La Haye;;
+356;8;nom;haie;f;true
+357;8;expression;changer de sujet;;
+358;8;expression;faire le malade;;
+359;9;expression;répondre à un besoin;;
+360;9;expression;prendre fin;;
+361;9;expression;loin d’être le cas;;
+362;9;expression;lorsque / afin que;;
+363;9;verbe;dissimuler;;
+364;9;verbe;changer de place;;
+365;9;verbe;ralentir;;
+366;9;expression;faire des appels de phare;;
+367;9;nom;gyrophare;m;false
+368;9;nom;généalogie;f;false
+369;9;nom;arbre généalogique;m;true
+370;9;nom;avis de décès;m;true
+371;9;adverbe;d’autrefois;;
+372;9;expression;au lieu de;;
+373;9;nom;brouillon;m;false
+374;9;nom;lettre de condoléances;f;false
+375;9;nom;arbitre;m;true
+376;9;nom;coupure d’électricité;f;false
+377;9;expression;s’interroger en continu;;
+378;9;nom;conseiller / conseillère de vie;m/f;false
+379;9;nom;confident / confidente;m/f;false
+380;9;nom;cadre;m;false
+381;9;verbe;nouer qc avec qc;;
+382;9;verbe;se dérouler;;
+383;9;expression;se tailler une place;;
+384;9;nom;interlocuteur;m;true
+385;9;nom;bavardage;m;false
+386;9;nom;aveu confidentiel;m;true
+387;9;nom;autrui;m;true
+388;9;expression;par intérim;;
+389;9;verbe;combler;;
+390;9;nom;émulation;f;true
+391;9;nom;épanchement;m;true
+392;9;nom;épopée;f;true
+393;9;adjectif;emprunté;;
+394;9;verbe;challenger une réponse;;
+395;9;verbe;rebondir;;
+396;9;adjectif;esthétique;;
+397;9;nom;arabesque;f;true
+398;9;adjectif;négligeable;;
+399;9;expression;avoir mal à s’en passer;;
+400;9;verbe;valoriser;;
+401;9;expression;mettre qc à l’épreuve;;
+402;9;adjectif;reclus socialement;;
+403;9;adjectif;complaisant;;
+404;9;adverbe;or;;
+405;9;nom;avis appuyé;m;true
+406;10;adverbe;du moins;;
+407;10;nom;oreillette;f;true
+408;10;nom;écouteurs;mpl;false
+409;10;nom;casque;m;false
+410;10;nom;poussette;f;false
+411;10;nom;probabilité;f;false
+412;10;nom;plagiat;m;false
+413;10;nom;table de multiplication;f;false
+414;11;verbe;interpeller;;
+415;11;nom;chantier;m;false
+416;11;expression;travaux dans la rue;;
+417;11;nom;piste cyclable;f;false
+418;11;nom;rue à sens unique;f;false
+419;11;nom;automobiliste;m;true
+420;11;verbe;croiser qn;;
+421;11;verbe;renverser;;
+422;11;verbe;rôder;;
+423;11;expression;au bord du Rhin;;
+424;11;nom;cycliste;m;false
+425;11;phrase;j’y suis allé;;
+426;11;nom;bosse;f;false
+427;11;nom;boucles;fpl;false
+428;11;verbe;doubler;;
+429;11;nom;scarabée;m;false
+430;11;nom;Coccinelle;f;false
+431;11;expression;passer sur la périphérie;;
+432;11;verbe;klaxonner;;
+433;11;nom;GPS;mpl;false
+434;11;nom;frein;m;false
+435;11;verbe;garer la voiture;;
+436;11;nom;flics;mpl;false
+437;11;adjectif;bondé;;
+438;11;nom;pollution sonore;f;false
+439;11;expression;discussion vive;;
+440;11;adjectif;pair;;
+441;11;adjectif;impair;;
+442;11;nom;trafic;m;false
+443;11;phrase;Ça y fait quand il y a moins de voitures.;;
+444;11;nom;tronçon d’autoroute;m;false
+445;11;adjectif;fluide;;
+446;11;nom;bouchon;m;false
+447;11;nom;bouchon;m;false
+448;11;expression;aller dans Paris;;
+449;11;nom;Crit’Air;m;false
+450;11;adjectif;encombré;;
+451;11;verbe;respirer;;
+452;11;nom;piéton;m;false
+453;11;adjectif;en vigueur;;
+454;11;nom;barrage;m;false
+455;11;nom;riverain;m;false
+456;11;expression;être muni de qc;;
+457;11;nom;justificatif de domicile;m;false
+458;11;verbe;s’agacer;;
+459;11;expression;crier dessus qn;;
+460;11;adjectif;jovial;;
+461;11;nom;voie;f;false
+462;11;phrase;Au sol, le traçage des voies interpelle;;
+463;11;adverbe;tandis que;;
+464;11;nom;maire;m;false
+465;11;nom;indice;m;true
+466;11;verbe;tomber dans l’escalier;;
+467;11;expression;passer par Paris;;
+468;11;expression;dans la rue;;
+469;11;expression;sur l’herbe;;
+470;11;verbe;supplanter;;
+471;11;verbe;embellir;;
+472;11;verbe;végétaliser;;
+473;11;adjectif;piétonnisé;;
+474;11;phrase;le terrain est en pente;;
+475;11;verbe;enlever qc;;
+476;11;verbe;s’insurger;;
+477;11;nom;effacement;m;true
+478;11;adjectif;mal assuré;;
+479;11;adjectif;mal assuré;;

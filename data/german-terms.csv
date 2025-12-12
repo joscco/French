@@ -1,0 +1,477 @@
+id;lesson;category;term;genus
+1;1;verbe;sich anmelden;
+2;1;nom;Demonstration;f
+3;1;verbe;etw. desinfizieren;
+4;1;nom;Kühlschrank;m
+5;1;nom;Campen;n
+6;1;nom;Schlafsack;m
+7;1;adjectif;weinbau-;
+8;1;verbe;wandern;
+9;1;verbe;wandern;
+10;1;nom;Höhenunterschied;m
+11;1;nom;Kapelle;f
+12;1;expression;in Bayern;
+13;1;nom;Kurort;m
+14;1;verbe;zur Kur fahren;
+15;1;adjectif;anstrengend;
+16;1;adjectif;ermüdend;
+17;1;adjectif;schwer, hart;
+18;1;nom;Rolle;f
+19;1;adjectif;ekelhaft;
+20;1;nom;Hügel;m
+21;1;nom;Umhängetasche;f
+22;1;nom;Gepäck;n
+23;1;verbe;(ein Fahrrad) schieben;
+24;1;verbe;fahren;
+25;1;nom;Bremse;f
+26;1;nom;Helm;m
+27;1;nom;Kappe;f
+28;1;adjectif;schwer;
+29;1;adjectif;leicht;
+31;1;nom;Anlage;f
+32;1;nom;Mündung;f
+33;1;expression;in Griechenland;
+34;1;adjectif;griechisch;
+36;1;expression;renoviert werden;
+37;1;nom;Marzipan;n
+38;1;nom;Wohnmobil;n
+39;1;adjectif;überfüllt;
+40;1;expression;an der Küste;
+41;1;expression;mit dem Flugzeug fliegen;
+42;1;expression;im Zentrum;
+43;1;nom;Ermittler;m
+44;1;nom;Wüste;f
+45;1;nom;Flug;m
+46;1;nom;Ausstellung;f
+47;1;nom;Gemälde;n
+48;1;adjectif;skandinavisch;
+49;1;nom;Parkett;n
+50;1;nom;Laminat;n
+51;1;nom;Eiche;f
+52;1;nom;Erle;f
+53;1;nom;Buche;f
+54;1;nom;Kiefer;f
+55;1;nom;Ahorn;m
+56;1;nom;Fichte;f
+57;1;nom;Pinie;f
+58;1;nom;Birke;f
+59;1;nom;Kirschbaum;m
+60;1;nom;Kirschholz;n
+61;1;nom;Mischung;f
+62;1;nom;Flohmarkt;m
+63;1;nom;Geschirr;n
+64;1;nom;Marke;f
+65;1;adjectif;billig;
+66;1;adjectif;günstiger;
+67;1;nom;Mehrwertsteuer;f
+68;1;nom;Schild;n
+69;1;nom;Flohmarkt;m
+70;1;nom;Dachbodenflohmarkt;m
+71;1;expression;sobald;
+72;1;expression;sein Blick hellt sich auf;
+73;1;phrase;;
+74;1;adjectif;fieberhaft;
+75;1;adjectif;fern, entfernt;
+76;1;nom;Fundstück;n
+77;1;expression;die Strecke zurücklegen;
+78;1;expression;noch bevor + verb;
+79;1;nom;Stofftasche;f
+80;1;nom;Thermoskanne;f
+81;1;nom;Geldschein;m
+82;1;nom;Kaufort;m
+83;1;nom;Stadtrand;m
+84;1;nom;Phänomen;n
+85;1;verbe;sich verbreiten;
+86;1;expression;Tausende;
+87;1;nom;Ecke;f
+88;1;verbe;flüstern;
+89;1;verbe;angeschlagen;
+90;1;verbe;erwähnen, ins Gedächtnis rufen;
+91;1;nom;Seele;f
+92;1;nom;Uhr;f
+93;1;verbe;Patina bekommen;
+94;1;expression;Charakter verleihen;
+95;1;verbe;scherzen;
+96;1;expression;leidenschaftlich;
+97;1;phrase;;
+98;1;nom;Geselligkeit;f
+99;1;phrase;;
+100;1;nom;Kribbeln;n
+101;1;nom;Rattan;n
+102;1;expression;unwillkürlich;
+103;1;expression;eine Leidenschaft hat mich gepackt;
+104;1;adjectif;strahlend;
+105;1;expression;einer Versuchung erliegen;
+106;1;adjectif;neblig;
+107;1;nom;Brieftasche;f
+108;1;nom;Geldschein;m
+109;1;verbe;schlendern;
+110;1;adjectif;ungewöhnlich;
+111;1;verbe;mitbringen;
+112;1;nom;Magie;f
+113;2;expression;im Lauf der Jahre;
+114;2;verbe;ihr wart / Sie waren;
+115;2;expression;in Kroatien;
+116;2;nom;Ferienhaus;n
+117;2;nom;Erwartung;f
+118;2;nom;Trödelmarkt (Picardie);m
+119;2;nom;Trödelmarkt (Nordfrankreich);m
+120;2;nom;Umsatz;m
+121;2;nom;Einkaufstasche;f
+122;2;nom;Stoff;m
+123;2;adjectif;roh, naturbelassen, trocken;
+124;2;nom;Hefe;f
+125;2;nom;Fläschchen;n
+126;2;nom;Anhänger;m
+127;2;verbe;etw. loswerden;
+128;2;verbe;schmelzen;
+129;2;nom;Besteck;n
+130;2;nom;Silber;n
+131;2;nom;Silberbesteck;n
+132;2;nom;Gabel;f
+133;2;nom;Messer;n
+134;2;nom;Löffel;m
+135;2;nom;Mitgift;f
+136;2;nom;Porzellan;n
+137;2;verbe;polieren;
+138;2;nom;Kronleuchter;m
+139;2;adjectif;frech, respektlos;
+140;2;nom;Verlust;m
+141;2;nom;Anfang;m
+142;2;nom;Steingut;n
+143;2;nom;Auktion;f
+144;2;verbe;speichern;
+145;2;nom;Bettlaken;n
+146;2;verbe;feilschen;
+147;2;nom;Storch;m
+148;2;verbe;Staub wischen;
+149;2;nom;Taschentuch;n
+150;2;nom;Aussteuer;f
+151;2;nom;Tischdecke;f
+152;2;nom;Tasse;f
+153;3;verbe;herumhängen;
+154;3;nom;Ring;m
+155;3;nom;Wissenschaftler;m
+156;3;nom;Erderwärmung;f
+157;3;nom;Klimawandel;m
+158;3;nom;Überschwemmung;f
+159;3;expression;aufgrund von;
+160;3;nom;Dürre;f
+161;3;adjectif;trocken;
+162;3;nom;Zugvogel;m
+163;3;nom;Mischwald;m
+164;3;nom;Gletscher;m
+165;3;nom;Wikinger;m
+166;3;verbe;sich niederlassen;
+167;3;nom;Eiszeit;f
+168;3;nom;Sumpf;m
+169;3;expression;gehört haben, dass;
+170;3;nom;Ostsee;f
+171;3;nom;Steinschlag;m
+172;3;nom;Kälte;f
+173;3;verbe;ein Material zurückhalten;
+174;3;nom;Riss;m
+175;3;verbe;gefrieren;
+176;3;verbe;Schlittschuh laufen;
+177;3;verbe;Schnee räumen;
+178;3;verbe;Schlitten fahren;
+179;3;nom;Seilbahn;f
+180;3;nom;Schneekanone;f
+181;3;nom;Ladestation;f
+182;3;verbe;entweichen;
+183;3;verbe;starten;
+184;3;verbe;abheben;
+185;3;nom;Start;m
+186;3;verbe;landen;
+187;3;nom;Landung;f
+188;3;nom;Qualle;f
+189;3;nom;Doppel-/Dreifachverglasung;f
+190;3;nom;Kerosin;n
+191;3;nom;Wärmepumpe;f
+192;3;verbe;Bäume entfernen;
+193;3;nom;Strauch;m
+194;3;nom;Grün;n
+195;3;nom;Baumkrone;f
+196;3;verbe;über die Ufer treten;
+197;3;verbe;fällen;
+198;3;nom;Solarpanel;n
+199;3;nom;Bohrung;f
+200;3;adjectif;beschädigt;
+201;3;nom;Schiene;f
+202;3;verbe;unterstützen;
+204;3;nom;Drittel;n
+205;3;nom;Durchlauferhitzer;m
+206;3;expression;Das passt uns gut.;
+207;3;nom;Amortisation;f
+208;3;nom;Kachel;f
+209;3;nom;Lautsprecher;m
+210;3;nom;Dicke;f
+211;3;expression;kaum;
+212;3;nom;Vorhersage;f
+213;3;nom;Prognose;f
+214;3;nom;Schaden;m
+215;4;verbe;liefern;
+216;4;phrase;;
+217;4;nom;Kindergarten;m
+218;4;nom;Kräutertee;m
+219;4;nom;Tee;m
+220;4;verbe;vergrößern;
+221;4;verbe;heilen;
+222;4;nom;Skifahrer;m
+223;4;adverbe;plötzlich;
+224;4;expression;im Oktober;
+225;4;nom;Schicht;f
+226;4;nom;Hocker;m
+227;4;nom;Rost;m
+228;4;verbe;rosten;
+229;4;nom;Schuhe;mpl
+230;4;nom;Sohle;f
+231;4;nom;Absatz;m
+232;4;nom;Gamaschen;fpl
+233;4;nom;Schlamm;m
+234;4;nom;Netz;n
+235;4;nom;Saisonarbeiter;m
+236;4;nom;Kubikmeter;m
+237;4;nom;Speicherung;f
+238;4;nom;Rückhaltebecken;n
+239;4;nom;Transport;m
+240;4;verbe;ausgleichen;
+241;4;nom;Gipfel;m
+242;4;expression;im Überfluss;
+243;5;nom;HNO-Arzt;m
+244;5;adjectif;verwendbar;
+245;5;nom;Helikoptertransport;m
+246;5;nom;Sonnenuntergang;m
+247;5;nom;Datenspeicher;m
+248;5;nom;Energiespeicher;m
+249;5;verbe;ansammeln;
+250;5;nom;Boot;n
+251;5;nom;Erweiterung;f
+252;5;nom;Präparierung;f
+253;5;nom;Pistenraupe;f
+254;5;verbe;Bäume fällen;
+255;5;verbe;entsperren;
+256;5;nom;Thermalwesen;n
+257;5;nom;Mountainbike;n
+258;5;nom;Gleitschirmlehrer;m
+259;5;expression;über das Jahr verteilen;
+260;5;expression;kein / viel von;
+261;5;nom;Skibekleidung;f
+262;5;nom;Schneeschuhe;fpl
+263;5;nom;Lockdown;m
+264;5;nom;Skischuhe;fpl
+265;5;nom;Ausrüstung;f
+266;5;nom;Material;n
+267;5;expression;ohne Skipass;
+268;5;adverbe;ausreichend;
+269;5;nom;wirtschaftliche Bilanz;f
+270;5;expression;etwas leugnen;
+271;5;verbe;Schwierigkeiten haben, etw. zu tun;
+272;5;nom;Wasserstoff;m
+273;5;expression;etwas fortbestehen lassen;
+274;5;nom;Genügsamkeit;f
+275;5;nom;Treibhausgase;mpl
+276;5;expression;als Musterschüler gelten;
+277;5;nom;Windkraftanlage;f
+278;5;verbe;wachsen;
+279;6;verbe;jemanden verwöhnen;
+280;6;adjectif;handwerklich;
+281;6;nom;Einzelkind;n
+282;6;nom;Halbbruder / Halbschwester;m/f
+283;6;adjectif;offen / ehrlich;
+284;6;nom;Ehrlichkeit;f
+285;6;nom;Geburtenrate;f
+286;6;nom;Föderalismus;m
+287;6;verbe;überfordert sein;
+288;6;nom;Praxis;f
+289;6;nom;Schlägerei;f
+290;6;verbe;petzen;
+291;6;nom;Petze;f
+292;6;expression;schlecht drauf sein;
+293;6;nom;Kakerlake;f
+294;6;adjectif;hemmungslos;
+295;6;expression;kein Blatt vor den Mund nehmen;
+296;6;expression;einen Konflikt lösen;
+297;6;nom;Vertrautheit;f
+298;6;travail;eine Studie durchsehen;
+299;6;verbe;erreichen;
+300;6;adverbe;mal so, mal so;
+301;6;nom;gegenseitige Hilfe;f
+302;6;expression;eine Feststellung machen;
+303;7;nom;Ladung / Fracht;f
+304;7;expression;willkommen sein;
+305;7;adjectif;keltisch;
+306;7;expression;über eine Vermittlung;
+307;7;verbe;pflegen / unterhalten;
+308;7;nom;Gespräch;n
+309;7;nom;Bewerbungsgespräch;n
+310;7;verbe;sich unterhalten;
+311;7;nom;Zahnschmerzen;pl
+312;7;adjectif;verärgert;
+313;7;verbe;erziehen;
+314;7;nom;Erziehung;f
+315;7;verbe;sich streiten;
+316;7;verbe;zögern, etwas zu tun;
+317;7;expression;außerhalb der Familie;
+318;7;expression;learning by doing;
+319;7;nom;Haufen;m
+320;7;adjectif;erfreulich;
+321;7;verbe;wohnen / bleiben;
+322;7;adjectif;emotional;
+323;7;expression;Uneinigkeiten managen;
+324;7;nom;Geschwister;pl
+325;7;verbe;benachteiligen;
+326;7;expression;trotzdem / dennoch;
+327;7;nom;Geburtsrang;m
+328;7;verbe;verstreuen / verbreiten;
+329;7;nom;Ältester;m
+330;7;nom;Jüngster;m
+331;7;adjectif;rebellisch;
+332;7;nom;Zielgruppe;f
+333;7;expression;mehr von;
+334;7;verbe;schimpfen;
+335;7;verbe;beschuldigen / tadeln;
+336;7;expression;ihm gegenüber;
+337;7;expression;sich im Erwachsenenalter annähern;
+338;7;expression;Bindungen lockern;
+339;7;verbe;versammeln;
+340;7;expression;aus Konvention;
+341;8;nom;Plappermaul;f
+342;8;nom;Party;f
+343;8;expression;sich gut mit jemandem verstehen;
+344;8;expression;sich schlecht mit jemandem verstehen;
+345;8;nom;Zwillinge;mpl
+346;8;nom;Zwillingsschwestern;fpl
+347;8;nom;eineiige Zwillinge;mpl
+348;8;nom;zweieiige Zwillinge;mpl
+349;8;verbe;etwas verwechseln;
+350;8;expression;frühgeboren sein;
+351;8;verbe;etwas erkennen / unterscheiden;
+352;8;adjectif;gleich;
+353;8;nom;Kindergarten;f
+354;8;nom;Kinderkrippe;f
+355;8;expression;Den Haag;
+356;8;nom;Hecke;f
+357;8;expression;das Thema wechseln;
+358;8;expression;krank spielen;
+359;9;expression;einen Bedarf decken;
+360;9;expression;enden;
+361;9;expression;bei weitem nicht der Fall sein;
+362;9;expression;wenn / damit;
+363;9;verbe;verbergen / tarnen;
+364;9;verbe;den Platz wechseln;
+365;9;verbe;langsamer werden;
+366;9;expression;Lichthupe geben;
+367;9;nom;Blaulicht;n
+368;9;nom;Ahnenforschung;f
+369;9;nom;Stammbaum;m
+370;9;nom;Todesanzeige;f
+371;9;adverbe;von früher;
+372;9;expression;anstatt;
+373;9;nom;Entwurf;m
+374;9;nom;Beileidsbrief;m
+375;9;nom;Schiedsrichter;m
+376;9;nom;Stromausfall;m
+377;9;expression;ständig über etwas nachdenken;
+378;9;nom;Lebensberater/in;m/f
+379;9;nom;Vertraute;m/f
+380;9;nom;leitende Angestellte;m
+381;9;verbe;etwas knüpfen;
+382;9;verbe;stattfinden / verlaufen;
+383;9;expression;sich einen Platz erkämpfen;
+384;9;nom;Gesprächspartner;m
+385;9;nom;Plauderei;f
+386;9;nom;vertrauliche Geständnis;n
+387;9;nom;Mitmensch;m
+388;9;expression;übergangsweise;
+389;9;verbe;erfüllen / ausgleichen;
+390;9;nom;Wettstreit;m
+391;9;nom;Gefühlsausbruch;m
+392;9;nom;Epos;n
+393;9;adjectif;gehemmt;
+394;9;verbe;eine Antwort hinterfragen;
+395;9;verbe;sich wieder fangen;
+396;9;adjectif;ästhetisch;
+397;9;nom;Arabeske;f
+398;9;adjectif;vernachlässigbar;
+399;9;expression;schwer darauf verzichten können;
+400;9;verbe;aufwerten;
+401;9;expression;etwas auf die Probe stellen;
+402;9;adjectif;gesellschaftlich zurückgezogen;
+403;9;adjectif;nachsichtig;
+404;9;adverbe;jedoch;
+405;9;nom;nachdrückliche Meinung;f
+406;10;adverbe;wenigstens;
+407;10;nom;Ohrhörer (einzeln);f
+408;10;nom;In-Ear-Kopfhörer;mpl
+409;10;nom;Kopfhörer (Over-Ear);m
+410;10;nom;Kinderwagen;m
+411;10;nom;Wahrscheinlichkeit;f
+412;10;nom;Plagiat;n
+413;10;nom;Einmaleins;n
+414;11;verbe;festnehmen / stellen;
+415;11;nom;Baustelle;f
+416;11;expression;Straßenarbeiten;
+417;11;nom;Fahrradweg;m
+418;11;nom;Einbahnstraße;f
+419;11;nom;Autofahrer;m
+420;11;verbe;jemandem begegnen;
+421;11;verbe;überfahren;
+422;11;verbe;herumschleichen;
+423;11;expression;am Rheinufer;
+424;11;nom;Radfahrer;m
+425;11;phrase;ich bin dorthin gegangen;
+426;11;nom;Bodenwelle;f
+427;11;nom;Locken;fpl
+428;11;verbe;überholen;
+429;11;nom;Käfer (Tier);m
+430;11;nom;VW-Käfer;f
+431;11;expression;über die Ringstraße fahren;
+432;11;verbe;hupen;
+433;11;nom;GPS-Geräte;npl
+434;11;nom;Bremse;f
+435;11;verbe;das Auto parken;
+436;11;nom;Bullen (Polizei);mpl
+437;11;adjectif;überfüllt;
+438;11;nom;Lärmverschmutzung;f
+439;11;expression;heftige Diskussion;
+440;11;adjectif;gerade (Zahl);
+441;11;adjectif;ungerade (Zahl);
+442;11;nom;Verkehr;m
+443;11;phrase;Das macht etwas aus, wenn weniger Autos unterwegs sind.;
+444;11;nom;Autobahnabschnitt;m
+445;11;adjectif;flüssig (Verkehr);
+446;11;nom;Stau;m
+447;11;nom;Korken / Deckel;m
+448;11;expression;nach Paris hineinfahren;
+449;11;nom;Crit’Air-Plakette;f
+450;11;adjectif;zugeparkt / blockiert;
+451;11;verbe;atmen;
+452;11;nom;Fußgänger;m
+453;11;adjectif;in Kraft;
+454;11;nom;Sperre;f
+455;11;nom;Anwohner;m
+456;11;expression;etwas bei sich haben;
+457;11;nom;Wohnsitznachweis;m
+458;11;verbe;genervt sein;
+459;11;expression;jemanden anschreien;
+460;11;adjectif;gut gelaunt / fröhlich;
+461;11;nom;Spur / Fahrbahn;f
+462;11;phrase;Die Markierung der Fahrbahnen fällt auf;
+463;11;adverbe;während;
+464;11;nom;Bürgermeister;m
+465;11;nom;Hinweis;m
+466;11;verbe;die Treppe hinunterfallen;
+467;11;expression;durch Paris fahren;
+468;11;expression;auf der Straße;
+469;11;expression;auf dem Gras;
+470;11;verbe;verdrängen;
+471;11;verbe;verschönern;
+472;11;verbe;begrünen;
+473;11;adjectif;zur Fußgängerzone gemacht;
+474;11;phrase;das Gelände ist abschüssig;
+475;11;verbe;etwas entfernen / wegnehmen;
+476;11;verbe;sich empören;
+477;11;nom;Entfernung;f
+478;11;adjectif;unsicher (körperlich);
+479;11;adjectif;unsicher (emotional);
