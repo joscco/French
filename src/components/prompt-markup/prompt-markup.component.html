@@ -1,5 +1,5 @@
 <div
-  class="text-lg leading-relaxed font-semibold mb-3"
+  class="whitespace-pre-wrap break-words text-lg leading-relaxed font-semibold mb-3"
   (pointermove)="onPointerMove($event)"
   (pointerleave)="onPointerLeave()"
   (click)="onClick($event)"
@@ -9,7 +9,7 @@
       @if (seg.ref) {
         <span
           data-term
-          class="inline-block cursor-pointer rounded-md px-1 my-1
+          class="inline-block cursor-pointer rounded-md px-0.5 my-1
           transition-colors duration-150
          bg-amber-100"
           [class.bg-amber-300]="activeRefKey() === refKey(seg.ref)"
@@ -21,7 +21,7 @@
         </span>
 
       } @else {
-        <span class="whitespace-nowrap">{{ seg.text }}</span>
+        <span class="inline">{{ seg.text }}</span>
       }
     }
   } @else {

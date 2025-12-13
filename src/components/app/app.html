@@ -6,7 +6,6 @@
           [lessons]="lessons()"
           [selected]="selectedLessons()"
           (selectedChange)="onLessonsChange($event)"/>
-        <app-icon-button iconName="download" (onClick)="exportPdf()" tooltip="Download"/>
         <app-mode-selector
           [mode]="practiceMode()"
           (modeChange)="practiceMode.set($event)"
@@ -16,12 +15,12 @@
           tooltip="Vokabeltraining"
           (onClick)="practiceKind.set('vocab')"
         ></app-icon-button>
-
         <app-icon-button
           iconName="edit"
           tooltip="Satztraining"
           (onClick)="practiceKind.set('sentence')"
         ></app-icon-button>
+        <app-icon-button iconName="download" (onClick)="exportPdf()" tooltip="Download"/>
       </div>
     </header>
 

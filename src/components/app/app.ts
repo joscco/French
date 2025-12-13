@@ -47,7 +47,7 @@ export class AppComponent {
 
     const lessonOptions: LessonOption[] = lessonNumbers.map((lesson) => {
       const meta = termineByLesson[lesson];
-      const baseLabel = `Lektion ${lesson}`;
+      const baseLabel = `${lesson}`;
       return {
         id: lesson,
         lesson,

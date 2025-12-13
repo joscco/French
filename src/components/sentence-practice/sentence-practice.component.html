@@ -30,8 +30,6 @@
         <!-- INPUT AREA -->
         <div class="flex-1 min-h-0 flex flex-col gap-3 pb-2">
 
-          {{ displayTokens() | json }}
-
           <!-- "Fake textarea" box -->
           <div class="relative flex-1 min-h-0 overflow-hidden rounded-2xl bg-neutral-100
                transition-[box-shadow,background-color] duration-200 py-2"
@@ -60,10 +58,12 @@
                   </span>
                 } @else {
                   <span class="rounded-sm"
+                        [class.line-through]="t.kind !== 'ok'"
                         [class.bg-red-200]="t.kind === 'wrong'"
                         [class.text-red-900]="t.kind === 'wrong'"
                         [class.bg-amber-200]="t.kind === 'soft'"
                         [class.text-amber-900]="t.kind === 'soft'">{{ t.text }}</span>
+                  <span>{{ t.badge }}</span>
                 }
               }
             </div>

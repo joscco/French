@@ -1,9 +1,8 @@
-import {Component, computed, effect, ElementRef, input, output, signal, viewChild,} from '@angular/core';
+import {Component, effect, ElementRef, input, output, viewChild,} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {gsap} from 'gsap';
-import {TermRefInSentence} from '../../models/term-ref-in-sentence';
 import {TermTooltipVm} from '../../services/term-lookup.service';
-import {beautifyGenus, getArticle, reverseLanguage} from '../../helpers/utils';
+import {getArticle, reverseLanguage} from '../../helpers/utils';
 
 @Component({
   selector: 'app-term-tooltip-overlay',
@@ -66,7 +65,6 @@ export class TermTooltipOverlayComponent {
     });
   }
 
-  protected readonly beautifyGenus = beautifyGenus;
   protected readonly getArticle = getArticle;
   protected readonly reverseLanguage = reverseLanguage;
 }
