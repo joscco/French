@@ -1,7 +1,7 @@
-import { Component, computed, input, output } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { TermRef } from '../../models/term-ref';
-import { PromptSegment } from '../../helpers/prompt-markup';
+import {Component, computed, input, output} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {TermRef} from '../../models/term-ref';
+import {PromptSegment} from '../../helpers/prompt-markup';
 
 @Component({
   selector: 'app-prompt-markup',
@@ -11,12 +11,16 @@ import { PromptSegment } from '../../helpers/prompt-markup';
 })
 export class PromptMarkupComponent {
   segments = input<PromptSegment[]>([]);
+  readonly mergedSegments = computed(() =>
+    mergeTrailingPunctuation(this.segments() ?? [])
+  );
+
   fallbackText = input<string>('');
   activeRefKey = input<string | undefined>(undefined);
 
   termEnter = output<{ ref: TermRef; el: HTMLElement }>();
   termLeave = output<void>();
-  termClick = output<{ ref: TermRef; x: number; y: number }>();
+  termClick = output<{ ref: TermRef; el: HTMLElement }>();
 
   private lastTermEl?: HTMLElement;
   private lastIdx?: number;
@@ -84,6 +88,29 @@ export class PromptMarkupComponent {
 
     ev.preventDefault();
     ev.stopPropagation();
-    this.termClick.emit({ ref: info.ref, x: ev.clientX, y: ev.clientY });
+    this.termClick.emit({ ref: info.ref, el: termEl });
   }
+}
+
+type Seg = { text: string; ref?: TermRef };
+
+const ATTACH_TO_PREV = /^[\.,!?;:]+$|^[)\]\}»”’]+$/; // Punkt/Komma/… + schließende Klammern/Quotes
+
+function mergeTrailingPunctuation(segs: Seg[]): Seg[] {
+  const out: Seg[] = [];
+
+  for (const seg of segs) {
+    const isPunct = !seg.ref && ATTACH_TO_PREV.test(seg.text);
+
+    if (isPunct && out.length) {
+      const prev = out[out.length - 1];
+      // Punkt an vorheriges Segment kleben (egal ob prev ref hat oder nicht)
+      out[out.length - 1] = { ...prev, text: prev.text + seg.text };
+      continue;
+    }
+
+    out.push(seg);
+  }
+
+  return out;
 }

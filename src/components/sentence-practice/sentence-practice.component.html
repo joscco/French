@@ -17,7 +17,6 @@
           [x]="tooltipX()"
           [y]="tooltipY()"
           [textForRef]="textForRef"
-          (translationClick)="onTooltipTranslationClick($event)"
         ></app-term-tooltip-overlay>
 
         <app-prompt-markup
@@ -30,11 +29,11 @@
         ></app-prompt-markup>
 
         <!-- INPUT AREA -->
-        <div class="flex-1 min-h-0 flex flex-col gap-3">
+        <div class="flex-1 min-h-0 flex flex-col gap-3 pb-2">
 
           <!-- "Fake textarea" box -->
           <div class="relative flex-1 min-h-0 overflow-hidden rounded-2xl bg-neutral-100
-               transition-[box-shadow,background-color] duration-200"
+               transition-[box-shadow,background-color] duration-200 py-2"
                [class.ring-2]="isChecked()"
                [class.ring-green-400]="isChecked() && isCorrect()"
                [class.ring-red-300]="isChecked() && !isCorrect()"
@@ -84,66 +83,48 @@
               placeholder="Übersetzung hier eintippen..."
             ></textarea>
           </div>
+        </div>
 
-          <!-- FOOTER SLOT (no layout jump) -->
-          <div #footerSlot class="relative h-12">
-            <!-- Check button -->
-            <div
-              #footerCheck
-              class="absolute inset-0"
-              [class.pointer-events-none]="isChecked()"
-              [class.opacity-0]="isChecked()"
-            >
-              <button
-                class="w-full h-12 rounded-2xl bg-neutral-900 text-white z-10
+        <!-- FOOTER SLOT (no layout jump) -->
+        <div #footerSlot class="relative h-12">
+          <!-- Check button -->
+          <div
+            #footerCheck
+            class="absolute inset-0"
+            [class.pointer-events-none]="isChecked()"
+            [class.opacity-0]="isChecked()"
+          >
+            <button
+              class="w-full h-12 rounded-2xl bg-neutral-900 text-white z-10
                        transition-colors duration-150 hover:bg-neutral-800 active:bg-neutral-950"
-                (click)="checkAnimated()"
-              >
-                Prüfen
-              </button>
-            </div>
-
-            <!-- Action bar -->
-            <div
-              #footerBar
-              class="absolute inset-0"
-              [class.pointer-events-none]="!isChecked()"
-              [class.opacity-0]="!isChecked()"
+              (click)="checkAnimated()"
             >
-              <div class="grid grid-cols-3 gap-3 h-12">
-                <button
-                  class="h-12 rounded-2xl border bg-white/70
-                         transition-colors duration-150 hover:bg-white active:bg-neutral-100"
-                  [disabled]="!canPlay()"
-                  [class.opacity-50]="!canPlay()"
-                  (click)="togglePlay($event)"
-                >
-                  @if (isPlaying()) {
-                    Stop
-                  } @else {
-                    🔊 Audio
-                  }
-                </button>
-
-                <button
-                  class="h-12 rounded-2xl border bg-white/70
-                         transition-colors duration-150 hover:bg-white active:bg-neutral-100"
-                  (click)="editAgainAnimated()"
-                >
-                  Bearbeiten
-                </button>
-
-                <button
-                  class="h-12 rounded-2xl bg-neutral-900 text-white
-                         transition-colors duration-150 hover:bg-neutral-800 active:bg-neutral-950"
-                  (click)="next()"
-                >
-                  Weiter
-                </button>
-              </div>
-            </div>
+              Prüfen
+            </button>
           </div>
 
+          <!-- Action bar -->
+          <div
+            #footerBar
+            class="absolute inset-0"
+            [class.pointer-events-none]="!isChecked()"
+            [class.opacity-0]="!isChecked()"
+          >
+            <div class="flex flex-row items-center justify-center gap-3 h-12">
+              <app-icon-button
+                [iconName]="isPlaying() ? 'stop' : 'volume_up'"
+                [tooltip]="isPlaying() ? 'Audio stoppen' : 'Audio abspielen'"
+                (onClick)="togglePlay($event)"
+              ></app-icon-button>
+
+              <app-icon-button
+                iconName="edit"
+                tooltip="Bearbeiten"
+                (onClick)="editAgainAnimated()"
+              ></app-icon-button>
+
+            </div>
+          </div>
         </div>
       </div>
     </div>

@@ -29,6 +29,7 @@ import {buildPromptSegments, PromptSegment} from '../../helpers/prompt-markup';
 import {TermTooltipOverlayComponent} from '../term-tooltip-overlay/term-tooltip-overlay.component';
 import {PromptMarkupComponent} from '../prompt-markup/prompt-markup.component';
 import {PracticeCardShellComponent} from '../practice-card-shell/practice-card-shell.component';
+import {IconButtonComponent} from '../icon-button/icon-button.component';
 
 @Component({
   selector: 'app-sentence-practice',
@@ -39,6 +40,7 @@ import {PracticeCardShellComponent} from '../practice-card-shell/practice-card-s
     PromptMarkupComponent,
     TermTooltipOverlayComponent,
     PracticeCardShellComponent,
+    IconButtonComponent,
   ],
   templateUrl: './sentence-practice.component.html',
 })
@@ -179,13 +181,13 @@ export class SentencePracticeComponent {
 
       gsap.set(overlay, {opacity: 0,});
       gsap.set(bar, {opacity: 0});
-      gsap.set(check, {opacity: 1, scaleX: 1});
+      gsap.set(check, {opacity: 1});
 
       gsap.timeline()
         // swap textarea -> overlay
         .to(edit, {opacity: 0, duration: 0.2, ease: 'power2.out'}, 0)
         .to(overlay, {opacity: 1, duration: 0.2, ease: 'power2.out'}, 0)
-        .to(check, {opacity: 0, scaleX: 0.8, duration: 0.2, ease: 'power2.out'}, 0)
+        .to(check, {opacity: 0, duration: 0.2, ease: 'power2.out'}, 0)
         .to(bar, {opacity: 1, duration: 0.2, ease: 'power2.out'}, 0);
     });
   }
@@ -216,7 +218,7 @@ export class SentencePracticeComponent {
       .to(overlay, {opacity: 0, duration: 0.2, ease: 'power2.in'}, 0)
       // footer: bar -> check
       .to(bar, {opacity: 0,  duration: 0.2, ease: 'power2.in'}, 0)
-      .to(check, {opacity: 1, scaleX: 1, duration: 0.18, ease: 'power2.in'}, 0)
+      .to(check, {opacity: 1, duration: 0.18, ease: 'power2.in'}, 0)
       // textarea back in (after state reset)
       .to(edit, {opacity: 1, duration: 0.2, ease: 'power2.out'}, 0);
   }
@@ -319,14 +321,6 @@ export class SentencePracticeComponent {
     this.tooltipOpen.set(true);
   }
 
-  private openTooltipAt(ref: TermRef, x: number, y: number) {
-    this.tooltipX.set(x);
-    this.tooltipY.set(y);
-    this.tooltipVm.set(this.termLookup.getTooltipVm(ref));
-    this.tooltipAnchorRef.set(ref);
-    this.tooltipOpen.set(true);
-  }
-
   onPromptTermEnter(e: { ref: TermRef; el: HTMLElement }) {
     if (this.tooltipPinned()) return;
     this.openTooltipForRef(e.ref, e.el);
@@ -337,14 +331,9 @@ export class SentencePracticeComponent {
     this.closeTooltip();
   }
 
-  onPromptTermClick(e: { ref: TermRef; x: number; y: number }) {
+  onPromptTermClick(e: { ref: TermRef; el: HTMLElement }) {
     this.tooltipPinned.set(true);
-    this.openTooltipAt(e.ref, e.x, e.y);
-  }
-
-  onTooltipTranslationClick(tr: TermRef) {
-    this.tooltipPinned.set(true);
-    this.openTooltipAt(tr, this.tooltipX(), this.tooltipY());
+    this.openTooltipForRef(e.ref, e.el);
   }
 
   closeTooltip() {

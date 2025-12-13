@@ -33,7 +33,6 @@ export class TermTooltipOverlayComponent {
   closeRequest = output<void>();
   tooltipEnter = output<void>();
   tooltipLeave = output<void>();
-  translationClick = output<TermRef>();
   textForRef = input<(ref: TermRef) => string>( (r: any) => `${r.lang}:${r.id}`);
 
   // ✅ NEW: report panel rect for hover-zone logic in parent

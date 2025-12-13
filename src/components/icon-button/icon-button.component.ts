@@ -11,7 +11,7 @@ import gsap from 'gsap';
 })
 export class IconButtonComponent {
   @Input() iconName: string = '';
-  @Output() onClick = new EventEmitter<void>();
+  @Output() onClick = new EventEmitter<Event | undefined>();
 
   @Input() tooltip?: string = '';
 

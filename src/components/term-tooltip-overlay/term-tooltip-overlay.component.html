@@ -24,14 +24,12 @@
         <div class="mt-2 text-xs font-semibold opacity-70">Übersetzungen</div>
         <div class="mt-1 flex flex-wrap gap-2">
           @for (tr of m.translations; track $index) {
-            <button
-              type="button"
+            <div
               data-tooltip
               class="px-2 py-1 rounded-full border bg-neutral-50 hover:bg-neutral-100 transition text-xs"
-              (click)="translationClick.emit(tr)"
             >
               {{ textForRef()(tr) }}
-            </button>
+            </div>
           }
         </div>
       }
