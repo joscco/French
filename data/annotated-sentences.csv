@@ -1,11 +1,11 @@
 ﻿lesson;sid;fr;de
-1;1;Je vais [m'inscrire]{s'inscrire} à un [cours de français].;Ich [melde mich]{sich anmelden#A} zu einem [Französischkurs] [an]{#A}.
+1;1;Je vais [m'inscrire à]{s'inscrire à qc.} un [cours de français].;Ich [melde mich zu]{sich zu etw. anmelden#A} einem [Französischkurs] [an]{#A}.
 1;2;Il y avait une [manifestation] dans la [rue principale].;In der [Hauptstraße] gab es eine [Demonstration].
 1;3;Il faut [désinfecter]{désinfecter qc.} la [plaie].;Man muss die [Wunde] [desinfizieren]{etw. desinfizieren}.
-1;4;Le [frigidaire] est [plein de] [légumes]{légume}.;Der [Kühlschrank] ist [voller]{voll} [Gemüse].
-1;5;Nous faisons du [camping] [au bord du]{au bord de} [lac].;Wir machen [Camping] [am]{am Ufer von} [See].
+1;4;Le [frigidaire] est [plein de]{plein de qc.} [légumes]{légume}.;Der [Kühlschrank] ist [voller]{voll von etw.} [Gemüse].
+1;5;Nous faisons du [camping] [au bord du]{au bord de qc.} [lac].;Wir machen [Camping] [am]{am Ufer von etw.} [See].
 1;6;J’[ai oublié]{oublier qc.} mon [sac de couchage].;Ich [habe]{etw. vergessen#A} meinen [Schlafsack] [vergessen]{#A}.
-1;7;C’est une région viticole.;Das ist eine Weinbauregion.
+1;7;C’est une [région] [viticole].;Das ist eine [Weinbau]{weinbau-}[region]{Region}.
 1;8;Nous aimons faire des randonnées en montagne.;Wir gehen gern in den Bergen wandern.
 1;9;On peut randonner dans le parc naturel.;Man kann im Naturpark wandern.
 1;10;Au cours de leur randonnée, ils ont parcouru un bon nombre de mètres de dénivelé.;Während ihrer Wanderung haben sie ordentlich viele Meter Höhenunterschied zurückgelegt.
