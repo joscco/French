@@ -476,3 +476,6 @@ nom;région;f;false;
 verbe;aimer qc.;;;
 nom;région viticole;f;false;
 nom;randonnée;f;false;
+nom;ville;f;false;
+nom;travail;m;false;
+nom;examen;m;true;

@@ -32,7 +32,7 @@
               >
                 @if (translation.genus) {
                   <span class="italic opacity-50">
-                    {{ getArticle(reverseLanguage(m.lang), translation.genus, m.needsVowelArticle) }}
+                    {{ getArticleFromTerm(reverseLanguage(m.lang), translation) }}
                   </span>
                 }
                 {{ translation?.term }}

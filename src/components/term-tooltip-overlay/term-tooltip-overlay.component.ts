@@ -3,6 +3,9 @@ import {CommonModule} from '@angular/common';
 import {gsap} from 'gsap';
 import {TermTooltipVm} from '../../services/term-lookup.service';
 import {getArticle, reverseLanguage} from '../../helpers/utils';
+import {Language} from '../../models/types';
+import {FrenchTerm} from '../../models/french-term';
+import {GermanTerm} from '../../models/german-term';
 
 @Component({
   selector: 'app-term-tooltip-overlay',
@@ -65,6 +68,13 @@ export class TermTooltipOverlayComponent {
     });
   }
 
-  protected readonly getArticle = getArticle;
+  protected getArticleFromTerm(language: Language, term: FrenchTerm | GermanTerm): string {
+    if (language === 'german') {
+      return getArticle('german', term.genus!, false);
+    }
+    return getArticle('french', term.genus!, (term as FrenchTerm).needsVowelArticle!);
+  }
+
   protected readonly reverseLanguage = reverseLanguage;
+  protected readonly getArticle = getArticle;
 }
