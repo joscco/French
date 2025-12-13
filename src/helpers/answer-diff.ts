@@ -1,41 +1,47 @@
 export type TokenKind = 'ok' | 'soft' | 'wrong' | 'missing';
 
-export interface WordToken {
+export interface OverlayToken {
   isWord: boolean;
-  text: string;          // User-Text (oder Whitespace/Punct)
-  kind?: TokenKind;      // nur relevant, wenn isWord=true oder missing-marker
-  expected?: string;     // korrektes Wort / Phrase (wenn bekannt)
+  text: string;           // Original-Text aus der Antwort (oder whitespace/punct)
+  kind?: TokenKind;       // nur relevant wenn isWord=true (oder missing-marker)
+  expectedHint?: string;  // was korrekt gewesen wäre (Badge-Inhalt)
 }
 
 export interface DisplayToken {
   isWord: boolean;
-  text: string;          // was im Text angezeigt wird (User-Text)
-  kind?: TokenKind;      // für Highlight
-  badge?: string;        // wenn gesetzt: EIN Badge über diesem Block
+  text: string;                // was im Overlay angezeigt wird (Antwort-Text)
+  kind?: TokenKind;
+  badge?: string;              // Badge über diesem Block
   badgeColor?: 'green';
 }
 
-/** Tokenizer: Wörter + Leerzeichen + Satzzeichen getrennt, damit Layout stabil bleibt */
-export function tokenizeWords(s: string): { text: string; isWord: boolean }[] {
-  const input = s ?? '';
-  // Word = Buchstaben inkl. Akzent + Apostroph + Bindestrich; Rest separat
+type RawToken = { text: string; isWord: boolean };
+
+/** Split: Wörter / Whitespace / Rest (Punctuation etc.) getrennt */
+export function tokenizeWords(text: string): RawToken[] {
+  const input = text ?? '';
+
+  // Word = letters+marks, optional apostrophe/hyphen inside word
   const re = /([\p{L}\p{M}]+(?:['’-][\p{L}\p{M}]+)*)|(\s+)|([^\s\p{L}\p{M}]+)/gu;
 
-  const out: { text: string; isWord: boolean }[] = [];
-  let m: RegExpExecArray | null;
-  while ((m = re.exec(input))) {
-    const word = m[1];
-    const space = m[2];
-    const punct = m[3];
-    if (word) out.push({ text: word, isWord: true });
-    else if (space) out.push({ text: space, isWord: false });
-    else if (punct) out.push({ text: punct, isWord: false });
+  const tokens: RawToken[] = [];
+  let match: RegExpExecArray | null;
+
+  while ((match = re.exec(input))) {
+    const word = match[1];
+    const whitespace = match[2];
+    const other = match[3];
+
+    if (word) tokens.push({ text: word, isWord: true });
+    else if (whitespace) tokens.push({ text: whitespace, isWord: false });
+    else if (other) tokens.push({ text: other, isWord: false });
   }
-  return out;
+
+  return tokens;
 }
 
-function foldWord(w: string): string {
-  return (w ?? '')
+function normalizeWordForCompare(word: string): string {
+  return (word ?? '')
     .replace(/[’‘]/g, "'")
     .replace(/[“”]/g, '"')
     .normalize('NFD')
@@ -43,70 +49,69 @@ function foldWord(w: string): string {
     .toLowerCase();
 }
 
-type Op = 'equal' | 'replace' | 'insert' | 'delete';
+type EditOp = 'equal' | 'replace' | 'insert' | 'delete';
 
-interface Edit {
-  op: Op;
-  a?: string; // expected word
-  b?: string; // answer word
+interface WordEdit {
+  op: EditOp;
+  expected?: string; // expected word
+  answer?: string;   // answer word
 }
 
-/** Levenshtein-basiertes Word-Edit-Script */
-function diffWords(expectedWords: string[], answerWords: string[]): Edit[] {
-  const n = expectedWords.length;
-  const m = answerWords.length;
+/** Levenshtein-basiertes Edit-Script auf Wortlisten */
+function diffWordLists(expectedWords: string[], answerWords: string[]): WordEdit[] {
+  const expLen = expectedWords.length;
+  const ansLen = answerWords.length;
 
-  // dp[i][j] = minimaler Edit-Cost für expected[0..i) -> answer[0..j)
-  const dp: number[][] = Array.from({ length: n + 1 }, () => Array(m + 1).fill(0));
-  const bt: Op[][] = Array.from({ length: n + 1 }, () => Array(m + 1).fill('equal'));
+  const cost: number[][] = Array.from({ length: expLen + 1 }, () => Array(ansLen + 1).fill(0));
+  const back: EditOp[][] = Array.from({ length: expLen + 1 }, () => Array(ansLen + 1).fill('equal'));
 
-  for (let i = 1; i <= n; i++) {
-    dp[i][0] = i;
-    bt[i][0] = 'delete';
+  for (let i = 1; i <= expLen; i++) {
+    cost[i][0] = i;
+    back[i][0] = 'delete';
   }
-  for (let j = 1; j <= m; j++) {
-    dp[0][j] = j;
-    bt[0][j] = 'insert';
+  for (let j = 1; j <= ansLen; j++) {
+    cost[0][j] = j;
+    back[0][j] = 'insert';
   }
 
-  for (let i = 1; i <= n; i++) {
-    for (let j = 1; j <= m; j++) {
-      const a = expectedWords[i - 1];
-      const b = answerWords[j - 1];
+  for (let i = 1; i <= expLen; i++) {
+    for (let j = 1; j <= ansLen; j++) {
+      const expected = expectedWords[i - 1];
+      const answer = answerWords[j - 1];
 
-      const isEqFold = foldWord(a) === foldWord(b);
+      const equalAfterNormalize =
+        normalizeWordForCompare(expected) === normalizeWordForCompare(answer);
 
-      const costDel = dp[i - 1][j] + 1;
-      const costIns = dp[i][j - 1] + 1;
-      const costRep = dp[i - 1][j - 1] + (isEqFold ? 0 : 1);
+      const del = cost[i - 1][j] + 1;
+      const ins = cost[i][j - 1] + 1;
+      const rep = cost[i - 1][j - 1] + (equalAfterNormalize ? 0 : 1);
 
-      const best = Math.min(costDel, costIns, costRep);
-      dp[i][j] = best;
+      const best = Math.min(del, ins, rep);
+      cost[i][j] = best;
 
-      if (best === costRep) bt[i][j] = isEqFold ? 'equal' : 'replace';
-      else if (best === costDel) bt[i][j] = 'delete';
-      else bt[i][j] = 'insert';
+      if (best === rep) back[i][j] = equalAfterNormalize ? 'equal' : 'replace';
+      else if (best === del) back[i][j] = 'delete';
+      else back[i][j] = 'insert';
     }
   }
 
-  // Backtrace
-  const edits: Edit[] = [];
-  let i = n, j = m;
+  const edits: WordEdit[] = [];
+  let i = expLen, j = ansLen;
 
   while (i > 0 || j > 0) {
-    const op = bt[i][j];
+    const op = back[i][j];
 
     if (op === 'equal') {
-      edits.push({ op: 'equal', a: expectedWords[i - 1], b: answerWords[j - 1] });
+      edits.push({ op, expected: expectedWords[i - 1], answer: answerWords[j - 1] });
       i--; j--;
     } else if (op === 'replace') {
-      edits.push({ op: 'replace', a: expectedWords[i - 1], b: answerWords[j - 1] });
+      edits.push({ op, expected: expectedWords[i - 1], answer: answerWords[j - 1] });
       i--; j--;
     } else if (op === 'delete') {
-      edits.push({ op: 'delete', a: expectedWords[i - 1] });
+      edits.push({ op, expected: expectedWords[i - 1] });
       i--;
-    } else { // insert
-      edits.push({ op: 'insert', b: answerWords[j - 1] });
+    } else {
+      edits.push({ op, answer: answerWords[j - 1] });
       j--;
     }
   }
@@ -126,94 +131,105 @@ function diffWords(expectedWords: string[], answerWords: string[]): Edit[] {
  * sondern gesammelt (pendingMissing) und an den nächsten Badge gehängt.
  * Dadurch vermeidest du "La" als separates Badge am Zeilenanfang.
  */
-export function buildWordOverlayTokens(expectedRaw: string, answerRaw: string): WordToken[] {
+export function buildWordOverlayTokens(expectedRaw: string, answerRaw: string): OverlayToken[] {
   const expectedTokens = tokenizeWords(expectedRaw);
   const answerTokens = tokenizeWords(answerRaw);
 
   const expectedWords = expectedTokens.filter(t => t.isWord).map(t => t.text);
   const answerWords = answerTokens.filter(t => t.isWord).map(t => t.text);
 
-  const edits = diffWords(expectedWords, answerWords);
+  const edits = diffWordLists(expectedWords, answerWords);
+  console.log(edits)
 
-  const out: WordToken[] = [];
-  let editIndex = 0;
+  const overlay: OverlayToken[] = [];
+  let editPos = 0;
 
-  const pendingMissing: string[] = [];
+  // deletes werden gesammelt und als EIN missing-marker ausgegeben
+  const pendingMissingWords: string[] = [];
 
-  const pullDeletesIntoPending = () => {
-    while (editIndex < edits.length && edits[editIndex].op === 'delete') {
-      const a = edits[editIndex].a;
-      if (a) pendingMissing.push(a);
-      editIndex++;
+  const collectDeletes = () => {
+    while (editPos < edits.length && edits[editPos].op === 'delete') {
+      const missing = edits[editPos].expected;
+      if (missing) {
+        pendingMissingWords.push(missing);
+      }
+      editPos++;
     }
   };
 
-  const flushPendingMissing = () => {
-    if (!pendingMissing.length) return;
-    out.push({
+  const emitMissingMarkerIfNeeded = () => {
+    if (!pendingMissingWords.length) return;
+
+    overlay.push({
       isWord: true,
       kind: 'missing',
-      text: '', // zero width marker
-      expected: pendingMissing.join(' ').trim() || undefined,
+      text: '', // zero-width marker
+      expectedHint: pendingMissingWords.join(' ').trim() || undefined,
     });
-    pendingMissing.length = 0;
+
+    pendingMissingWords.length = 0;
   };
 
-  const consumeNonDeleteEdit = (): Edit | undefined => {
-    pullDeletesIntoPending();
-    // WICHTIG: Missings jetzt wirklich ausgeben (anstatt an expected zu hängen)
-    flushPendingMissing();
-    return edits[editIndex++];
+  const nextNonDeleteEdit = (): WordEdit | undefined => {
+    collectDeletes();
+    emitMissingMarkerIfNeeded();
+    return edits[editPos++];
   };
 
-  for (const t of answerTokens) {
-    if (!t.isWord) {
-      out.push({ isWord: false, text: t.text });
+  for (const token of answerTokens) {
+    // whitespace/punctuation: einfach übernehmen (Layout bleibt stabil)
+    if (!token.isWord) {
+      overlay.push({ isWord: false, text: token.text });
       continue;
     }
 
-    const e = consumeNonDeleteEdit();
+    const edit = nextNonDeleteEdit();
 
-    if (!e) {
-      // Antwort hat mehr Wörter als expected (insert-run am Ende)
-      out.push({ isWord: true, text: t.text, kind: 'wrong' });
+    // Antwort hat mehr Wörter als expected
+    if (!edit) {
+      overlay.push({ isWord: true, text: token.text, kind: 'wrong' });
       continue;
     }
 
-    if (e.op === 'equal') {
-      const a = e.a ?? '';
-      const b = e.b ?? '';
-      const isExact = a === b;
-      out.push({
+    if (edit.op === 'equal') {
+      const expected = edit.expected ?? '';
+      const answer = edit.answer ?? '';
+      const exactlyEqual = expected === answer;
+
+      overlay.push({
         isWord: true,
-        text: t.text,
-        kind: isExact ? 'ok' : 'soft',
-        expected: isExact ? undefined : a, // soft-badge bleibt möglich
+        text: token.text,
+        kind: exactlyEqual ? 'ok' : 'soft',
+        expectedHint: exactlyEqual ? undefined : expected, // soft kann Badge zeigen
       });
       continue;
     }
 
-    if (e.op === 'replace') {
-      out.push({ isWord: true, text: t.text, kind: 'wrong', expected: e.a });
+    if (edit.op === 'replace') {
+      overlay.push({
+        isWord: true,
+        text: token.text,
+        kind: 'wrong',
+        expectedHint: edit.expected,
+      });
       continue;
     }
 
-    if (e.op === 'insert') {
-      out.push({ isWord: true, text: t.text, kind: 'wrong' });
+    if (edit.op === 'insert') {
+      overlay.push({ isWord: true, text: token.text, kind: 'wrong' });
       continue;
     }
 
-    // delete wird vorher rausgezogen
-    out.push({ isWord: true, text: t.text, kind: 'wrong' });
+    // delete wird vorher schon rausgezogen – fallback:
+    overlay.push({ isWord: true, text: token.text, kind: 'wrong' });
   }
 
-  // Restliche deletes am Ende:
-  pullDeletesIntoPending();
-  flushPendingMissing();
+  // remaining deletes after the last answer word
+  collectDeletes();
+  emitMissingMarkerIfNeeded();
 
-  return out;
+  return overlay;
 }
-
 
 /**
  * Fasst aufeinanderfolgende falsche Wörter zu einem Block zusammen,
@@ -224,71 +240,78 @@ export function buildWordOverlayTokens(expectedRaw: string, answerRaw: string): 
  * - Badge-Text = concatenation aller vorhandenen expected-Fragmente (inkl. pendingMissing-Phrasen)
  * - Missing-Token wird zu einem "Marker" mit Badge (eine Phrase)
  */
-export function collapseOverlayRuns(tokens: WordToken[]): DisplayToken[] {
-  const out: DisplayToken[] = [];
+export function collapseOverlayRuns(tokens: OverlayToken[]): DisplayToken[] {
+  const display: DisplayToken[] = [];
 
-  const isSpace = (t: WordToken) => !t.isWord && /^\s+$/.test(t.text ?? '');
+  const isWhitespaceToken = (t: OverlayToken) =>
+    !t.isWord && /^\s+$/.test(t.text ?? '');
 
   for (let i = 0; i < tokens.length; i++) {
     const t = tokens[i];
 
-    // Non-word: direkt durch
     if (!t.isWord) {
-      out.push({ isWord: false, text: t.text });
+      display.push({ isWord: false, text: t.text });
       continue;
     }
 
-    // Missing: als Marker-Token (kein Text, nur Badge)
     if (t.kind === 'missing') {
-      out.push({
+      display.push({
         isWord: true,
         text: '',
         kind: 'missing',
-        badge: t.expected,
+        badge: t.expectedHint,
         badgeColor: 'green',
       });
       continue;
     }
 
-    // ok/soft: direkt durch (optional: soft kann expected als Badge haben)
     if (t.kind !== 'wrong') {
-      out.push({
+      display.push({
         isWord: true,
         text: t.text,
         kind: t.kind,
-        badge: t.kind === 'soft' ? t.expected : undefined,
-        badgeColor: t.kind === 'soft' && t.expected ? 'green' : undefined
+        badge: t.kind === 'soft' ? t.expectedHint : undefined,
+        badgeColor: t.kind === 'soft' && t.expectedHint ? 'green' : undefined,
       });
       continue;
     }
 
-    // WRONG-RUN starten
-    let runText = t.text;
-    const runExpected: string[] = [];
-    if (t.expected) runExpected.push(t.expected);
-
-    // Wir ziehen: (spaces + next wrong word)+ in den Run
-    while (true) {
-      const spaceTok = tokens[i + 1];
-      const nextTok = tokens[i + 2];
-
-      if (spaceTok && nextTok && isSpace(spaceTok) && nextTok.isWord && nextTok.kind === 'wrong') {
-        runText += spaceTok.text + nextTok.text;
-        if (nextTok.expected) runExpected.push(nextTok.expected);
-        i += 2;
-        continue;
-      }
-      break;
+    // WRONG RUN: merge "wrong (space wrong)*" into one display token
+    let mergedText = t.text;
+    const expectedHints: string[] = [];
+    if (t.expectedHint) {
+      expectedHints.push(t.expectedHint);
     }
 
-    out.push({
+    while (true) {
+      const maybeSpace = tokens[i + 1];
+      const maybeNextWrong = tokens[i + 2];
+
+      const canMerge =
+        maybeSpace &&
+        maybeNextWrong &&
+        isWhitespaceToken(maybeSpace) &&
+        maybeNextWrong.isWord &&
+        maybeNextWrong.kind === 'wrong';
+
+      if (!canMerge) {
+        break;
+      }
+
+      mergedText += maybeSpace.text + maybeNextWrong.text;
+      if (maybeNextWrong.expectedHint) expectedHints.push(maybeNextWrong.expectedHint);
+
+      i += 2;
+    }
+
+    display.push({
       isWord: true,
-      text: runText,
+      text: mergedText,
       kind: 'wrong',
-      badge: runExpected.length ? runExpected.join(' ') : undefined,
-      badgeColor: runExpected.length ? 'green' : undefined
+      badge: expectedHints.length ? expectedHints.join(' ') : undefined,
+      badgeColor: expectedHints.length ? 'green' : undefined,
     });
   }
 
-  return out;
+  return display;
 }

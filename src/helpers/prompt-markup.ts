@@ -1,9 +1,9 @@
 // helpers/prompt-markup.ts
-import { TermRef } from '../models/term-ref';
+import { TermRefInSentence } from '../models/term-ref-in-sentence';
 
 export interface PromptSegment {
   text: string;
-  ref?: TermRef; // gesetzt => markiertes Segment
+  ref?: TermRefInSentence; // gesetzt => markiertes Segment
 }
 
 function escapeRegExp(s: string): string {
@@ -30,14 +30,14 @@ function splitPhraseParts(phrase: string): string[] {
     .filter(Boolean);
 }
 
-type Match = { start: number; end: number; ref: TermRef; phrase: string };
+type Match = { start: number; end: number; ref: TermRefInSentence; phrase: string };
 
 /**
  * Findet eine "Kette" von Parts im Text:
  * part1 irgendwo, dann part2 NACH part1, usw.
  * Ergebnis: einzelne Matches je Part (damit alle Teile highlightbar sind)
  */
-function findChainedPartMatches(text: string, parts: string[], ref: TermRef): Match[] {
+function findChainedPartMatches(text: string, parts: string[], ref: TermRefInSentence): Match[] {
   if (!parts.length) return [];
 
   const out: Match[] = [];
@@ -93,7 +93,7 @@ function findChainedPartMatches(text: string, parts: string[], ref: TermRef): Ma
   return out;
 }
 
-export function buildPromptSegments(prompt: string, refs: TermRef[]): PromptSegment[] {
+export function buildPromptSegments(prompt: string, refs: TermRefInSentence[]): PromptSegment[] {
   const text = prompt ?? '';
   const usable = (refs ?? [])
     .map(r => ({ ref: r, phrase: (r.label ?? '').trim() }))

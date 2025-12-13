@@ -1,8 +1,8 @@
 import { Injectable, signal } from '@angular/core';
 import { parseCSV } from '../helpers/csv-utils';
-import { TermRef } from '../models/term-ref';
+import { TermRefInSentence } from '../models/term-ref-in-sentence';
 
-type BySentenceId = Record<number, TermRef[]>;
+type BySentenceId = Record<number, TermRefInSentence[]>;
 type SentenceLessonMap = Record<number, number>;
 
 @Injectable({ providedIn: 'root' })
@@ -52,7 +52,7 @@ export class SentenceRefService {
         if (!sid || (lang !== 'fr' && lang !== 'de') || !key) continue;
 
         (map[sid] ??= []).push({
-          lang,
+          lang : lang === 'fr' ? 'french' : 'german',
           key,
           label: phrase || undefined,
         });
@@ -82,7 +82,7 @@ export class SentenceRefService {
       for (const ref of refs) {
         // only works if refs actually have keys (optional)
         if (!ref.key) continue;
-        (ref.lang === 'fr' ? fr : de).add(ref.key);
+        (ref.lang === 'french' ? fr : de).add(ref.key);
       }
     }
 

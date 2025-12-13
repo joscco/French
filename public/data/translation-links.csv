@@ -29,7 +29,7 @@ atteindre;erreichen;1
 attente;Erwartung;1
 atterrir;landen;1
 atterrissage;Landung;1
-au bord de;am Ufer von;1
+au bord de qc.;am Ufer von etw.;1
 au bord du Rhin;am Rheinufer;1
 au fil des années;im Lauf der Jahre;1
 au lieu de;anstatt;1
@@ -281,7 +281,6 @@ kérosène;Kerosin;1
 klaxonner;hupen;1
 La Haye;Den Haag;1
 lac;See;1
-lac;See;1
 le terrain est en pente;das Gelände ist abschüssig;1
 léger;leicht;1
 légume;Gemüse;1
@@ -329,7 +328,6 @@ or;jedoch;1
 oreillette;Ohrhörer (einzeln);1
 otorhino;HNO-Arzt;1
 oublier qc.;etw. vergessen;1
-oublier qc.;etw. vergessen;1
 pair;gerade (Zahl);1
 pancarte;Schild;1
 panneau solaire;Solarpanel;1
@@ -358,8 +356,7 @@ piste cyclable;Fahrradweg;1
 plagiat;Plagiat;1
 plaie;Wunde;1
 plaisanter;scherzen;1
-plein de;voll;1
-plein de;voll;1
+plein de qc.;voll von etw.;1
 polir;polieren;1
 pollution sonore;Lärmverschmutzung;1
 pompe à chaleur;Wärmepumpe;1
@@ -387,6 +384,7 @@ rebondir;sich wieder fangen;1
 réchauffement climatique;Erderwärmung;1
 reclus socialement;gesellschaftlich zurückgezogen;1
 réderie;Trödelmarkt (Picardie);1
+région;Region;1
 réjouissant;erfreulich;1
 remorque;Anhänger;1
 renverser;überfahren;1
@@ -408,7 +406,7 @@ rue principale;Hauptstraße;1
 s’agacer;genervt sein;1
 s’échapper;entweichen;1
 s’entretenir;sich unterhalten;1
-s'inscrire;sich anmelden;1
+s'inscrire à qc.;sich zu etw. anmelden;1
 s’installer;sich niederlassen;1
 s’insurger;sich empören;1
 s’interroger en continu;ständig über etw. nachdenken;1

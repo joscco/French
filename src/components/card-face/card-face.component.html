@@ -1,8 +1,8 @@
 <div class="absolute left-0 top-1/2 -translate-y-1/2 y-4
             flex flex-col items-start justify-center gap-2">
   <div class="flex flex-row items-baseline">
-    @if (getArticle() !== '') {
-      <div class="text-base opacity-50 mr-1"> {{ getArticle() }}</div>
+    @if (genus) {
+      <div class="text-base opacity-50 mr-1"> {{ getArticle(language, genus, needsVowelArticle) }}</div>
     }
     <div class="text-xl font-semibold">{{ primary }}</div>
     @if (needsVowelArticle || genus === 'mpl' || genus === 'fpl') {

@@ -1,6 +1,6 @@
 import {Component, computed, input, output} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {TermRef} from '../../models/term-ref';
+import {TermRefInSentence} from '../../models/term-ref-in-sentence';
 import {PromptSegment} from '../../helpers/prompt-markup';
 
 @Component({
@@ -18,14 +18,14 @@ export class PromptMarkupComponent {
   fallbackText = input<string>('');
   activeRefKey = input<string | undefined>(undefined);
 
-  termEnter = output<{ ref: TermRef; el: HTMLElement }>();
+  termEnter = output<{ ref: TermRefInSentence; el: HTMLElement }>();
   termLeave = output<void>();
-  termClick = output<{ ref: TermRef; el: HTMLElement }>();
+  termClick = output<{ ref: TermRefInSentence; el: HTMLElement }>();
 
   private lastTermEl?: HTMLElement;
   private lastIdx?: number;
 
-  refKey(ref?: TermRef) {
+  refKey(ref?: TermRefInSentence) {
     return ref ? `${ref.lang}:${ref.key}` : undefined;
   }
 
@@ -35,7 +35,7 @@ export class PromptMarkupComponent {
     return el.closest?.('[data-term]') as HTMLElement | null;
   }
 
-  private getRefForTermEl(termEl: HTMLElement): { ref: TermRef; idx: number } | null {
+  private getRefForTermEl(termEl: HTMLElement): { ref: TermRefInSentence; idx: number } | null {
     const idxStr = termEl.getAttribute('data-seg-idx');
     if (!idxStr) return null;
 
@@ -92,7 +92,7 @@ export class PromptMarkupComponent {
   }
 }
 
-type Seg = { text: string; ref?: TermRef };
+type Seg = { text: string; ref?: TermRefInSentence };
 
 const ATTACH_TO_PREV = /^[\.,!?;:]+$|^[)\]\}»”’]+$/; // Punkt/Komma/… + schließende Klammern/Quotes
 

@@ -1,20 +1,9 @@
-import {
-  Component,
-  ElementRef,
-  DestroyRef,
-  afterNextRender,
-  computed,
-  effect,
-  input,
-  output,
-  signal,
-  viewChild,
-  inject,
-} from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { TermRef } from '../../models/term-ref';
-import { TermTooltipVm } from '../../services/term-lookup.service';
-import { gsap } from 'gsap';
+import {Component, computed, effect, ElementRef, input, output, signal, viewChild,} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {gsap} from 'gsap';
+import {TermRefInSentence} from '../../models/term-ref-in-sentence';
+import {TermTooltipVm} from '../../services/term-lookup.service';
+import {beautifyGenus, getArticle, reverseLanguage} from '../../helpers/utils';
 
 @Component({
   selector: 'app-term-tooltip-overlay',
@@ -23,85 +12,61 @@ import { gsap } from 'gsap';
   templateUrl: './term-tooltip-overlay.component.html',
 })
 export class TermTooltipOverlayComponent {
-  // desired state from parent
   open = input(false);
-  vm = input<TermTooltipVm | undefined>(undefined);
+  selectedVM = input<TermTooltipVm | undefined>(undefined);
   x = input(0);
   y = input(0);
 
-  // events
-  closeRequest = output<void>();
-  tooltipEnter = output<void>();
-  tooltipLeave = output<void>();
-  textForRef = input<(ref: TermRef) => string>( (r: any) => `${r.lang}:${r.id}`);
-
-  // ✅ NEW: report panel rect for hover-zone logic in parent
   panelRectChange = output<DOMRect>();
 
-  // internal render state so we can animate OUT before removing from DOM
-  private rendered = signal(false);
-
-  // panel ref
   panel = viewChild<ElementRef<HTMLElement>>('panel');
-
-  shouldRender = computed(() => this.rendered());
-
-  private destroyRef = inject(DestroyRef);
-  private ro?: ResizeObserver;
+  lastVm: TermTooltipVm | undefined;
 
   constructor() {
-    // open => render + animate in + start measuring
     effect(() => {
-      if (!this.open()) return;
-
-      if (!this.rendered()) this.rendered.set(true);
-
-      afterNextRender(() => {
-        const el = this.panel()?.nativeElement;
-        if (!el) return;
-
-        // measure once
-        this.panelRectChange.emit(el.getBoundingClientRect());
-
-        // keep measuring (GSAP scale affects rect)
-        this.ro?.disconnect();
-        this.ro = new ResizeObserver(() => {
-          this.panelRectChange.emit(el.getBoundingClientRect());
-        });
-        this.ro.observe(el);
-
-        // cleanup on destroy
-        this.destroyRef.onDestroy(() => {
-          this.ro?.disconnect();
-          this.ro = undefined;
-        });
-
-        // animate in
-        gsap.killTweensOf(el);
-        gsap.set(el, { opacity: 0, scale: 0.96, transformOrigin: '50% 100%' });
-        gsap.to(el, { opacity: 1, scale: 1, duration: 0.2, ease: 'power2.out' });
-      });
+      this.lastVm = this.selectedVM() ? this.selectedVM() : this.lastVm;
     });
 
-    // close => animate out, then unrender
-    effect(() => {
-      if (this.open()) return;
-      if (!this.rendered()) return;
+    let open = effect(() => {
+      if (!this.open()) {
+        return;
+      }
 
       const el = this.panel()?.nativeElement;
       if (!el) {
-        this.rendered.set(false);
+        return;
+      }
+
+      gsap.killTweensOf(el)
+      gsap.to(el, {
+        autoAlpha: 1,
+        scale: 1,
+        duration: 0.14,
+        ease: 'power2.out',
+      });
+    });
+
+    let close = effect(() => {
+      if (this.open()) {
+        return;
+      }
+
+      const el = this.panel()?.nativeElement;
+      if (!el) {
         return;
       }
 
       gsap.killTweensOf(el);
       gsap.to(el, {
-        opacity: 0,
-        scale: 0.96,
-        duration: 0.2,
+        autoAlpha: 0,
+        scale: 0.98,
+        duration: 0.14,
         ease: 'power2.out',
-        onComplete: () => this.rendered.set(false),
       });
     });
   }
+
+  protected readonly beautifyGenus = beautifyGenus;
+  protected readonly getArticle = getArticle;
+  protected readonly reverseLanguage = reverseLanguage;
 }

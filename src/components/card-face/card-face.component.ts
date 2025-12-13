@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {beautifyGenus} from '../../helpers/utils';
 import {Language} from '../../models/types';
+import {beautifyGenus, getArticle} from '../../helpers/utils';
 
 @Component({
   selector: 'app-card-face',
@@ -15,47 +15,6 @@ export class CardFaceComponent {
   @Input() genus?: string;
   @Input() language: Language = 'french';
   @Input() needsVowelArticle = false;
-
-  public getArticle(): string {
-    if (this.language === 'german') {
-      switch (this.genus) {
-        case 'm':
-          return 'der';
-        case 'f':
-          return 'die';
-        case 'n':
-          return 'das';
-        case 'mpl':
-        case 'fpl':
-        case 'npl':
-          return 'die';
-        case 'm/f':
-          return 'der/die';
-        default:
-          return '';
-      }
-    }
-    if (this.language === 'french') {
-      if (this.needsVowelArticle) {
-        return 'l\'';
-      }
-      switch (this.genus) {
-        case 'm':
-          return 'le';
-        case 'f':
-          return 'la';
-        case 'mpl':
-          return 'les';
-        case 'fpl':
-          return 'les';
-        case 'm/f':
-          return 'le/la';
-        default:
-          return '';
-      }
-    }
-    return '';
-  }
-
+  protected readonly getArticle = getArticle;
   protected readonly beautifyGenus = beautifyGenus;
 }

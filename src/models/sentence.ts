@@ -1,4 +1,4 @@
-import {TermRef} from './term-ref';
+import {TermRefInSentence} from './term-ref-in-sentence';
 
 export interface Sentence {
   id: number;
@@ -6,5 +6,5 @@ export interface Sentence {
   fr: string;
   lesson: number;
 
-  refs?: TermRef[];
+  refs?: TermRefInSentence[];
 }

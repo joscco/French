@@ -14,6 +14,7 @@ export class IconButtonComponent {
   @Output() onClick = new EventEmitter<Event | undefined>();
 
   @Input() tooltip?: string = '';
+  @Input() enabled?: boolean = true;
 
   tooltipYHidden = -35;
   tooltipYVisible = -40;

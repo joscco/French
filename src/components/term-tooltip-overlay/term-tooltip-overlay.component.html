@@ -1,38 +1,46 @@
-@if (shouldRender() && vm(); as m) {
-  <div data-tooltip class="fixed inset-0 z-[9999] pointer-events-none">
+@if (lastVm; as m) {
+  <div data-tooltip class="absolute inset-0 z-[9999] pointer-events-none">
     <div
-      #panel
-      data-tooltip
-      class="absolute pointer-events-auto max-w-[320px]
-             bg-white border rounded-xl shadow-lg px-3 py-2 text-sm"
+      class="absolute pointer-events-none"
       [style.left.px]="x()"
       [style.top.px]="y()"
       style="transform: translate(-50%, calc(-100% - 10px));"
-      (mouseenter)="tooltipEnter.emit()"
-      (mouseleave)="tooltipLeave.emit()"
     >
-      <div class="font-semibold">
-        {{ m.title }}
-        <span class="ml-2 text-xs opacity-60">({{ m.lang }})</span>
-      </div>
-
-      @if (m.subtitle) {
-        <div class="text-xs opacity-70 mt-0.5">{{ m.subtitle }}</div>
-      }
-
-      @if (m.translations.length) {
-        <div class="mt-2 text-xs font-semibold opacity-70">Übersetzungen</div>
-        <div class="mt-1 flex flex-wrap gap-2">
-          @for (tr of m.translations; track $index) {
-            <div
-              data-tooltip
-              class="px-2 py-1 rounded-full border bg-neutral-50 hover:bg-neutral-100 transition text-xs"
-            >
-              {{ textForRef()(tr) }}
-            </div>
+      <div
+        #panel
+        data-tooltip
+        class="pointer-events-auto w-[200px]
+               bg-white border-2 border-black rounded-2xl
+               px-3 py-2 text-xs
+               shadow-[0_8px_30px_rgba(0,0,0,0.12)]"
+      >
+        <div class="flex flex-row items-baseline gap-x-1">
+          @if (m.genus) {
+            <span class="text-sm italic opacity-50">
+              {{ getArticle(m.lang, m.genus, m.needsVowelArticle) }}
+            </span>
           }
+          <span class="text-sm font-semibold">{{ m.title }}</span>
         </div>
-      }
+
+        @if (m.translations.length) {
+          <div class="mt-2 flex flex-wrap gap-2">
+            @for (t of m.translations; track $index) {
+              <span
+                data-tooltip
+                class="px-2 py-1 rounded-lg bg-neutral-200"
+              >
+                @if (t.genus) {
+                  <span class="italic opacity-50">
+                    {{ getArticle(reverseLanguage(m.lang), t.genus, m.needsVowelArticle) }}
+                  </span>
+                }
+                {{ t?.term }}
+              </span>
+            }
+          </div>
+        }
+      </div>
     </div>
   </div>
 }

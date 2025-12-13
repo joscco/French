@@ -35,6 +35,48 @@ export function beautifyGenus(genus?: string): string {
   }
 }
 
+
+export function getArticle(language: Language, genus: string, needsFrenchVowelArticle: boolean): string {
+  if (language === 'german') {
+    switch (genus) {
+      case 'm':
+        return 'der';
+      case 'f':
+        return 'die';
+      case 'n':
+        return 'das';
+      case 'mpl':
+      case 'fpl':
+      case 'npl':
+        return 'die';
+      case 'm/f':
+        return 'der/die';
+      default:
+        return '';
+    }
+  }
+  if (language === 'french') {
+    if (needsFrenchVowelArticle) {
+      return 'l\'';
+    }
+    switch (genus) {
+      case 'm':
+        return 'le';
+      case 'f':
+        return 'la';
+      case 'mpl':
+        return 'les';
+      case 'fpl':
+        return 'les';
+      case 'm/f':
+        return 'le/la';
+      default:
+        return '';
+    }
+  }
+  return '';
+}
+
 export function indexByKey<T extends { key: string }>(items: T[]): Record<string, T> {
   const out: Record<string, T> = {};
   for (const item of items) {

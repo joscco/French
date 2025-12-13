@@ -75,7 +75,6 @@ export class TranslationService {
     }
   }
 
-  // ✅ public API für deinen Lookup-Service
   getGermanKeys(frKey: string): string[] {
     return (this.byFr.get(norm(frKey)) ?? []).map(l => l.de);
   }

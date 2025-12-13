@@ -1,39 +1,33 @@
-export interface NormalizeOptions {
-  ignoreCase?: boolean;
-  ignoreAccents?: boolean;
-  normalizeWhitespace?: boolean;
-  normalizeQuotes?: boolean;
-  normalizePunctuationSpacing?: boolean;
-}
-
-export function normalizeForCheck(input: string, opt: NormalizeOptions = {}): string {
+export function normalizeForCheck(input: string): string {
   let s = (input ?? '').trim();
 
-  if (opt.normalizeQuotes ?? true) {
-    s = s
-      .replace(/[’‘]/g, "'")
-      .replace(/[“”]/g, '"');
-  }
+  // Normalize quotes
+  // "l’amour" == "l'amour", „Bonjour“ == "Bonjour"
+  s = s
+    .replace(/[’‘]/g, "'")
+    .replace(/[“”]/g, '"');
 
-  if (opt.normalizeWhitespace ?? true) {
-    s = s.replace(/\s+/g, ' ');
-  }
+  // Ignore punctuation
+  // "Bonjour." == "Bonjour", "Salut, ça va ?" == "Salut ca va"
+  s = s.replace(/\p{P}+/gu, ' ');
 
-  if (opt.normalizePunctuationSpacing ?? true) {
-    // z.B. "Bonjour ,  ça va ?" -> "Bonjour, ça va?"
-    s = s
-      .replace(/\s+([,.;:!?])/g, '$1')
-      .replace(/([,.;:!?])([^\s])/g, '$1 $2');
-  }
+  // Normalize whitespace
+  // "Bonjour   ça   va" == "Bonjour ça va"
+  s = s.replace(/\s+/g, ' ');
 
-  if (opt.ignoreAccents ?? true) {
-    // Unicode diacritics entfernen
-    s = s.normalize('NFD').replace(/\p{Diacritic}/gu, '');
-  }
+  // Normalize punctuation spacing
+  // "Bonjour ,ça va ?" == "Bonjour, ça va?"
+  s = s
+    .replace(/\s+([,.;:!?])/g, '$1')
+    .replace(/([,.;:!?])([^\s])/g, '$1 $2');
 
-  if (opt.ignoreCase ?? true) {
-    s = s.toLowerCase();
-  }
+  // Ignore accents
+  // "français" == "francais", "ça" == "ca"
+  s = s.normalize('NFD').replace(/\p{Diacritic}/gu, '');
 
-  return s;
+  // Ignore case
+  // "Bonjour" == "bonjour"
+  s = s.toLowerCase();
+
+  return s.trim();
 }

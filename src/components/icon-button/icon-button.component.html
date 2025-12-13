@@ -1,9 +1,9 @@
 <button
   class="relative w-12 h-12 flex flex-row justify-center items-center gap-1 rounded-2xl border border-neutral-300 transition-colors duration-150 bg-transparent hover:bg-neutral-200 active:bg-neutral-300"
-  (click)="onClick.emit($event)"
+  (click)="enabled && onClick.emit($event)"
   [attr.aria-label]="tooltip || iconName"
 >
-  <mat-icon>{{ iconName }}</mat-icon>
+  <mat-icon [class.opacity-50]="!enabled">{{ iconName }}</mat-icon>
 
   <span
     #tooltipEl
