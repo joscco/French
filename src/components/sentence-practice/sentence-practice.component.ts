@@ -108,10 +108,6 @@ export class SentencePracticeComponent {
     return refs.filter(r => r.lang === lang);
   });
 
-  e = effect(() => {
-    console.log('Current sentence:', this.displayTokens());
-  })
-
   get answerModel(): string {
     return this.answer();
   }
