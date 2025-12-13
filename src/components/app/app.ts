@@ -2,7 +2,7 @@ import {Component, computed, effect, inject, signal} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {LessonSelectorComponent} from '../lesson-selector/lesson-selector.component';
 import {ModeSelectorComponent} from '../mode-selector/mode-selector.component';
-import {PracticeComponent} from '../practice/practice.component';
+import {WordPracticeComponent} from '../word-practice/word-practice.component';
 import {ExportPdfService} from '../../services/export-pdf.service';
 import {IconButtonComponent} from '../icon-button/icon-button.component';
 import {LessonService} from '../../services/lesson.service';
@@ -18,7 +18,7 @@ import {SentencePracticeComponent} from '../sentence-practice/sentence-practice.
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, LessonSelectorComponent, ModeSelectorComponent, PracticeComponent, IconButtonComponent, IconButtonComponent, SentencePracticeComponent],
+  imports: [CommonModule, LessonSelectorComponent, ModeSelectorComponent, WordPracticeComponent, IconButtonComponent, IconButtonComponent, SentencePracticeComponent],
   templateUrl: './app.html',
   host: {'class': 'h-full'},
 })

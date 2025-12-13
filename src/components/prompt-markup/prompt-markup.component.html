@@ -1,5 +1,5 @@
 <div
-  class="font-semibold mb-3 leading-relaxed"
+  class="text-lg leading-relaxed font-semibold mb-3"
   (pointermove)="onPointerMove($event)"
   (pointerleave)="onPointerLeave()"
   (click)="onClick($event)"
@@ -9,10 +9,10 @@
       @if (seg.ref) {
         <span
           data-term
-          class="inline-block cursor-pointer rounded-md px-1 transition-colors duration-150
-         bg-amber-100
-         hover:bg-amber-300"
-          [class.bg-amber-200]="activeRefKey() === refKey(seg.ref)"
+          class="inline-block cursor-pointer rounded-md px-1 my-1
+          transition-colors duration-150
+         bg-amber-100"
+          [class.bg-amber-300]="activeRefKey() === refKey(seg.ref)"
           (mouseenter)="termEnter.emit({ ref: seg.ref!, el: $any($event.target) })"
           (mouseleave)="termLeave.emit()"
           (click)="termClick.emit({ ref: seg.ref!, x: $event.clientX, y: $event.clientY })"

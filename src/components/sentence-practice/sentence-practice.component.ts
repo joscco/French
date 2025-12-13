@@ -6,22 +6,29 @@ import {
   inject,
   input,
   signal,
+  ViewChild,
+  ElementRef,
 } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { MatButtonModule } from '@angular/material/button';
+import {CommonModule} from '@angular/common';
+import {FormsModule} from '@angular/forms';
+import gsap from 'gsap';
 
-import { Sentence } from '../../models/sentence';
-import { PracticeMode } from '../../models/types';
-import { normalizeForCheck } from '../../helpers/normalize';
-import { buildWordOverlayTokens, collapseOverlayRuns, DisplayToken } from '../../helpers/answer-diff';
+import {Sentence} from '../../models/sentence';
+import {PracticeMode} from '../../models/types';
+import {normalizeForCheck} from '../../helpers/normalize';
+import {
+  buildWordOverlayTokens,
+  collapseOverlayRuns,
+  DisplayToken,
+} from '../../helpers/answer-diff';
 
-import { TermLookupService, TermTooltipVm } from '../../services/term-lookup.service';
-import { TermRef } from '../../models/term-ref';
-import { buildPromptSegments, PromptSegment } from '../../helpers/prompt-markup';
+import {TermLookupService, TermTooltipVm} from '../../services/term-lookup.service';
+import {TermRef} from '../../models/term-ref';
+import {buildPromptSegments, PromptSegment} from '../../helpers/prompt-markup';
 
-import { TermTooltipOverlayComponent } from '../term-tooltip-overlay/term-tooltip-overlay.component';
-import { PromptMarkupComponent } from '../prompt-markup/prompt-markup.component';
+import {TermTooltipOverlayComponent} from '../term-tooltip-overlay/term-tooltip-overlay.component';
+import {PromptMarkupComponent} from '../prompt-markup/prompt-markup.component';
+import {PracticeCardShellComponent} from '../practice-card-shell/practice-card-shell.component';
 
 @Component({
   selector: 'app-sentence-practice',
@@ -29,9 +36,9 @@ import { PromptMarkupComponent } from '../prompt-markup/prompt-markup.component'
   imports: [
     CommonModule,
     FormsModule,
-    MatButtonModule,
     PromptMarkupComponent,
     TermTooltipOverlayComponent,
+    PracticeCardShellComponent,
   ],
   templateUrl: './sentence-practice.component.html',
 })
@@ -39,62 +46,76 @@ export class SentencePracticeComponent {
   sentences = input<Sentence[]>([]);
   mode = input<PracticeMode>('de-fr');
 
-  termLookup = inject(TermLookupService);
-  textForRef = (ref: TermRef) => this.termLookup.getText(ref);
+  private readonly termLookup = inject(TermLookupService);
+  readonly textForRef = (ref: TermRef) => this.termLookup.getText(ref);
 
-  // state
-  index = signal(0);
-  answer = signal('');
-  isChecked = signal(false);
-  isCorrect = signal(false);
-  displayTokens = signal<DisplayToken[]>([]);
-  promptSegments = signal<PromptSegment[]>([]);
+  readonly oriented = signal<Sentence[]>([]);
+  readonly index = signal(0);
+  readonly navDirection = signal<'next' | 'prev'>('next');
 
-  // tooltip state
-  tooltipPinned = signal(false);
-  tooltipOpen = signal(false);
-  tooltipVm = signal<TermTooltipVm | undefined>(undefined);
-  tooltipX = signal(0);
-  tooltipY = signal(0);
-  tooltipAnchorRef = signal<TermRef | undefined>(undefined);
-
-  activeRefKey = computed(() => {
-    const r = this.tooltipAnchorRef();
-    return r ? `${r.lang}:${r.key}` : undefined;
-  });
-
-  // audio
-  isPlaying = signal(false);
-  private audio?: HTMLAudioElement;
-
-  current = computed<Sentence | undefined>(() => {
-    const list = this.sentences();
+  readonly current = computed<Sentence | undefined>(() => {
+    const list = this.oriented();
     const i = this.index();
     return list[i] ?? list[0];
   });
 
-  promptText = computed(() => {
+  readonly answer = signal('');
+  readonly isChecked = signal(false);
+  readonly isCorrect = signal(false);
+  readonly displayTokens = signal<DisplayToken[]>([]);
+  readonly promptSegments = signal<PromptSegment[]>([]);
+
+  // tooltip state (unchanged)
+  readonly tooltipPinned = signal(false);
+  readonly tooltipOpen = signal(false);
+  readonly tooltipVm = signal<TermTooltipVm | undefined>(undefined);
+  readonly tooltipX = signal(0);
+  readonly tooltipY = signal(0);
+  readonly tooltipAnchorRef = signal<TermRef | undefined>(undefined);
+
+  readonly activeRefKey = computed(() => {
+    const r = this.tooltipAnchorRef();
+    return r ? `${r.lang}:${r.key}` : undefined;
+  });
+
+  // audio (unchanged)
+  readonly isPlaying = signal(false);
+  private audio?: HTMLAudioElement;
+
+  // ----- view refs for gsap
+  @ViewChild('overlayLayer') overlayLayer?: ElementRef<HTMLElement>;
+  @ViewChild('editLayer') editLayer?: ElementRef<HTMLTextAreaElement>;
+  @ViewChild('footerCheck') footerCheck?: ElementRef<HTMLElement>;
+  @ViewChild('footerBar') footerBar?: ElementRef<HTMLElement>;
+  @ViewChild('swapHost') swapHost?: ElementRef<HTMLElement>;
+
+  readonly promptText = computed(() => {
     const cur = this.current();
     if (!cur) return '';
     return this.mode() === 'de-fr' ? cur.de : cur.fr;
   });
 
-  expectedText = computed(() => {
+  readonly expectedText = computed(() => {
     const cur = this.current();
     if (!cur) return '';
     return this.mode() === 'de-fr' ? cur.fr : cur.de;
   });
 
-  promptRefs = computed<TermRef[]>(() => {
+  readonly promptRefs = computed<TermRef[]>(() => {
     const cur = this.current();
     const refs = cur?.refs ?? [];
     const lang: TermRef['lang'] = this.mode() === 'de-fr' ? 'de' : 'fr';
     return refs.filter(r => r.lang === lang);
   });
 
+  e = effect(() => {
+    console.log('Current sentence:', this.displayTokens());
+  })
+
   get answerModel(): string {
     return this.answer();
   }
+
   set answerModel(v: string) {
     this.answer.set(v);
   }
@@ -104,6 +125,7 @@ export class SentencePracticeComponent {
       this.promptSegments.set(buildPromptSegments(this.promptText(), this.promptRefs()));
     });
 
+    // compute diff only when checked
     effect(() => {
       if (!this.isChecked()) return;
 
@@ -130,13 +152,172 @@ export class SentencePracticeComponent {
 
       this.isCorrect.set(expectedNorm === answerNorm);
     });
+
+    effect(() => {
+      const list = this.sentences() ?? [];
+      this.oriented.set([...list]);
+      this.index.set(0);
+      this.resetForNext();
+    });
   }
 
-  // ---- tooltip behavior ----
+  // -----------------------
+  // animations
+  // -----------------------
+
+  checkAnimated() {
+    if (!this.current()) return;
+
+    // state first (tokens are computed via effect)
+    this.isChecked.set(true);
+
+    // next frame: animate layers + footer
+    requestAnimationFrame(() => {
+      const overlay = this.overlayLayer?.nativeElement;
+      const edit = this.editLayer?.nativeElement;
+      const check = this.footerCheck?.nativeElement;
+      const bar = this.footerBar?.nativeElement;
+      if (!overlay || !edit || !check || !bar) return;
+
+      gsap.killTweensOf([overlay, edit, check, bar]);
+
+      gsap.set(overlay, {opacity: 0,});
+      gsap.set(bar, {opacity: 0});
+      gsap.set(check, {opacity: 1, scaleX: 1});
+
+      gsap.timeline()
+        // swap textarea -> overlay
+        .to(edit, {opacity: 0, duration: 0.2, ease: 'power2.out'}, 0)
+        .to(overlay, {opacity: 1, duration: 0.2, ease: 'power2.out'}, 0)
+        .to(check, {opacity: 0, scaleX: 0.8, duration: 0.2, ease: 'power2.out'}, 0)
+        .to(bar, {opacity: 1, duration: 0.2, ease: 'power2.out'}, 0);
+    });
+  }
+
+  editAgainAnimated() {
+    const overlay = this.overlayLayer?.nativeElement;
+    const edit = this.editLayer?.nativeElement;
+    const check = this.footerCheck?.nativeElement;
+    const bar = this.footerBar?.nativeElement;
+
+    if (!overlay || !edit || !check || !bar) {
+      this.editAgain();
+      return;
+    }
+
+    gsap.killTweensOf([overlay, edit, check, bar]);
+
+    gsap.timeline({
+      onComplete: () => {
+        this.editAgain();
+        // restore visibility to edit layer after state flip
+        requestAnimationFrame(() => {
+          gsap.set(edit, {opacity: 1});
+        });
+      },
+    })
+      // overlay out
+      .to(overlay, {opacity: 0, duration: 0.2, ease: 'power2.in'}, 0)
+      // footer: bar -> check
+      .to(bar, {opacity: 0,  duration: 0.2, ease: 'power2.in'}, 0)
+      .to(check, {opacity: 1, scaleX: 1, duration: 0.18, ease: 'power2.in'}, 0)
+      // textarea back in (after state reset)
+      .to(edit, {opacity: 1, duration: 0.2, ease: 'power2.out'}, 0);
+  }
+
+  // -----------------------
+  // check / edit / reset
+  // -----------------------
+
+  private editAgain() {
+    this.isChecked.set(false);
+    this.isCorrect.set(false);
+    this.displayTokens.set([]);
+  }
+
+  private resetForNext() {
+    this.stopAudio();
+    this.closeTooltip();
+
+    this.answer.set('');
+    this.isChecked.set(false);
+    this.isCorrect.set(false);
+    this.displayTokens.set([]);
+
+    // defensiv: falls du in einem komischen UI state navigierst
+    requestAnimationFrame(() => {
+      const overlay = this.overlayLayer?.nativeElement;
+      const edit = this.editLayer?.nativeElement;
+      const check = this.footerCheck?.nativeElement;
+      const bar = this.footerBar?.nativeElement;
+      if (!overlay || !edit || !check || !bar) return;
+
+      gsap.killTweensOf([overlay, edit, check, bar]);
+      gsap.set(overlay, {opacity: 0, y: 0});
+      gsap.set(edit, {opacity: 1});
+      gsap.set(check, {opacity: 1, y: 0});
+      gsap.set(bar, {opacity: 0, y: 0});
+    });
+  }
+
+  onTextareaKeydown(e: KeyboardEvent) {
+    if (e.key !== 'Enter') return;
+    if (e.shiftKey) return;
+
+    e.preventDefault();
+    if (!this.isChecked()) {
+      this.checkAnimated();
+      return;
+    }
+
+    // Checked: wenn korrekt -> weiter, sonst -> zurück in edit
+    if (this.isCorrect()) this.next();
+    else this.editAgainAnimated();
+  }
+
+  // -----------------------
+  // navigation (unchanged)
+  // -----------------------
+  prev() {
+    const list = this.oriented();
+    if (!list.length) return;
+    this.navDirection.set('prev');
+    this.index.update(i => (i - 1 + list.length) % list.length);
+    this.resetForNext();
+  }
+
+  next() {
+    const list = this.oriented();
+    if (!list.length) return;
+    this.navDirection.set('next');
+    this.index.update(i => (i + 1) % list.length);
+    this.resetForNext();
+  }
+
+  shuffleSentences() {
+    const arr = [...this.oriented()];
+    for (let i = arr.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+    this.navDirection.set('next');
+    this.oriented.set(arr);
+    this.index.set(0);
+    this.resetForNext();
+  }
+
+  // -----------------------
+  // tooltip (unchanged)
+  // -----------------------
   private openTooltipForRef(ref: TermRef, anchorEl: HTMLElement) {
-    const rect = anchorEl.getBoundingClientRect();
-    this.tooltipX.set(rect.left + rect.width / 2);
-    this.tooltipY.set(rect.top);
+    const anchor = anchorEl.getBoundingClientRect();
+    const host = this.swapHost?.nativeElement.getBoundingClientRect();
+
+    const x = anchor.left + anchor.width / 2 - (host?.left ?? 0);
+    const y = anchor.top - (host?.top ?? 0);
+
+    this.tooltipX.set(x);
+    this.tooltipY.set(y);
     this.tooltipVm.set(this.termLookup.getTooltipVm(ref));
     this.tooltipAnchorRef.set(ref);
     this.tooltipOpen.set(true);
@@ -166,7 +347,6 @@ export class SentencePracticeComponent {
   }
 
   onTooltipTranslationClick(tr: TermRef) {
-    // keep pinned, same position
     this.tooltipPinned.set(true);
     this.openTooltipAt(tr, this.tooltipX(), this.tooltipY());
   }
@@ -181,22 +361,35 @@ export class SentencePracticeComponent {
   @HostListener('document:pointerdown', ['$event'])
   onDocPointerDown(ev: PointerEvent) {
     if (!this.tooltipOpen()) return;
-
     const target = ev.target as HTMLElement | null;
     if (!target) return;
-
     if (target.closest('[data-tooltip]')) return;
     if (target.closest('[data-term]')) return;
-
     this.closeTooltip();
   }
 
   @HostListener('document:keydown', ['$event'])
   onDocKeydown(ev: KeyboardEvent) {
-    if (ev.key === 'Escape') this.closeTooltip();
+    if (ev.key === 'Escape') {
+      this.closeTooltip();
+      return;
+    }
+    const target = ev.target as HTMLElement | null;
+    if (target?.closest('textarea')) return;
+
+    if (ev.key === 'ArrowLeft') {
+      ev.preventDefault();
+      this.prev();
+    }
+    if (ev.key === 'ArrowRight') {
+      ev.preventDefault();
+      this.next();
+    }
   }
 
-  // ---- audio ----
+  // -----------------------
+  // audio (unchanged)
+  // -----------------------
   canPlay(): boolean {
     return !!this.current()?.id;
   }
@@ -246,52 +439,5 @@ export class SentencePracticeComponent {
     } finally {
       this.isPlaying.set(false);
     }
-  }
-
-  // ---- actions ----
-  check() {
-    if (!this.current()) return;
-    this.isChecked.set(true);
-    queueMicrotask(() => {
-      if (!this.isCorrect()) this.togglePlay();
-    });
-  }
-
-  editAgain() {
-    this.isChecked.set(false);
-    this.isCorrect.set(false);
-    this.displayTokens.set([]);
-  }
-
-  prev() {
-    const list = this.sentences();
-    if (!list.length) return;
-    this.index.update(i => (i - 1 + list.length) % list.length);
-    this.resetForNext();
-  }
-
-  next() {
-    const list = this.sentences();
-    if (!list.length) return;
-    this.index.update(i => (i + 1) % list.length);
-    this.resetForNext();
-  }
-
-  private resetForNext() {
-    this.stopAudio();
-    this.closeTooltip();
-    this.answer.set('');
-    this.isChecked.set(false);
-    this.isCorrect.set(false);
-    this.displayTokens.set([]);
-  }
-
-  onTextareaKeydown(e: KeyboardEvent) {
-    if (e.key !== 'Enter') return;
-    if (e.shiftKey) return;
-    e.preventDefault();
-
-    if (!this.isChecked()) this.check();
-    else this.next();
   }
 }

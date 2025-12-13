@@ -148,16 +148,22 @@ export function buildWordOverlayTokens(expectedRaw: string, answerRaw: string): 
     }
   };
 
-  const consumeWordEdit = (): Edit | undefined => {
-    pullDeletesIntoPending();
-    return edits[editIndex++];
+  const flushPendingMissing = () => {
+    if (!pendingMissing.length) return;
+    out.push({
+      isWord: true,
+      kind: 'missing',
+      text: '', // zero width marker
+      expected: pendingMissing.join(' ').trim() || undefined,
+    });
+    pendingMissing.length = 0;
   };
 
-  const withPending = (expected?: string) => {
-    if (!pendingMissing.length) return expected;
-    const prefix = pendingMissing.join(' ');
-    pendingMissing.length = 0;
-    return expected ? `${prefix} ${expected}` : prefix;
+  const consumeNonDeleteEdit = (): Edit | undefined => {
+    pullDeletesIntoPending();
+    // WICHTIG: Missings jetzt wirklich ausgeben (anstatt an expected zu hängen)
+    flushPendingMissing();
+    return edits[editIndex++];
   };
 
   for (const t of answerTokens) {
@@ -166,57 +172,48 @@ export function buildWordOverlayTokens(expectedRaw: string, answerRaw: string): 
       continue;
     }
 
-    const e = consumeWordEdit();
+    const e = consumeNonDeleteEdit();
 
     if (!e) {
       // Antwort hat mehr Wörter als expected (insert-run am Ende)
-      out.push({ isWord: true, text: t.text, kind: 'wrong', expected: withPending(undefined) });
+      out.push({ isWord: true, text: t.text, kind: 'wrong' });
       continue;
     }
 
     if (e.op === 'equal') {
       const a = e.a ?? '';
       const b = e.b ?? '';
-      const isExact = a === b;                 // raw exakt gleich?
-      const kind: TokenKind = isExact ? 'ok' : 'soft';
-
+      const isExact = a === b;
       out.push({
         isWord: true,
         text: t.text,
-        kind,
-        expected: kind === 'soft' ? withPending(a) : withPending(undefined),
+        kind: isExact ? 'ok' : 'soft',
+        expected: isExact ? undefined : a, // soft-badge bleibt möglich
       });
       continue;
     }
 
     if (e.op === 'replace') {
-      out.push({ isWord: true, text: t.text, kind: 'wrong', expected: withPending(e.a) });
+      out.push({ isWord: true, text: t.text, kind: 'wrong', expected: e.a });
       continue;
     }
 
     if (e.op === 'insert') {
-      out.push({ isWord: true, text: t.text, kind: 'wrong', expected: withPending(undefined) });
+      out.push({ isWord: true, text: t.text, kind: 'wrong' });
       continue;
     }
 
-    // delete wird von pullDeletesIntoPending() vorher abgefangen
-    out.push({ isWord: true, text: t.text, kind: 'wrong', expected: withPending(undefined) });
+    // delete wird vorher rausgezogen
+    out.push({ isWord: true, text: t.text, kind: 'wrong' });
   }
 
-  // Falls am Ende noch deletes übrig sind: EIN missing-Token ans Ende (Badge = ganze Phrase)
+  // Restliche deletes am Ende:
   pullDeletesIntoPending();
-  if (pendingMissing.length) {
-    out.push({
-      isWord: true,
-      kind: 'missing',
-      text: '',
-      expected: pendingMissing.join(' ').trim() || undefined
-    });
-    pendingMissing.length = 0;
-  }
+  flushPendingMissing();
 
   return out;
 }
+
 
 /**
  * Fasst aufeinanderfolgende falsche Wörter zu einem Block zusammen,

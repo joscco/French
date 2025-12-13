@@ -471,3 +471,8 @@ adjectif;mal assuré;;;
 nom;cours de français;m;false;
 nom;plaie;f;false;
 nom;rue principale;f;false;
+expression;au bord de;;true;
+nom;lac;m;false;
+nom;légume;m;false;
+verbe;oublier qc.;;;
+adverbe;plein de;;;

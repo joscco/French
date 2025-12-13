@@ -7,12 +7,10 @@
           [selected]="selectedLessons()"
           (selectedChange)="onLessonsChange($event)"/>
         <app-icon-button iconName="download" (onClick)="exportPdf()" tooltip="Download"/>
-      </div>
-      <app-mode-selector
-        [mode]="practiceMode()"
-        (modeChange)="practiceMode.set($event)"
-      />
-      <div class="flex gap-3">
+        <app-mode-selector
+          [mode]="practiceMode()"
+          (modeChange)="practiceMode.set($event)"
+        />
         <app-icon-button
           iconName="menu_book"
           tooltip="Vokabeltraining"
@@ -25,12 +23,11 @@
           (onClick)="practiceKind.set('sentence')"
         ></app-icon-button>
       </div>
-
     </header>
 
     <main class="mt-8 grow w-full">
       @if (practiceKind() === 'vocab') {
-        <app-practice
+        <app-word-practice
           [cards]="practiceCards()"
           [mode]="practiceMode()"
         />

@@ -525,14 +525,14 @@ def main() -> int:
   # --- write drafts always ---
   write_csv(
     DRAFTS_DIR / "draft-missing-terms-fr.csv",
-    ["term_or_key", "count", "example_sids", "suggested_category", "suggested_needs_vowel_article"],
+    ["suggested_category", "term_or_key","genus","suggested_needs_vowel_article", "ref"],
     (
       [
-        term,
-        str(missing_fr_terms[term]),
-        ",".join(missing_fr_examples[term]),
         guess_category(term.split("@", 1)[0]),
+        term,
+        "",
         str(guess_needs_vowel_article(term.split("@", 1)[0])).lower(),
+        ""
       ]
       for term in sorted(missing_fr_terms.keys())
     ),
@@ -540,13 +540,13 @@ def main() -> int:
 
   write_csv(
     DRAFTS_DIR / "draft-missing-terms-de.csv",
-    ["term_or_key", "count", "example_sids", "suggested_category"],
+    ["suggested_category", "term_or_key", "genus", "ref"],
     (
       [
-        term,
-        str(missing_de_terms[term]),
-        ",".join(missing_de_examples[term]),
         guess_category(term.split("@", 1)[0]),
+        term,
+        "",
+        ""
       ]
       for term in sorted(missing_de_terms.keys())
     ),
@@ -582,10 +582,10 @@ def main() -> int:
 
   write_csv(
     DRAFTS_DIR / "draft-missing-translation-links.csv",
-    ["fr", "de", "priority", "example_sids"],
+    ["fr", "de", "priority"],
     (
-      [fr, de, "1", ",".join(sids)]
-      for (fr, de), sids in sorted(missing_link_pairs.items(), key=lambda x: (x[0][0], x[0][1]))
+      [fr, de, "1"]
+      for (fr, de), _ in sorted(missing_link_pairs.items(), key=lambda x: (x[0][0], x[0][1]))
     ),
     )
 

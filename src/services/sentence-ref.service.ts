@@ -58,8 +58,6 @@ export class SentenceRefService {
         });
       }
 
-      console.log(refRecords);
-
       this._bySentenceId.set(map);
     } catch (e) {
       console.error('Sentence refs load failed', e);

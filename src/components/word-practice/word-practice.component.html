@@ -1,0 +1,44 @@
+<ng-template #cardTpl let-card="card">
+  <app-flashcard-card
+    [meta]="card.meta || {}"
+    [frenchPrimary]="card.frenchPrimary"
+    [frenchSecondary]="card.frenchSecondary || ''"
+    [germanPrimary]="card.germanPrimary"
+    [germanSecondary]="card.germanSecondary || ''"
+    [frontLang]="card.frontLanguage || 'french'"
+    [flipped]="false"
+    [flipDirection]="'up'"
+    [isTouchscreen]="isTouchScreen"
+    [hovered]="false"
+    [interactive]="true"
+  />
+</ng-template>
+
+@if (oriented().length && current(); as c) {
+  <app-practice-card-shell
+    #shell
+    [index]="index()"
+    [length]="oriented().length"
+    [showShuffle]="true"
+    [hint]="'Karte wechseln über Pfeile oder Swipen'"
+    (prev)="prev()"
+    (next)="next()"
+    (shuffle)="shuffleCards()"
+  >
+    <app-flashcard-card
+      [meta]="c.meta || {}"
+      [frenchPrimary]="c.frenchPrimary"
+      [frenchSecondary]="c.frenchSecondary || ''"
+      [germanPrimary]="c.germanPrimary"
+      [germanSecondary]="c.germanSecondary || ''"
+      [frontLang]="c.frontLanguage || 'french'"
+      [flipDirection]="'up'"
+      [isTouchscreen]="isTouchScreen"
+      [hovered]="false"
+      [interactive]="true"
+    />
+  </app-practice-card-shell>
+
+} @else {
+  <p>Keine Karten in dieser Auswahl.</p>
+}

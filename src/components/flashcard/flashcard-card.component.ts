@@ -21,11 +21,13 @@ export class FlashcardCardComponent implements OnChanges, OnDestroy {
   @Input() germanPrimary = '';
   @Input() germanSecondary = '';
   @Input() frontLang: Language = 'french';
-  @Input() flipped = false; // welches Face ist sichtbar
+  @Input() flipped?: boolean; // welches Face ist sichtbar
   @Input() flipDirection = 'up';
   @Input() hovered = false; // für Opacity der Flip-Hilfe
   @Input() interactive = true; // Cursor/Pointer
   @Input() isTouchscreen!: boolean;
+
+  private localFlipped = signal(false);
 
   @ViewChild('faceContainer', {static: false}) faceContainer?: ElementRef<HTMLDivElement>;
   public animating = false;
@@ -37,14 +39,14 @@ export class FlashcardCardComponent implements OnChanges, OnDestroy {
   ngOnChanges(changes: SimpleChanges) {
     const nextFace = this.getNextFace();
 
-    // Bei Kartenwechsel: Audio stoppen und Face direkt setzen
     if (changes['frenchPrimary']) {
       this.stopSpeaking();
+      this.localFlipped.set(false); // reset bei Kartenwechsel
       this.currentFace = nextFace;
       return;
     }
 
-    // Face-Wechsel animieren
+    // nur wenn controlled flipped/frontLang wechselt
     if (nextFace !== this.currentFace) {
       this.animateFlip();
     }
@@ -54,8 +56,24 @@ export class FlashcardCardComponent implements OnChanges, OnDestroy {
     this.stopSpeaking();
   }
 
+  private effectiveFlipped(): boolean {
+    return this.flipped ?? this.localFlipped();
+  }
+
   private getNextFace() {
-    return this.flipped ? reverseLanguage(this.frontLang) : this.frontLang;
+    const flipped = this.effectiveFlipped();
+    return flipped ? reverseLanguage(this.frontLang) : this.frontLang;
+  }
+
+  onCardClick() {
+    if (!this.interactive) return;
+    // nur intern flippen, wenn parent nicht "controlled"
+    if (this.flipped === undefined) {
+      this.localFlipped.update(v => !v);
+      // ngOnChanges läuft hier nicht -> direkt animieren
+      const nextFace = this.getNextFace();
+      if (nextFace !== this.currentFace) this.animateFlip();
+    }
   }
 
   animateFlip() {
