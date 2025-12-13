@@ -5,12 +5,12 @@
 1;4;Le [frigidaire] est [plein de]{plein de qc.} [légumes]{légume}.;Der [Kühlschrank] ist [voller]{voll von etw.} [Gemüse].
 1;5;Nous faisons du [camping] [au bord du]{au bord de qc.} [lac].;Wir machen [Camping] [am]{am Ufer von etw.} [See].
 1;6;J’[ai oublié]{oublier qc.} mon [sac de couchage].;Ich [habe]{etw. vergessen#A} meinen [Schlafsack] [vergessen]{#A}.
-1;7;C’est une [région] [viticole].;Das ist eine [Weinbau]{weinbau-}[region]{Region}.
-1;8;Nous aimons faire des randonnées en montagne.;Wir gehen gern in den Bergen wandern.
-1;9;On peut randonner dans le parc naturel.;Man kann im Naturpark wandern.
-1;10;Au cours de leur randonnée, ils ont parcouru un bon nombre de mètres de dénivelé.;Während ihrer Wanderung haben sie ordentlich viele Meter Höhenunterschied zurückgelegt.
-1;11;Nous avons visité une petite chapelle.;Wir haben eine kleine Kapelle besichtigt.
-1;12;J’habite en Bavière.;Ich wohne in Bayern.
+1;7;C’est une [région viticole].;Das ist eine [Weinbauregion].
+1;8;Nous [aimons]{aimer qc.} [faire des randonnées] en montagne.;Wir [gehen]{wandern#A} gern in den Bergen [wandern]{#A}.
+1;9;On peut [randonner] dans le parc naturel.;Man kann im Naturpark [wandern].
+1;10;Au cours de leur [randonnée], ils ont parcouru un bon nombre de mètres de [dénivelé].;Während ihrer [Wanderung] haben sie ordentlich viele Meter [Höhenunterschied] zurückgelegt.
+1;11;Nous avons visité une petite [chapelle].;Wir haben eine kleine [Kapelle] besichtigt.
+1;12;J’habite [en Bavière].;Ich wohne [in Bayern].
 1;13;Cette ville est une station thermale célèbre.;Diese Stadt ist ein bekannter Kurort.
 1;14;Ma grand-mère est allée en cure.;Meine Oma ist zur Kur gefahren.
 1;15;Le voyage était crevant.;Die Reise war anstrengend.

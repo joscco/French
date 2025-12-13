@@ -1,4 +1,3 @@
-// helpers/prompt-markup.ts
 import { TermRefInSentence } from '../models/term-ref-in-sentence';
 
 export interface PromptSegment {
