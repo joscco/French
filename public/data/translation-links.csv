@@ -1,17 +1,483 @@
-fr;de;priority
-s'inscrire;sich anmelden;1
-cours de français;Französischkurs;1
-désinfecter qc.;etw. desinfizieren;1
-plaie;Wunde;1
-manifestation;Demonstration;1
-rue principale;Hauptstraße;1
+﻿fr;de;priority
+à son égard;ihm gegenüber;1
+abattre;fällen;1
+abattre des arbres;Bäume fällen;1
+abîmé;beschädigt;1
+accumulateur;Energiespeicher;1
+accumuler;ansammeln;1
+acheminement;Transport;1
+affectif;emotional;1
+agrandir;vergrößern;1
+aîné;Ältester;1
+aller dans Paris;nach Paris hineinfahren;1
+aller en avion;mit dem Flugzeug fliegen;1
+aller en cure;zur Kur fahren;1
+âme;Seele;1
+aménagement;Anlage;1
+amortissement;Amortisation;1
+apporter du caractère;Charakter verleihen;1
+apprendre sur le tas;learning by doing;1
+arabesque;Arabeske;1
+arbitre;Schiedsrichter;1
+arbre généalogique;Stammbaum;1
+arbuste;Strauch;1
+argent;Silber;1
+argenterie;Silberbesteck;1
+arpenter;schlendern;1
+artisanal;handwerklich;1
+atteindre;erreichen;1
+attente;Erwartung;1
+atterrir;landen;1
+atterrissage;Landung;1
+au bord de;am Ufer von;1
+au bord du Rhin;am Rheinufer;1
+au fil des années;im Lauf der Jahre;1
+au lieu de;anstatt;1
+au mois d’octobre;im Oktober;1
+Au sol, le traçage des voies interpelle;Die Markierung der Fahrbahnen fällt auf;1
+aulne;Erle;1
+automobiliste;Autofahrer;1
+autrui;Mitmensch;1
+avant même que + subj.;noch bevor + verb;1
+avec ferveur;leidenschaftlich;1
+aveu confidentiel;vertrauliche Geständnis;1
+avis appuyé;nachdrückliche Meinung;1
+avis de décès;Todesanzeige;1
+avoir du mal à faire qc.;Schwierigkeiten haben, etw. zu tun;1
+avoir le cafard;schlecht drauf sein;1
+avoir mal à s’en passer;schwer darauf verzichten können;1
+bagages;Gepäck;1
+bagarre;Schlägerei;1
+bague;Ring;1
+barque;Boot;1
+barrage;Sperre;1
+bavardage;Plauderei;1
+biberon;Fläschchen;1
+bien s’entendre avec qn.;sich gut mit jmdm. verstehen;1
+bilan économique;wirtschaftliche Bilanz;1
+billet;Geldschein;1
+billet;Ticket;1
+blâmer;beschuldigen;1
+bon marché;billig;1
+bondé;überfüllt;1
+borne de recharge;Ladestation;1
+bosse;Bodenwelle;1
+bottes de ski;Skischuhe;1
+bouchon;Korken;1
+bouchon;Stau;2
+boucles;Locken;1
+boue;Schlamm;1
+bouleau;Birke;1
+boum;Party;1
+braderie;Trödelmarkt (Nordfrankreich);1
+brocante;Dachbodenflohmarkt;1
+brouillon;Entwurf;1
+brut;roh, naturbelassen, trocken;1
+Ça nous arrange bien.;Das passt uns gut.;1
+Ça y fait quand il y a moins de voitures.;Das macht etwas aus, wenn weniger Autos unterwegs sind.;1
+cabas;Einkaufstasche;1
+cabas en toile;Stofftasche;1
+cabinet;Praxis;1
+cadet;Jüngster;1
+cadre;leitende Angestellte;1
+cafard;Kakerlake;1
+cafter;petzen;1
+cafteuse;Petze;1
 camping;Camping;1
 camping;Campen;1
-légume;Gemüse;1
+camping-car;Wohnmobil;1
+canon à neige;Schneekanone;1
+cargaison;Ladung;1
+cargaison;Fracht;1
+carrelage;Kachel;1
+casque;Kopfhörer (Over-Ear);1
+casquette;Helm;1
+céder à une tentation;einer Versuchung erliegen;1
+celte;keltisch;1
+cerisier;Kirschbaum;1
+challenger une réponse;eine Antwort hinterfragen;1
+changement climatique;Klimawandel;1
+changer de place;den Platz wechseln;1
+changer de sujet;das Thema wechseln;1
+chantier;Baustelle;1
+chapelle;Kapelle;1
+chauffe eau instantané;Durchlauferhitzer;1
+chêne;Eiche;1
+chiffre d’affaires;Umsatz;1
+chuchoter;flüstern;1
+chute de pierres;Steinschlag;1
+cible;Zielgruppe;1
+cigogne;Storch;1
+Coccinelle;VW-Käfer;1
+coin;Ecke;1
+colline;Hügel;1
+combler;erfüllen / ausgleichen;1
+complaisant;nachsichtig;1
+complicité;Vertrautheit;1
+confident / confidente;Vertraute;1
+confinement;Lockdown;1
+confondre qc.;etw. verwechseln;1
+conseiller / conseillère de vie;Lebensberater/in;1
+convivialité;Geselligkeit;1
+couche;Schicht;1
+coucher de soleil;Sonnenuntergang;1
+coupure;Geldschein;1
+coupure d’électricité;Stromausfall;1
+couronne (d’un arbre);Baumkrone;1
+cours de français;Französischkurs;1
+couteau;Messer;1
+couvert;Besteck;1
+crèche;Kinderkrippe;1
+crevant;anstrengend;1
+crier dessus qn.;jmdn. anschreien;1
+Crit’Air;Crit’Air-Plakette;1
+croiser qn.;jmdm. begegnen;1
+cuillère;Löffel;1
+cycliste;Radfahrer;1
+d’autrefois;von früher;1
+damage;Präparierung;1
+dameuse;Pistenraupe;1
+dans la rue;auf der Straße;1
+dans le centre;im Zentrum;1
+davantage de;mehr von;1
+débloquer;entsperren;1
+déborder;über die Ufer treten;1
+début;Anfang;1
+décollage;Start;1
+décoller;abheben;1
+dégât;Schaden;1
+dégoûtant;ekelhaft;1
+démarrer;starten;1
+demeurer;wohnen / bleiben;1
+demi-frère / demie-sœur;Halbbruder / Halbschwester;1
+déneiger;Schnee räumen;1
+dénivelé;Höhenunterschied;1
+dès que;sobald;1
+désert;Wüste;1
+désinfecter qc.;etw. desinfizieren;1
+désinhibé;hemmungslos;1
+détendre les liens;Bindungen lockern;1
+discussion vive;heftige Diskussion;1
+dissimuler;verbergen / tarnen;1
+distinguer qc.;etw. erkennen / unterscheiden;1
+dot;Mitgift;1
+double/triple vitrage;Doppel-/Dreifachverglasung;1
+doubler;überholen;1
+drap;Bettlaken;1
+dresser un constat;eine Feststellung machen;1
+dû à;aufgrund von;1
+du moins;wenigstens;1
+dur;schwer, hart;1
+ébrécher;angeschlagen;1
+écouteurs;In-Ear-Kopfhörer;1
+éducation;Erziehung;1
+éduquer;erziehen;1
+effacement;Entfernung;1
+égal / égaux;gleich;1
+embellir;verschönern;1
+embrumé;neblig;1
+emprunté;gehemmt;1
+émulation;Wettstreit;1
+en abondance;im Überfluss;1
+en Bavière;in Bayern;1
+en Croatie;in Kroatien;1
+en Grèce;in Griechenland;1
+en vigueur;in Kraft;1
+encombré;zugeparkt / blockiert;1
+enlever des arbres;Bäume entfernen;1
+enlever qc.;etw. entfernen / wegnehmen;1
+enquêteur;Ermittler;1
+entendre dire;gehört haben, dass;1
+entraide;gegenseitige Hilfe;1
+entretenir;pflegen / unterhalten;1
+entretien;Gespräch;1
+entretien d’embauche;Bewerbungsgespräch;1
+éolienne;Windkraftanlage;1
+épaisseur;Dicke;1
+épanchement;Gefühlsausbruch;1
+épicéa;Fichte;1
+épopée;Epos;1
+équilibrer;ausgleichen;1
+érable;Ahorn;1
+esthétique;ästhetisch;1
+estuaire;Mündung;1
+étaler qc. sur l’année;über das Jahr verteilen;1
+être dans le déni;etw. leugnen;1
+être en rénovation;renoviert werden;1
+être le/la bienvenue;willkommen sein;1
+être muni de qc.;etw. bei sich haben;1
+être prématuré;frühgeboren sein;1
+évoquer;erwähnen, ins Gedächtnis rufen;1
+exposition;Ausstellung;1
+extension;Erweiterung;1
+fâché;verärgert;1
+faïence;Steingut;1
+faire de la luge;Schlitten fahren;1
+faire des appels de phare;Lichthupe geben;1
+faire des randonnées;wandern;1
+faire figure de bon élève;als Musterschüler gelten;1
+faire la poussière;Staub wischen;1
+faire la route;die Strecke zurücklegen;1
+faire le malade;krank spielen;1
+faire perdurer qc.;etw. fortbestehen lassen;1
+fatigant;ermüdend;1
+faux jumeaux;zweieiige Zwillinge;1
+fédéralisme;Föderalismus;1
+fiévreusement;fieberhaft;1
+filet;Netz;1
+fils/fille unique;Einzelkind;1
+fissure;Riss;1
+flics;Bullen (Polizei);1
+fluide;flüssig (Verkehr);1
+fondre;schmelzen;1
+forage;Bohrung;1
+forêt mixte;Mischwald;1
+fourchette;Gabel;1
+fournir;liefern;1
+franc / franche;offen / ehrlich;1
+franchise;Ehrlichkeit;1
+fratrie;Geschwister;1
+frein;Bremse;1
 frigidaire;Kühlschrank;1
-au bord de;am Ufer von;1
-sac de couchage;Schlafsack;1
+frisson;Kribbeln;1
+froid;Kälte;1
+garer la voiture;das Auto parken;1
+gâter qn.;jmdn. verwöhnen;1
+gaz à effet de serre;Treibhausgase;1
+geler;gefrieren;1
+généalogie;Ahnenforschung;1
+gérer des désaccords;Uneinigkeiten managen;1
+gérer un conflit;einen Konflikt lösen;1
+glacier;Gletscher;1
+GPS;GPS-Geräte;1
+grec/grecque;griechisch;1
+gronder;schimpfen;1
+guérir;heilen;1
+guêtres;Gamaschen;1
+gyrophare;Blaulicht;1
+habits de ski;Skibekleidung;1
+haie;Hecke;1
+haut-parleur;Lautsprecher;1
+héliportage;Helikoptertransport;1
+hésiter à faire qc.;zögern, etw. zu tun;1
+hêtre;Buche;1
+horloge;Uhr;1
+hors de la famille;außerhalb der Familie;1
+hydrogène;Wasserstoff;1
+impair;ungerade (Zahl);1
+indice;Hinweis;1
+infusion;Tee;1
+inondation;Überschwemmung;1
+insolent;frech, respektlos;1
+insolite;ungewöhnlich;1
+interlocuteur;Gesprächspartner;1
+interpeller;festnehmen / stellen;1
+j’y suis allé;ich bin dorthin gegangen;1
+jovial;gut gelaunt / fröhlich;1
+jumeaux;Zwillinge;1
+jumelles;Zwillingsschwestern;1
+justificatif de domicile;Wohnsitznachweis;1
+kérosène;Kerosin;1
+klaxonner;hupen;1
+La Haye;Den Haag;1
 lac;See;1
+lac;See;1
+le terrain est en pente;das Gelände ist abschüssig;1
+léger;leicht;1
+légume;Gemüse;1
+lettre de condoléances;Beileidsbrief;1
+levure;Hefe;1
+lieu d’achat;Kaufort;1
+loin d’être le cas;bei weitem nicht der Fall sein;1
+lointain;fern, entfernt;1
+lorsque / afin que;wenn / damit;1
+lourd;schwer;1
+lustre;Kronleuchter;1
+magie;Magie;1
+maire;Bürgermeister;1
+maison de vacances;Ferienhaus;1
+mal assuré;unsicher (körperlich);1
+mal assuré;unsicher (emotional);1
+mal s’entendre avec qn.;sich schlecht mit jmdm. verstehen;1
+malgré moi;unwillkürlich;1
+manifestation;Demonstration;1
+marais;Sumpf;1
+marchander;feilschen;1
+marché aux puces;Flohmarkt;1
+marque;Marke;1
+matériau;Material;1
+matériel;Ausrüstung;1
+maternelle;Kindergarten;1
+méduse;Qualle;1
+meilleur marché;günstiger;1
+mélange;Mischung;1
+mémoire;Datenspeicher;1
+mer Baltique;Ostsee;1
+merisier;Kirschholz;1
+mètre cube;Kubikmeter;1
+mettre qc. à l’épreuve;etw. auf die Probe stellen;1
+milliers;Tausende;1
+moniteur de parapente;Gleitschirmlehrer;1
+mouchoir;Taschentuch;1
+nappe;Tischdecke;1
+ne guère;kaum;1
+ne pas prendre de gants;kein Blatt vor den Mund nehmen;1
+négligeable;vernachlässigbar;1
+nouer qc. avec qc.;etw. knüpfen;1
+oiseau migrateur;Zugvogel;1
+or;jedoch;1
+oreillette;Ohrhörer (einzeln);1
+otorhino;HNO-Arzt;1
 oublier qc.;etw. vergessen;1
+oublier qc.;etw. vergessen;1
+pair;gerade (Zahl);1
+pancarte;Schild;1
+panneau solaire;Solarpanel;1
+par convention;aus Konvention;1
+par intérim;übergangsweise;1
+par intermédiaire;über eine Vermittlung;1
+parcourir une étude;eine Studie durchsehen;1
+parquet;Parkett;1
+parquet flottant;Laminat;1
+pas de / beaucoup de;kein / viel von;1
+passer par Paris;durch Paris fahren;1
+passer sur la périphérie;über die Ringstraße fahren;1
+pâte d'amandes;Marzipan;1
+patiner;Schlittschuh laufen;1
+pénaliser qc.;benachteiligen;1
+période glaciaire;Eiszeit;1
+périphérie;Stadtrand;1
+perte;Verlust;1
+phénomène;Phänomen;1
+piéton;Fußgänger;1
+piétonnisé;zur Fußgängerzone gemacht;1
+pin;Kiefer;1
+pin parasol;Pinie;1
+pipelette;Plappermaul;1
+piste cyclable;Fahrradweg;1
+plagiat;Plagiat;1
+plaie;Wunde;1
+plaisanter;scherzen;1
 plein de;voll;1
+plein de;voll;1
+polir;polieren;1
+pollution sonore;Lärmverschmutzung;1
+pompe à chaleur;Wärmepumpe;1
+porcelaine;Porzellan;1
+portefeuille;Brieftasche;1
+pour autant;trotzdem / dennoch;1
+pousser;wachsen;1
+pousser (un vélo);(ein Fahrrad) schieben;1
+poussette;Kinderwagen;1
+prédiction;Prognose;1
+prendre fin;enden;1
+prévision;Vorhersage;1
+probabilité;Wahrscheinlichkeit;1
+rage de dents;Zahnschmerzen;1
+rail;Schiene;1
+ralentir;langsamer werden;1
+randonner;wandern;1
+rang de naissance;Geburtsrang;1
+rapporter;mitbringen;1
+raquettes;Schneeschuhe;1
+rassembler;versammeln;1
+rayonnante;strahlend;1
+rebelle;rebellisch;1
+rebondir;sich wieder fangen;1
+réchauffement climatique;Erderwärmung;1
+reclus socialement;gesellschaftlich zurückgezogen;1
+réderie;Trödelmarkt (Picardie);1
+réjouissant;erfreulich;1
+remorque;Anhänger;1
+renverser;überfahren;1
+répandre;verstreuen;1
+répandre;verbreiten;1
+répondre à un besoin;einen Bedarf decken;1
+respirer;atmen;1
+retenir un matériau;ein Material zurückhalten;1
+retenue;Rückhaltebecken;1
+riverain;Anwohner;1
+rôder;herumschleichen;1
+rôle;Rolle;1
+rotin;Rattan;1
+rouille;Rost;1
+rouiller;rosten;1
+rouler;fahren;1
+rue à sens unique;Einbahnstraße;1
+rue principale;Hauptstraße;1
+s’agacer;genervt sein;1
+s’échapper;entweichen;1
+s’entretenir;sich unterhalten;1
+s'inscrire;sich anmelden;1
+s’installer;sich niederlassen;1
+s’insurger;sich empören;1
+s’interroger en continu;ständig über etw. nachdenken;1
+sac de couchage;Schlafsack;1
+sacoche;Umhängetasche;1
+saisonnier;Saisonarbeiter;1
+sans forfait;ohne Skipass;1
+sauvegarder;speichern;1
+scandinave;skandinavisch;1
+scarabée;Käfer (Tier);1
+scientifique;Wissenschaftler;1
+se débarrasser de qc.;etw. loswerden;1
+se dérouler;stattfinden / verlaufen;1
+se disputer;sich streiten;1
+se patiner;Patina bekommen;1
+se rapprocher à l’âge adulte;sich im Erwachsenenalter annähern;1
+se répandre;sich verbreiten;1
+se tailler une place;sich einen Platz erkämpfen;1
+sec / sèche;trocken;1
+sécheresse;Dürre;1
+semelle;Sohle;1
+skieur;Skifahrer;1
+sobriété;Genügsamkeit;1
+sommet;Gipfel;1
+son regard s’illumine;sein Blick hellt sich auf;1
+souliers;Schuhe;1
+soutenir;unterstützen;1
+station thermale;Kurort;1
+stockage;Speicherung;1
+subitement;plötzlich;1
+suffisamment;ausreichend;1
+supplanter;verdrängen;1
+sur l’herbe;auf dem Gras;1
+sur la côte;an der Küste;1
+table de multiplication;Einmaleins;1
+tableau;Gemälde;1
+tabouret;Hocker;1
 talon;Absatz;1
+tandis que;während;1
+tantôt;mal so, mal so;1
+tas;Haufen;1
+tasse;Tasse;1
+taux de natalité;Geburtenrate;1
+téléphérique;Seilbahn;1
+thermalisme;Thermalwesen;1
+thermos;Thermoskanne;1
+tier;Drittel;1
+tisane;Kräutertee;1
+tissu;Stoff;1
+tomber dans l’escalier;die Treppe hinunterfallen;1
+trafic;Verkehr;1
+traîner;herumhängen;1
+travaux dans la rue;Straßenarbeiten;1
+tronçon d’autoroute;Autobahnabschnitt;1
+trousseau;Aussteuer;1
+trouvaille;Fundstück;1
+TVA;Mehrwertsteuer;1
+une passion m’a gagnée;eine Leidenschaft hat mich gepackt;1
+utilisable;verwendbar;1
+vaisselle;Geschirr;1
+valoriser;aufwerten;1
+végétaliser;begrünen;1
+vente aux enchères;Auktion;1
+verdure;Grün;1
+vide-greniers;Dachbodenflohmarkt;1
+viking;Wikinger;1
+viticole;weinbau-;1
+voie;Spur / Fahrbahn;1
+vol;Flug;1
+vous étiez;ihr wart / Sie waren;1
+vrais jumeaux;eineiige Zwillinge;1
+VTT (Vélo Tout Terrain);Mountainbike;1

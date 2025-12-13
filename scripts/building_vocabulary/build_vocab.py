@@ -291,10 +291,10 @@ def load_translation_links(path: Path) -> Set[Tuple[str, str]]:
     raise FileNotFoundError(f"Missing translation links file: {path}")
 
   pairs: Set[Tuple[str, str]] = set()
-  with path.open("r", encoding="utf-8", newline="") as f:
+  with path.open("r", encoding="utf-8-sig", newline="") as f:
     r = csv.DictReader(f, delimiter=";")
     if not r.fieldnames or "fr" not in r.fieldnames or "de" not in r.fieldnames:
-      raise ValueError(f"{path} must contain columns: fr;de (priority optional). Values are keys: term or term@ref")
+      raise ValueError(f"{path} must contain columns: fr;de (priority optional). Values are keys: {r.fieldnames}")
 
     for row in r:
       fr = norm(row.get("fr", ""))
@@ -311,7 +311,7 @@ def load_translation_links(path: Path) -> Set[Tuple[str, str]]:
 
 def write_csv(path: Path, header: List[str], rows: Iterable[List[str]]) -> None:
   path.parent.mkdir(parents=True, exist_ok=True)
-  with path.open("w", encoding="utf-8", newline="") as f:
+  with path.open("w", encoding="utf-8-sig", newline="") as f:
     w = csv.writer(f, delimiter=";")
     w.writerow(header)
     for row in rows:
