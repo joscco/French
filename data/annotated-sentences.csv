@@ -79,7 +79,7 @@
 1;80;J’ai pris un thermos de café.;Ich habe eine Thermoskanne Kaffee mitgenommen.
 1;81;Il a payé avec un billet de 20 euros.;Er hat mit einem 20-Euro-Geldschein bezahlt.
 1;82;Le ticket de caisse indique le lieu d’achat.;Der Kassenzettel zeigt den Kaufort.
-1;83;Ils habitent à la périphérie de la ville.;Sie wohnen am Stadtrand.
+1;83;Ils habitent à la [périphérie] de la ville.;Sie wohnen am [Stadtrand].
 1;84;Le marché est devenu un vrai phénomène culturel.;Der Markt ist zu einem echten kulturellen Phänomen geworden.
 1;85;La nouvelle s’est rapidement répandue.;Die Nachricht hat sich schnell verbreitet.
 1;86;Des milliers de personnes visitent le marché.;Tausende Menschen besuchen den Markt.
@@ -131,7 +131,7 @@
 2;132;Je n’ai pas de fourchette propre.;Ich habe keine saubere Gabel.
 2;133;Le couteau n’est pas bien aiguisé.;Das Messer ist nicht gut geschärft.
 2;134;Je prends une cuillère de sucre.;Ich nehme einen Löffel Zucker.
-2;135;Autrefois, la dot était courante dans les mariages.;Früher war die Mitgift bei Hochzeiten üblich.
+2;135;[Autrefois]{autrefois}, la dot était courante dans les mariages.;[Früher]{früher} war die Mitgift bei Hochzeiten üblich.
 2;136;La porcelaine de Limoges est célèbre.;Das Porzellan aus Limoges ist berühmt.
 2;137;Il faut polir l’argenterie pour qu’elle brille.;Man muss das Silber polieren, damit es glänzt.
 2;138;Un grand lustre éclaire la salle.;Ein großer Kronleuchter erhellt den Saal.
@@ -366,7 +366,7 @@
 9;368;Elle s’intéresse beaucoup à la généalogie de sa famille.;Sie interessiert sich sehr für die Ahnenforschung ihrer Familie.
 9;369;Ils ont créé un arbre généalogique détaillé.;Sie haben einen detaillierten Stammbaum erstellt.
 9;370;L’avis de décès a été publié dans le journal.;Die Todesanzeige wurde in der Zeitung veröffentlicht.
-9;371;C’est une coutume d’autrefois.;Das ist ein Brauch von früher.
+9;371;C’est une coutume [d’autrefois]{autrefois}.;Das ist ein Brauch von [früher].
 9;372;Il regarde la télé au lieu de faire ses devoirs.;Er schaut fern, anstatt seine Hausaufgaben zu machen.
 9;373;J’ai écrit la lettre au brouillon avant de la recopier.;Ich habe den Brief im Entwurf geschrieben, bevor ich ihn abgeschrieben habe.
 9;374;Elle a envoyé une lettre de condoléances à la famille.;Sie hat der Familie einen Beileidsbrief geschickt.
@@ -426,7 +426,7 @@
 11;428;Il est interdit de doubler ici.;Hier ist Überholen verboten.
 11;429;Un scarabée traverse la route.;Ein Käfer überquert die Straße.
 11;430;Il a acheté une vieille Coccinelle.;Er hat einen alten VW-Käfer gekauft.
-11;431;On peut passer sur la périphérie pour éviter le centre.;Man kann über die Ringstraße fahren, um das Zentrum zu vermeiden.
+11;431;On peut passer sur le [périphérique] pour éviter le centre.;Man kann über die Ringstraße fahren, um das Zentrum zu vermeiden.
 11;432;Il a klaxonné pour prévenir le cycliste.;Er hat gehupt, um den Radfahrer zu warnen.
 11;433;Les GPS indiquent un autre itinéraire.;Die GPS-Geräte zeigen eine andere Route an.
 11;434;Le frein ne répond plus !;Die Bremse reagiert nicht mehr!
@@ -475,3 +475,52 @@
 11;477;L’effacement des graffitis a coûté cher.;Die Entfernung der Graffitis war teuer.
 11;478;Il avance d’un pas mal assuré.;Er geht mit einem unsicheren Schritt.
 11;479;Il se sent mal assuré dans cette situation.;Er fühlt sich in dieser Situation unsicher.
+12;480;[Autrefois]{autrefois}, la ville était beaucoup plus calme.;[Früher]{früher} war die Stadt viel ruhiger.
+12;481;Il habite [autre part] maintenant.;Er wohnt jetzt [woanders].
+12;482;La situation s’[est détériorée]{se détériorer}.;Die Situation [hat sich verschlechtert]{sich verschlechtern}.
+12;483;Cette décision a [détérioré]{détériorer qc.} l’ambiance.;Diese Entscheidung [hat die Stimmung verschlechtert]{etw. verschlechtern}.
+12;484;Ils ont [annulé]{annuler qc.} la réunion.;Sie haben das Treffen [abgesagt]{etw. absagen}.
+12;485;Il [fouille]{fouiller} dans son sac pour chercher ses [clés]{clé}.;Er [kramt]{kramen} in seiner Tasche nach seinen [Schlüsseln]{Schlüssel}.
+12;486;Il y a trop de [bazar] sur la table.;Auf dem Tisch liegt zu viel [Kram].
+12;487;Après le travail, j’aime [me détendre]{se détendre}.;Nach der Arbeit entspanne ich mich gern.
+12;488;La ville veut [supprimer]{supprimer qc.} des places de parking.;Die Stadt will Parkplätze [abschaffen]{etw. abschaffen}.
+12;489;La France a [aboli]{abolir qc.} la peine de mort.;Frankreich hat die Todesstrafe [abgeschafft]{etw. abschaffen}.
+12;490;Il y a souvent des [embouteillages]{embouteillage} sur le [périphérique].;Auf dem [Stadtring] gibt es oft [Staus]{Stau}.
+12;491;Il habite en [périphérie] de la ville.;Er wohnt am [Stadtrand].
+12;492;La pollution [diminue]{diminuer} lentement.;Die Verschmutzung [nimmt ab]{abnehmen}.
+12;493;Finalement, [ça a porté ses fruits]{porter qc. à qn.}.;Am Ende [hat es etwas gebracht]{jmdm. etw. bringen}.
+12;494;Une nouvelle [mesure] a été annoncée.;Eine neue [Maßnahme] wurde angekündigt.
+12;495;Un [radar] contrôle la vitesse ici.;Hier überwacht ein [Blitzer] die Geschwindigkeit.
+12;496;Il faut faire attention aux [véhicules en face].;Man muss auf die [entgegenkommenden Fahrzeuge]{entgegenkommende Fahrzeuge} achten.
+12;497;Cette action lui a [valu une bonne réputation]{valoir qc. à qn}.;Diese Aktion hat ihm [einen guten Ruf eingebracht]{jmdm. einen guten Ruf einbringen}.
+12;498;Le quartier [bâti] est plus dense.;Das [bebaute]{bebaut} Viertel ist dichter.
+12;499;La région a été [battue]{battu} par les vents.;Die Region wurde von Winden heimgesucht.
+12;500;Je prends souvent le [métro] pour aller au travail.;Ich nehme oft die [U-Bahn].
+12;501;C’est une [rue piétonne], sans voitures.;Das ist eine [Fußgängerzone], ohne Autos.
+12;502;C’est une [rue large] et lumineuse.;Das ist eine [breite Straße].
+12;503;Les [feux] sont passés au rouge.;Die [Ampeln]{Ampel} sind auf Rot gesprungen.
+12;504;Ce sont des conditions [spéciales]{spécial}.;Das sind [besondere]{besonders} Bedingungen.
+12;505;Il se déplace en [trottinette].;Er fährt mit einem [E-Scooter].
+12;506;Le cycliste se [faufile]{se faufiler} entre les voitures.;Der Radfahrer [schlängelt sich]{sich durchschlängeln#A} zwischen den Autos [durch]{#A}.
+12;507;La ville veut [récompenser]{récompenser qn.} les habitants.;Die Stadt will die Bewohner [jmdn. entlohnen].
+12;508;L’air est enfin [respirable].;Die Luft ist endlich [atembar].
+12;509;Les [gaz d'échappement] polluent l’air.;[Abgase] verschmutzen die Luft.
+12;510;Il restaure un vieux [Solex].;Er restauriert einen alten [Solex].
+12;511;Le prix a augmenté de dix [pour cent].;Der Preis ist um zehn [Prozent] gestiegen.
+12;512;Il [possède]{posséder qc.} un appartement.;Er [besitzt]{etw. besitzen} eine Wohnung.
+12;513;Le bâtiment [est en bon état]{être en bon état}.;Das Gebäude [ist in gutem Zustand]{in gutem Zustand sein}.
+12;514;J’ai [garé]{garer la voiture} la voiture plus loin.;Ich habe [das Auto]{das Auto parken#A} weiter weg [geparkt]{#A}.
+12;515;La route est en forte [pente].;Die Straße hat eine starke [Steigung].
+12;516;La maison a [brûlé]{brûler}.;Das Haus ist [abgebrannt]{abbrennen}.
+12;517;L’ambiance est [chaleureuse]{chaleureux}, pas agressive.;Die Stimmung ist [herzlich], nicht aggressiv.
+12;518;C’était un débat très [houleux].;Das war eine sehr [hitzige]{hitzig} Debatte.
+12;519;C’est un [concept] intéressant.;Das ist ein interessantes [Konzept].
+12;520;Il y a une [fontaine] sur la place.;Auf dem Platz steht ein [Brunnen].
+12;521;On suit la [trace] laissée au sol.;Man folgt der am Boden hinterlassenen [Spur].
+12;522;La ville veut [élargir]{élargir qc.} la route.;Die Stadt will die Straße [verbreitern].
+12;523;Il [regrette]{regretter qc.} cette décision.;Er [bereut]{etw. bereuen} diese Entscheidung.
+12;524;Elle [regrette]{regretter qn.} son amie.;Sie [trauert]{jmdm. nachtrauern#A} ihrer Freundin [nach]{#A}.
+12;525;C’est plus [commode] de venir en métro.;Es ist [bequemer]{bequem}, mit der U-Bahn zu kommen.
+12;526;J’[attends]{attendre qc.} une réponse.;Ich [erwarte]{etw. erwarten} eine Antwort.
+12;527;Il a réussi à [se garer].;Er hat es geschafft, [einzuparken]{einparken}.
+12;528;Le mur s’[est effondré]{s’effondrer}.;Die Mauer ist [eingestürzt]{einstürzen}.
