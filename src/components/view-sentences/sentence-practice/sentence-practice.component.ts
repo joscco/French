@@ -9,27 +9,27 @@ import {
   input,
   signal,
 } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import {CommonModule} from '@angular/common';
+import {FormsModule} from '@angular/forms';
 import gsap from 'gsap';
 
-import { Sentence } from '../../../models/sentence';
-import { PracticeMode } from '../../../models/types';
-import { normalizeForCheck } from '../../../helpers/normalize';
+import {Sentence} from '../../../models/sentence';
+import {PracticeMode} from '../../../models/types';
+import {normalizeForCheck} from '../../../helpers/normalize';
 import {
   buildWordOverlayTokens,
   collapseOverlayRuns,
   DisplayToken,
 } from '../../../helpers/answer-diff';
 
-import { TermLookupService, TermTooltipVm } from '../../../services/term-lookup.service';
-import { TermRefInSentence } from '../../../models/term-ref-in-sentence';
-import { buildPromptSegments, PromptSegment } from '../../../helpers/prompt-markup';
+import {TermLookupService, TermTooltipVm} from '../../../services/term-lookup.service';
+import {TermRefInSentence} from '../../../models/term-ref-in-sentence';
+import {buildPromptSegments, PromptSegment} from '../../../helpers/prompt-markup';
 
-import { TermTooltipOverlayComponent } from '../term-tooltip-overlay/term-tooltip-overlay.component';
-import { PromptMarkupComponent } from '../prompt-markup/prompt-markup.component';
-import { PracticeCardShellComponent } from '../../shared/practice-card-shell/practice-card-shell.component';
-import { IconButtonComponent } from '../../shared/icon-button/icon-button.component';
+import {TermTooltipOverlayComponent} from '../term-tooltip-overlay/term-tooltip-overlay.component';
+import {PromptMarkupComponent} from '../prompt-markup/prompt-markup.component';
+import {PracticeCardShellComponent} from '../../shared/practice-card-shell/practice-card-shell.component';
+import {IconButtonComponent} from '../../shared/icon-button/icon-button.component';
 
 type NavDir = 'next' | 'prev';
 
@@ -91,6 +91,7 @@ export class SentencePracticeComponent {
   get answerModel(): string {
     return this.answer();
   }
+
   set answerModel(v: string) {
     this.answer.set(v);
   }
@@ -100,6 +101,8 @@ export class SentencePracticeComponent {
   // -----------------------
   readonly tooltipPinned = signal(false);
   readonly tooltipOpen = signal(false);
+  readonly tooltipBasisX = signal<'left' | 'center' | 'right'>('center');
+  readonly tooltipPanelW = signal<number>(260);
   readonly tooltipVm = signal<TermTooltipVm | undefined>(undefined);
   readonly tooltipX = signal(0);
   readonly tooltipY = signal(0);
@@ -121,6 +124,7 @@ export class SentencePracticeComponent {
   @ViewChild('footerCheck') footerCheck?: ElementRef<HTMLElement>;
   @ViewChild('footerBar') footerBar?: ElementRef<HTMLElement>;
   @ViewChild('swapHost') swapHost?: ElementRef<HTMLElement>;
+  private lastAnchorEl: HTMLElement | null = null;
 
   constructor() {
     effect(() => {
@@ -169,6 +173,21 @@ export class SentencePracticeComponent {
   // =========================================================
   // Animations: check / edit again
   // =========================================================
+  onTooltipPanelRect(r: DOMRect) {
+    const w = Math.max(0, Math.round(r.width));
+    if (!w) return;
+
+    // nur updaten, wenn sinnvoll anders (verhindert jitter)
+    if (Math.abs(this.tooltipPanelW() - w) > 2) {
+      this.tooltipPanelW.set(w);
+
+      // Wenn Tooltip offen ist: Position nochmal clamped neu berechnen
+      const anchor = this.lastAnchorEl;
+      if (this.tooltipOpen() && anchor) {
+        this.setTooltipPosition(anchor);
+      }
+    }
+  }
 
   checkAnimated() {
     if (!this.current()) return;
@@ -186,15 +205,15 @@ export class SentencePracticeComponent {
 
       gsap.killTweensOf([overlay, edit, check, bar]);
 
-      gsap.set(overlay, { opacity: 0 });
-      gsap.set(bar, { opacity: 0 });
-      gsap.set(check, { opacity: 1 });
+      gsap.set(overlay, {opacity: 0});
+      gsap.set(bar, {opacity: 0});
+      gsap.set(check, {opacity: 1});
 
       gsap.timeline()
-        .to(edit,   { opacity: 0, duration: 0.2, ease: 'power2.out' }, 0)
-        .to(overlay,{ opacity: 1, duration: 0.2, ease: 'power2.out' }, 0)
-        .to(check,  { opacity: 0, duration: 0.2, ease: 'power2.out' }, 0)
-        .to(bar,    { opacity: 1, duration: 0.2, ease: 'power2.out' }, 0);
+        .to(edit, {opacity: 0, duration: 0.2, ease: 'power2.out'}, 0)
+        .to(overlay, {opacity: 1, duration: 0.2, ease: 'power2.out'}, 0)
+        .to(check, {opacity: 0, duration: 0.2, ease: 'power2.out'}, 0)
+        .to(bar, {opacity: 1, duration: 0.2, ease: 'power2.out'}, 0);
     });
   }
 
@@ -215,13 +234,13 @@ export class SentencePracticeComponent {
     gsap.timeline({
       onComplete: () => {
         this.editAgain();
-        requestAnimationFrame(() => gsap.set(edit, { opacity: 1 }));
+        requestAnimationFrame(() => gsap.set(edit, {opacity: 1}));
       },
     })
-      .to(overlay, { opacity: 0, duration: 0.2, ease: 'power2.in' }, 0)
-      .to(bar,     { opacity: 0, duration: 0.2, ease: 'power2.in' }, 0)
-      .to(check,   { opacity: 1, duration: 0.18, ease: 'power2.in' }, 0)
-      .to(edit,    { opacity: 1, duration: 0.2, ease: 'power2.out' }, 0);
+      .to(overlay, {opacity: 0, duration: 0.2, ease: 'power2.in'}, 0)
+      .to(bar, {opacity: 0, duration: 0.2, ease: 'power2.in'}, 0)
+      .to(check, {opacity: 1, duration: 0.18, ease: 'power2.in'}, 0)
+      .to(edit, {opacity: 1, duration: 0.2, ease: 'power2.out'}, 0);
   }
 
   // =========================================================
@@ -251,10 +270,10 @@ export class SentencePracticeComponent {
       if (!overlay || !edit || !check || !bar) return;
 
       gsap.killTweensOf([overlay, edit, check, bar]);
-      gsap.set(overlay, { opacity: 0, y: 0 });
-      gsap.set(edit, { opacity: 1 });
-      gsap.set(check, { opacity: 1, y: 0 });
-      gsap.set(bar, { opacity: 0, y: 0 });
+      gsap.set(overlay, {opacity: 0, y: 0});
+      gsap.set(edit, {opacity: 1});
+      gsap.set(check, {opacity: 1, y: 0});
+      gsap.set(bar, {opacity: 0, y: 0});
     });
   }
 
@@ -310,15 +329,32 @@ export class SentencePracticeComponent {
   }
 
   private setTooltipPosition(anchorEl: HTMLElement) {
-    const a = anchorEl.getBoundingClientRect();
-    const hostEl = this.swapHost?.nativeElement;
-    const host = hostEl?.getBoundingClientRect();
+    this.lastAnchorEl = anchorEl;
 
-    if (!host) return;
+    const anchorWord = anchorEl.getBoundingClientRect();
+    const hostArea = this.swapHost?.nativeElement?.getBoundingClientRect();
+    if (!hostArea) return;
 
-    // lokal im swapHost-Koordinatensystem
-    this.tooltipX.set(a.left + a.width / 2 - host.left);
-    this.tooltipY.set(a.top - host.top);
+    const padding = 10;
+
+    // X: center über Wort (lokal in swapHost)
+    const centerX = anchorWord.left + anchorWord.width / 2 - hostArea.left;
+
+    // clamp damit Tooltip nicht über Host hinausragt
+    const tooltipW = this.tooltipPanelW();
+    const half = tooltipW / 2;
+
+    const minX = padding + half;
+    const maxX = hostArea.width - padding - half;
+
+    const clampedX = Math.min(Math.max(centerX, minX), maxX);
+
+    this.tooltipX.set(clampedX);
+    this.tooltipBasisX.set('center');
+
+    // Y: über dem Wort (lokal)
+    const yTop = anchorWord.top - hostArea.top;
+    this.tooltipY.set(yTop);
   }
 
   private openTooltipForRef(ref: TermRefInSentence, anchorEl: HTMLElement) {
@@ -391,7 +427,7 @@ export class SentencePracticeComponent {
         return this.checkAnimated();
       }
 
-      if (this.isCorrect()){
+      if (this.isCorrect()) {
         this.next();
       } else {
         this.editAgainAnimated();

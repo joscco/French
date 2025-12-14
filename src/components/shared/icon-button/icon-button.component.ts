@@ -11,13 +11,19 @@ import gsap from 'gsap';
 })
 export class IconButtonComponent {
   @Input() iconName: string = '';
-  @Output() onClick = new EventEmitter<Event | undefined>();
-
   @Input() tooltip?: string = '';
   @Input() enabled?: boolean = true;
+  @Input() tooltipPosition?: 'top' | 'bottom' = 'top';
+  @Input() label?: string;
+  @Input() chevron?: boolean = false;
+  @Input() size: 'sm' | 'md' = 'md';
 
-  tooltipYHidden = -35;
-  tooltipYVisible = -40;
+  @Output() onClick = new EventEmitter<Event | undefined>();
+
+  tooltipYHiddenTop = -25;
+  tooltipYVisibleTop = -30;
+  tooltipYHiddenBottom = 25;
+  tooltipYVisibleBottom = 30;
 
   @ViewChild('tooltipEl') tooltipEl?: ElementRef<HTMLSpanElement>;
 
@@ -42,11 +48,14 @@ export class IconButtonComponent {
       return;
     }
     const el = this.tooltipEl.nativeElement;
+    const isTop = this.tooltipPosition === 'top';
+    const tooltipYHidden = isTop ? this.tooltipYHiddenTop : this.tooltipYHiddenBottom;
+    const tooltipYVisible = isTop ? this.tooltipYVisibleTop : this.tooltipYVisibleBottom;
     gsap.killTweensOf(el);
     gsap.fromTo(
       el,
-      {opacity: 0, y: this.tooltipYHidden},
-      {opacity: 1, y: this.tooltipYVisible, duration: 0.18, ease: 'power2.out'}
+      {opacity: 0, y: tooltipYHidden},
+      {opacity: 1, y: tooltipYVisible, duration: 0.18, ease: 'power2.out'}
     );
   }
 
@@ -55,10 +64,12 @@ export class IconButtonComponent {
       return;
     }
     const el = this.tooltipEl.nativeElement;
+    const isTop = this.tooltipPosition === 'top';
+    const tooltipYHidden = isTop ? this.tooltipYHiddenTop : this.tooltipYHiddenBottom;
     gsap.killTweensOf(el);
     gsap.to(el, {
       opacity: 0,
-      y: this.tooltipYHidden,
+      y: tooltipYHidden,
       duration: 0.15,
       ease: 'power2.in'
     });

@@ -1,28 +1,33 @@
 @if (!loading()) {
   <div class="flex flex-col items-center h-full max-w-[960px] p-6">
-    <header class="self-center flex flex-col gap-6 items-center">
-      <div class="flex flex-row items-end justify-between w-full gap-4">
-        <app-lesson-selector
-          [lessons]="lessons()"
-          [selected]="selectedLessons()"
-          (selectedChange)="onLessonsChange($event)"/>
-        <app-mode-selector
+    <header class="w-full">
+      <div class="w-full flex items-center justify-between gap-3">
+        <app-icon-button
+          [iconName]="practiceKind() === 'sentence' ? 'edit' : 'menu_book'"
+          [label]="practiceKind() === 'sentence' ? 'Sätze' : 'Wörter'"
+          [chevron]="true"
+          tooltip="Übungsmodus"
+          tooltipPosition="bottom"
+          (onClick)="togglePanel()"
+        />
+
+        <app-practice-direction-toggle
           [mode]="practiceMode()"
           (modeChange)="practiceMode.set($event)"
         />
-        <app-icon-button
-          iconName="menu_book"
-          tooltip="Vokabeltraining"
-          (onClick)="practiceKind.set('vocab')"
-        ></app-icon-button>
-        <app-icon-button
-          iconName="edit"
-          tooltip="Satztraining"
-          (onClick)="practiceKind.set('sentence')"
-        ></app-icon-button>
-        <app-icon-button iconName="download" (onClick)="exportPdf()" tooltip="Download"/>
       </div>
     </header>
+
+    <app-practice-panel
+      [open]="panelOpen()"
+      [practiceKind]="practiceKind()"
+      [lessons]="lessons()"
+      [selectedLesson]="selectedLessons()"
+      (close)="closePanel()"
+      (practiceKindChange)="practiceKind.set($event); closePanel()"
+      (lessonChange)="onLessonsChange($event)"
+      (exportPdf)="exportPdf()"
+    />
 
     <main class="mt-8 grow w-full">
       @if (practiceKind() === 'vocab') {

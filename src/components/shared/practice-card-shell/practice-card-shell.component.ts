@@ -26,9 +26,7 @@ type NavDir = 'next' | 'prev';
 export class PracticeCardShellComponent implements AfterViewInit, OnDestroy {
   @Input({ required: true }) index = 0;
   @Input({ required: true }) length = 0;
-
   @Input() showShuffle = true;
-  @Input() hint?: string;
 
   /** optional: wenn du Swipe nur auf den Card-Bereich willst */
   @Input() swipeOnCardOnly = true;

@@ -18,9 +18,8 @@ export class TermTooltipOverlayComponent {
   selectedVM = input<TermTooltipVm | undefined>(undefined);
   x = input(0);
   y = input(0);
-
+  basisX = input<'left' | 'center' | 'right'>('center');
   panelRectChange = output<DOMRect>();
-
   panel = viewChild<ElementRef<HTMLElement>>('panel');
   lastVm: TermTooltipVm | undefined;
 
@@ -29,39 +28,26 @@ export class TermTooltipOverlayComponent {
       this.lastVm = this.selectedVM() ? this.selectedVM() : this.lastVm;
     });
 
-    let open = effect(() => {
-      if (!this.open()) {
-        return;
-      }
-
+    effect(() => {
+      if (!this.open()) return;
       const el = this.panel()?.nativeElement;
-      if (!el) {
-        return;
-      }
+      if (!el) return;
 
-      gsap.killTweensOf(el)
-      gsap.to(el, {
-        autoAlpha: 1,
-        scale: 1,
-        duration: 0.14,
-        ease: 'power2.out',
+      // nach Layout messen
+      requestAnimationFrame(() => {
+        const r = el.getBoundingClientRect();
+        this.panelRectChange.emit(r);
       });
-    });
+    })
 
-    let close = effect(() => {
-      if (this.open()) {
-        return;
-      }
-
+    let open = effect(() => {
       const el = this.panel()?.nativeElement;
-      if (!el) {
-        return;
-      }
+      if (!el) return;
 
       gsap.killTweensOf(el);
       gsap.to(el, {
-        autoAlpha: 0,
-        scale: 0.98,
+        autoAlpha: this.open() ? 1 : 0,
+        scale: this.open() ? 1 : 0.98,
         duration: 0.14,
         ease: 'power2.out',
       });

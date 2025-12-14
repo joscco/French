@@ -3,19 +3,20 @@
     [index]="index()"
     [length]="oriented().length"
     [showShuffle]="true"
-    [hint]="'Satz wechseln über Pfeile oder Swipen'"
     (prev)="prev()"
     (next)="next()"
     (shuffle)="shuffleSentences()"
   >
     <div #swapHost class="relative w-full max-w-[460px] h-full" data-swap-host data-swipe-surface>
-      <div class="px-6 py-4 flex flex-col gap-4 h-full">
+      <div class="px-6 py-4 flex flex-col gap-2 h-full">
 
         <app-term-tooltip-overlay
           [open]="tooltipOpen()"
           [selectedVM]="tooltipVm()"
+          [basisX]="tooltipBasisX()"
           [x]="tooltipX()"
           [y]="tooltipY()"
+          (panelRectChange)="onTooltipPanelRect($event)"
         ></app-term-tooltip-overlay>
 
         <app-prompt-markup

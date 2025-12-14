@@ -1,14 +1,35 @@
 <button
-  class="relative w-12 h-12 flex flex-row justify-center items-center gap-1 rounded-2xl border border-neutral-300 transition-colors duration-150 bg-transparent hover:bg-neutral-200 active:bg-neutral-300"
+  class="h-12 relative inline-flex items-center justify-center gap-2 rounded-2xl border border-neutral-300
+         transition-colors duration-150 bg-transparent hover:bg-neutral-200 active:bg-neutral-300
+         disabled:opacity-50 disabled:pointer-events-none"
+  [class.w-12]="!label"
+  [class.max-w-36]="!!label"
+  [class.w-36]="!!label"
+  [class.px-4]="!!label"
+  [class.py-2]="!!label"
   (click)="enabled && onClick.emit($event)"
+  [disabled]="!enabled"
   [attr.aria-label]="tooltip || iconName"
 >
   <mat-icon [class.opacity-50]="!enabled">{{ iconName }}</mat-icon>
 
-  <span
-    #tooltipEl
-    class="pointer-events-none absolute opacity-0 y-0 whitespace-nowrap rounded bg-black px-2 py-1 text-xs text-white shadow-lg"
-  >
+  @if (label) {
+    <span class="text-sm font-semibold">{{ label }}</span>
+  }
+
+  @if (chevron) {
+    <span class="text-neutral-600 text-xs -ml-1">▼</span>
+  }
+
+  @if (tooltip) {
+    <span
+      #tooltipEl
+      class="pointer-events-none absolute left-1/2 opacity-0 -translate-x-1/2
+             whitespace-nowrap rounded bg-black px-2 py-1 text-xs text-white shadow-lg z-10"
+      [class.top-0]="tooltipPosition === 'top'"
+      [class.bottom-0]="tooltipPosition === 'bottom'"
+    >
       {{ tooltip }}
     </span>
+  }
 </button>

@@ -1,24 +1,26 @@
-import {Component, computed, effect, inject, signal} from '@angular/core';
+import {Component, computed, inject, signal} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {LessonSelectorComponent} from '../shared/lesson-selector/lesson-selector.component';
-import {ModeSelectorComponent} from '../shared/mode-selector/mode-selector.component';
 import {WordPracticeComponent} from '../view-words/word-practice/word-practice.component';
 import {ExportPdfService} from '../../services/export-pdf.service';
-import {IconButtonComponent} from '../shared/icon-button/icon-button.component';
 import {LessonService} from '../../services/lesson.service';
 import {LessonOption} from '../../models/lesson-option';
 import {TranslationService} from '../../services/translation.service';
 import {GermanTermService} from '../../services/german-term.service';
 import {FrenchTermService} from '../../services/french-term.service';
 import {PracticeCardService} from '../../services/practice-card.service';
-import {PracticeKind, PracticeMode} from '../../models/types';
+import {PracticeKind} from '../../models/types';
 import {SentenceService} from '../../services/sentence.service';
 import {SentencePracticeComponent} from '../view-sentences/sentence-practice/sentence-practice.component';
+import {IconButtonComponent} from '../shared/icon-button/icon-button.component';
+import {
+  PracticeDirectionToggleComponent
+} from '../shared/practice-direction-toggle/practice-direction-toggle.component';
+import {PracticePanelComponent} from '../shared/practice-panel/practice-panel.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, LessonSelectorComponent, ModeSelectorComponent, WordPracticeComponent, IconButtonComponent, IconButtonComponent, SentencePracticeComponent],
+  imports: [CommonModule, WordPracticeComponent, SentencePracticeComponent, IconButtonComponent, PracticeDirectionToggleComponent, PracticePanelComponent],
   templateUrl: './app.html',
   host: {'class': 'h-full'},
 })
@@ -32,6 +34,7 @@ export class AppComponent {
   private lessonService = inject(LessonService);
   private sentenceService = inject(SentenceService);
 
+  panelOpen = signal(false);
   loading = signal(true);
   practiceKind = signal<PracticeKind>('sentence');
   practiceMode = this.practiceCardsService.mode;
@@ -64,12 +67,12 @@ export class AppComponent {
 
   sentences = computed(() => {
     const all = this.sentenceService.sentencesWithRefs();
-    const sel = this.selectedLessons();
+    const selected = this.selectedLessons();
 
-    if (!sel || sel.id === 'all') {
+    if (!selected || selected.id === 'all') {
       return all;
     }
-    return all.filter(s => s.lesson === sel.lesson);
+    return all.filter(s => s.lesson === selected.lesson);
   });
 
   constructor() {
@@ -87,6 +90,14 @@ export class AppComponent {
         const lessons = this.lessons();
         this.onLessonsChange(lessons[0]);
       });
+  }
+
+  closePanel() {
+    this.panelOpen.set(false);
+  }
+
+  togglePanel() {
+    this.panelOpen.update(isShown => !isShown);
   }
 
   onLessonsChange(selectedLesson: LessonOption) {

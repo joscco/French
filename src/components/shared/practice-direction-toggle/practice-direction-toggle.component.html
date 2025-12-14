@@ -1,0 +1,25 @@
+<div class="h-12 inline-flex rounded-2xl border border-neutral-300 overflow-hidden bg-neutral-100">
+  <!-- DE → FR -->
+  <button
+    class="w-16 flex items-center justify-center gap-1 text-sm font-semibold
+           transition-colors"
+    [class.bg-neutral-900]="mode === 'de-fr'"
+    [class.text-white]="mode === 'de-fr'"
+    (click)="modeChange.emit('de-fr')"
+    aria-label="Deutsch nach Französisch"
+  >
+    <span class="text-xs">DE→FR</span>
+  </button>
+
+  <!-- FR → DE -->
+  <button
+    class="w-16 flex items-center justify-center gap-1 text-sm font-semibold
+           transition-colors"
+    [class.bg-neutral-900]="mode === 'fr-de'"
+    [class.text-white]="mode === 'fr-de'"
+    (click)="modeChange.emit('fr-de')"
+    aria-label="Französisch nach Deutsch"
+  >
+    <span class="text-xs">FR→DE</span>
+  </button>
+</div>
