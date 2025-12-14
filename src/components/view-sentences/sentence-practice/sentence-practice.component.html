@@ -1,0 +1,140 @@
+@if (oriented().length && current(); as cur) {
+  <app-practice-card-shell
+    [index]="index()"
+    [length]="oriented().length"
+    [showShuffle]="true"
+    [hint]="'Satz wechseln über Pfeile oder Swipen'"
+    (prev)="prev()"
+    (next)="next()"
+    (shuffle)="shuffleSentences()"
+  >
+    <div #swapHost class="relative w-full max-w-[460px] h-full" data-swap-host data-swipe-surface>
+      <div class="px-6 py-4 flex flex-col gap-4 h-full">
+
+        <app-term-tooltip-overlay
+          [open]="tooltipOpen()"
+          [selectedVM]="tooltipVm()"
+          [x]="tooltipX()"
+          [y]="tooltipY()"
+        ></app-term-tooltip-overlay>
+
+        <app-prompt-markup
+          [segments]="promptSegments()"
+          [fallbackText]="mode() === 'de-fr' ? cur.de : cur.fr"
+          [activeRefKey]="activeRefKey()"
+          (termEnter)="onPromptTermEnter($event)"
+          (termLeave)="onPromptTermLeave()"
+          (termClick)="onPromptTermClick($event)"
+        ></app-prompt-markup>
+
+        <!-- INPUT AREA -->
+        <div class="flex-1 min-h-0 flex flex-col gap-3 pb-2">
+
+          <!-- "Fake textarea" box -->
+          <div class="relative flex-1 min-h-0 overflow-hidden rounded-2xl bg-neutral-100
+               transition-[box-shadow,background-color] duration-200 py-2"
+               [class.ring-2]="isChecked()"
+               [class.ring-green-400]="isChecked() && isCorrect()"
+               [class.ring-red-300]="isChecked() && !isCorrect()"
+               [class.bg-green-50]="isChecked() && isCorrect()"
+          >
+
+            <!-- Checked overlay (diff rendering) -->
+            <div
+              #overlayLayer
+              class="absolute inset-0 z-20 pointer-events-none
+                     p-6 text-left font-sans tracking-normal
+                     text-lg leading-7 font-normal antialiased
+                     whitespace-pre-wrap break-words"
+              [class.opacity-0]="!isChecked()"
+              aria-hidden="true"
+            >
+              @for (t of displayTokens(); track $index) {
+                @if (!t.isWord) {
+                  <span>{{ t.text }}</span>
+                } @else if (t.kind === 'missing') {
+                  <span class="text-neutral-400 underline decoration-neutral-300 decoration-2 underline-offset-4"
+                  >{{ t.badge ?? '' }}
+                  </span>
+                } @else {
+                  <span class="rounded-sm"
+                        [class.line-through]="t.kind !== 'ok'"
+                        [class.bg-red-200]="t.kind === 'wrong'"
+                        [class.text-red-900]="t.kind === 'wrong'"
+                        [class.bg-amber-200]="t.kind === 'soft'"
+                        [class.text-amber-900]="t.kind === 'soft'">{{ t.text }}</span>
+                  <span>{{ t.badge }}</span>
+                }
+              }
+            </div>
+
+            <!-- Edit layer (real textarea) -->
+            <textarea
+              #editLayer
+              [(ngModel)]="answerModel"
+              class="absolute inset-0 z-10 w-full h-full
+                     p-6 bg-transparent resize-none
+                     text-left font-sans tracking-normal
+                     text-lg leading-7 font-normal antialiased
+                     placeholder:text-neutral-500
+                     outline-none focus:outline-none focus:ring-0
+                     whitespace-pre-wrap break-words"
+              [class.opacity-0]="isChecked()"
+              [class.pointer-events-none]="isChecked()"
+              placeholder="Übersetzung hier eintippen..."
+            ></textarea>
+          </div>
+        </div>
+
+        <!-- FOOTER SLOT (no layout jump) -->
+        <div #footerSlot class="relative h-12">
+          <!-- Check button -->
+          <div
+            #footerCheck
+            class="absolute inset-0"
+            [class.pointer-events-none]="isChecked()"
+            [class.opacity-0]="isChecked()"
+          >
+            <button
+              class="w-full h-12 rounded-2xl bg-neutral-900 text-white z-10
+                       transition-colors duration-150 hover:bg-neutral-800 active:bg-neutral-950"
+              (click)="checkAnimated()"
+            >
+              Prüfen
+            </button>
+          </div>
+
+          <!-- Action bar -->
+          <div
+            #footerBar
+            class="absolute inset-0"
+            [class.pointer-events-none]="!isChecked()"
+            [class.opacity-0]="!isChecked()"
+          >
+            <div class="flex flex-row items-center justify-center gap-3 h-12">
+              @if (mode() == 'de-fr') {
+                <!-- Only offer sound in de-fr mode-->
+                <app-icon-button
+                  [iconName]="isPlaying() ? 'stop' : 'volume_up'"
+                  [tooltip]="isPlaying() ? 'Audio stoppen' : 'Audio abspielen'"
+                  (onClick)="togglePlay($event)"
+                  [enabled]="isCorrect()"
+                ></app-icon-button>
+              }
+
+              <app-icon-button
+                iconName="edit"
+                tooltip="Bearbeiten"
+                (onClick)="editAgainAnimated()"
+              >
+              </app-icon-button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </app-practice-card-shell>
+
+} @else {
+  <p class="opacity-60 italic">Keine Sätze in dieser Auswahl.</p>
+}

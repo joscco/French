@@ -4,12 +4,12 @@ set -euo pipefail
 # -------- config --------
 VENV_DIR=".venv-tts"
 PYTHON_BIN="python3"
-PY_SCRIPT="tts_generate.py"          # <- Dateiname deines Python-Skripts
+PY_SCRIPT="scripts/building_tts/tts_generate.py"
 REQ_FILE="requirements-tts.txt"
 ENV_FILE=".env"                      # optional
 # ------------------------
 
-# Forward all args to python script, e.g. ./tts-run.sh --ids "1-10"
+# Forward all args to python script, e.g. ./build_tts.sh --ids "1-10"
 ARGS=("$@")
 
 echo "▶ TTS run"

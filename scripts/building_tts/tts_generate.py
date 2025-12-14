@@ -5,9 +5,9 @@ import os
 import subprocess
 from pathlib import Path
 import wave
-
 from dotenv import load_dotenv
 from google.cloud import texttospeech
+import re
 
 load_dotenv()
 
@@ -16,6 +16,10 @@ OUTPUT_BASE = Path("public/sounds")
 
 TTS_VOICE = os.getenv("TTS_VOICE", "fr-FR-Chirp3-HD-Enceladus")
 TTS_SAMPLE_RATE = int(os.getenv("TTS_SAMPLE_RATE", "24000"))
+
+BRACKETS_RE = re.compile(r"\[([^\]]+)\]")
+BRACES_RE = re.compile(r"\{[^}]*\}")
+WS_RE = re.compile(r"\s+")
 
 
 def parse_id_range(value: str):
@@ -41,12 +45,22 @@ def parse_id_range(value: str):
   return sorted(ids)
 
 
+def strip_markup_for_tts(text: str) -> str:
+  # [foo] -> foo
+  text = BRACKETS_RE.sub(r"\1", text)
+  # {foo} -> (entfernen)
+  text = BRACES_RE.sub("", text)
+  # typisches spacing nach Entfernen
+  text = WS_RE.sub(" ", text).strip()
+  return text
+
+
 def load_rows(ids: list[int] | None):
   rows = []
   with CSV_PATH.open(newline="", encoding="utf-8") as f:
     reader = csv.DictReader(f, delimiter=";")
     for row in reader:
-      row_id = int(row["id"])
+      row_id = int(row["sid"])
       if ids is not None and row_id not in ids:
         continue
       rows.append(row)
@@ -147,8 +161,9 @@ def generate_for_rows(rows):
   client = tts_client()
 
   for row in rows:
-    row_id = int(row["id"])
+    row_id = int(row["sid"])
     fr_sentence = (row.get("fr") or "").strip()
+    fr_sentence = strip_markup_for_tts(fr_sentence)
 
     if not fr_sentence:
       print(f"Überspringe ID {row_id} – kein fr")

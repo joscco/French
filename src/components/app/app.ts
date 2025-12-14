@@ -1,10 +1,10 @@
 import {Component, computed, effect, inject, signal} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {LessonSelectorComponent} from '../lesson-selector/lesson-selector.component';
-import {ModeSelectorComponent} from '../mode-selector/mode-selector.component';
-import {WordPracticeComponent} from '../word-practice/word-practice.component';
+import {LessonSelectorComponent} from '../shared/lesson-selector/lesson-selector.component';
+import {ModeSelectorComponent} from '../shared/mode-selector/mode-selector.component';
+import {WordPracticeComponent} from '../view-words/word-practice/word-practice.component';
 import {ExportPdfService} from '../../services/export-pdf.service';
-import {IconButtonComponent} from '../icon-button/icon-button.component';
+import {IconButtonComponent} from '../shared/icon-button/icon-button.component';
 import {LessonService} from '../../services/lesson.service';
 import {LessonOption} from '../../models/lesson-option';
 import {TranslationService} from '../../services/translation.service';
@@ -13,7 +13,7 @@ import {FrenchTermService} from '../../services/french-term.service';
 import {PracticeCardService} from '../../services/practice-card.service';
 import {PracticeKind, PracticeMode} from '../../models/types';
 import {SentenceService} from '../../services/sentence.service';
-import {SentencePracticeComponent} from '../sentence-practice/sentence-practice.component';
+import {SentencePracticeComponent} from '../view-sentences/sentence-practice/sentence-practice.component';
 
 @Component({
   selector: 'app-root',
