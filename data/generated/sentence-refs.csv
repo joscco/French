@@ -60,7 +60,11 @@
 17;fr;dur;dur
 17;de;Prüfung;Prüfung
 17;de;schwer;schwer
+18;fr;jouer un rôle;joué … rôle
+18;de;eine Rolle spielen;eine … Rolle gespielt
+19;fr;repas;repas
 19;fr;dégoûtant;dégoûtant
+19;de;Essen;Essen
 19;de;ekelhaft;ekelhaft
 20;fr;colline;colline
 20;de;Hügel;Hügel
@@ -74,6 +78,34 @@
 22;de;Flughafen;Flughafen
 23;fr;pousser qc.;pousser
 23;de;etw. schieben;schieben
+24;fr;rouler;roule
+24;fr;vite;vite
+24;de;fahren;fährt
+24;de;schnell;schnell
+25;fr;frein;frein
+25;de;Bremse;Bremse
+26;fr;casque à vélo;casque à vélo
+26;de;Fahrradhelm;Fahrradhelm
+27;fr;casquette;casquette
+27;de;Kappe;Kappe
+28;fr;sac;sac
+28;fr;lourd;lourd
+28;de;Tasche;Tasche
+28;de;schwer;schwer
+29;fr;tissu;tissu
+29;fr;léger;léger
+29;de;Stoff;Stoff
+29;de;leicht;leicht
+31;fr;aménagement;aménagements
+31;fr;moderne;modernes
+31;de;Anlage;Anlagen
+31;de;modern;modern
+32;fr;estuaire;L'estuaire
+32;fr;magnifique;magnifique
+32;de;Mündung;Mündung
+32;de;wunderschön;wunderschön
+33;fr;en Grèce;en Grèce
+33;de;nach Griechenland;nach Griechenland
 83;fr;périphérie;périphérie
 83;de;Stadtrand;Stadtrand
 135;fr;autrefois;Autrefois
@@ -99,6 +131,7 @@
 486;fr;bazar;bazar
 486;de;Kram;Kram
 487;fr;se détendre;me détendre
+487;de;sich entspannen;entspanne … mich
 488;fr;supprimer qc.;supprimer
 488;de;etw. abschaffen;abschaffen
 489;fr;abolir qc.;aboli

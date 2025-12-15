@@ -533,3 +533,10 @@ nom;VTT (Vélo Tout Terrain);m;false;
 nom;grand-mère;f;false
 nom;cuir;m;false
 nom;aéroport;m;true;
+adjectif;magnifique;;;
+adjectif;moderne;;;
+nom;sac;m;false;
+nom;casque à vélo;m;false;
+expression;jouer un rôle;;;
+nom;repas;m;false;
+adverbe;vite;;;
