@@ -76,6 +76,7 @@ export class PracticeHostShellComponent implements AfterViewInit, OnDestroy {
 
   // ghost housekeeping
   private ghostEl?: HTMLElement;
+  private tl?: gsap.core.Timeline;
 
   ngAfterViewInit(): void {
     const host = this.cardHost.nativeElement;
@@ -155,74 +156,83 @@ export class PracticeHostShellComponent implements AfterViewInit, OnDestroy {
     this.goTo.emit(to);
     dir === 'next' ? this.next.emit() : this.prev.emit();
 
-    this.animateSequential(dir);
+    this.animateSequential(dir, () => {
+      this.goTo.emit(to);
+      dir === 'next' ? this.next.emit() : this.prev.emit();
+    });
   }
 
-  /**
-   * “old out THEN new in”
-   *
-   * - Ghost snapshot vom aktuellen slideLayer (alte Karte)
-   * - echten slideLayer sofort auf opacity 0 setzen (neue Karte ist zwar schon da, aber unsichtbar)
-   * - Ghost rausfaden (optional leicht raus sliden)
-   * - danach slideLayer rein (fade + optional slide)
-   */
-  private animateSequential(dir: NavDir, swapFn?: () => void) {
+  private animateSequential(dir: NavDir, swapFn: () => void) {
     if (this.animation === 'none') {
-      swapFn?.();
+      swapFn();
       return;
     }
 
     const host = this.cardHost.nativeElement;
     const layer = this.slideLayer.nativeElement;
 
-    // kill current tweens & ghost
+    // ✅ laufende Animation hart abbrechen und in einen sauberen Zustand bringen
+    this.tl?.kill();
+    this.tl = undefined;
+
     gsap.killTweensOf(layer);
+    gsap.set(layer, { x: 0, opacity: 1 }); // wichtig beim schnellen Spammen
+
+    // ✅ alten Ghost entfernen
     this.cleanupGhost();
 
-    // Snapshot (OLD)
+    // ✅ Ghost = Snapshot vom *aktuellen* (alten) Stand, BEFORE swap
     const ghost = layer.cloneNode(true) as HTMLElement;
     ghost.style.position = 'absolute';
     ghost.style.inset = '0';
     ghost.style.pointerEvents = 'none';
     ghost.style.zIndex = '20';
-    // scrubber nicht doppeln
+    ghost.style.willChange = 'transform, opacity';
     ghost.querySelector('[data-scrubber]')?.remove();
 
     host.appendChild(ghost);
     this.ghostEl = ghost;
 
-    const inFromX = this.animation === 'slide' ? (dir === 'next' ? this.offsetWidth : -this.offsetWidth) : 0;
+    // ✅ Jetzt erst swap (Parent rendert neue Karte in layer)
+    swapFn();
 
-    // Neue Karte (layer) erstmal unsichtbar halten, bis ghost weg ist
-    gsap.set(layer, {opacity: 0, x: inFromX});
+    // ✅ Neue Karte sofort verstecken (damit sie nicht “durchblitzt”)
+    const inFromX =
+      this.animation === 'slide'
+        ? (dir === 'next' ? this.offsetWidth : -this.offsetWidth)
+        : 0;
 
-    // optional: Shuffle-Fall (swapFn) – hier nur genutzt, wenn du später willst
-    // In deinem normalen Flow hat der Parent schon geswapped.
-    swapFn?.();
+    gsap.set(layer, { opacity: 0, x: inFromX });
 
-    const outX = this.animation === 'slide' ? (dir === 'next' ? -this.offsetWidth : this.offsetWidth) : 0;
-    const tl = gsap.timeline({
+    const outX =
+      this.animation === 'slide'
+        ? (dir === 'next' ? -this.offsetWidth : this.offsetWidth)
+        : 0;
+
+    // ✅ Timeline: erst Ghost raus, dann neue rein
+    this.tl = gsap.timeline({
+      defaults: { overwrite: 'auto' },
       onComplete: () => {
         this.cleanupGhost();
+        this.tl = undefined;
       },
     });
 
-    // 1) Ghost raus
-    tl.to(ghost, {
+    this.tl.to(ghost, {
       x: outX,
       opacity: 0,
       duration: 0.22,
       ease: 'power2.in',
     });
 
-    // 2) New rein (erst NACH ghost)
-    tl.fromTo(
-      layer,
-      {x: inFromX, opacity: 0},
-      {x: 0, opacity: 1, duration: 0.28, ease: 'power2.out'},
-      '>-0.01'
-    );
+    this.tl.to(layer, {
+      x: 0,
+      opacity: 1,
+      duration: 0.28,
+      ease: 'power2.out',
+    }, '>-0.01');
   }
+
 
   private cleanupGhost() {
     if (this.ghostEl?.parentElement) this.ghostEl.parentElement.removeChild(this.ghostEl);
@@ -290,7 +300,7 @@ export class PracticeHostShellComponent implements AfterViewInit, OnDestroy {
     this.scrubbing.set(false);
 
     const s = this.scrubPreview();
-    this.scrubPreview.set({...s, active: false});
+    this.scrubPreview.set({ ...s, active: false });
 
     const from = this.index();
     const to = this.clamp(s.idx);
@@ -298,11 +308,8 @@ export class PracticeHostShellComponent implements AfterViewInit, OnDestroy {
 
     const dir: NavDir = to > from ? 'next' : 'prev';
 
-    // commit sofort (Parent patched URL + setzt index)
-    this.commitIndex.emit(to);
-
-    // dann “old out THEN new in”
-    this.animateSequential(dir);
+    // ✅ Ghost VOR Commit (damit “old” wirklich old ist)
+    this.animateSequential(dir, () => this.commitIndex.emit(to));
   }
 
   private updateScrub(ev: PointerEvent, active: boolean) {
