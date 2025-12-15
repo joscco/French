@@ -392,7 +392,7 @@ verbe;posséder qc.;;;
 expression;pour autant;;;
 nom;pour cent;m;false;
 verbe;pousser;;;
-verbe;pousser (un vélo);;;
+verbe;pousser qc.;;;
 nom;poussette;f;false;
 nom;prédiction;f;false;
 expression;prendre fin;;;
@@ -530,3 +530,6 @@ nom;vol;m;false;
 verbe;vous étiez;;;
 nom;vrais jumeaux;mpl;false;
 nom;VTT (Vélo Tout Terrain);m;false;
+nom;grand-mère;f;false
+nom;cuir;m;false
+nom;aéroport;m;true;
