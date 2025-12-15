@@ -51,6 +51,26 @@ export class PracticeHostShellComponent implements AfterViewInit, OnDestroy {
 
   readonly counterText = computed(() => `${this.index() + 1} / ${this.length()}`);
 
+  readonly thumbTopPct = computed(() => {
+    const len = this.length();
+    if (len <= 1) return 0;
+    return (this.index() / (len - 1)) * 100;
+  });
+
+  readonly hotspotTopPct = computed(() => {
+    const len = this.length();
+    if (len <= 1) return 0;
+    // wenn gerade gescrubbt wird, Hotspot folgt Preview, sonst dem echten Index
+    const idx = this.scrubPreview().active ? this.scrubPreview().idx : this.index();
+    return (idx / (len - 1)) * 100;
+  });
+
+  readonly hotspotMask = computed(() => {
+    const y = this.hotspotTopPct();
+    // Radius ruhig etwas kleiner/größer drehen (40–70px)
+    return `radial-gradient(circle 70px at 50% ${y}%, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 72%)`;
+  });
+
   @ViewChild('cardHost', {static: true}) cardHost!: ElementRef<HTMLElement>;
   @ViewChild('slideLayer', {static: true}) slideLayer!: ElementRef<HTMLElement>;
   @ViewChild('scrubberEl', {static: false}) scrubberEl?: ElementRef<HTMLElement>;
