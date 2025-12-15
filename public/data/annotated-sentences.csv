@@ -16,21 +16,21 @@
 1;15;Le voyage était [crevant].;Die Reise war [anstrengend].
 1;16;C’est un [travail] très [fatigant].;Das ist eine sehr [ermüdende]{ermüdend} [Arbeit].
 1;17;[L’examen]{examen} était très [dur].;Die [Prüfung] war sehr [schwer].
-1;18;Il a joué un rôle important.;Er hat eine wichtige Rolle gespielt.
-1;19;Ce repas est [dégoûtant].;Dieses Essen ist [ekelhaft].
+1;18;Il a [joué]{jouer un rôle#A} un [rôle]{#A} important.;Er hat [eine]{eine Rolle spielen#A} wichtige [Rolle gespielt]{#A}.
+1;19;Ce [repas] est [dégoûtant].;Dieses [Essen] ist [ekelhaft].
 1;20;La maison est sur une [colline].;Das Haus liegt auf einem [Hügel].
 1;21;Il porte une [sacoche] en [cuir].;Er trägt eine [Umhängetasche] aus [Leder].
 1;22;J’ai perdu mes [bagages] à [l’aéroport]{aéroport}.;Ich habe mein [Gepäck] am [Flughafen] verloren.
 1;23;Il a dû [pousser]{pousser qc.} son vélo en montée.;Er musste sein Rad bergauf [schieben]{etw. schieben}.
-1;24;La voiture roule vite.;Das Auto fährt schnell.
-1;25;Le frein de mon vélo ne marche pas.;Meine Fahrradbremse funktioniert nicht.
-1;26;Il faut porter un casque à vélo.;Beim Radfahren muss man einen Helm tragen.
-1;27;Il porte une casquette bleue.;Er trägt eine blaue Kappe.
-1;28;Ce sac est très lourd.;Diese Tasche ist sehr schwer.
-1;29;Ce tissu est très léger.;Dieser Stoff ist sehr leicht.
-1;31;Les aménagements du parc sont modernes.;Die Anlagen des Parks sind modern.
-1;32;L’estuaire de la Loire est magnifique.;Die Mündung der Loire ist wunderschön.
-1;33;Je vais en Grèce cet été.;Ich fahre diesen Sommer nach Griechenland.
+1;24;La voiture [roule]{rouler} [vite].;Das Auto [fährt]{fahren} [schnell].
+1;25;Le [frein] de mon vélo ne marche pas.;Die [Bremse] meines Fahrrads funktioniert nicht.
+1;26;Il faut porter un [casque à vélo].;Beim Radfahren muss man einen [Fahrradhelm] tragen.
+1;27;Il porte une [casquette] bleue.;Er trägt eine blaue [Kappe].
+1;28;Ce [sac] est très [lourd].;Diese [Tasche] ist sehr [schwer].
+1;29;Ce [tissu] est très [léger].;Dieser [Stoff] ist sehr [leicht].
+1;31;Les [aménagements]{aménagement} du parc sont [modernes]{moderne}.;Die [Anlagen]{Anlage} des Parks sind [modern].
+1;32;[L’estuaire]{estuaire} de la Loire est [magnifique].;Die [Mündung] der Loire ist [wunderschön].
+1;33;Je vais [en Grèce] cet été.;Ich fahre diesen Sommer [nach Griechenland].
 1;34;Elle est grecque.;Sie ist Griechin.
 1;36;Le musée est en rénovation.;Das Museum wird gerade renoviert.
 1;37;La pâte d'amandes est sucrée.;Marzipan ist süß.
@@ -482,7 +482,7 @@
 12;484;Ils ont [annulé]{annuler qc.} la réunion.;Sie haben das Treffen [abgesagt]{etw. absagen}.
 12;485;Il [fouille]{fouiller} dans son sac pour chercher ses [clés]{clé}.;Er [kramt]{kramen} in seiner Tasche nach seinen [Schlüsseln]{Schlüssel}.
 12;486;Il y a trop de [bazar] sur la table.;Auf dem Tisch liegt zu viel [Kram].
-12;487;Après le travail, j’aime [me détendre]{se détendre}.;Nach der Arbeit entspanne ich mich gern.
+12;487;Après le travail, j’aime [me détendre]{se détendre}.;Nach der Arbeit [entspanne]{sich entspannen#A} ich [mich]{#A} gern.
 12;488;La ville veut [supprimer]{supprimer qc.} des places de parking.;Die Stadt will Parkplätze [abschaffen]{etw. abschaffen}.
 12;489;La France a [aboli]{abolir qc.} la peine de mort.;Frankreich hat die Todesstrafe [abgeschafft]{etw. abschaffen}.
 12;490;Il y a souvent des [embouteillages]{embouteillage} sur le [périphérique].;Auf dem [Stadtring] gibt es oft [Staus]{Stau}.
