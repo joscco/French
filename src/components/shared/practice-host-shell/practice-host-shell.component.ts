@@ -344,6 +344,11 @@ export class PracticeHostShellComponent implements AfterViewInit, OnDestroy {
     const idx = this.clamp(Math.floor(t * (this.length() - 1)));
     const label = this.scrubLabelForIndex?.(idx) ?? `${idx + 1}`;
 
+    if (this.scrubPreview().idx === idx && this.scrubPreview().active === active) {
+      return;
+    }
+
+    navigator.vibrate(10);
     this.scrubPreview.set({active, idx, label});
     this.previewIndex.emit(idx); // LIVE ohne Animation
   }
