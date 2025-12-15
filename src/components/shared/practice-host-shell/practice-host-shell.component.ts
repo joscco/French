@@ -155,9 +155,10 @@ export class PracticeHostShellComponent implements AfterViewInit, OnDestroy {
   }
 
   triggerShuffle() {
-    if (this.length() <= 1) return;
+    if (this.length() <= 1) {
+      return;
+    }
 
-    // Shuffle ist semantisch “weiter” – passt visuell
     this.animateSequential('next', () => this.shuffle.emit());
   }
 

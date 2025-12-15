@@ -2,12 +2,12 @@ import {Component, computed, effect, inject, input, signal} from '@angular/core'
 import {CommonModule} from '@angular/common';
 import {PracticeRouteStateService} from '../../../services/route-state.service';
 import {SentenceService} from '../../../services/sentence.service';
-import {PracticeCardService} from '../../../services/practice-card.service';
+import {WordService} from '../../../services/word.service';
 import {FlashcardCardComponent} from '../../view-words/flashcard/flashcard-card.component';
 import {PracticeHostShellComponent} from '../practice-host-shell/practice-host-shell.component';
 import {PracticeKind} from '../../../models/types';
 import {LessonOption} from '../../../models/lesson-option';
-import {PracticeCard} from '../../../models/practice-card';
+import {WordCard} from '../../../models/word-card';
 import {Sentence} from '../../../models/sentence';
 import {SentenceCardComponent} from '../../view-sentences/sentence-card/sentence-card.component';
 
@@ -18,22 +18,19 @@ import {SentenceCardComponent} from '../../view-sentences/sentence-card/sentence
   templateUrl: 'app-practice-host.component.html',
 })
 export class PracticeHostComponent {
-  private cardsSvc = inject(PracticeCardService);
-  private sentencesSvc = inject(SentenceService);
+  private wordService = inject(WordService);
+  private sentenceService = inject(SentenceService);
   private routeState = inject(PracticeRouteStateService);
 
-  // Inputs kommen von App (kannst du auch direkt injecten – ich halte’s “App controlled”)
   practiceKind = input<PracticeKind>('sentence');
-  mode = this.cardsSvc.mode; // signal<PracticeMode>
+  mode = this.wordService.mode;
   selectedLesson = signal<LessonOption | undefined>(undefined);
 
   index = signal<number>(0);
-
-  // ----- lists -----
-  vocabList = computed<PracticeCard[]>(() => this.cardsSvc.cards() ?? []);
+  vocabList = computed<WordCard[]>(() => this.wordService.words() ?? []);
   sentenceList = computed<Sentence[]>(() => {
     const selected = this.selectedLesson();
-    const all = this.sentencesSvc.sentencesWithRefs();
+    const all = this.sentenceService.sentencesWithRefs();
     if (!selected || selected.id === 'all') return all;
     return all.filter(s => s.lesson === selected.lesson);
   });
@@ -55,7 +52,6 @@ export class PracticeHostComponent {
     return list[i];
   });
 
-  // Scrub label: für vocab erster Buchstabe, für sentences Nummer
   scrubLabelForIndex = (i: number) => {
     if (this.practiceKind() === 'vocab') {
       const c = this.vocabList()[i];
@@ -94,13 +90,6 @@ export class PracticeHostComponent {
   }
 
   shuffle() {
-    // simpel: wir mischen im jeweiligen Service? -> hier lokal
-    // Für vocab: du bekommst cardsSvc.cards() als computed (neu generiert),
-    // deshalb machen wir hier eine lokale “shuffledIndices”-Map wäre schöner.
-    // Minimal: shuffle local copy in signal:
-    // -> Fürs erste: nur index resetten (oder du baust später seeded shuffle)
-    this.index.set(0);
-    this.routeState.patch({i: 0});
   }
 
   onNextRequested() {

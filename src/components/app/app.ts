@@ -6,7 +6,7 @@ import {LessonOption} from '../../models/lesson-option';
 import {TranslationService} from '../../services/translation.service';
 import {GermanTermService} from '../../services/german-term.service';
 import {FrenchTermService} from '../../services/french-term.service';
-import {PracticeCardService} from '../../services/practice-card.service';
+import {WordService} from '../../services/word.service';
 import {PracticeKind} from '../../models/types';
 import {SentenceService} from '../../services/sentence.service';
 import {IconButtonComponent} from '../shared/icon-button/icon-button.component';
@@ -30,7 +30,7 @@ export class AppComponent {
   private germanTermService = inject(GermanTermService)
   private translationService = inject(TranslationService)
 
-  private practiceCardsService = inject(PracticeCardService);
+  private practiceCardsService = inject(WordService);
   private lessonService = inject(LessonService);
   private sentenceService = inject(SentenceService);
   public routeStateService = inject(PracticeRouteStateService);
@@ -38,6 +38,8 @@ export class AppComponent {
   panelOpen = signal(false);
   loading = signal(true);
   practiceKind = signal<PracticeKind>('sentence');
+  selectedLessons = signal<LessonOption | undefined>(undefined);
+
   practiceMode = this.practiceCardsService.mode;
 
   lessons = computed<LessonOption[]>(() => {
@@ -63,19 +65,6 @@ export class AppComponent {
     return [allOption, ...lessonOptions];
   });
 
-  selectedLessons = signal<LessonOption | undefined>(undefined);
-  practiceCards = this.practiceCardsService.cards;
-
-  sentences = computed(() => {
-    const all = this.sentenceService.sentencesWithRefs();
-    const selected = this.selectedLessons();
-
-    if (!selected || selected.id === 'all') {
-      return all;
-    }
-    return all.filter(s => s.lesson === selected.lesson);
-  });
-
   constructor() {
     Promise.all([
       this.lessonService.loadAll(),
@@ -88,12 +77,10 @@ export class AppComponent {
     })
       .finally(() => {
         this.loading.set(false);
-
-        // 1) URL -> State
         this.practiceKind.set(this.routeStateService.kind());
         this.practiceMode.set(this.routeStateService.mode());
 
-        const lessonId = this.routeStateService.lesson(); // 'all' oder '12'
+        const lessonId = this.routeStateService.lesson();
         const opts = this.lessons();
         const match =
           lessonId === 'all'
@@ -128,7 +115,7 @@ export class AppComponent {
   }
 
   exportPdf() {
-    const cards = this.practiceCards();
+    const cards = this.practiceCardsService.words();
     const selected = this.selectedLessons();
 
     if (!cards?.length || !selected) {

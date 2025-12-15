@@ -1,6 +1,6 @@
 export type HeadLanguage = 'fr' | 'de';
 
-export interface PracticeCard {
+export interface WordCard {
   id: string;
   headLanguage: HeadLanguage;
 

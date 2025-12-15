@@ -1,19 +1,20 @@
 import {
   AfterViewInit,
-  Component, effect,
+  Component,
+  effect,
   ElementRef,
   EventEmitter,
-  HostListener, input,
-  Input,
+  HostListener,
+  input,
   Output,
   ViewChild,
 } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {CommonModule} from '@angular/common';
 import gsap from 'gsap';
-import { IconButtonComponent } from '../icon-button/icon-button.component';
-import { LessonSelectorComponent } from '../lesson-selector/lesson-selector.component';
-import { LessonOption } from '../../../models/lesson-option';
-import { PracticeKind } from '../../../models/types';
+import {IconButtonComponent} from '../icon-button/icon-button.component';
+import {LessonSelectorComponent} from '../lesson-selector/lesson-selector.component';
+import {LessonOption} from '../../../models/lesson-option';
+import {PracticeKind} from '../../../models/types';
 
 @Component({
   selector: 'app-practice-panel',
@@ -38,7 +39,7 @@ export class PracticePanelComponent implements AfterViewInit {
   @ViewChild('backdrop', { static: true }) backdrop!: ElementRef<HTMLDivElement>;
   @ViewChild('sheet', { static: true }) sheet!: ElementRef<HTMLDivElement>;
 
-  private tl?: gsap.core.Timeline;
+  private timeline?: gsap.core.Timeline;
 
   constructor() {
     effect(() => {
@@ -81,24 +82,23 @@ export class PracticePanelComponent implements AfterViewInit {
     this.exportPdf.emit();
   }
 
-  // ---- GSAP ----
   private animateIn() {
-    this.tl?.kill();
+    this.timeline?.kill();
     gsap.killTweensOf([this.backdrop.nativeElement, this.sheet.nativeElement]);
 
     document.body.style.overflow = 'hidden';
     this.backdrop.nativeElement.classList.remove('pointer-events-none');
 
-    this.tl = gsap.timeline()
+    this.timeline = gsap.timeline()
       .to(this.backdrop.nativeElement, { opacity: 1, duration: 0.18, ease: 'power1.out' })
       .to(this.sheet.nativeElement, { yPercent: 0, duration: 0.32, ease: 'power3.out' }, '<');
   }
 
   private animateOut() {
-    this.tl?.kill();
+    this.timeline?.kill();
     gsap.killTweensOf([this.backdrop.nativeElement, this.sheet.nativeElement]);
 
-    this.tl = gsap.timeline({
+    this.timeline = gsap.timeline({
       onComplete: () => {
         this.backdrop.nativeElement.classList.add('pointer-events-none');
         document.body.style.overflow = '';

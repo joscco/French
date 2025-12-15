@@ -1,4 +1,4 @@
-import {PracticeCard} from '../models/practice-card';
+import {WordCard} from '../models/word-card';
 import {TranslationLink} from '../models/translation-link';
 import {GermanTerm} from '../models/german-term';
 import {FrenchTerm} from '../models/french-term';
@@ -106,10 +106,10 @@ export function buildCardsFromFrench(
   frenchTerms: FrenchTerm[],
   germanByKey: Record<string, GermanTerm>,
   links: TranslationLink[]
-): PracticeCard[] {
+): WordCard[] {
   const { frToDe } = buildLinkIndex(links);
 
-  const cards: PracticeCard[] = [];
+  const cards: WordCard[] = [];
 
   for (const fr of frenchTerms) {
     const deKeys = frToDe.get(fr.key) ?? [];
@@ -143,10 +143,10 @@ export function buildCardsFromGerman(
   germanTerms: GermanTerm[],
   frenchByKey: Record<string, FrenchTerm>,
   links: TranslationLink[]
-): PracticeCard[] {
+): WordCard[] {
   const { deToFr } = buildLinkIndex(links);
 
-  const cards: PracticeCard[] = [];
+  const cards: WordCard[] = [];
 
   for (const de of germanTerms) {
     const frKeys = deToFr.get(de.key) ?? [];

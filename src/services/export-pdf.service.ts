@@ -3,11 +3,11 @@ import {jsPDF} from 'jspdf';
 import autoTable, {CellInput, HookData} from 'jspdf-autotable';
 import {LessonOption} from '../models/lesson-option';
 import {beautifyGenus} from '../helpers/utils';
-import {PracticeCard} from '../models/practice-card';
+import {WordCard} from '../models/word-card';
 
 @Injectable({providedIn: 'root'})
 export class ExportPdfService {
-  exportVocab(cards: PracticeCard[], selected: LessonOption): void {
+  exportVocab(cards: WordCard[], selected: LessonOption): void {
     if (!cards || cards.length === 0) return;
 
     const sorted = [...cards].sort((a, b) =>

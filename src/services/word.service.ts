@@ -3,12 +3,12 @@ import { GermanTermService } from './german-term.service';
 import { FrenchTermService } from './french-term.service';
 import { TranslationService } from './translation.service';
 import { SentenceRefService } from './sentence-ref.service';
-import { PracticeCard } from '../models/practice-card';
+import { WordCard } from '../models/word-card';
 import { buildCardsFromFrench, buildCardsFromGerman, indexByKey } from '../helpers/utils';
 import { PracticeMode } from '../models/types';
 
 @Injectable({ providedIn: 'root' })
-export class PracticeCardService {
+export class WordService {
   private frenchTerms = inject(FrenchTermService);
   private germanTerms = inject(GermanTermService);
   private translations = inject(TranslationService);
@@ -17,15 +17,14 @@ export class PracticeCardService {
   readonly mode = signal<PracticeMode>('de-fr');
   readonly selectedLessons = signal<number[] | 'all'>([]);
 
-  readonly cards = computed<PracticeCard[]>(() => {
+  readonly words = computed<WordCard[]>(() => {
     const mode = this.mode();
     const sel = this.selectedLessons();
 
-    const frAll = this.frenchTerms.terms();   // FrenchTerm { key, term, ... }
-    const deAll = this.germanTerms.terms();   // GermanTerm { key, term, ... }
-    const links = this.translations.links();  // TranslationLink { frKey, deKey, priority? }
+    const frAll = this.frenchTerms.terms();
+    const deAll = this.germanTerms.terms();
+    const links = this.translations.links();
 
-    // Lesson-Filter läuft über SentenceRefs (nicht über Term.lesson)
     const allowed =
       sel === 'all' || (Array.isArray(sel) && sel.length === 0)
         ? null
