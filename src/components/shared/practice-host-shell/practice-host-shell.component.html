@@ -1,6 +1,6 @@
 <section class="flex flex-col h-full w-full">
   <div class="flex-1 w-full flex items-center justify-center min-h-0 pb-4 relative">
-    <!-- host = viewport + ghost container -->
+
     @if (showScrubber && length() > 1) {
       <div class="absolute right-0 top-0 bottom-4 w-8">
         <div
@@ -15,26 +15,24 @@
           <!-- Track -->
           <div
             class="absolute inset-y-0 right-0 w-1 rounded-full
-                         opacity-50 transition-opacity duration-150
-                         group-hover:opacity-100"
+                   opacity-50 transition-opacity duration-150"
             [class.opacity-100]="scrubPreview().active || isTouchScreen"
           >
             <div
               class="absolute inset-0 rounded-full"
               style="
-                      background-image: radial-gradient(circle, rgba(120,120,120,0.35) 3px, transparent 1.6px);
-                      background-size: 10px 10px;
-                      background-position: center;
-                    "
+                background-image: radial-gradient(circle, rgba(120,120,120,0.35) 3px, transparent 1.6px);
+                background-size: 10px 10px;
+                background-position: center;
+              "
             ></div>
           </div>
 
           <!-- Thumb -->
           <div
             class="absolute -right-1 w-3 h-10 rounded-full
-                         bg-neutral-400/60 shadow-sm
-                         opacity-0 transition-opacity duration-150
-                         group-hover:opacity-100"
+                   bg-neutral-400/60 shadow-sm
+                   opacity-0 transition-opacity duration-150"
             [class.opacity-100]="scrubPreview().active"
             [style.top.%]="length() > 1 ? (index() / (length() - 1)) * 100 : 0"
             style="transform: translateY(-50%)"
@@ -55,15 +53,17 @@
         </div>
       </div>
     }
+
+    <!-- cardHost ist der "Viewport" + Ghost-Container -->
     <div
       #cardHost
-      class="relative h-full w-[350px] min-h-[420px] pr-4"
+      class="relative h-full w-[330px] max-w-[330px] mr-4"
     >
-      <!-- slide layer: das ist das EINE bewegte Ding -->
+      <!-- slideLayer: DAS eine bewegte Element -->
       <div #slideLayer class="h-full">
         <div
           class="group relative flex flex-col h-full w-full
-                 border-2 rounded-2xl bg-white overflow-hidden"
+                 border-2 rounded-2xl bg-white "
         >
           <div class="flex-1 min-h-0 w-full">
             <ng-content></ng-content>
@@ -71,17 +71,18 @@
         </div>
       </div>
     </div>
+
   </div>
 
   <div class="pb-6 flex items-center w-full justify-center gap-3">
-    <app-icon-button iconName="arrow_back" tooltip="Zurück" (onClick)="triggerPrev()"/>
+    <app-icon-button iconName="arrow_back" tooltip="Zurück" (onClick)="triggerPrev()" />
     <div class="px-3 w-[100px] text-right font-semibold text-neutral-500 tabular-nums">
       {{ counterText() }}
     </div>
-    <app-icon-button iconName="arrow_forward" tooltip="Weiter" (onClick)="triggerNext()"/>
+    <app-icon-button iconName="arrow_forward" tooltip="Weiter" (onClick)="triggerNext()" />
 
     @if (showShuffle) {
-      <app-icon-button iconName="shuffle" tooltip="Mischen" (onClick)="triggerShuffle()"/>
+      <app-icon-button iconName="shuffle" tooltip="Mischen" (onClick)="triggerShuffle()" />
     }
   </div>
 </section>

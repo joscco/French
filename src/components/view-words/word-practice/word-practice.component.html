@@ -15,7 +15,7 @@
 </ng-template>
 
 @if (oriented().length && current(); as c) {
-  <app-practice-card-shell
+  <app-practice-host-shell
     #shell
     [index]="index()"
     [length]="oriented().length"
@@ -38,7 +38,7 @@
       [hovered]="false"
       [interactive]="true"
     />
-  </app-practice-card-shell>
+  </app-practice-host-shell>
 
 } @else {
   <p>Keine Karten in dieser Auswahl.</p>

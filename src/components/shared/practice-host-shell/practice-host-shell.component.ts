@@ -12,21 +12,21 @@ import {
   input,
   signal,
 } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { MatIconModule } from '@angular/material/icon';
-import { IconButtonComponent } from '../icon-button/icon-button.component';
+import {CommonModule} from '@angular/common';
+import {MatIconModule} from '@angular/material/icon';
+import {IconButtonComponent} from '../icon-button/icon-button.component';
 import gsap from 'gsap';
 
 type NavDir = 'next' | 'prev';
 type Anim = 'slide' | 'fade' | 'none';
 
 @Component({
-  selector: 'app-practice-card-shell',
+  selector: 'app-practice-host-shell',
   standalone: true,
   imports: [CommonModule, MatIconModule, IconButtonComponent],
-  templateUrl: './practice-card-shell.component.html',
+  templateUrl: './practice-host-shell.component.html',
 })
-export class PracticeCardShellComponent implements AfterViewInit, OnDestroy {
+export class PracticeHostShellComponent implements AfterViewInit, OnDestroy {
   index = input<number>(0);
   length = input<number>(0);
 
@@ -40,10 +40,10 @@ export class PracticeCardShellComponent implements AfterViewInit, OnDestroy {
   @Output() prev = new EventEmitter<void>();
   @Output() next = new EventEmitter<void>();
 
-  /** Parent soll sofort index setzen (und ggf. URL patchen) */
+  /** Parent setzt sofort index (und ggf. URL patch) */
   @Output() goTo = new EventEmitter<number>();
 
-  /** live scrub: Parent soll sofort index setzen (ohne URL patch) */
+  /** live scrub: Parent setzt sofort index (ohne URL patch) */
   @Output() previewIndex = new EventEmitter<number>();
 
   /** scrub commit: Parent patcht URL (und setzt index) */
@@ -51,9 +51,9 @@ export class PracticeCardShellComponent implements AfterViewInit, OnDestroy {
 
   readonly counterText = computed(() => `${this.index() + 1} / ${this.length()}`);
 
-  @ViewChild('cardHost', { static: true }) cardHost!: ElementRef<HTMLElement>;
-  @ViewChild('slideLayer', { static: true }) slideLayer!: ElementRef<HTMLElement>;
-  @ViewChild('scrubberEl', { static: false }) scrubberEl?: ElementRef<HTMLElement>;
+  @ViewChild('cardHost', {static: true}) cardHost!: ElementRef<HTMLElement>;
+  @ViewChild('slideLayer', {static: true}) slideLayer!: ElementRef<HTMLElement>;
+  @ViewChild('scrubberEl', {static: false}) scrubberEl?: ElementRef<HTMLElement>;
 
   // scrub
   private scrubbing = signal(false);
@@ -69,6 +69,7 @@ export class PracticeCardShellComponent implements AfterViewInit, OnDestroy {
   private touchStartY = 0;
   private touchEndX = 0;
   private touchEndY = 0;
+  private offsetWidth = 50; // für slide animation
 
   readonly isTouchScreen =
     'ontouchstart' in window || (navigator.maxTouchPoints ?? 0) > 0;
@@ -78,11 +79,17 @@ export class PracticeCardShellComponent implements AfterViewInit, OnDestroy {
 
   ngAfterViewInit(): void {
     const host = this.cardHost.nativeElement;
-    host.addEventListener('touchstart', this.onTouchStart, { passive: true });
-    host.addEventListener('touchmove', this.onTouchMove, { passive: true });
+
+    host.addEventListener('touchstart', this.onTouchStart, {passive: true});
+    host.addEventListener('touchmove', this.onTouchMove, {passive: true});
     host.addEventListener('touchend', this.onTouchEnd);
 
-    gsap.set(this.slideLayer.nativeElement, { x: 0, opacity: 1 });
+    gsap.set(this.slideLayer.nativeElement, {
+      x: 0,
+      opacity: 1,
+      willChange: 'transform, opacity',
+      transformOrigin: '50% 50%',
+    });
   }
 
   ngOnDestroy(): void {
@@ -118,17 +125,23 @@ export class PracticeCardShellComponent implements AfterViewInit, OnDestroy {
   // -------------------------
   // buttons
   // -------------------------
-  triggerPrev() { this.requestStep(-1); }
-  triggerNext() { this.requestStep(+1); }
+  triggerPrev() {
+    this.requestStep(-1);
+  }
+
+  triggerNext() {
+    this.requestStep(+1);
+  }
 
   triggerShuffle() {
     if (this.length() <= 1) return;
-    // “shuffle” ist semantisch wie "next" – looks fine
-    this.animateInstantSwap('next', () => this.shuffle.emit());
+
+    // Shuffle ist semantisch “weiter” – passt visuell
+    this.animateSequential('next', () => this.shuffle.emit());
   }
 
   // -------------------------
-  // NAV: sofort state + animation nachziehen
+  // NAV: Parent sofort + Animation "old out THEN new in"
   // -------------------------
   private requestStep(d: -1 | 1) {
     if (this.length() <= 1) return;
@@ -139,73 +152,76 @@ export class PracticeCardShellComponent implements AfterViewInit, OnDestroy {
 
     const dir: NavDir = d === 1 ? 'next' : 'prev';
 
-    // ✅ State sofort!
     this.goTo.emit(to);
     dir === 'next' ? this.next.emit() : this.prev.emit();
 
-    // ✅ Animation zieht nach (Ghost OUT + new IN)
-    this.animateAfterSwap(dir);
+    this.animateSequential(dir);
   }
 
-  private animateAfterSwap(dir: NavDir) {
-    if (this.animation === 'none') return;
-
-    // kill & cleanup
-    gsap.killTweensOf(this.slideLayer.nativeElement);
-    this.cleanupGhost();
+  /**
+   * “old out THEN new in”
+   *
+   * - Ghost snapshot vom aktuellen slideLayer (alte Karte)
+   * - echten slideLayer sofort auf opacity 0 setzen (neue Karte ist zwar schon da, aber unsichtbar)
+   * - Ghost rausfaden (optional leicht raus sliden)
+   * - danach slideLayer rein (fade + optional slide)
+   */
+  private animateSequential(dir: NavDir, swapFn?: () => void) {
+    if (this.animation === 'none') {
+      swapFn?.();
+      return;
+    }
 
     const host = this.cardHost.nativeElement;
     const layer = this.slideLayer.nativeElement;
-    const width = layer.offsetWidth || host.offsetWidth;
 
-    // Ghost = Snapshot der “alten” Karte (inkl. Rahmen!)
+    // kill current tweens & ghost
+    gsap.killTweensOf(layer);
+    this.cleanupGhost();
+
+    // Snapshot (OLD)
     const ghost = layer.cloneNode(true) as HTMLElement;
     ghost.style.position = 'absolute';
     ghost.style.inset = '0';
     ghost.style.pointerEvents = 'none';
     ghost.style.zIndex = '20';
-    // scrubber aus ghost entfernen (sonst sieht man doppelt)
+    // scrubber nicht doppeln
     ghost.querySelector('[data-scrubber]')?.remove();
 
     host.appendChild(ghost);
     this.ghostEl = ghost;
 
-    if (this.animation === 'fade') {
-      gsap.fromTo(layer, { opacity: 0 }, { opacity: 1, duration: 0.26, ease: 'power2.out' });
-      gsap.to(ghost, {
-        opacity: 0,
-        duration: 0.20,
-        ease: 'power2.in',
-        onComplete: () => this.cleanupGhost(),
-      });
-      return;
-    }
+    const inFromX = this.animation === 'slide' ? (dir === 'next' ? this.offsetWidth : -this.offsetWidth) : 0;
 
-    // slide
-    const outX = dir === 'next' ? -width : width;
-    const inFromX = dir === 'next' ? width : -width;
+    // Neue Karte (layer) erstmal unsichtbar halten, bis ghost weg ist
+    gsap.set(layer, {opacity: 0, x: inFromX});
 
-    // Neues rein
-    gsap.fromTo(
-      layer,
-      { x: inFromX, opacity: 0 },
-      { x: 0, opacity: 1, duration: 0.30, ease: 'power2.out' }
-    );
+    // optional: Shuffle-Fall (swapFn) – hier nur genutzt, wenn du später willst
+    // In deinem normalen Flow hat der Parent schon geswapped.
+    swapFn?.();
 
-    // Altes raus (ghost)
-    gsap.to(ghost, {
+    const outX = this.animation === 'slide' ? (dir === 'next' ? -this.offsetWidth : this.offsetWidth) : 0;
+    const tl = gsap.timeline({
+      onComplete: () => {
+        this.cleanupGhost();
+      },
+    });
+
+    // 1) Ghost raus
+    tl.to(ghost, {
       x: outX,
       opacity: 0,
-      duration: 0.24,
+      duration: 0.22,
       ease: 'power2.in',
-      onComplete: () => this.cleanupGhost(),
     });
-  }
 
-  private animateInstantSwap(dir: NavDir, swapFn: () => void) {
-    // für Shuffle/Commit: swap sofort + dann gleiche Animation
-    swapFn();
-    this.animateAfterSwap(dir);
+    // 2) New rein (erst NACH ghost)
+    tl.fromTo(
+      layer,
+      {x: inFromX, opacity: 0},
+      {x: 0, opacity: 1, duration: 0.28, ease: 'power2.out'},
+      '>-0.01'
+    );
   }
 
   private cleanupGhost() {
@@ -259,7 +275,9 @@ export class PracticeCardShellComponent implements AfterViewInit, OnDestroy {
     if (!this.showScrubber || this.length() <= 1) return;
     this.scrubbing.set(true);
     this.updateScrub(ev, true);
-    (ev.target as HTMLElement)?.setPointerCapture?.(ev.pointerId);
+
+    // wichtig: capture auf dem scrubber selbst, nicht auf ev.target (kann child sein)
+    this.scrubberEl?.nativeElement.setPointerCapture?.(ev.pointerId);
   }
 
   onScrubMove(ev: PointerEvent) {
@@ -272,7 +290,7 @@ export class PracticeCardShellComponent implements AfterViewInit, OnDestroy {
     this.scrubbing.set(false);
 
     const s = this.scrubPreview();
-    this.scrubPreview.set({ ...s, active: false });
+    this.scrubPreview.set({...s, active: false});
 
     const from = this.index();
     const to = this.clamp(s.idx);
@@ -280,8 +298,11 @@ export class PracticeCardShellComponent implements AfterViewInit, OnDestroy {
 
     const dir: NavDir = to > from ? 'next' : 'prev';
 
-    // ✅ commit sofort (Parent setzt index + patched URL)
-    this.animateInstantSwap(dir, () => this.commitIndex.emit(to));
+    // commit sofort (Parent patched URL + setzt index)
+    this.commitIndex.emit(to);
+
+    // dann “old out THEN new in”
+    this.animateSequential(dir);
   }
 
   private updateScrub(ev: PointerEvent, active: boolean) {
@@ -294,7 +315,7 @@ export class PracticeCardShellComponent implements AfterViewInit, OnDestroy {
     const idx = this.clamp(Math.floor(t * (this.length() - 1)));
     const label = this.scrubLabelForIndex?.(idx) ?? `${idx + 1}`;
 
-    this.scrubPreview.set({ active, idx, label });
-    this.previewIndex.emit(idx); // LIVE, ohne Animation
+    this.scrubPreview.set({active, idx, label});
+    this.previewIndex.emit(idx); // LIVE ohne Animation
   }
 }

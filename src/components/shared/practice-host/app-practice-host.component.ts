@@ -4,7 +4,7 @@ import {PracticeRouteStateService} from '../../../services/route-state.service';
 import {SentenceService} from '../../../services/sentence.service';
 import {PracticeCardService} from '../../../services/practice-card.service';
 import {FlashcardCardComponent} from '../../view-words/flashcard/flashcard-card.component';
-import {PracticeCardShellComponent} from '../practice-card-shell/practice-card-shell.component';
+import {PracticeHostShellComponent} from '../practice-host-shell/practice-host-shell.component';
 import {PracticeKind} from '../../../models/types';
 import {LessonOption} from '../../../models/lesson-option';
 import {PracticeCard} from '../../../models/practice-card';
@@ -14,7 +14,7 @@ import {SentenceCardComponent} from '../../view-sentences/sentence-card/sentence
 @Component({
   selector: 'app-practice-host',
   standalone: true,
-  imports: [CommonModule, PracticeCardShellComponent, FlashcardCardComponent, SentenceCardComponent],
+  imports: [CommonModule, PracticeHostShellComponent, FlashcardCardComponent, SentenceCardComponent, PracticeHostShellComponent],
   templateUrl: 'app-practice-host.component.html',
 })
 export class PracticeHostComponent {

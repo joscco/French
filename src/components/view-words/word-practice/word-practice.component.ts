@@ -1,6 +1,7 @@
 import {
   Component,
-  computed, inject,
+  computed,
+  inject,
   Input,
   OnChanges,
   OnInit,
@@ -14,17 +15,17 @@ import {CommonModule} from '@angular/common';
 import {PracticeCard} from '../../../models/practice-card';
 import {PracticeMode} from '../../../models/types';
 
-import {PracticeCardShellComponent} from '../../shared/practice-card-shell/practice-card-shell.component';
 import {FlashcardCardComponent} from '../flashcard/flashcard-card.component';
 import {PracticeRouteStateService} from '../../../services/route-state.service';
+import {PracticeHostShellComponent} from '../../shared/practice-host-shell/practice-host-shell.component';
 
 @Component({
   selector: 'app-word-practice',
   standalone: true,
   imports: [
     CommonModule,
-    PracticeCardShellComponent,
     FlashcardCardComponent,
+    PracticeHostShellComponent,
   ],
   templateUrl: './word-practice.component.html',
 })
@@ -33,7 +34,7 @@ export class WordPracticeComponent implements OnInit, OnChanges {
   @Input() mode: PracticeMode = 'fr-de';
 
   @ViewChild('cardTpl', { static: true }) cardTpl!: TemplateRef<any>;
-  @ViewChild(PracticeCardShellComponent) shell?: PracticeCardShellComponent;
+  @ViewChild(PracticeHostShellComponent) shell?: PracticeHostShellComponent;
 
   private routeStateService = inject(PracticeRouteStateService);
 
