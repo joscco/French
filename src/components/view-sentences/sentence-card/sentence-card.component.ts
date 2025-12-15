@@ -1,13 +1,15 @@
 import {
   Component,
-  ElementRef,
-  HostListener,
-  ViewChild,
   computed,
   effect,
+  ElementRef,
+  EventEmitter,
+  HostListener,
   inject,
   input,
+  Output,
   signal,
+  ViewChild,
 } from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {FormsModule} from '@angular/forms';
@@ -16,11 +18,7 @@ import gsap from 'gsap';
 import {Sentence} from '../../../models/sentence';
 import {PracticeMode} from '../../../models/types';
 import {normalizeForCheck} from '../../../helpers/normalize';
-import {
-  buildWordOverlayTokens,
-  collapseOverlayRuns,
-  DisplayToken,
-} from '../../../helpers/answer-diff';
+import {buildWordOverlayTokens, collapseOverlayRuns, DisplayToken,} from '../../../helpers/answer-diff';
 
 import {TermLookupService, TermTooltipVm} from '../../../services/term-lookup.service';
 import {TermRefInSentence} from '../../../models/term-ref-in-sentence';
@@ -28,33 +26,29 @@ import {buildPromptSegments, PromptSegment} from '../../../helpers/prompt-markup
 
 import {TermTooltipOverlayComponent} from '../term-tooltip-overlay/term-tooltip-overlay.component';
 import {PromptMarkupComponent} from '../prompt-markup/prompt-markup.component';
-import {PracticeCardShellComponent} from '../../shared/practice-card-shell/practice-card-shell.component';
 import {IconButtonComponent} from '../../shared/icon-button/icon-button.component';
-
-type NavDir = 'next' | 'prev';
+import {PracticeRouteStateService} from '../../../services/route-state.service';
 
 @Component({
-  selector: 'app-sentence-practice',
+  selector: 'app-sentence-card',
   standalone: true,
   imports: [
     CommonModule,
     FormsModule,
     PromptMarkupComponent,
     TermTooltipOverlayComponent,
-    PracticeCardShellComponent,
     IconButtonComponent,
   ],
-  templateUrl: './sentence-practice.component.html',
+  templateUrl: './sentence-card.component.html',
 })
-export class SentencePracticeComponent {
-  sentences = input<Sentence[]>([]);
+export class SentenceCardComponent {
+  sentence = input<Sentence | null>(null);
   mode = input<PracticeMode>('de-fr');
 
-  private readonly termLookup = inject(TermLookupService);
+  @Output() nextRequested = new EventEmitter<void>();
 
-  readonly oriented = signal<Sentence[]>([]);
-  readonly index = signal(0);
-  readonly navDirection = signal<NavDir>('next');
+  private readonly termLookup = inject(TermLookupService);
+  private routeStateService = inject(PracticeRouteStateService);
 
   readonly answer = signal('');
   readonly isChecked = signal(false);
@@ -63,42 +57,31 @@ export class SentencePracticeComponent {
   readonly displayTokens = signal<DisplayToken[]>([]);
   readonly promptSegments = signal<PromptSegment[]>([]);
 
-  readonly current = computed<Sentence | undefined>(() => {
-    const list = this.oriented();
-    const i = this.index();
-    return list[i] ?? list[0];
-  });
-
   readonly promptText = computed(() => {
-    const cur = this.current();
+    const cur = this.sentence();
     if (!cur) return '';
     return this.mode() === 'de-fr' ? cur.de : cur.fr;
   });
 
   readonly expectedText = computed(() => {
-    const cur = this.current();
+    const cur = this.sentence();
     if (!cur) return '';
     return this.mode() === 'de-fr' ? cur.fr : cur.de;
   });
 
   readonly promptRefs = computed<TermRefInSentence[]>(() => {
-    const cur = this.current();
+    const cur = this.sentence();
     const refs = cur?.refs ?? [];
     const lang: TermRefInSentence['lang'] = this.mode() === 'de-fr' ? 'german' : 'french';
     return refs.filter(r => r.lang === lang);
   });
 
-  get answerModel(): string {
-    return this.answer();
-  }
+  @ViewChild('overlayLayer') overlayLayer?: ElementRef<HTMLElement>;
+  @ViewChild('editLayer') editLayer?: ElementRef<HTMLTextAreaElement>;
+  @ViewChild('footerCheck') footerCheck?: ElementRef<HTMLElement>;
+  @ViewChild('footerBar') footerBar?: ElementRef<HTMLElement>;
+  @ViewChild('swapHost') swapHost?: ElementRef<HTMLElement>;
 
-  set answerModel(v: string) {
-    this.answer.set(v);
-  }
-
-  // -----------------------
-  // tooltip state
-  // -----------------------
   readonly tooltipPinned = signal(false);
   readonly tooltipOpen = signal(false);
   readonly tooltipBasisX = signal<'left' | 'center' | 'right'>('center');
@@ -108,23 +91,12 @@ export class SentencePracticeComponent {
   readonly tooltipY = signal(0);
   readonly tooltipAnchorRef = signal<TermRefInSentence | undefined>(undefined);
 
-  readonly activeRefKey = computed(() => {
-    const r = this.tooltipAnchorRef();
-    return r ? `${r.lang}:${r.key}` : undefined;
-  });
-
+  private lastAnchorEl: HTMLElement | null = null;
   private closeTimer: number | null = null;
 
   readonly isPlaying = signal(false);
   private audio?: HTMLAudioElement;
   private autoPlayedForCheck = signal(false);
-
-  @ViewChild('overlayLayer') overlayLayer?: ElementRef<HTMLElement>;
-  @ViewChild('editLayer') editLayer?: ElementRef<HTMLTextAreaElement>;
-  @ViewChild('footerCheck') footerCheck?: ElementRef<HTMLElement>;
-  @ViewChild('footerBar') footerBar?: ElementRef<HTMLElement>;
-  @ViewChild('swapHost') swapHost?: ElementRef<HTMLElement>;
-  private lastAnchorEl: HTMLElement | null = null;
 
   constructor() {
     effect(() => {
@@ -149,9 +121,7 @@ export class SentencePracticeComponent {
 
     // reset when input sentences change
     effect(() => {
-      const list = this.sentences() ?? [];
-      this.oriented.set([...list]);
-      this.index.set(0);
+      this.sentence(); this.mode();
       this.resetForNext();
     });
 
@@ -170,27 +140,16 @@ export class SentencePracticeComponent {
     });
   }
 
-  // =========================================================
-  // Animations: check / edit again
-  // =========================================================
-  onTooltipPanelRect(r: DOMRect) {
-    const w = Math.max(0, Math.round(r.width));
-    if (!w) return;
+  get answerModel(): string {
+    return this.answer();
+  }
 
-    // nur updaten, wenn sinnvoll anders (verhindert jitter)
-    if (Math.abs(this.tooltipPanelW() - w) > 2) {
-      this.tooltipPanelW.set(w);
-
-      // Wenn Tooltip offen ist: Position nochmal clamped neu berechnen
-      const anchor = this.lastAnchorEl;
-      if (this.tooltipOpen() && anchor) {
-        this.setTooltipPosition(anchor);
-      }
-    }
+  set answerModel(v: string) {
+    this.answer.set(v);
   }
 
   checkAnimated() {
-    if (!this.current()) return;
+    if (!this.sentence()) return;
 
     // state first (tokens are computed by effect)
     this.isChecked.set(true);
@@ -243,10 +202,6 @@ export class SentencePracticeComponent {
       .to(edit, {opacity: 1, duration: 0.2, ease: 'power2.out'}, 0);
   }
 
-  // =========================================================
-  // Check / edit / reset
-  // =========================================================
-
   private editAgain() {
     this.isChecked.set(false);
     this.isCorrect.set(false);
@@ -277,36 +232,114 @@ export class SentencePracticeComponent {
     });
   }
 
-  // =========================================================
-  // Navigation
-  // =========================================================
-
-  prev() {
-    const list = this.oriented();
-    if (!list.length) return;
-    this.navDirection.set('prev');
-    this.index.update(i => (i - 1 + list.length) % list.length);
-    this.resetForNext();
-  }
-
-  next() {
-    const list = this.oriented();
-    if (!list.length) return;
-    this.navDirection.set('next');
-    this.index.update(i => (i + 1) % list.length);
-    this.resetForNext();
-  }
-
-  shuffleSentences() {
-    const arr = [...this.oriented()];
-    for (let i = arr.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [arr[i], arr[j]] = [arr[j], arr[i]];
+  @HostListener('document:keydown', ['$event'])
+  onDocKeydown(ev: KeyboardEvent) {
+    if (ev.key === 'Escape') {
+      this.closeTooltip(true);
+      return;
     }
-    this.navDirection.set('next');
-    this.oriented.set(arr);
-    this.index.set(0);
-    this.resetForNext();
+
+    if (ev.key == 'Enter' && !ev.shiftKey) {
+      ev.preventDefault();
+      if (!this.isChecked()) {
+        return this.checkAnimated();
+      }
+
+      if (this.isCorrect()) {
+        this.nextRequested.emit();
+      } else {
+        this.editAgainAnimated();
+      }
+    }
+  }
+
+  private sentenceAudioSrc(): string | undefined {
+    const id = this.sentence()?.id;
+    if (id === undefined || id === null) return undefined;
+    return new URL(`sounds/fr${id}.mp3`, document.baseURI).toString();
+  }
+
+  private playAudio() {
+    const src = this.sentenceAudioSrc();
+    if (!src) return;
+
+    if (!this.audio) {
+      this.audio = new Audio();
+      this.audio.preload = 'none';
+      this.audio.onended = () => this.stopAudio();
+      this.audio.onerror = () => this.stopAudio();
+    }
+
+    try {
+      this.audio.src = src;
+      this.audio.load();
+      this.isPlaying.set(true);
+
+      const p = this.audio.play();
+      if (p && typeof (p as any).then === 'function') {
+        (p as Promise<void>).catch(() => this.stopAudio());
+      }
+    } catch {
+      this.stopAudio();
+    }
+  }
+
+  togglePlay(ev?: Event) {
+    ev?.stopPropagation();
+    const src = this.sentenceAudioSrc();
+    if (!src) return;
+
+    if (this.isPlaying()) {
+      return this.stopAudio();
+    } else {
+      this.playAudio();
+    }
+  }
+
+  private stopAudio() {
+    try {
+      if (this.audio) {
+        this.audio.pause();
+        this.audio.currentTime = 0;
+      }
+    } finally {
+      this.isPlaying.set(false);
+    }
+  }
+
+
+  @HostListener('document:pointerdown', ['$event'])
+  onDocPointerDown(ev: PointerEvent) {
+    if (!this.tooltipOpen()) return;
+    const target = ev.target as HTMLElement | null;
+    if (!target) return;
+
+    if (target.closest('[data-tooltip]')) return;
+    if (target.closest('[data-term]')) return;
+    this.closeTooltip(true);
+  }
+  readonly activeRefKey = computed(() => {
+    const r = this.tooltipAnchorRef();
+    return r ? `${r.lang}:${r.key}` : undefined;
+  });
+
+  // =========================================================
+  // Animations: check / edit again
+  // =========================================================
+  onTooltipPanelRect(r: DOMRect) {
+    const w = Math.max(0, Math.round(r.width));
+    if (!w) return;
+
+    // nur updaten, wenn sinnvoll anders (verhindert jitter)
+    if (Math.abs(this.tooltipPanelW() - w) > 2) {
+      this.tooltipPanelW.set(w);
+
+      // Wenn Tooltip offen ist: Position nochmal clamped neu berechnen
+      const anchor = this.lastAnchorEl;
+      if (this.tooltipOpen() && anchor) {
+        this.setTooltipPosition(anchor);
+      }
+    }
   }
 
   // =========================================================
@@ -403,106 +436,11 @@ export class SentencePracticeComponent {
   // Global listeners
   // =========================================================
 
-  @HostListener('document:pointerdown', ['$event'])
-  onDocPointerDown(ev: PointerEvent) {
-    if (!this.tooltipOpen()) return;
-    const target = ev.target as HTMLElement | null;
-    if (!target) return;
 
-    if (target.closest('[data-tooltip]')) return;
-    if (target.closest('[data-term]')) return;
-    this.closeTooltip(true);
-  }
-
-  @HostListener('document:keydown', ['$event'])
-  onDocKeydown(ev: KeyboardEvent) {
-    if (ev.key === 'Escape') {
-      this.closeTooltip(true);
-      return;
-    }
-
-    if (ev.key == 'Enter' && !ev.shiftKey) {
-      ev.preventDefault();
-      if (!this.isChecked()) {
-        return this.checkAnimated();
-      }
-
-      if (this.isCorrect()) {
-        this.next();
-      } else {
-        this.editAgainAnimated();
-      }
-    }
-
-    const target = ev.target as HTMLElement | null;
-    if (target?.closest('textarea')) return;
-
-    if (ev.key === 'ArrowLeft') {
-      ev.preventDefault();
-      this.prev();
-    }
-    if (ev.key === 'ArrowRight') {
-      ev.preventDefault();
-      this.next();
-    }
-  }
 
   // =========================================================
   // Audio
   // =========================================================
 
-  private sentenceAudioSrc(): string | undefined {
-    const id = this.current()?.id;
-    if (id === undefined || id === null) return undefined;
-    return new URL(`sounds/fr${id}.mp3`, document.baseURI).toString();
-  }
 
-  private playAudio() {
-    const src = this.sentenceAudioSrc();
-    if (!src) return;
-
-    if (!this.audio) {
-      this.audio = new Audio();
-      this.audio.preload = 'none';
-      this.audio.onended = () => this.stopAudio();
-      this.audio.onerror = () => this.stopAudio();
-    }
-
-    try {
-      this.audio.src = src;
-      this.audio.load();
-      this.isPlaying.set(true);
-
-      const p = this.audio.play();
-      if (p && typeof (p as any).then === 'function') {
-        (p as Promise<void>).catch(() => this.stopAudio());
-      }
-    } catch {
-      this.stopAudio();
-    }
-  }
-
-
-  togglePlay(ev?: Event) {
-    ev?.stopPropagation();
-    const src = this.sentenceAudioSrc();
-    if (!src) return;
-
-    if (this.isPlaying()) {
-      return this.stopAudio();
-    } else {
-      this.playAudio();
-    }
-  }
-
-  private stopAudio() {
-    try {
-      if (this.audio) {
-        this.audio.pause();
-        this.audio.currentTime = 0;
-      }
-    } finally {
-      this.isPlaying.set(false);
-    }
-  }
 }

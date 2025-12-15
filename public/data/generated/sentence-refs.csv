@@ -60,7 +60,7 @@
 17;fr;dur;dur
 17;de;Prüfung;Prüfung
 17;de;schwer;schwer
-18;fr;jouer un rôle;joué … rôle
+18;fr;jouer un rôle;joué un rôle
 18;de;eine Rolle spielen;eine … Rolle gespielt
 19;fr;repas;repas
 19;fr;dégoûtant;dégoûtant
@@ -106,6 +106,16 @@
 32;de;wunderschön;wunderschön
 33;fr;en Grèce;en Grèce
 33;de;nach Griechenland;nach Griechenland
+34;fr;grecque;grecque
+34;de;Griechin;Griechin
+36;fr;être en rénovation;est en rénovation
+36;de;renoviert werden;wird … renoviert
+37;fr;pâte d'amandes;pâte d'amandes
+37;de;Marzipan;Marzipan
+38;fr;voyager;voyagent
+38;fr;camping-car;camping-car
+38;de;reisen;reisen
+38;de;Wohnmobil;Wohnmobil
 83;fr;périphérie;périphérie
 83;de;Stadtrand;Stadtrand
 135;fr;autrefois;Autrefois

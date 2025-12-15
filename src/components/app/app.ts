@@ -1,6 +1,5 @@
 import {Component, computed, inject, signal} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {WordPracticeComponent} from '../view-words/word-practice/word-practice.component';
 import {ExportPdfService} from '../../services/export-pdf.service';
 import {LessonService} from '../../services/lesson.service';
 import {LessonOption} from '../../models/lesson-option';
@@ -10,17 +9,18 @@ import {FrenchTermService} from '../../services/french-term.service';
 import {PracticeCardService} from '../../services/practice-card.service';
 import {PracticeKind} from '../../models/types';
 import {SentenceService} from '../../services/sentence.service';
-import {SentencePracticeComponent} from '../view-sentences/sentence-practice/sentence-practice.component';
 import {IconButtonComponent} from '../shared/icon-button/icon-button.component';
 import {
   PracticeDirectionToggleComponent
 } from '../shared/practice-direction-toggle/practice-direction-toggle.component';
 import {PracticePanelComponent} from '../shared/practice-panel/practice-panel.component';
+import {PracticeRouteStateService} from '../../services/route-state.service';
+import {PracticeHostComponent} from '../shared/practice-host/app-practice-host.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, WordPracticeComponent, SentencePracticeComponent, IconButtonComponent, PracticeDirectionToggleComponent, PracticePanelComponent],
+  imports: [CommonModule, IconButtonComponent, PracticeDirectionToggleComponent, PracticePanelComponent, PracticeHostComponent],
   templateUrl: './app.html',
   host: {'class': 'h-full'},
 })
@@ -33,6 +33,7 @@ export class AppComponent {
   private practiceCardsService = inject(PracticeCardService);
   private lessonService = inject(LessonService);
   private sentenceService = inject(SentenceService);
+  public routeStateService = inject(PracticeRouteStateService);
 
   panelOpen = signal(false);
   loading = signal(true);
@@ -87,8 +88,19 @@ export class AppComponent {
     })
       .finally(() => {
         this.loading.set(false);
-        const lessons = this.lessons();
-        this.onLessonsChange(lessons[0]);
+
+        // 1) URL -> State
+        this.practiceKind.set(this.routeStateService.kind());
+        this.practiceMode.set(this.routeStateService.mode());
+
+        const lessonId = this.routeStateService.lesson(); // 'all' oder '12'
+        const opts = this.lessons();
+        const match =
+          lessonId === 'all'
+            ? opts.find(o => o.id === 'all')
+            : opts.find(o => String(o.lesson) === lessonId);
+
+        this.onLessonsChange(match ?? opts[0]);
       });
   }
 
@@ -110,6 +122,9 @@ export class AppComponent {
     } else {
       this.practiceCardsService.selectedLessons.set([]);
     }
+
+    const lessonParam = selectedLesson.id === 'all' ? 'all' : String(selectedLesson.lesson);
+    this.routeStateService.patch({lesson: lessonParam, i: 0});
   }
 
   exportPdf() {
@@ -121,5 +136,11 @@ export class AppComponent {
     }
 
     this.pdf.exportVocab(cards, selected);
+  }
+
+  onPracticeKindChange($event: PracticeKind) {
+    this.practiceKind.set($event);
+    this.routeStateService.patch({kind: $event, i: 0});
+    this.closePanel()
   }
 }

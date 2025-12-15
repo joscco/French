@@ -1,6 +1,6 @@
 import {
   Component,
-  computed,
+  computed, inject,
   Input,
   OnChanges,
   OnInit,
@@ -16,6 +16,7 @@ import {PracticeMode} from '../../../models/types';
 
 import {PracticeCardShellComponent} from '../../shared/practice-card-shell/practice-card-shell.component';
 import {FlashcardCardComponent} from '../flashcard/flashcard-card.component';
+import {PracticeRouteStateService} from '../../../services/route-state.service';
 
 @Component({
   selector: 'app-word-practice',
@@ -34,6 +35,8 @@ export class WordPracticeComponent implements OnInit, OnChanges {
   @ViewChild('cardTpl', { static: true }) cardTpl!: TemplateRef<any>;
   @ViewChild(PracticeCardShellComponent) shell?: PracticeCardShellComponent;
 
+  private routeStateService = inject(PracticeRouteStateService);
+
   index = signal(0);
   oriented = signal<PracticeCard[]>([]);
 
@@ -42,6 +45,19 @@ export class WordPracticeComponent implements OnInit, OnChanges {
     const i = this.index();
     return a[Math.min(Math.max(0, i), Math.max(0, a.length - 1))];
   });
+
+  scrubLabelForIndex = (i: number) => {
+    const c = this.oriented()[i];
+    const s = (c?.frontLanguage === 'french' ? c?.frenchPrimary : c?.germanPrimary) ?? '';
+    return (s?.trim()?.[0] ?? `${i + 1}`).toUpperCase();
+  };
+
+  onGoTo(i: number) {
+    const len = this.oriented().length;
+    if (!len) return;
+    this.index.set(Math.max(0, Math.min(len - 1, i)));
+    this.routeStateService.patch({ i: this.index() });
+  }
 
   isTouchScreen =
     ('ontouchstart' in window) ||

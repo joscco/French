@@ -8,6 +8,8 @@ import {
   OnDestroy,
   Output,
   ViewChild,
+  computed,
+  input,
   signal,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -16,6 +18,7 @@ import { IconButtonComponent } from '../icon-button/icon-button.component';
 import gsap from 'gsap';
 
 type NavDir = 'next' | 'prev';
+type Anim = 'slide' | 'fade' | 'none';
 
 @Component({
   selector: 'app-practice-card-shell',
@@ -24,173 +27,204 @@ type NavDir = 'next' | 'prev';
   templateUrl: './practice-card-shell.component.html',
 })
 export class PracticeCardShellComponent implements AfterViewInit, OnDestroy {
-  @Input({ required: true }) index = 0;
-  @Input({ required: true }) length = 0;
+  index = input<number>(0);
+  length = input<number>(0);
+
   @Input() showShuffle = true;
+  @Input() showScrubber = true;
+  @Input() canSwipe = true;
+  @Input() animation: Anim = 'slide';
+  @Input() scrubLabelForIndex?: (idx: number) => string;
 
-  /** optional: wenn du Swipe nur auf den Card-Bereich willst */
-  @Input() swipeOnCardOnly = true;
-
+  @Output() shuffle = new EventEmitter<void>();
   @Output() prev = new EventEmitter<void>();
   @Output() next = new EventEmitter<void>();
-  @Output() shuffle = new EventEmitter<void>();
 
-  /** optional: nach außen (falls du es irgendwo brauchst) */
-  readonly direction = signal<NavDir>('next');
+  /** Parent soll sofort index setzen (und ggf. URL patchen) */
+  @Output() goTo = new EventEmitter<number>();
+
+  /** live scrub: Parent soll sofort index setzen (ohne URL patch) */
+  @Output() previewIndex = new EventEmitter<number>();
+
+  /** scrub commit: Parent patcht URL (und setzt index) */
+  @Output() commitIndex = new EventEmitter<number>();
+
+  readonly counterText = computed(() => `${this.index() + 1} / ${this.length()}`);
 
   @ViewChild('cardHost', { static: true }) cardHost!: ElementRef<HTMLElement>;
+  @ViewChild('slideLayer', { static: true }) slideLayer!: ElementRef<HTMLElement>;
+  @ViewChild('scrubberEl', { static: false }) scrubberEl?: ElementRef<HTMLElement>;
 
-  readonly isTouchScreen =
-    ('ontouchstart' in window) ||
-    (navigator.maxTouchPoints ?? 0) > 0 ||
-    // @ts-ignore
-    (navigator.msMaxTouchPoints ?? 0) > 0;
+  // scrub
+  private scrubbing = signal(false);
+  readonly scrubPreview = signal<{ active: boolean; idx: number; label: string }>({
+    active: false,
+    idx: 0,
+    label: '',
+  });
 
-  private animating = false;
-
-  // touch tracking
+  // swipe
+  private touchActive = false;
   private touchStartX = 0;
   private touchStartY = 0;
   private touchEndX = 0;
   private touchEndY = 0;
-  private touchActive = false;
+
+  readonly isTouchScreen =
+    'ontouchstart' in window || (navigator.maxTouchPoints ?? 0) > 0;
+
+  // ghost housekeeping
+  private ghostEl?: HTMLElement;
 
   ngAfterViewInit(): void {
-    const el = this.cardHost?.nativeElement;
-    if (!el) return;
+    const host = this.cardHost.nativeElement;
+    host.addEventListener('touchstart', this.onTouchStart, { passive: true });
+    host.addEventListener('touchmove', this.onTouchMove, { passive: true });
+    host.addEventListener('touchend', this.onTouchEnd);
 
-    // initial state
-    gsap.set(el, { x: 0, opacity: 1 });
-
-    // swipe listeners
-    el.addEventListener('touchstart', this.onTouchStart, { passive: true });
-    el.addEventListener('touchmove', this.onTouchMove, { passive: true });
-    el.addEventListener('touchend', this.onTouchEnd);
+    gsap.set(this.slideLayer.nativeElement, { x: 0, opacity: 1 });
   }
 
   ngOnDestroy(): void {
-    const el = this.cardHost?.nativeElement;
-    if (!el) return;
+    const host = this.cardHost.nativeElement;
+    host.removeEventListener('touchstart', this.onTouchStart);
+    host.removeEventListener('touchmove', this.onTouchMove);
+    host.removeEventListener('touchend', this.onTouchEnd);
 
-    gsap.killTweensOf(el);
-
-    el.removeEventListener('touchstart', this.onTouchStart);
-    el.removeEventListener('touchmove', this.onTouchMove);
-    el.removeEventListener('touchend', this.onTouchEnd);
+    gsap.killTweensOf(this.slideLayer.nativeElement);
+    this.cleanupGhost();
   }
 
   // -------------------------
-  // keyboard navigation
+  // keyboard
   // -------------------------
-
   @HostListener('document:keydown', ['$event'])
   onDocKeydown(ev: KeyboardEvent) {
-    if (this.length <= 1) return;
+    if (this.length() <= 1) return;
 
     const t = ev.target as HTMLElement | null;
-    const inTypingField = !!t?.closest('textarea, input, [contenteditable="true"]');
-    if (inTypingField) return;
+    if (t?.closest('textarea, input, [contenteditable="true"]')) return;
 
     if (ev.key === 'ArrowLeft') {
       ev.preventDefault();
-      this.triggerPrev();
-      return;
+      this.requestStep(-1);
     }
-
     if (ev.key === 'ArrowRight') {
       ev.preventDefault();
-      this.triggerNext();
-      return;
+      this.requestStep(+1);
     }
   }
 
   // -------------------------
-  // public triggers (buttons / parent)
+  // buttons
   // -------------------------
-
-  triggerPrev() {
-    if (this.length <= 1) return;
-    this.direction.set('prev');
-    this.animateSwapAndEmit('prev', () => this.prev.emit());
-  }
-
-  triggerNext() {
-    if (this.length <= 1) {
-      return;
-    }
-    this.direction.set('next');
-    this.animateSwapAndEmit('next', () => this.next.emit());
-  }
+  triggerPrev() { this.requestStep(-1); }
+  triggerNext() { this.requestStep(+1); }
 
   triggerShuffle() {
-    if (this.length <= 1) return;
-    // shuffle fühlt sich wie “next” an (subjektiv nicer)
-    this.direction.set('next');
-    this.animateSwapAndEmit('next', () => this.shuffle.emit());
+    if (this.length() <= 1) return;
+    // “shuffle” ist semantisch wie "next" – looks fine
+    this.animateInstantSwap('next', () => this.shuffle.emit());
   }
 
   // -------------------------
-  // animation
+  // NAV: sofort state + animation nachziehen
   // -------------------------
+  private requestStep(d: -1 | 1) {
+    if (this.length() <= 1) return;
 
-  private animateSwapAndEmit(dir: NavDir, emitFn: () => void) {
-    const el = this.cardHost?.nativeElement;
-    if (!el) {
-      emitFn();
+    const from = this.index();
+    const to = this.clamp(from + d);
+    if (to === from) return;
+
+    const dir: NavDir = d === 1 ? 'next' : 'prev';
+
+    // ✅ State sofort!
+    this.goTo.emit(to);
+    dir === 'next' ? this.next.emit() : this.prev.emit();
+
+    // ✅ Animation zieht nach (Ghost OUT + new IN)
+    this.animateAfterSwap(dir);
+  }
+
+  private animateAfterSwap(dir: NavDir) {
+    if (this.animation === 'none') return;
+
+    // kill & cleanup
+    gsap.killTweensOf(this.slideLayer.nativeElement);
+    this.cleanupGhost();
+
+    const host = this.cardHost.nativeElement;
+    const layer = this.slideLayer.nativeElement;
+    const width = layer.offsetWidth || host.offsetWidth;
+
+    // Ghost = Snapshot der “alten” Karte (inkl. Rahmen!)
+    const ghost = layer.cloneNode(true) as HTMLElement;
+    ghost.style.position = 'absolute';
+    ghost.style.inset = '0';
+    ghost.style.pointerEvents = 'none';
+    ghost.style.zIndex = '20';
+    // scrubber aus ghost entfernen (sonst sieht man doppelt)
+    ghost.querySelector('[data-scrubber]')?.remove();
+
+    host.appendChild(ghost);
+    this.ghostEl = ghost;
+
+    if (this.animation === 'fade') {
+      gsap.fromTo(layer, { opacity: 0 }, { opacity: 1, duration: 0.26, ease: 'power2.out' });
+      gsap.to(ghost, {
+        opacity: 0,
+        duration: 0.20,
+        ease: 'power2.in',
+        onComplete: () => this.cleanupGhost(),
+      });
       return;
     }
 
-    if (this.animating) return;
-    this.animating = true;
+    // slide
+    const outX = dir === 'next' ? -width : width;
+    const inFromX = dir === 'next' ? width : -width;
 
-    gsap.killTweensOf(el);
+    // Neues rein
+    gsap.fromTo(
+      layer,
+      { x: inFromX, opacity: 0 },
+      { x: 0, opacity: 1, duration: 0.30, ease: 'power2.out' }
+    );
 
-    const outX = dir === 'next' ? '-100%' : '100%';
-    const inFromX = dir === 'next' ? '100%' : '-100%';
-
-    gsap.to(el, {
+    // Altes raus (ghost)
+    gsap.to(ghost, {
       x: outX,
       opacity: 0,
-      duration: 0.28,
+      duration: 0.24,
       ease: 'power2.in',
-      onComplete: () => {
-        // 1) emit -> parent wechselt content/index
-        emitFn();
-
-        // 2) sofort auf Startposition fürs rein-sliden
-        gsap.set(el, { x: inFromX });
-
-        // 3) warten bis Angular DOM updated hat, dann rein animieren
-        requestAnimationFrame(() => {
-          requestAnimationFrame(() => {
-            gsap.to(el, {
-              x: 0,
-              opacity: 1,
-              duration: 0.32,
-              ease: 'power2.out',
-              onComplete: () => {
-                this.animating = false;
-              },
-            });
-          });
-        });
-      },
+      onComplete: () => this.cleanupGhost(),
     });
   }
 
-  // -------------------------
-  // swipe handling
-  // -------------------------
+  private animateInstantSwap(dir: NavDir, swapFn: () => void) {
+    // für Shuffle/Commit: swap sofort + dann gleiche Animation
+    swapFn();
+    this.animateAfterSwap(dir);
+  }
 
+  private cleanupGhost() {
+    if (this.ghostEl?.parentElement) this.ghostEl.parentElement.removeChild(this.ghostEl);
+    this.ghostEl = undefined;
+  }
+
+  private clamp(i: number) {
+    const len = this.length();
+    if (!len) return 0;
+    return Math.max(0, Math.min(len - 1, i));
+  }
+
+  // -------------------------
+  // swipe
+  // -------------------------
   private onTouchStart = (e: TouchEvent) => {
-    if (!this.isTouchScreen) return;
-    if (this.length <= 1) return;
+    if (!this.canSwipe || !this.isTouchScreen || this.length() <= 1) return;
     if (e.touches.length !== 1) return;
-
-    // optional: swipe only on card area (we only attached to cardHost anyway)
-    if (this.swipeOnCardOnly) {
-      // ok
-    }
 
     this.touchActive = true;
     this.touchStartX = e.touches[0].clientX;
@@ -211,17 +245,56 @@ export class PracticeCardShellComponent implements AfterViewInit, OnDestroy {
 
     const dx = this.touchEndX - this.touchStartX;
     const dy = this.touchEndY - this.touchStartY;
-    const absDx = Math.abs(dx);
-    const absDy = Math.abs(dy);
 
-    const minDist = 40;
-
-    // horizontal swipe only
-    if (absDx > absDy && absDx > minDist) {
-      if (dx < 0) this.triggerNext();
-      else this.triggerPrev();
+    if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 40) {
+      if (dx < 0) this.requestStep(+1);
+      else this.requestStep(-1);
     }
-
-    this.touchStartX = this.touchStartY = this.touchEndX = this.touchEndY = 0;
   };
+
+  // -------------------------
+  // scrubber
+  // -------------------------
+  onScrubDown(ev: PointerEvent) {
+    if (!this.showScrubber || this.length() <= 1) return;
+    this.scrubbing.set(true);
+    this.updateScrub(ev, true);
+    (ev.target as HTMLElement)?.setPointerCapture?.(ev.pointerId);
+  }
+
+  onScrubMove(ev: PointerEvent) {
+    if (!this.scrubbing()) return;
+    this.updateScrub(ev, true);
+  }
+
+  onScrubUp() {
+    if (!this.scrubbing()) return;
+    this.scrubbing.set(false);
+
+    const s = this.scrubPreview();
+    this.scrubPreview.set({ ...s, active: false });
+
+    const from = this.index();
+    const to = this.clamp(s.idx);
+    if (to === from) return;
+
+    const dir: NavDir = to > from ? 'next' : 'prev';
+
+    // ✅ commit sofort (Parent setzt index + patched URL)
+    this.animateInstantSwap(dir, () => this.commitIndex.emit(to));
+  }
+
+  private updateScrub(ev: PointerEvent, active: boolean) {
+    const el = this.scrubberEl?.nativeElement;
+    if (!el) return;
+
+    const rect = el.getBoundingClientRect();
+    const y = ev.clientY - rect.top;
+    const t = Math.max(0, Math.min(1, y / rect.height));
+    const idx = this.clamp(Math.floor(t * (this.length() - 1)));
+    const label = this.scrubLabelForIndex?.(idx) ?? `${idx + 1}`;
+
+    this.scrubPreview.set({ active, idx, label });
+    this.previewIndex.emit(idx); // LIVE, ohne Animation
+  }
 }

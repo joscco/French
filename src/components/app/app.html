@@ -13,7 +13,7 @@
 
         <app-practice-direction-toggle
           [mode]="practiceMode()"
-          (modeChange)="practiceMode.set($event)"
+          (modeChange)="practiceMode.set($event); routeStateService.patch({mode: $event, i: 0})"
         />
       </div>
     </header>
@@ -24,23 +24,13 @@
       [lessons]="lessons()"
       [selectedLesson]="selectedLessons()"
       (close)="closePanel()"
-      (practiceKindChange)="practiceKind.set($event); closePanel()"
+      (practiceKindChange)="onPracticeKindChange($event)"
       (lessonChange)="onLessonsChange($event)"
       (exportPdf)="exportPdf()"
     />
 
     <main class="mt-8 grow w-full">
-      @if (practiceKind() === 'vocab') {
-        <app-word-practice
-          [cards]="practiceCards()"
-          [mode]="practiceMode()"
-        />
-      } @else {
-        <app-sentence-practice
-          [sentences]="sentences()"
-          [mode]="practiceMode()"
-        />
-      }
+        <app-practice-host [practiceKind]="practiceKind()"/>
     </main>
   </div>
 } @else {

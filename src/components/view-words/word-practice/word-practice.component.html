@@ -20,8 +20,10 @@
     [index]="index()"
     [length]="oriented().length"
     [showShuffle]="true"
-    (prev)="prev()"
-    (next)="next()"
+    [showScrubber]="true"
+    [animation]="'slide'"
+    [scrubLabelForIndex]="scrubLabelForIndex"
+    (goTo)="onGoTo($event)"
     (shuffle)="shuffleCards()"
   >
     <app-flashcard-card

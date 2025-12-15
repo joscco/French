@@ -15,7 +15,7 @@ export class PromptMarkupComponent {
     mergeTrailingPunctuation(this.segments() ?? [])
   );
 
-  fallbackText = input<string>('');
+  fallbackText = input<string | undefined>('');
   activeRefKey = input<string | undefined>(undefined);
 
   termEnter = output<{ ref: TermRefInSentence; el: HTMLElement }>();

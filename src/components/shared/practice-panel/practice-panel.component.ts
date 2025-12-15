@@ -23,7 +23,7 @@ import { PracticeKind } from '../../../models/types';
 })
 export class PracticePanelComponent implements AfterViewInit {
   // ---- inputs (state) ----
-  practiceKind= input<PracticeKind>('sentence' as PracticeKind);
+  practiceKind= input<PracticeKind>('sentence');
   lessons = input<LessonOption[]>([{ id: 'all', label: 'Alle' }]);
   selectedLesson = input<LessonOption | undefined>(undefined);
 

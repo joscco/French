@@ -16,7 +16,7 @@
 1;15;Le voyage était [crevant].;Die Reise war [anstrengend].
 1;16;C’est un [travail] très [fatigant].;Das ist eine sehr [ermüdende]{ermüdend} [Arbeit].
 1;17;[L’examen]{examen} était très [dur].;Die [Prüfung] war sehr [schwer].
-1;18;Il a [joué]{jouer un rôle#A} un [rôle]{#A} important.;Er hat [eine]{eine Rolle spielen#A} wichtige [Rolle gespielt]{#A}.
+1;18;Il a [joué un rôle]{jouer un rôle} important.;Er hat [eine]{eine Rolle spielen#A} wichtige [Rolle gespielt]{#A}.
 1;19;Ce [repas] est [dégoûtant].;Dieses [Essen] ist [ekelhaft].
 1;20;La maison est sur une [colline].;Das Haus liegt auf einem [Hügel].
 1;21;Il porte une [sacoche] en [cuir].;Er trägt eine [Umhängetasche] aus [Leder].
@@ -31,10 +31,10 @@
 1;31;Les [aménagements]{aménagement} du parc sont [modernes]{moderne}.;Die [Anlagen]{Anlage} des Parks sind [modern].
 1;32;[L’estuaire]{estuaire} de la Loire est [magnifique].;Die [Mündung] der Loire ist [wunderschön].
 1;33;Je vais [en Grèce] cet été.;Ich fahre diesen Sommer [nach Griechenland].
-1;34;Elle est grecque.;Sie ist Griechin.
-1;36;Le musée est en rénovation.;Das Museum wird gerade renoviert.
-1;37;La pâte d'amandes est sucrée.;Marzipan ist süß.
-1;38;Ils voyagent en camping-car.;Sie reisen mit dem Wohnmobil.
+1;34;Elle est [grecque].;Sie ist [Griechin].
+1;36;Le musée [est en rénovation]{être en rénovation}.;Das Museum [wird]{renoviert werden#A} gerade [renoviert]{#A}.
+1;37;La [pâte d'amandes] est sucrée.;[Marzipan] ist süß.
+1;38;Ils [voyagent]{voyager} en [camping-car].;Sie [reisen] mit dem [Wohnmobil].
 1;39;La plage était bondée.;Der Strand war überfüllt.
 1;40;Nous avons une maison sur la côte.;Wir haben ein Haus an der Küste.
 1;41;Nous allons en avion à Paris.;Wir fliegen nach Paris.

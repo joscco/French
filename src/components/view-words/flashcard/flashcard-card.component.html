@@ -7,11 +7,7 @@
       }
       <div class="flex items-center text-sm italic opacity-50 transition-opacity duration-300"
            [class.opacity-100]="hovered">
-        @if (isTouchscreen) {
-          <mat-icon>swap_vert</mat-icon>
-        } @else {
-          <mat-icon class="mr-1">ads_click</mat-icon>
-        }
+        <mat-icon class="mr-1">ads_click</mat-icon>
         <span>Flip</span>
       </div>
     </div>

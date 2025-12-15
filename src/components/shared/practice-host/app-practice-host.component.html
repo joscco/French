@@ -1,0 +1,37 @@
+<app-practice-card-shell
+  [index]="index()"
+  [length]="currentListLength()"
+  [showShuffle]="true"
+  [showScrubber]="true"
+  [animation]="'slide'"
+  [scrubLabelForIndex]="scrubLabelForIndex"
+  (previewIndex)="onPreviewIndex($event)"
+  (commitIndex)="onCommitIndex($event)"
+  (goTo)="onGoTo($event)"
+  (shuffle)="shuffle()"
+>
+  @if (practiceKind() === 'vocab') {
+    @if (currentVocab(); as c) {
+      <app-flashcard-card
+        [meta]="c.meta || {}"
+        [frenchPrimary]="c.frenchPrimary"
+        [frenchSecondary]="c.frenchSecondary || ''"
+        [germanPrimary]="c.germanPrimary"
+        [germanSecondary]="c.germanSecondary || ''"
+        [frontLang]="c.frontLanguage || 'french'"
+        [flipDirection]="'up'"
+        [isTouchscreen]="true"
+        [hovered]="false"
+        [interactive]="true"
+      />
+    }
+  } @else {
+    @if (currentSentence(); as s) {
+      <app-sentence-card
+        [sentence]="s"
+        [mode]="mode()"
+        (nextRequested)="onNextRequested()"
+      />
+    }
+  }
+</app-practice-card-shell>
