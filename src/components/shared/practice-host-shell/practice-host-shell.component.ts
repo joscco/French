@@ -348,7 +348,6 @@ export class PracticeHostShellComponent implements AfterViewInit, OnDestroy {
       return;
     }
 
-    navigator.vibrate(10);
     this.scrubPreview.set({active, idx, label});
     this.previewIndex.emit(idx); // LIVE ohne Animation
   }
