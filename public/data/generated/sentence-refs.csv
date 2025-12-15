@@ -46,7 +46,9 @@
 13;fr;station thermale;station thermale
 13;de;Stadt;Stadt
 13;de;Kurort;Kurort
+14;fr;grand-mère;grand-mère
 14;fr;aller en cure;allée en cure
+14;de;Oma;Oma
 14;de;zur Kur fahren;zur Kur gefahren
 15;fr;crevant;crevant
 15;de;anstrengend;anstrengend
@@ -58,6 +60,20 @@
 17;fr;dur;dur
 17;de;Prüfung;Prüfung
 17;de;schwer;schwer
+19;fr;dégoûtant;dégoûtant
+19;de;ekelhaft;ekelhaft
+20;fr;colline;colline
+20;de;Hügel;Hügel
+21;fr;sacoche;sacoche
+21;fr;cuir;cuir
+21;de;Umhängetasche;Umhängetasche
+21;de;Leder;Leder
+22;fr;bagages;bagages
+22;fr;aéroport;l'aéroport
+22;de;Gepäck;Gepäck
+22;de;Flughafen;Flughafen
+23;fr;pousser qc.;pousser
+23;de;etw. schieben;schieben
 83;fr;périphérie;périphérie
 83;de;Stadtrand;Stadtrand
 135;fr;autrefois;Autrefois
