@@ -303,6 +303,7 @@ export class PracticeHostShellComponent implements AfterViewInit, OnDestroy {
   // -------------------------
   onScrubDown(ev: PointerEvent) {
     if (!this.showScrubber || this.length() <= 1) return;
+    ev.preventDefault();
     this.scrubbing.set(true);
     this.updateScrub(ev, true);
 
@@ -312,6 +313,7 @@ export class PracticeHostShellComponent implements AfterViewInit, OnDestroy {
 
   onScrubMove(ev: PointerEvent) {
     if (!this.scrubbing()) return;
+    ev.preventDefault();
     this.updateScrub(ev, true);
   }
 
@@ -328,7 +330,6 @@ export class PracticeHostShellComponent implements AfterViewInit, OnDestroy {
 
     const dir: NavDir = to > from ? 'next' : 'prev';
 
-    // ✅ Ghost VOR Commit (damit “old” wirklich old ist)
     this.animateSequential(dir, () => this.commitIndex.emit(to));
   }
 
