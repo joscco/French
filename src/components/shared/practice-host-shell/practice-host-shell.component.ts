@@ -16,6 +16,7 @@ import {CommonModule} from '@angular/common';
 import {MatIconModule} from '@angular/material/icon';
 import {IconButtonComponent} from '../icon-button/icon-button.component';
 import gsap from 'gsap';
+import {ScrubberComponent} from '../scrubber/scrubber.component';
 
 type NavDir = 'next' | 'prev';
 type Anim = 'slide' | 'fade' | 'none';
@@ -23,7 +24,7 @@ type Anim = 'slide' | 'fade' | 'none';
 @Component({
   selector: 'app-practice-host-shell',
   standalone: true,
-  imports: [CommonModule, MatIconModule, IconButtonComponent],
+  imports: [CommonModule, MatIconModule, IconButtonComponent, ScrubberComponent],
   templateUrl: './practice-host-shell.component.html',
 })
 export class PracticeHostShellComponent implements AfterViewInit, OnDestroy {
@@ -39,14 +40,8 @@ export class PracticeHostShellComponent implements AfterViewInit, OnDestroy {
   @Output() shuffle = new EventEmitter<void>();
   @Output() prev = new EventEmitter<void>();
   @Output() next = new EventEmitter<void>();
-
-  /** Parent setzt sofort index (und ggf. URL patch) */
   @Output() goTo = new EventEmitter<number>();
-
-  /** live scrub: Parent setzt sofort index (ohne URL patch) */
   @Output() previewIndex = new EventEmitter<number>();
-
-  /** scrub commit: Parent patcht URL (und setzt index) */
   @Output() commitIndex = new EventEmitter<number>();
 
   readonly counterText = computed(() => `${this.index() + 1} / ${this.length()}`);
@@ -60,22 +55,19 @@ export class PracticeHostShellComponent implements AfterViewInit, OnDestroy {
   readonly hotspotTopPct = computed(() => {
     const len = this.length();
     if (len <= 1) return 0;
-    // wenn gerade gescrubbt wird, Hotspot folgt Preview, sonst dem echten Index
     const idx = this.scrubPreview().active ? this.scrubPreview().idx : this.index();
     return (idx / (len - 1)) * 100;
   });
 
   readonly hotspotMask = computed(() => {
     const y = this.hotspotTopPct();
-    // Radius ruhig etwas kleiner/größer drehen (40–70px)
     return `radial-gradient(circle 70px at 50% ${y}%, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 72%)`;
   });
 
   @ViewChild('cardHost', {static: true}) cardHost!: ElementRef<HTMLElement>;
   @ViewChild('slideLayer', {static: true}) slideLayer!: ElementRef<HTMLElement>;
-  @ViewChild('scrubberEl', {static: false}) scrubberEl?: ElementRef<HTMLElement>;
+  @ViewChild(ScrubberComponent, {static: false}) scrubberComponent?: ScrubberComponent;
 
-  // scrub
   private scrubbing = signal(false);
   readonly scrubPreview = signal<{ active: boolean; idx: number; label: string }>({
     active: false,
@@ -83,7 +75,6 @@ export class PracticeHostShellComponent implements AfterViewInit, OnDestroy {
     label: '',
   });
 
-  // swipe
   private touchActive = false;
   private touchStartX = 0;
   private touchStartY = 0;
@@ -123,9 +114,6 @@ export class PracticeHostShellComponent implements AfterViewInit, OnDestroy {
     this.cleanupGhost();
   }
 
-  // -------------------------
-  // keyboard
-  // -------------------------
   @HostListener('document:keydown', ['$event'])
   onDocKeydown(ev: KeyboardEvent) {
     if (this.length() <= 1) return;
@@ -143,9 +131,6 @@ export class PracticeHostShellComponent implements AfterViewInit, OnDestroy {
     }
   }
 
-  // -------------------------
-  // buttons
-  // -------------------------
   triggerPrev() {
     this.requestStep(-1);
   }
@@ -162,9 +147,6 @@ export class PracticeHostShellComponent implements AfterViewInit, OnDestroy {
     this.animateSequential('next', () => this.shuffle.emit());
   }
 
-  // -------------------------
-  // NAV: Parent sofort + Animation "old out THEN new in"
-  // -------------------------
   private requestStep(d: -1 | 1) {
     if (this.length() <= 1) return;
 
@@ -192,17 +174,14 @@ export class PracticeHostShellComponent implements AfterViewInit, OnDestroy {
     const host = this.cardHost.nativeElement;
     const layer = this.slideLayer.nativeElement;
 
-    // ✅ laufende Animation hart abbrechen und in einen sauberen Zustand bringen
     this.tl?.kill();
     this.tl = undefined;
 
     gsap.killTweensOf(layer);
     gsap.set(layer, { x: 0, opacity: 1 }); // wichtig beim schnellen Spammen
 
-    // ✅ alten Ghost entfernen
     this.cleanupGhost();
 
-    // ✅ Ghost = Snapshot vom *aktuellen* (alten) Stand, BEFORE swap
     const ghost = layer.cloneNode(true) as HTMLElement;
     ghost.style.position = 'absolute';
     ghost.style.inset = '0';
@@ -214,10 +193,8 @@ export class PracticeHostShellComponent implements AfterViewInit, OnDestroy {
     host.appendChild(ghost);
     this.ghostEl = ghost;
 
-    // ✅ Jetzt erst swap (Parent rendert neue Karte in layer)
     swapFn();
 
-    // ✅ Neue Karte sofort verstecken (damit sie nicht “durchblitzt”)
     const inFromX =
       this.animation === 'slide'
         ? (dir === 'next' ? this.offsetWidth : -this.offsetWidth)
@@ -230,7 +207,6 @@ export class PracticeHostShellComponent implements AfterViewInit, OnDestroy {
         ? (dir === 'next' ? -this.offsetWidth : this.offsetWidth)
         : 0;
 
-    // ✅ Timeline: erst Ghost raus, dann neue rein
     this.tl = gsap.timeline({
       defaults: { overwrite: 'auto' },
       onComplete: () => {
@@ -266,9 +242,6 @@ export class PracticeHostShellComponent implements AfterViewInit, OnDestroy {
     return Math.max(0, Math.min(len - 1, i));
   }
 
-  // -------------------------
-  // swipe
-  // -------------------------
   private onTouchStart = (e: TouchEvent) => {
     if (!this.canSwipe || !this.isTouchScreen || this.length() <= 1) return;
     if (e.touches.length !== 1) return;
@@ -309,7 +282,7 @@ export class PracticeHostShellComponent implements AfterViewInit, OnDestroy {
     this.updateScrub(ev, true);
 
     // wichtig: capture auf dem scrubber selbst, nicht auf ev.target (kann child sein)
-    this.scrubberEl?.nativeElement.setPointerCapture?.(ev.pointerId);
+    this.scrubberComponent?.scrubberEl?.nativeElement.setPointerCapture?.(ev.pointerId);
   }
 
   onScrubMove(ev: PointerEvent) {
@@ -335,7 +308,7 @@ export class PracticeHostShellComponent implements AfterViewInit, OnDestroy {
   }
 
   private updateScrub(ev: PointerEvent, active: boolean) {
-    const el = this.scrubberEl?.nativeElement;
+    const el = this.scrubberComponent?.scrubberEl?.nativeElement;
     if (!el) return;
 
     const rect = el.getBoundingClientRect();

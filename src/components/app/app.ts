@@ -22,7 +22,7 @@ import {PracticeHostComponent} from '../shared/practice-host/app-practice-host.c
   standalone: true,
   imports: [CommonModule, IconButtonComponent, PracticeDirectionToggleComponent, PracticePanelComponent, PracticeHostComponent],
   templateUrl: './app.html',
-  host: {'class': 'h-full'},
+  host: {'class': 'h-full max-h-[800px]'},
 })
 export class AppComponent {
   private pdf = inject(ExportPdfService);

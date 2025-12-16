@@ -3,7 +3,7 @@ import {CommonModule} from '@angular/common';
 import {PracticeRouteStateService} from '../../../services/route-state.service';
 import {SentenceService} from '../../../services/sentence.service';
 import {WordService} from '../../../services/word.service';
-import {FlashcardCardComponent} from '../../view-words/flashcard/flashcard-card.component';
+import {WordCardComponent} from '../../view-words/word-cart/word-card.component';
 import {PracticeHostShellComponent} from '../practice-host-shell/practice-host-shell.component';
 import {PracticeKind} from '../../../models/types';
 import {LessonOption} from '../../../models/lesson-option';
@@ -14,7 +14,7 @@ import {SentenceCardComponent} from '../../view-sentences/sentence-card/sentence
 @Component({
   selector: 'app-practice-host',
   standalone: true,
-  imports: [CommonModule, PracticeHostShellComponent, FlashcardCardComponent, SentenceCardComponent, PracticeHostShellComponent],
+  imports: [CommonModule, PracticeHostShellComponent, WordCardComponent, SentenceCardComponent, PracticeHostShellComponent],
   templateUrl: 'app-practice-host.component.html',
 })
 export class PracticeHostComponent {
@@ -54,17 +54,15 @@ export class PracticeHostComponent {
 
   scrubLabelForIndex = (i: number) => {
     if (this.practiceKind() === 'vocab') {
-      const c = this.vocabList()[i];
-      const s = (this.mode() === 'fr-de' ? c?.frenchPrimary : c?.germanPrimary) ?? '';
-      return (s.trim()[0] ?? `${i + 1}`);
+      const wordCard = this.vocabList()[i];
+      const primaryString = (this.mode() === 'fr-de' ? wordCard?.frenchPrimary : wordCard?.germanPrimary) ?? '';
+      return (primaryString.trim()[0] ?? `${i + 1}`);
     }
     return `${i + 1}`;
   };
 
   constructor() {
-    // URL -> state (wenn Router fertig & Daten geladen sind)
     effect(() => {
-      // mode/kind/lesson übernimmt weiter App, hier nur index:
       const i = this.routeState.index();
       const len = this.currentListLength();
       if (!len) {

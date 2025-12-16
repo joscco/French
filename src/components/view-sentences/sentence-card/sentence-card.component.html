@@ -1,5 +1,5 @@
-<div #swapHost class="relative w-full max-w-[460px] h-full" data-swap-host data-swipe-surface>
-  <div class="px-6 py-4 flex flex-col gap-2 h-full">
+<div #swapHost class="relative w-full h-full" data-swap-host data-swipe-surface>
+  <div class="px-6 py-4 flex flex-col h-full">
 
     <app-term-tooltip-overlay
       [open]="tooltipOpen()"
@@ -11,6 +11,7 @@
     ></app-term-tooltip-overlay>
 
     <app-prompt-markup
+      class="min-h-[80px] flex flex-row items-center"
       [segments]="promptSegments()"
       [fallbackText]="mode() === 'de-fr' ? sentence()?.de : sentence()?.fr"
       [activeRefKey]="activeRefKey()"
@@ -19,8 +20,7 @@
       (termClick)="onPromptTermClick($event)"
     ></app-prompt-markup>
 
-    <!-- INPUT AREA -->
-    <div class="flex-1 min-h-0 flex flex-col gap-3 pb-2">
+    <div class="flex-1 min-h-0 flex flex-col py-4">
 
       <!-- "Fake textarea" box -->
       <div class="relative flex-1 min-h-0 overflow-hidden rounded-2xl bg-neutral-100

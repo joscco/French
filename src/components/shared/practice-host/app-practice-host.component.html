@@ -11,24 +11,22 @@
   (shuffle)="shuffle()"
 >
   @if (practiceKind() === 'vocab') {
-    @if (currentVocab(); as c) {
-      <app-flashcard-card
-        [meta]="c.meta || {}"
-        [frenchPrimary]="c.frenchPrimary"
-        [frenchSecondary]="c.frenchSecondary || ''"
-        [germanPrimary]="c.germanPrimary"
-        [germanSecondary]="c.germanSecondary || ''"
-        [frontLang]="c.frontLanguage || 'french'"
+    @if (currentVocab(); as vocabCard) {
+      <app-word-card
+        [meta]="vocabCard.meta || {}"
+        [frenchPrimary]="vocabCard.frenchPrimary"
+        [frenchSecondary]="vocabCard.frenchSecondary || ''"
+        [germanPrimary]="vocabCard.germanPrimary"
+        [germanSecondary]="vocabCard.germanSecondary || ''"
+        [frontLang]="vocabCard.frontLanguage || 'french'"
         [flipDirection]="'up'"
         [isTouchscreen]="true"
-        [hovered]="false"
-        [interactive]="true"
       />
     }
   } @else {
-    @if (currentSentence(); as s) {
+    @if (currentSentence(); as sentence) {
       <app-sentence-card
-        [sentence]="s"
+        [sentence]="sentence"
         [mode]="mode()"
         (nextRequested)="onNextRequested()"
       />

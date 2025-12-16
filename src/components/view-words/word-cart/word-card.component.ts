@@ -1,4 +1,14 @@
-import {Component, Input, ViewChild, ElementRef, OnChanges, SimpleChanges, OnDestroy, signal} from '@angular/core';
+import {
+  Component, computed,
+  ElementRef,
+  Input,
+  input,
+  OnChanges,
+  OnDestroy,
+  signal,
+  SimpleChanges,
+  ViewChild
+} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
@@ -9,46 +19,38 @@ import {Language} from '../../../models/types';
 import {reverseLanguage} from '../../../helpers/utils';
 
 @Component({
-  selector: 'app-flashcard-card',
+  selector: 'app-word-card',
   standalone: true,
   imports: [CommonModule, MatIconModule, MatButtonModule, CardFaceComponent, LangIndicatorComponent],
-  templateUrl: './flashcard-card.component.html'
+  templateUrl: './word-card.component.html'
 })
-export class FlashcardCardComponent implements OnChanges, OnDestroy {
+export class WordCardComponent implements OnChanges, OnDestroy {
   @Input() meta?: Record<string, any>;
   @Input() frenchPrimary = '';
   @Input() frenchSecondary = '';
   @Input() germanPrimary = '';
   @Input() germanSecondary = '';
-  @Input() frontLang: Language = 'french';
-  @Input() flipped?: boolean; // welches Face ist sichtbar
   @Input() flipDirection = 'up';
-  @Input() hovered = false; // für Opacity der Flip-Hilfe
-  @Input() interactive = true; // Cursor/Pointer
   @Input() isTouchscreen!: boolean;
 
-  private localFlipped = signal(false);
+  frontLang = input<Language>('french');
+  flipped = signal(false);
+  isSpeaking = signal(false);
+
+  public readonly currentLanguage = computed<Language>(() =>
+    this.flipped() ? reverseLanguage(this.frontLang()) : this.frontLang()
+  );
+  renderLanguage = signal<Language>(this.frontLang());
 
   @ViewChild('faceContainer', {static: false}) faceContainer?: ElementRef<HTMLDivElement>;
   public animating = false;
-  public currentFace: Language = 'french';
-
-  isSpeaking = signal(false);
   private audio?: HTMLAudioElement;
 
   ngOnChanges(changes: SimpleChanges) {
-    const nextFace = this.getNextFace();
-
-    if (changes['frenchPrimary']) {
+    if (changes['frenchPrimary'] || changes['germanPrimary']) {
       this.stopSpeaking();
-      this.localFlipped.set(false); // reset bei Kartenwechsel
-      this.currentFace = nextFace;
-      return;
-    }
-
-    // nur wenn controlled flipped/frontLang wechselt
-    if (nextFace !== this.currentFace) {
-      this.animateFlip();
+      this.flipped.set(false);
+      this.renderLanguage.set(this.frontLang());
     }
   }
 
@@ -56,46 +58,27 @@ export class FlashcardCardComponent implements OnChanges, OnDestroy {
     this.stopSpeaking();
   }
 
-  private effectiveFlipped(): boolean {
-    return this.flipped ?? this.localFlipped();
-  }
-
-  private getNextFace() {
-    const flipped = this.effectiveFlipped();
-    return flipped ? reverseLanguage(this.frontLang) : this.frontLang;
-  }
-
   onCardClick() {
-    if (!this.interactive) return;
-    // nur intern flippen, wenn parent nicht "controlled"
-    if (this.flipped === undefined) {
-      this.localFlipped.update(v => !v);
-      // ngOnChanges läuft hier nicht -> direkt animieren
-      const nextFace = this.getNextFace();
-      if (nextFace !== this.currentFace) this.animateFlip();
-    }
+    this.flipped.update(v => !v);
+    this.animateFlip();
   }
 
   animateFlip() {
     if (!this.faceContainer) {
-      this.currentFace = this.flipped ? this.frontLang : this.frontLang;
       return;
     }
+
     this.animating = true;
     const el = this.faceContainer.nativeElement;
-    // Altes Face nach oben and opacity 0
     gsap.to(el, {
       y: this.flipDirection === 'up' ? -40 : 40,
       opacity: 0,
       duration: 0.25,
       onComplete: () => {
-        // Face wechseln
-        this.currentFace = this.getNextFace();
-        // Wenn nicht französisch sichtbar, Audio stoppen
-        if (this.currentFace !== 'french' && this.isSpeaking()) {
+        this.renderLanguage.set(this.currentLanguage());
+        if (this.renderLanguage() !== 'french' && this.isSpeaking()) {
           this.stopSpeaking();
         }
-        // Neues Face von unten and opacity 0 auf 1
         gsap.fromTo(
           el,
           {y: this.flipDirection === 'up' ? 40 : -40, opacity: 0},
@@ -112,13 +95,8 @@ export class FlashcardCardComponent implements OnChanges, OnDestroy {
     });
   }
 
-  private visibleLanguage(): Language {
-    return this.currentFace;
-  }
-
   canSpeak(): boolean {
-    // Nur auf französischer Seite und wenn eine ID vorhanden ist
-    return this.visibleLanguage() === 'french' && !!this.meta?.['id'];
+    return this.currentLanguage() === 'french' && !!this.meta?.['id'];
   }
 
   toggleSpeak(ev: Event) {
@@ -137,32 +115,30 @@ export class FlashcardCardComponent implements OnChanges, OnDestroy {
     const id = this.meta?.['id'];
     const src = new URL(`sounds/fr${id}.mp3`, document.baseURI).toString();
 
-    // Vorherige stoppen und persistenten Audio-Player verwenden
     this.stopSpeaking();
     if (!this.audio) {
       this.audio = new Audio();
       this.audio.preload = 'none';
       this.audio.onended = () => this.stopSpeaking();
       this.audio.onerror = (e) => {
-        console.error('Audio-Fehler beim Laden/Abspielen', { src: this?.audio?.src, event: e });
+        console.error('Audio-Fehler beim Laden/Abspielen', {src: this?.audio?.src, event: e});
         this.stopSpeaking();
       };
     }
 
     try {
       this.audio.src = src;
-      // iOS benötigt häufig ein explizites load() vor play()
       this.audio.load();
       this.isSpeaking.set(true);
       const p = this.audio.play();
       if (p && typeof p.then === 'function') {
         p.catch((err) => {
-          console.error('Audio play() abgelehnt/fehlgeschlagen', { src, err });
+          console.error('Audio play() abgelehnt/fehlgeschlagen', {src, err});
           this.stopSpeaking();
         });
       }
     } catch (err) {
-      console.error('Audio-Ausnahme beim Start', { src, err });
+      console.error('Audio-Ausnahme beim Start', {src, err});
       this.stopSpeaking();
     }
   }
@@ -172,7 +148,6 @@ export class FlashcardCardComponent implements OnChanges, OnDestroy {
       if (this.audio) {
         this.audio.pause();
         this.audio.currentTime = 0;
-        // Quelle nicht komplett leeren, um User-Gesten-Freigabe nicht zu verlieren
       }
     } finally {
       this.isSpeaking.set(false);
