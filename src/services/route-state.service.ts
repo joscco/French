@@ -7,14 +7,13 @@ export class PracticeRouteStateService {
   private readonly route = inject(ActivatedRoute);
   private readonly router = inject(Router);
 
-  private readonly qp = signal<Record<string, any>>({});
+  private readonly queryParams = signal<Record<string, any>>({});
 
-  // qp: kind=vocab|sentence, mode=de-fr|fr-de|mixed, lesson=all|12, i=0
-  readonly kind = computed<PracticeKind>(() => (this.qp()['kind'] as PracticeKind) ?? 'sentence');
-  readonly mode = computed<PracticeMode>(() => (this.qp()['mode'] as PracticeMode) ?? 'de-fr');
-  readonly lesson = computed<string>(() => (this.qp()['lesson'] as string) ?? 'all');
+  readonly kind = computed<PracticeKind>(() => (this.queryParams()['kind'] as PracticeKind) ?? 'sentence');
+  readonly mode = computed<PracticeMode>(() => (this.queryParams()['mode'] as PracticeMode) ?? 'de-fr');
+  readonly lesson = computed<string>(() => (this.queryParams()['lesson'] as string) ?? 'all');
   readonly index = computed<number>(() => {
-    const n = Number(this.qp()['i']);
+    const n = Number(this.queryParams()['i']);
     return Number.isFinite(n) ? Math.max(0, n) : 0;
   });
 
@@ -22,7 +21,7 @@ export class PracticeRouteStateService {
     this.route.queryParamMap.subscribe(map => {
       const obj: Record<string, any> = {};
       map.keys.forEach(k => (obj[k] = map.get(k)));
-      this.qp.set(obj);
+      this.queryParams.set(obj);
     });
   }
 

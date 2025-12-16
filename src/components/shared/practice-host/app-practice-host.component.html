@@ -5,9 +5,7 @@
   [showScrubber]="true"
   [animation]="'slide'"
   [scrubLabelForIndex]="scrubLabelForIndex"
-  (previewIndex)="onPreviewIndex($event)"
   (commitIndex)="onCommitIndex($event)"
-  (goTo)="onGoTo($event)"
   (shuffle)="shuffle()"
 >
   @if (practiceKind() === 'vocab') {

@@ -38,23 +38,23 @@ export class PracticeHostShellComponent implements AfterViewInit, OnDestroy {
   @Input() scrubLabelForIndex?: (idx: number) => string;
 
   @Output() shuffle = new EventEmitter<void>();
-  @Output() prev = new EventEmitter<void>();
-  @Output() next = new EventEmitter<void>();
-  @Output() goTo = new EventEmitter<number>();
-  @Output() previewIndex = new EventEmitter<number>();
   @Output() commitIndex = new EventEmitter<number>();
 
   readonly counterText = computed(() => `${this.index() + 1} / ${this.length()}`);
 
   readonly thumbTopPct = computed(() => {
     const len = this.length();
-    if (len <= 1) return 0;
+    if (len <= 1) {
+      return 0;
+    }
     return (this.index() / (len - 1)) * 100;
   });
 
   readonly hotspotTopPct = computed(() => {
     const len = this.length();
-    if (len <= 1) return 0;
+    if (len <= 1) {
+      return 0;
+    }
     const idx = this.scrubPreview().active ? this.scrubPreview().idx : this.index();
     return (idx / (len - 1)) * 100;
   });
@@ -148,20 +148,22 @@ export class PracticeHostShellComponent implements AfterViewInit, OnDestroy {
   }
 
   private requestStep(d: -1 | 1) {
-    if (this.length() <= 1) return;
+    if (this.length() <= 1) {
+      return;
+    }
 
     const from = this.index();
     const to = this.clamp(from + d);
-    if (to === from) return;
+    if (to === from) {
+      return;
+    }
 
     const dir: NavDir = d === 1 ? 'next' : 'prev';
 
-    this.goTo.emit(to);
-    dir === 'next' ? this.next.emit() : this.prev.emit();
+    this.commitIndex.emit(to);
 
     this.animateSequential(dir, () => {
-      this.goTo.emit(to);
-      dir === 'next' ? this.next.emit() : this.prev.emit();
+      this.commitIndex.emit(to);
     });
   }
 
@@ -272,9 +274,6 @@ export class PracticeHostShellComponent implements AfterViewInit, OnDestroy {
     }
   };
 
-  // -------------------------
-  // scrubber
-  // -------------------------
   onScrubDown(ev: PointerEvent) {
     if (!this.showScrubber || this.length() <= 1) return;
     ev.preventDefault();
@@ -322,6 +321,6 @@ export class PracticeHostShellComponent implements AfterViewInit, OnDestroy {
     }
 
     this.scrubPreview.set({active, idx, label});
-    this.previewIndex.emit(idx); // LIVE ohne Animation
+    this.commitIndex.emit(idx);
   }
 }

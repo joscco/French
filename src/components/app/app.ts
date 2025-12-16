@@ -7,7 +7,7 @@ import {TranslationService} from '../../services/translation.service';
 import {GermanTermService} from '../../services/german-term.service';
 import {FrenchTermService} from '../../services/french-term.service';
 import {WordService} from '../../services/word.service';
-import {PracticeKind} from '../../models/types';
+import {PracticeKind, PracticeMode} from '../../models/types';
 import {SentenceService} from '../../services/sentence.service';
 import {IconButtonComponent} from '../shared/icon-button/icon-button.component';
 import {
@@ -129,5 +129,10 @@ export class AppComponent {
     this.practiceKind.set($event);
     this.routeStateService.patch({kind: $event, i: 0});
     this.closePanel()
+  }
+
+  onPracticeModeChange($event: PracticeMode) {
+    this.practiceMode.set($event);
+    this.routeStateService.patch({mode: $event, i: 0})
   }
 }

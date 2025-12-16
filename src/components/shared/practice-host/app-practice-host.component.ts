@@ -73,18 +73,11 @@ export class PracticeHostComponent {
     });
   }
 
-  onPreviewIndex(i: number) {
-    this.index.set(this.clamp(i, this.currentListLength()));
-  }
 
   onCommitIndex(i: number) {
-    const next = this.clamp(i, this.currentListLength());
+    const next = this.clamp(i, this.currentListLength())
     this.index.set(next);
     this.routeState.patch({i: next});
-  }
-
-  onGoTo(i: number) {
-    this.onCommitIndex(i);
   }
 
   shuffle() {
@@ -98,7 +91,9 @@ export class PracticeHostComponent {
   }
 
   private clamp(i: number, len: number) {
-    if (!len) return 0;
+    if (!len) {
+      return 0;
+    }
     return Math.max(0, Math.min(len - 1, i));
   }
 }

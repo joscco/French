@@ -13,7 +13,7 @@
 
         <app-practice-direction-toggle
           [mode]="practiceMode()"
-          (modeChange)="practiceMode.set($event); routeStateService.patch({mode: $event, i: 0})"
+          (modeChange)="onPracticeModeChange($event)"
         />
       </div>
     </header>
