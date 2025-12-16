@@ -160,8 +160,10 @@
 494;de;Maßnahme;Maßnahme
 495;fr;radar;radar
 495;de;Blitzer;Blitzer
-496;fr;véhicules en face;véhicules en face
-496;de;entgegenkommende Fahrzeuge;entgegenkommenden Fahrzeuge
+496;fr;véhicule;véhicules
+496;fr;en face;en face
+496;de;entgegenkommend;entgegenkommenden
+496;de;Fahrzeug;Fahrzeuge
 497;fr;valoir qc. à qn;valu une bonne réputation
 497;de;jmdm. einen guten Ruf einbringen;einen guten Ruf eingebracht
 498;fr;bâti;bâti
