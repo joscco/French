@@ -89,7 +89,11 @@ export class EditorStore {
   // ---------- Sentences ----------
   createBilingualSentence(lesson: number): BilingualSentence {
     const id = this.nextId('sentence');
-    const emptyTemplate: SentenceTemplate = { tokens: [{ kind: 'text', value: '' }], slots: [] };
+    const emptyTemplate: SentenceTemplate = {
+      text: '',
+      tokens: [{ kind: 'text', value: '' }],
+      slots: [],
+    };
     const s: BilingualSentence = {
       id,
       lesson,
@@ -149,6 +153,35 @@ export class EditorStore {
       }),
     });
   }
+
+  updateSentenceTemplateText(sentenceId: number, lang: Lang, text: string) {
+    const db = this.db();
+    this.db.set({
+      ...db,
+      sentences: db.sentences.map((s) => {
+        if (s.id !== sentenceId) return s;
+
+        if (lang === 'fr') {
+          return {
+            ...s,
+            fr: {
+              ...s.fr,
+              template: { ...s.fr.template, text },
+            },
+          };
+        }
+
+        return {
+          ...s,
+          de: {
+            ...s.de,
+            template: { ...s.de.template, text },
+          },
+        };
+      }),
+    });
+  }
+
 }
 
 function load(): EditorDB {

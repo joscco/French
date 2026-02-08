@@ -87,15 +87,17 @@ export class TermPickerComponent {
 
   create() {
     const display = this.newDisplay.trim();
-    if (!display) return;
+    if (!display) {
+      return;
+    }
 
-    const t = this.store.createTerm({
+    const term = this.store.createTerm({
       lang: this.lang,
       display,
       category: this.newCategory || undefined,
     });
 
-    this.choose.emit(t);
+    this.choose.emit(term);
     this.newDisplay = '';
     this.newCategory = '';
     this.query = '';

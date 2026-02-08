@@ -38,6 +38,8 @@ export interface SentenceSide {
 export interface SentenceTemplate {
   tokens: SentenceToken[];
   slots: TemplateSlot[];
+  /** MVP: freier Template-Text, später in tokens/slots geparsed */
+  text?: string;
 }
 
 export type SentenceToken =

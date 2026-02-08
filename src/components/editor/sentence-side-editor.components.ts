@@ -1,27 +1,34 @@
-import { Component, Input, Output, EventEmitter, signal } from '@angular/core';
+import { Component, computed, inject, signal, input, output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+
 import { EditorStore } from '../../services/editor-store.service';
 import { Lang, BilingualSentence, SentenceAnnotation, Term } from '../../models/editor-model';
 import { TermPickerComponent } from './term-picker.component';
 
-type PopoverState =
+type SelectionState =
   | null
-  | { x: number; y: number; start: number; end: number; surface: string };
+  | {
+  start: number;
+  end: number;
+  surface: string;
+};
 
-type Segment =
-  | { kind: 'text'; text: string }
-  | { kind: 'ann'; text: string; ann: SentenceAnnotation };
+type Segment = {
+  text: string;
+  ann?: SentenceAnnotation;
+  isSelected?: boolean;
+};
 
 @Component({
   standalone: true,
   selector: 'app-sentence-side-editor',
   imports: [CommonModule, FormsModule, TermPickerComponent],
   template: `
-    <div class="relative rounded-2xl border border-slate-200 bg-white p-3">
+    <div class="side-editor-root relative overflow-visible rounded-2xl border border-slate-200 bg-white p-3">
       <div class="mb-2 flex items-center justify-between">
         <div class="text-sm font-extrabold text-slate-900">
-          {{ lang.toUpperCase() }} Representative
+          {{ lang().toUpperCase() }} Representative
         </div>
 
         <button
@@ -42,6 +49,34 @@ type Segment =
         placeholder="Representative sentence…"
       ></textarea>
 
+      <!-- Overlay -->
+      <div
+        *ngIf="selection() as sel"
+        class="absolute z-50 w-[520px] max-w-[92vw] pointer-events-auto"
+        [style.left.px]="overlayPos().x"
+        [style.top.px]="overlayPos().y"
+      >
+        <div class="rounded-2xl border border-slate-200 bg-white p-3 shadow-2xl">
+          <div class="mb-2 flex items-center justify-between gap-2">
+            <div class="truncate text-sm font-semibold text-slate-900">
+              Markiert:
+              <span class="rounded-md bg-sky-100 px-2 py-0.5">{{ sel.surface }}</span>
+            </div>
+
+            <button
+              type="button"
+              class="rounded-lg px-2 py-1 text-slate-400 hover:bg-slate-50 hover:text-slate-700"
+              (click)="selection.set(null)"
+              aria-label="Close"
+            >
+              ✕
+            </button>
+          </div>
+
+          <app-term-picker [lang]="lang()" (choose)="onTermChosen($event)"></app-term-picker>
+        </div>
+      </div>
+
       <!-- Preview with highlights -->
       <div class="mt-3 rounded-2xl border border-slate-200 bg-slate-50 p-3">
         <div class="mb-2 text-xs font-extrabold uppercase tracking-wide text-slate-500">
@@ -50,13 +85,23 @@ type Segment =
 
         <div class="whitespace-pre-wrap text-sm leading-relaxed text-slate-900">
           <ng-container *ngFor="let seg of segments()">
-            <span *ngIf="seg.kind === 'text'">{{ seg.text }}</span>
+            <!-- normal text -->
+            <span *ngIf="!seg.ann && !seg.isSelected">{{ seg.text }}</span>
 
+            <!-- selected (live) but not annotated -->
+            <span
+              *ngIf="!seg.ann && seg.isSelected"
+              class="rounded-md border border-sky-200 bg-sky-100 px-1.5 py-0.5"
+            >
+              {{ seg.text }}
+            </span>
+
+            <!-- annotated (clickable) -->
             <button
-              *ngIf="seg.kind === 'ann'"
+              *ngIf="seg.ann"
               type="button"
               class="inline rounded-md border px-1.5 py-0.5 align-baseline transition"
-              [ngClass]="annClass(seg.ann.termId)"
+              [ngClass]="annClass(seg.ann.termId, !!seg.isSelected)"
               (click)="onClickAnnotated(seg.ann)"
               [title]="'term #' + seg.ann.termId"
             >
@@ -66,7 +111,7 @@ type Segment =
         </div>
 
         <div *ngIf="hasOverlap()" class="mt-2 text-xs font-semibold text-amber-700">
-          ⚠️ Note: Overlapping annotations detected. (Works, but can be confusing.)
+          ⚠️ Overlapping annotations detected. (Works, but can be confusing.)
         </div>
       </div>
 
@@ -81,8 +126,12 @@ type Segment =
             type="button"
             class="flex w-full items-center gap-2 rounded-2xl border px-3 py-2 text-left"
             *ngFor="let a of annotationsSorted()"
-            [ngClass]="a.termId === selectedTermId ? 'border-slate-400 bg-slate-50' : 'border-slate-200 bg-white hover:bg-slate-50'"
-            (click)="editTerm.emit(a.termId)"
+            [ngClass]="
+              a.termId === selectedTermId()
+                ? 'border-slate-400 bg-slate-50'
+                : 'border-slate-200 bg-white hover:bg-slate-50'
+            "
+            (click)="selection.set(null); editTerm.emit(a.termId)"
           >
             <span class="rounded-full border border-slate-200 bg-white px-2 py-1 text-xs text-slate-700">
               {{ a.surface || sliceSurface(a) }}
@@ -113,114 +162,36 @@ type Segment =
           </div>
         </ng-template>
       </div>
-
-      <!-- Popover -->
-      <div *ngIf="popover() as p" class="absolute z-20" [style.left.px]="p.x" [style.top.px]="p.y">
-        <div class="mb-2 flex items-center justify-between">
-          <div class="max-w-[380px] truncate text-xs font-semibold text-slate-800">
-            “{{ p.surface }}”
-          </div>
-          <button
-            type="button"
-            class="ml-2 rounded-lg px-2 py-1 text-slate-400 hover:bg-slate-50 hover:text-slate-700"
-            (click)="popover.set(null)"
-            aria-label="Close"
-            title="Close"
-          >
-            ✕
-          </button>
-        </div>
-
-        <app-term-picker [lang]="lang" (choose)="onTermChosen($event)"></app-term-picker>
-      </div>
     </div>
   `,
 })
 export class SentenceSideEditorComponent {
-  @Input({ required: true }) sentence!: BilingualSentence;
-  @Input({ required: true }) lang!: Lang;
-  @Input() selectedTermId: number | null = null;
+  private readonly store = inject(EditorStore);
 
-  @Output() editTerm = new EventEmitter<number>();
+  // ✅ signal-based inputs
+  sentence = input.required<BilingualSentence>();
+  lang = input.required<Lang>();
+  selectedTermId = input<number | null>(null);
 
-  popover = signal<PopoverState>(null);
+  // ✅ signal-based output
+  editTerm = output<number>();
 
-  constructor(private store: EditorStore) {}
+  // local state as signals
+  selection = signal<SelectionState>(null);
+  overlay = signal<{ x: number; y: number }>({ x: 12, y: 12 });
 
-  private side() {
-    return this.lang === 'fr' ? this.sentence.fr : this.sentence.de;
-  }
+  private side = computed(() => (this.lang() === 'fr' ? this.sentence().fr : this.sentence().de));
 
-  repText() {
-    return this.side().representative.text;
-  }
+  repText = computed(() => this.side().representative.text ?? '');
 
-  setRepText(text: string) {
-    this.store.updateSentenceSideText(this.sentence.id, this.lang, text);
-  }
-
-  annotationsSorted(): SentenceAnnotation[] {
+  annotationsSorted = computed((): SentenceAnnotation[] => {
     const anns = this.side().representative.annotations ?? [];
     return [...anns].sort((a, b) => a.range.start - b.range.start);
-  }
+  });
 
-  remove(annId: number) {
-    this.store.removeAnnotation(this.sentence.id, this.lang, annId);
-  }
+  overlayPos = computed(() => this.overlay());
 
-  sliceSurface(a: SentenceAnnotation): string {
-    const t = this.repText();
-    return t.slice(a.range.start, a.range.end);
-  }
-
-  onClickAnnotated(a: SentenceAnnotation) {
-    this.editTerm.emit(a.termId);
-  }
-
-  annClass(termId: number) {
-    const isSelected = this.selectedTermId === termId;
-    // marked segments: yellow-ish background; selected adds ring
-    return [
-      'border-amber-200 bg-amber-100 hover:bg-amber-200',
-      isSelected ? 'ring-2 ring-slate-400' : 'ring-0',
-    ].join(' ');
-  }
-
-  // Build segments for preview (text + annotation spans)
-  segments(): Segment[] {
-    const text = this.repText() ?? '';
-    const anns = this.annotationsSorted();
-
-    if (!text) return [{ kind: 'text', text: '' }];
-
-    // Clamp & sort
-    const safe = anns
-      .map(a => ({
-        ...a,
-        range: {
-          start: Math.max(0, Math.min(a.range.start, text.length)),
-          end: Math.max(0, Math.min(a.range.end, text.length)),
-        },
-      }))
-      .filter(a => a.range.end > a.range.start)
-      .sort((a, b) => a.range.start - b.range.start);
-
-    const out: Segment[] = [];
-    let i = 0;
-
-    for (const a of safe) {
-      if (a.range.start > i) {
-        out.push({ kind: 'text', text: text.slice(i, a.range.start) });
-      }
-      out.push({ kind: 'ann', text: text.slice(a.range.start, a.range.end), ann: a });
-      i = Math.max(i, a.range.end);
-    }
-
-    if (i < text.length) out.push({ kind: 'text', text: text.slice(i) });
-    return out;
-  }
-
-  hasOverlap(): boolean {
+  hasOverlap = computed((): boolean => {
     const anns = this.annotationsSorted();
     for (let i = 1; i < anns.length; i++) {
       const prev = anns[i - 1];
@@ -228,12 +199,67 @@ export class SentenceSideEditorComponent {
       if (cur.range.start < prev.range.end) return true;
     }
     return false;
+  });
+
+  segments = computed((): Segment[] => {
+    const text = this.repText();
+    const anns = this.annotationsSorted();
+
+    const len = text.length;
+    const sel = this.selection();
+
+    const cuts = new Set<number>([0, len]);
+    for (const a of anns) {
+      cuts.add(clamp(a.range.start, 0, len));
+      cuts.add(clamp(a.range.end, 0, len));
+    }
+    if (sel) {
+      cuts.add(clamp(sel.start, 0, len));
+      cuts.add(clamp(sel.end, 0, len));
+    }
+
+    const points = [...cuts].sort((a, b) => a - b);
+    const segs: Segment[] = [];
+
+    for (let i = 0; i < points.length - 1; i++) {
+      const start = points[i];
+      const end = points[i + 1];
+      if (end <= start) continue;
+
+      const chunk = text.slice(start, end);
+
+      // annotated chunk? (first match wins)
+      const ann = anns.find(a => start >= a.range.start && end <= a.range.end);
+      const isSelected = !!sel && start >= sel.start && end <= sel.end;
+
+      segs.push({ text: chunk, ann, isSelected });
+    }
+
+    return segs;
+  });
+
+  setRepText(text: string) {
+    const s = this.sentence();
+    const lang = this.lang();
+
+    this.store.updateSentenceSideText(s.id, lang, text);
+    this.selection.set(null);
+  }
+
+  remove(annId: number) {
+    const s = this.sentence();
+    this.store.removeAnnotation(s.id, this.lang(), annId);
+  }
+
+  sliceSurface(a: SentenceAnnotation): string {
+    const t = this.repText();
+    return t.slice(a.range.start, a.range.end);
   }
 
   clearSelection() {
     const sel = window.getSelection();
     sel?.removeAllRanges();
-    this.popover.set(null);
+    this.selection.set(null);
   }
 
   onMouseUp(ev: MouseEvent | KeyboardEvent) {
@@ -243,36 +269,61 @@ export class SentenceSideEditorComponent {
     const start = ta.selectionStart ?? 0;
     const end = ta.selectionEnd ?? 0;
     if (end <= start) {
-      this.popover.set(null);
+      this.selection.set(null);
       return;
     }
 
     const surface = ta.value.slice(start, end);
-    const rect = ta.getBoundingClientRect();
+    this.selection.set({ start, end, surface });
 
-    const mouseX = ev instanceof MouseEvent ? ev.clientX : rect.left + 24;
-    const mouseY = ev instanceof MouseEvent ? ev.clientY : rect.top + 24;
+    const editorEl = ta.closest('.side-editor-root') as HTMLElement | null;
+    const editorRect = (editorEl ?? ta.parentElement!)?.getBoundingClientRect();
+    const taRect = ta.getBoundingClientRect();
 
-    const x = Math.max(8, mouseX - rect.left) + 8;
-    const y = Math.max(8, mouseY - rect.top) + 10;
+    const mouseX = ev instanceof MouseEvent ? ev.clientX : taRect.left + 20;
+    const mouseY = ev instanceof MouseEvent ? ev.clientY : taRect.top + 20;
 
-    this.popover.set({ x, y, start, end, surface });
+    const x = Math.max(8, mouseX - editorRect.left);
+    const y = Math.max(8, mouseY - editorRect.top) + 18;
+
+    this.overlay.set({ x, y });
   }
 
   onTermChosen(term: Term) {
-    const p = this.popover();
-    if (!p) return;
+    const sel = this.selection();
+    if (!sel) return;
 
-    this.store.addAnnotation(this.sentence.id, this.lang, {
+    const s = this.sentence();
+    const lang = this.lang();
+
+    this.store.addAnnotation(s.id, lang, {
       termId: term.id,
-      range: { start: p.start, end: p.end },
-      surface: p.surface,
+      range: { start: sel.start, end: sel.end },
+      surface: sel.surface,
     });
 
-    // Immediately open term editor on selection:
+    // ✅ open term editor immediately
     this.editTerm.emit(term.id);
 
-    this.popover.set(null);
+    this.selection.set(null);
     this.clearSelection();
   }
+
+  onClickAnnotated(a: SentenceAnnotation) {
+    this.selection.set(null);
+    this.editTerm.emit(a.termId);
+  }
+
+  annClass(termId: number, alsoSelected: boolean) {
+    const isSelectedTerm = this.selectedTermId() === termId;
+    return [
+      'border-amber-200 bg-amber-100 hover:bg-amber-200',
+      isSelectedTerm ? 'ring-2 ring-slate-400' : '',
+      alsoSelected ? 'ring-2 ring-sky-300' : '',
+    ].join(' ');
+  }
+}
+
+function clamp(n: number, min: number, max: number) {
+  return Math.max(min, Math.min(max, n));
 }
