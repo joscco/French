@@ -470,11 +470,11 @@
 11;472;La ville veut végétaliser les toits.;Die Stadt möchte die Dächer begrünen.
 11;473;Le centre a été piétonnisé cet été.;Das Zentrum wurde diesen Sommer zur Fußgängerzone umgewandelt.
 11;474;Le terrain est en pente derrière la maison.;Hinter dem Haus ist das Gelände abschüssig.
-11;475;Ils ont enlevé les barrières après les travaux.;Sie haben die Absperrungen nach den Arbeiten entfernt.
-11;476;Les habitants se sont insurgés contre le projet.;Die Bewohner haben sich über das Projekt empört.
-11;477;L’effacement des graffitis a coûté cher.;Die Entfernung der Graffitis war teuer.
-11;478;Il avance d’un pas mal assuré.;Er geht mit einem unsicheren Schritt.
-11;479;Il se sent mal assuré dans cette situation.;Er fühlt sich in dieser Situation unsicher.
+11;475;Ils ont enlevé les [barrières]{barrière} après les [travaux]{travail}.;Sie haben die Absperrungen nach den [Arbeiten]{Arbeit} entfernt.
+11;476;Les habitants [se sont insurgés]{s'insurger contre qc.} contre le projet.;Die Bewohner haben [sich]{sich über etw. empören#A} über das Projekt [empört]{#A}.
+11;477;L’[effacement] des [graffitis]{graffiti} a coûté cher.;Die [Entfernung] der [Graffitis]{Graffiti} war teuer.
+11;478;Il [avance]{avancer} d’un pas [mal assuré].;Er geht mit einem [unsicheren]{unsicher} Schritt.
+11;479;Il se sent [mal assuré] dans cette situation.;Er fühlt sich in dieser Situation [unsicher].
 12;480;[Autrefois]{autrefois}, la ville était beaucoup plus calme.;[Früher]{früher} war die Stadt viel ruhiger.
 12;481;Il habite [autre part] maintenant.;Er wohnt jetzt [woanders].
 12;482;La situation s’[est détériorée]{se détériorer}.;Die Situation [hat sich verschlechtert]{sich verschlechtern}.
@@ -494,7 +494,7 @@
 12;496;Il faut faire attention aux [véhicules]{véhicule} [en face].;Man muss auf die [entgegenkommenden]{entgegenkommend} [Fahrzeuge]{Fahrzeug} achten.
 12;497;Cette action lui a [valu une bonne réputation]{valoir qc. à qn}.;Diese Aktion hat ihm [einen guten Ruf eingebracht]{jmdm. einen guten Ruf einbringen}.
 12;498;Le quartier [bâti] est plus dense.;Das [bebaute]{bebaut} Viertel ist dichter.
-12;499;La région a été [battue]{battu} par les vents.;Die Region wurde von Winden heimgesucht.
+12;499;La région a été [battue]{battre} par les vents.;Die Region wurde von Winden heimgesucht.
 12;500;Je prends souvent le [métro] pour aller au travail.;Ich nehme oft die [U-Bahn].
 12;501;C’est une [rue piétonne], sans voitures.;Das ist eine [Fußgängerzone], ohne Autos.
 12;502;C’est une [rue large] et lumineuse.;Das ist eine [breite Straße].

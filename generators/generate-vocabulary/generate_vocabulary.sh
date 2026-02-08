@@ -4,8 +4,8 @@ set -euo pipefail
 # -------- config --------
 VENV_DIR=".venv"
 PYTHON_BIN="python3"
-PYTHON_SCRIPT="scripts/building_vocabulary/build_vocab.py"
-REQUIREMENTS_FILE="requirements.txt"
+PYTHON_SCRIPT="./python/build_vocab.py"
+REQUIREMENTS_FILE="./python/requirements-vocabulary.txt"
 # ------------------------
 
 echo "▶ Vocabulary data build"
@@ -20,11 +20,11 @@ source "$VENV_DIR/bin/activate"
 
 echo "▶ Using Python: $(python --version)"
 
-#if [ -f "$REQUIREMENTS_FILE" ]; then
-#  echo "▶ Installing dependencies..."
-#  pip install --quiet --upgrade pip
-#  pip install --quiet -r "$REQUIREMENTS_FILE"
-#fi
+if [ -f "$REQUIREMENTS_FILE" ]; then
+  echo "▶ Installing dependencies..."
+  pip install --quiet --upgrade pip
+  pip install --quiet -r "$REQUIREMENTS_FILE"
+fi
 
 echo "▶ Running vocabulary build..."
 python "$PYTHON_SCRIPT"
