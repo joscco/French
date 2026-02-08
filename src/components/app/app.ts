@@ -18,7 +18,7 @@ import {PracticeRouteStateService} from '../../services/route-state.service';
 import {PracticeHostComponent} from '../shared/practice-host/app-practice-host.component';
 
 @Component({
-  selector: 'app-root',
+  selector: 'app',
   standalone: true,
   imports: [CommonModule, IconButtonComponent, PracticeDirectionToggleComponent, PracticePanelComponent, PracticeHostComponent],
   templateUrl: './app.html',
