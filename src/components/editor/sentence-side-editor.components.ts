@@ -3,8 +3,9 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 import { EditorStore } from '../../services/editor-store.service';
-import { Lang, BilingualSentence, SentenceAnnotation, Term } from '../../models/editor-model';
+import { BilingualSentence, SentenceAnnotation, Term } from '../../models/editor-model';
 import { TermPickerComponent } from './term-picker.component';
+import {Language} from '../../models/types';
 
 type SelectionState =
   | null
@@ -91,7 +92,7 @@ type Segment = {
             <!-- selected (live) but not annotated -->
             <span
               *ngIf="!seg.ann && seg.isSelected"
-              class="rounded-md border border-sky-200 bg-sky-100 px-1.5 py-0.5"
+              class="rounded-md border border-sky-200 bg-sky-100 px-0.5 py-0.5"
             >
               {{ seg.text }}
             </span>
@@ -100,7 +101,7 @@ type Segment = {
             <button
               *ngIf="seg.ann"
               type="button"
-              class="inline rounded-md border px-1.5 py-0.5 align-baseline transition"
+              class="inline rounded-md border px-0.5 py-0.5 align-baseline transition"
               [ngClass]="annClass(seg.ann.termId, !!seg.isSelected)"
               (click)="onClickAnnotated(seg.ann)"
               [title]="'term #' + seg.ann.termId"
@@ -170,7 +171,7 @@ export class SentenceSideEditorComponent {
 
   // ✅ signal-based inputs
   sentence = input.required<BilingualSentence>();
-  lang = input.required<Lang>();
+  lang = input.required<Language>();
   selectedTermId = input<number | null>(null);
 
   // ✅ signal-based output
@@ -180,7 +181,7 @@ export class SentenceSideEditorComponent {
   selection = signal<SelectionState>(null);
   overlay = signal<{ x: number; y: number }>({ x: 12, y: 12 });
 
-  private side = computed(() => (this.lang() === 'fr' ? this.sentence().fr : this.sentence().de));
+  private side = computed(() => (this.lang() === 'french' ? this.sentence().fr : this.sentence().de));
 
   repText = computed(() => this.side().representative.text ?? '');
 

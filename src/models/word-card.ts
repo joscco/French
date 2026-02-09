@@ -1,3 +1,5 @@
+import {Genus} from './editor-model';
+
 export type HeadLanguage = 'fr' | 'de';
 
 export interface WordCard {
@@ -12,8 +14,8 @@ export interface WordCard {
   meta?: {
     category?: string;
     lesson?: number;
-    fr_genus?: string;
-    de_genus?: string;
+    fr_genus?: Genus;
+    de_genus?: Genus;
     fr_needs_vowel_article?: boolean;
   };
 

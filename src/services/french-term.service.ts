@@ -1,6 +1,7 @@
 import {FrenchTerm} from '../models/french-term';
 import {computed, Injectable, signal} from '@angular/core';
 import {parseCSV} from '../helpers/csv-utils';
+import {Genus} from '../models/editor-model';
 
 @Injectable({ providedIn: 'root' })
 export class FrenchTermService {
@@ -22,7 +23,7 @@ export class FrenchTermService {
         key,
         term,
         category: (r['category'] || '').trim(),
-        genus: (r['genus'] || '').trim() || undefined,
+        genus: (r['genus'] || '').trim() as Genus || undefined,
         needsVowelArticle: (r['needs_vowel_article'] || '').trim().toLowerCase() === 'true',
       };
     }

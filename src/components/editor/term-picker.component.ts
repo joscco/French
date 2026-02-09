@@ -1,8 +1,9 @@
 import { Component, EventEmitter, Input, Output, computed } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import {Lang, Term, TermCategory} from '../../models/editor-model';
+import { Term, TermCategory} from '../../models/editor-model';
 import {EditorStore} from '../../services/editor-store.service';
+import {Language} from '../../models/types';
 
 @Component({
   standalone: true,
@@ -68,7 +69,7 @@ import {EditorStore} from '../../services/editor-store.service';
   `,
 })
 export class TermPickerComponent {
-  @Input({ required: true }) lang!: Lang;
+  @Input({ required: true }) lang!: Language;
   @Output() choose = new EventEmitter<Term>();
 
   query = '';

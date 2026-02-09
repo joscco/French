@@ -3,12 +3,13 @@ import {TranslationLink} from '../models/translation-link';
 import {GermanTerm} from '../models/german-term';
 import {FrenchTerm} from '../models/french-term';
 import {Language} from '../models/types';
+import {Genus} from '../models/editor-model';
 
 export function reverseLanguage(lang: Language): Language {
   return lang === 'french' ? 'german' : 'french';
 }
 
-export function beautifyGenus(genus?: string): string {
+export function beautifyGenus(genus?: Genus): string {
   if (!genus) {
     return '';
   }
@@ -35,8 +36,70 @@ export function beautifyGenus(genus?: string): string {
   }
 }
 
+export function withFrenchArticle(word: string, genus?: Genus, needsVowelArticle?: boolean): string {
+  const frenchWord = (word || '').trim();
+  if (!frenchWord) {
+    return frenchWord;
+  }
+  const frenchGender = (genus || '').toLowerCase();
+  if (!frenchGender) {
+    return frenchWord;
+  } // kein Artikel für verbe/adjectif etc.
 
-export function getArticle(language: Language, genus: string, needsFrenchVowelArticle: boolean): string {
+  const isPlural = frenchGender.includes('pl');
+  const isMasc = frenchGender.includes('m');
+  const isFem = frenchGender.includes('f');
+
+  if (isPlural) {
+    return `les ${frenchWord} (${beautifyGenus(genus)})`;
+  }
+
+  // Nur auf den Flag fr_needs_vowel_article achten (kein Heuristik-Check des ersten Buchstabens)
+  if (needsVowelArticle) {
+    return `l'${frenchWord} (${beautifyGenus(genus)})`;
+  }
+
+  if (isMasc) {
+    return `le ${frenchWord}`;
+  }
+  if (isFem) {
+    return `la ${frenchWord}`;
+  }
+  return frenchWord;
+}
+
+export function withGermanArticle(word: string, genus?: string): string {
+  const germanWord = (word || '').trim();
+  if (!germanWord) {
+    return germanWord;
+  }
+  const germanGender = (genus || '').toLowerCase();
+  if (!germanGender) {
+    return germanWord;
+  }
+
+  const isPlural = germanGender.includes('pl');
+  const isMasc = germanGender.includes('m') && !isPlural;
+  const isFem = germanGender.includes('f') && !isPlural;
+  const isNeut = germanGender.includes('n') && !isPlural;
+
+  if (isPlural) {
+    return `die ${germanWord}`;
+  }
+  if (isMasc) {
+    return `der ${germanWord}`;
+  }
+  if (isFem) {
+    return `die ${germanWord}`;
+  }
+  if (isNeut) {
+    return `das ${germanWord}`;
+  }
+  return germanWord;
+}
+
+
+export function getArticle(language: Language, genus: Genus, needsFrenchVowelArticle: boolean): string {
   if (language === 'german') {
     switch (genus) {
       case 'm':

@@ -1,6 +1,7 @@
 import {computed, Injectable, signal} from '@angular/core';
 import {GermanTerm} from '../models/german-term';
 import {parseCSV} from '../helpers/csv-utils';
+import {Genus} from '../models/editor-model';
 
 @Injectable({providedIn: 'root'})
 export class GermanTermService {
@@ -23,7 +24,7 @@ export class GermanTermService {
         key,
         term,
         category: (r['category'] || '').trim(),
-        genus: (r['genus'] || '').trim() || undefined,
+        genus: (r['genus'] || '').trim() as Genus || undefined,
       };
     }
     this._byKey.set(map);

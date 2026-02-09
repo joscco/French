@@ -1,5 +1,6 @@
 import { Injectable, signal, computed } from '@angular/core';
-import {BilingualSentence, EditorDB, Lang, SentenceAnnotation, SentenceTemplate, Term} from '../models/editor-model';
+import {BilingualSentence, EditorDB,  SentenceAnnotation, SentenceTemplate, Term} from '../models/editor-model';
+import {Language} from '../models/types';
 
 const LS_KEY = 'fr-editor-db-v1';
 
@@ -67,7 +68,7 @@ export class EditorStore {
     });
   }
 
-  searchTerms(lang: Lang, q: string): Term[] {
+  searchTerms(lang: Language, q: string): Term[] {
     const s = q.trim().toLowerCase();
     if (!s) return this.db().terms.filter(t => t.lang === lang).slice(0, 50);
     return this.db().terms
@@ -110,58 +111,58 @@ export class EditorStore {
     this.db.set({ ...db, sentences: db.sentences.map(s => (s.id === id ? { ...s, ...patch } : s)) });
   }
 
-  updateSentenceSideText(sentenceId: number, lang: Lang, text: string) {
+  updateSentenceSideText(sentenceId: number, lang: Language, text: string) {
     const db = this.db();
     this.db.set({
       ...db,
       sentences: db.sentences.map(s => {
         if (s.id !== sentenceId) return s;
-        const side = lang === 'fr' ? s.fr : s.de;
+        const side = lang === 'french' ? s.fr : s.de;
         const nextSide = { ...side, representative: { ...side.representative, text } };
-        return lang === 'fr' ? { ...s, fr: nextSide } : { ...s, de: nextSide };
+        return lang === 'french' ? { ...s, fr: nextSide } : { ...s, de: nextSide };
       }),
     });
   }
 
-  addAnnotation(sentenceId: number, lang: Lang, ann: Omit<SentenceAnnotation, 'id'>) {
+  addAnnotation(sentenceId: number, lang: Language, ann: Omit<SentenceAnnotation, 'id'>) {
     const id = this.nextId('annotation');
     const db = this.db();
     this.db.set({
       ...db,
       sentences: db.sentences.map(s => {
         if (s.id !== sentenceId) return s;
-        const side = lang === 'fr' ? s.fr : s.de;
+        const side = lang === 'french' ? s.fr : s.de;
         const rep = side.representative;
         const nextRep = { ...rep, annotations: [...rep.annotations, { id, ...ann }] };
         const nextSide = { ...side, representative: nextRep };
-        return lang === 'fr' ? { ...s, fr: nextSide } : { ...s, de: nextSide };
+        return lang === 'french' ? { ...s, fr: nextSide } : { ...s, de: nextSide };
       }),
     });
   }
 
-  removeAnnotation(sentenceId: number, lang: Lang, annId: number) {
+  removeAnnotation(sentenceId: number, lang: Language, annId: number) {
     const db = this.db();
     this.db.set({
       ...db,
       sentences: db.sentences.map(s => {
         if (s.id !== sentenceId) return s;
-        const side = lang === 'fr' ? s.fr : s.de;
+        const side = lang === 'french' ? s.fr : s.de;
         const rep = side.representative;
         const nextRep = { ...rep, annotations: rep.annotations.filter(a => a.id !== annId) };
         const nextSide = { ...side, representative: nextRep };
-        return lang === 'fr' ? { ...s, fr: nextSide } : { ...s, de: nextSide };
+        return lang === 'french' ? { ...s, fr: nextSide } : { ...s, de: nextSide };
       }),
     });
   }
 
-  updateSentenceTemplateText(sentenceId: number, lang: Lang, text: string) {
+  updateSentenceTemplateText(sentenceId: number, lang: Language, text: string) {
     const db = this.db();
     this.db.set({
       ...db,
       sentences: db.sentences.map((s) => {
         if (s.id !== sentenceId) return s;
 
-        if (lang === 'fr') {
+        if (lang === 'french') {
           return {
             ...s,
             fr: {

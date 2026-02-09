@@ -2,8 +2,9 @@ import {Injectable} from '@angular/core';
 import {jsPDF} from 'jspdf';
 import autoTable, {CellInput, HookData} from 'jspdf-autotable';
 import {LessonOption} from '../models/lesson-option';
-import {beautifyGenus} from '../helpers/utils';
+import {beautifyGenus, withFrenchArticle, withGermanArticle} from '../helpers/utils';
 import {WordCard} from '../models/word-card';
+import {Genus} from '../models/editor-model';
 
 @Injectable({providedIn: 'root'})
 export class ExportPdfService {
@@ -29,8 +30,8 @@ export class ExportPdfService {
     for (const c of sorted) {
       const category = (c.meta?.category ?? '').trim();
       const shortCat = category.length > 5 ? category.substring(0, 3) + '.' : category;
-      const fr = this.withFrenchArticle(c.frenchPrimary, c.meta?.fr_genus, !!c.meta?.fr_needs_vowel_article);
-      const de = this.withGermanArticle(c.germanPrimary, c.meta?.de_genus);
+      const fr = withFrenchArticle(c.frenchPrimary, c.meta?.fr_genus, !!c.meta?.fr_needs_vowel_article);
+      const de = withGermanArticle(c.germanPrimary, c.meta?.de_genus);
 
       // Hauptzeile (fett)
       body.push([
@@ -77,67 +78,5 @@ export class ExportPdfService {
     const safeSel = selected.id === 'all' ? 'alle' : selected.id;
     const filename = `vokabelliste_${safeSel}.pdf`;
     doc.save(filename);
-  }
-
-  private withFrenchArticle(word: string, genus?: string, needsVowelArticle?: boolean): string {
-    const frenchWord = (word || '').trim();
-    if (!frenchWord) {
-      return frenchWord;
-    }
-    const frenchGender = (genus || '').toLowerCase();
-    if (!frenchGender) {
-      return frenchWord;
-    } // kein Artikel für verbe/adjectif etc.
-
-    const isPlural = frenchGender.includes('pl');
-    const isMasc = frenchGender.includes('m');
-    const isFem = frenchGender.includes('f');
-
-    if (isPlural) {
-      return `les ${frenchWord} (${beautifyGenus(genus)})`;
-    }
-
-    // Nur auf den Flag fr_needs_vowel_article achten (kein Heuristik-Check des ersten Buchstabens)
-    if (needsVowelArticle) {
-      return `l'${frenchWord} (${beautifyGenus(genus)})`;
-    }
-
-    if (isMasc) {
-      return `le ${frenchWord}`;
-    }
-    if (isFem) {
-      return `la ${frenchWord}`;
-    }
-    return frenchWord;
-  }
-
-  private withGermanArticle(word: string, genus?: string): string {
-    const germanWord = (word || '').trim();
-    if (!germanWord) {
-      return germanWord;
-    }
-    const germanGender = (genus || '').toLowerCase();
-    if (!germanGender) {
-      return germanWord;
-    }
-
-    const isPlural = germanGender.includes('pl');
-    const isMasc = germanGender.includes('m') && !isPlural;
-    const isFem = germanGender.includes('f') && !isPlural;
-    const isNeut = germanGender.includes('n') && !isPlural;
-
-    if (isPlural) {
-      return `die ${germanWord}`;
-    }
-    if (isMasc) {
-      return `der ${germanWord}`;
-    }
-    if (isFem) {
-      return `die ${germanWord}`;
-    }
-    if (isNeut) {
-      return `das ${germanWord}`;
-    }
-    return germanWord;
   }
 }

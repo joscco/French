@@ -1,14 +1,16 @@
-export type Lang = 'fr' | 'de';
+import {Language} from './types';
 
 export type TermCategory = 'verbe' | 'nom' | 'expression' | 'adjectif' | 'autre';
 
+export type Genus = 'm' | 'f' | 'n' | 'pl' | 'mpl' | 'fpl' | 'npl' | 'm/f';
+
 export interface Term {
   id: number;
-  lang: Lang;
+  lang: Language;
   display: string;
   lemma?: string;
   category?: TermCategory;
-  genus?: string;
+  genus?: Genus;
   needsVowelArticle?: boolean;
   lessonIntroduced?: number;
   tags?: string[];

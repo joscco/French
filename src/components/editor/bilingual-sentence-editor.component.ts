@@ -2,9 +2,10 @@ import { Component, computed, effect, signal, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { EditorStore } from '../../services/editor-store.service';
-import { BilingualSentence, Lang } from '../../models/editor-model';
-import { TermEditorComponent } from './term-editor.component';
+import { BilingualSentence } from '../../models/editor-model';
 import {SentenceSideEditorComponent} from './sentence-side-editor.components';
+import {TermEditorComponent} from './term-editor/term-editor.component';
+import {Language} from '../../models/types';
 
 @Component({
   standalone: true,
@@ -102,14 +103,14 @@ import {SentenceSideEditorComponent} from './sentence-side-editor.components';
           <div class="grid grid-cols-2 gap-3">
             <app-sentence-side-editor
               [sentence]="s"
-              lang="fr"
+              lang="french"
               [selectedTermId]="selectedTermId()"
               (editTerm)="onEditTerm($event)"
             ></app-sentence-side-editor>
 
             <app-sentence-side-editor
               [sentence]="s"
-              lang="de"
+              lang="german"
               [selectedTermId]="selectedTermId()"
               (editTerm)="onEditTerm($event)"
             ></app-sentence-side-editor>
@@ -130,7 +131,7 @@ import {SentenceSideEditorComponent} from './sentence-side-editor.components';
                   <button
                     type="button"
                     class="rounded-lg border border-slate-200 bg-white px-2 py-1 text-xs font-semibold hover:bg-slate-50"
-                    (click)="useRepresentativeAsTemplate(s.id, 'fr')"
+                    (click)="useRepresentativeAsTemplate(s.id, 'french')"
                   >
                     Use representative
                   </button>
@@ -139,7 +140,7 @@ import {SentenceSideEditorComponent} from './sentence-side-editor.components';
                 <textarea
                   class="w-full min-h-[90px] rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm outline-none focus:border-slate-400"
                   [ngModel]="(s.fr.template.text ?? '')"
-                  (ngModelChange)="setTemplateText(s.id, 'fr', $event)"
+                  (ngModelChange)="setTemplateText(s.id, 'french', $event)"
                 ></textarea>
               </div>
 
@@ -150,7 +151,7 @@ import {SentenceSideEditorComponent} from './sentence-side-editor.components';
                   <button
                     type="button"
                     class="rounded-lg border border-slate-200 bg-white px-2 py-1 text-xs font-semibold hover:bg-slate-50"
-                    (click)="useRepresentativeAsTemplate(s.id, 'de')"
+                    (click)="useRepresentativeAsTemplate(s.id, 'german')"
                   >
                     Use representative
                   </button>
@@ -159,7 +160,7 @@ import {SentenceSideEditorComponent} from './sentence-side-editor.components';
                 <textarea
                   class="w-full min-h-[90px] rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm outline-none focus:border-slate-400"
                   [ngModel]="(s.de.template.text ?? '')"
-                  (ngModelChange)="setTemplateText(s.id, 'de', $event)"
+                  (ngModelChange)="setTemplateText(s.id, 'german', $event)"
                 ></textarea>
               </div>
             </div>
@@ -245,14 +246,14 @@ export class BilingualSentenceEditorComponent {
     this.selectedTermId.set(termId);
   }
 
-  setTemplateText(sentenceId: number, lang: Lang, text: string) {
+  setTemplateText(sentenceId: number, lang: Language, text: string) {
     this.store.updateSentenceTemplateText(sentenceId, lang, text);
   }
 
-  useRepresentativeAsTemplate(sentenceId: number, lang: Lang) {
+  useRepresentativeAsTemplate(sentenceId: number, lang: Language) {
     const s = this.sentences().find((x) => x.id === sentenceId);
     if (!s) return;
-    const rep = lang === 'fr' ? s.fr.representative.text : s.de.representative.text;
+    const rep = lang === 'french' ? s.fr.representative.text : s.de.representative.text;
     this.setTemplateText(sentenceId, lang, rep);
   }
 
