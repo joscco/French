@@ -1,0 +1,263 @@
+import {parseCSV, toBool, toCSV, toNum} from '../helpers/csv-utils';
+import {computed, Injectable, signal} from '@angular/core';
+import {Lang, SentenceRow, TermLinkRow, TermRow, UnitRow} from '../../../shared/contract/contract';
+
+@Injectable({ providedIn: 'root' })
+export class EditorStore {
+  // --- state ---
+  readonly units = signal<UnitRow[]>([]);
+  readonly terms = signal<TermRow[]>([]);
+  readonly links = signal<TermLinkRow[]>([]);
+  readonly sentences = signal<SentenceRow[]>([]);
+
+  readonly termById = computed(() => {
+    const termMap = new Map<number, TermRow>();
+    for (const term of this.terms()) {
+      termMap.set(term.id, term);
+    }
+    return termMap;
+  });
+
+  readonly unitById = computed(() => {
+    const unitMap = new Map<number, UnitRow>();
+    for (const unit of this.units()) {
+      unitMap.set(unit.id, unit);
+    }
+    return unitMap;
+  });
+
+  // --- loading ---
+  async loadAll(): Promise<void> {
+    const [unitsResponse, termsResponse, linksResponse, sentencesResponse] = await Promise.all([
+      fetch('data/units.csv'),
+      fetch('data/terms.csv'),
+      fetch('data/term_links.csv'),
+      fetch('data/sentences.csv'),
+    ]);
+
+    if (!unitsResponse.ok) {
+      throw new Error('Failed to load units.csv');
+    }
+    if (!termsResponse.ok) {
+      throw new Error('Failed to load terms.csv');
+    }
+    if (!linksResponse.ok) {
+      throw new Error('Failed to load term_links.csv');
+    }
+    if (!sentencesResponse.ok) {
+      throw new Error('Failed to load sentences.csv');
+    }
+
+    this.units.set(this.parseUnits(await unitsResponse.text()));
+    this.terms.set(this.parseTerms(await termsResponse.text()));
+    this.links.set(this.parseLinks(await linksResponse.text()));
+    this.sentences.set(this.parseSentences(await sentencesResponse.text()));
+  }
+
+  // --- parsing ---
+  private parseUnits(csv: string): UnitRow[] {
+    const csvRows = parseCSV(csv);
+    const parsedUnits: UnitRow[] = [];
+    for (const row of csvRows) {
+      const id = toNum(row['id']);
+      if (!id) {
+        continue;
+      }
+      const group = (row['group'] || '').trim();
+      const name = (row['name'] || '').trim();
+      if (!group || !name) {
+        continue;
+      }
+      parsedUnits.push({
+        id,
+        group,
+        name,
+        date: (row['date'] || '').trim() || undefined,
+        order: toNum(row['order']) ?? undefined,
+      });
+    }
+    parsedUnits.sort((a, b) => (a.group.localeCompare(b.group) || (a.order ?? 9999) - (b.order ?? 9999) || a.id - b.id));
+    return parsedUnits;
+  }
+
+  private parseTerms(csv: string): TermRow[] {
+    const csvRows = parseCSV(csv);
+    const parsedTerms: TermRow[] = [];
+    for (const row of csvRows) {
+      const id = toNum(row['id']);
+      const lang = (row['lang'] || '').trim() as Lang;
+      const display = (row['display'] || '').trim();
+      if (!id || (lang !== 'fr' && lang !== 'de') || !display) {
+        continue;
+      }
+
+      const tagsRaw = (row['tags'] || '').trim();
+      const tags = tagsRaw
+        ? tagsRaw.split(',').map(tag => tag.trim()).filter(tag => tag.length > 0)
+        : undefined;
+
+      parsedTerms.push({
+        id,
+        lang,
+        display,
+        lemma: (row['lemma'] || '').trim() || undefined,
+        category: (row['category'] || '').trim() as any || undefined,
+        genus: (row['genus'] || '').trim() as any || undefined,
+        needsVowelArticle: toBool(row['needs_vowel_article']),
+        unitId: toNum(row['unit_id']) ?? undefined,
+        ref: (row['ref'] || '').trim() || undefined,
+        tags,
+      });
+    }
+    parsedTerms.sort((a, b) => a.id - b.id);
+    return parsedTerms;
+  }
+
+  private parseLinks(csv: string): TermLinkRow[] {
+    const csvRows = parseCSV(csv);
+    const parsedLinks: TermLinkRow[] = [];
+    for (const row of csvRows) {
+      const frenchId = toNum(row['fr_id']);
+      const germanId = toNum(row['de_id']);
+      if (!frenchId || !germanId) {
+        continue;
+      }
+      parsedLinks.push({ fr_id: frenchId, de_id: germanId, priority: toNum(row['priority']) ?? undefined });
+    }
+    parsedLinks.sort((a, b) => (a.fr_id - b.fr_id) || (a.de_id - b.de_id));
+    return parsedLinks;
+  }
+
+  private parseSentences(csv: string): SentenceRow[] {
+    const csvRows = parseCSV(csv);
+    const parsedSentences: SentenceRow[] = [];
+    for (const row of csvRows) {
+      const id = toNum(row['id']);
+      const unitId = toNum(row['unit_id']);
+      const fr = (row['fr'] || '').trim();
+      const de = (row['de'] || '').trim();
+      if (!id || !unitId || !fr || !de) {
+        continue;
+      }
+      parsedSentences.push({ id, unitId, fr, de, note: (row['note'] || '').trim() || undefined });
+    }
+    parsedSentences.sort((a, b) => a.id - b.id);
+    return parsedSentences;
+  }
+
+  // --- editing: sentences ---
+  updateSentenceText(sentenceId: number, lang: Lang, text: string) {
+    const currentSentences = this.sentences();
+    this.sentences.set(
+      currentSentences.map(sentence => {
+        if (sentence.id !== sentenceId) {
+          return sentence;
+        }
+        return lang === 'fr' ? { ...sentence, fr: text } : { ...sentence, de: text };
+      }),
+    );
+  }
+
+  // --- editing: terms ---
+  updateTerm(id: number, patch: Partial<TermRow>) {
+    const currentTerms = this.terms();
+    this.terms.set(currentTerms.map(term => (term.id === id ? { ...term, ...patch } : term)));
+  }
+
+  createTerm(partial: Omit<TermRow, 'id'>): TermRow {
+    const nextId = Math.max(0, ...this.terms().map(term => term.id)) + 1;
+    const newTerm: TermRow = { id: nextId, ...partial };
+    this.terms.set([...this.terms(), newTerm].sort((a, b) => a.id - b.id));
+    return newTerm;
+  }
+
+  searchTerms(lang: Lang, query: string, limit = 50): TermRow[] {
+    const searchTerm = query.trim().toLowerCase();
+    const filteredTerms = this.terms().filter(term => term.lang === lang);
+    if (!searchTerm) {
+      return filteredTerms.slice(0, limit);
+    }
+
+    const tagsString = (tags: string[] | undefined) => tags?.join(' ') ?? '';
+    const scoredTerms = filteredTerms
+      .map(term => {
+        const searchableText = `${term.display} ${term.lemma ?? ''} ${tagsString(term.tags)}`.toLowerCase();
+        const score = searchableText === searchTerm ? 100 : searchableText.startsWith(searchTerm) ? 80 : searchableText.includes(searchTerm) ? 60 : 0;
+        return { term, score };
+      })
+      .filter(entry => entry.score > 0)
+      .sort((a, b) => b.score - a.score || a.term.id - b.term.id);
+
+    return scoredTerms.slice(0, limit).map(entry => entry.term);
+  }
+
+  // --- editing: term links ---
+  addLink(frenchId: number, germanId: number, priority?: number) {
+    const exists = this.links().some(link => link.fr_id === frenchId && link.de_id === germanId);
+    if (exists) {
+      return;
+    }
+    this.links.set([...this.links(), { fr_id: frenchId, de_id: germanId, priority }].sort((a, b) => (a.fr_id - b.fr_id) || (a.de_id - b.de_id)));
+  }
+
+  removeLink(frenchId: number, germanId: number) {
+    this.links.set(this.links().filter(link => !(link.fr_id === frenchId && link.de_id === germanId)));
+  }
+
+  // --- export ---
+  exportCSVs(): Record<string, string> {
+    const unitsCsv = toCSV(
+      this.units().map(unit => ({
+        id: unit.id,
+        group: unit.group,
+        name: unit.name,
+        date: unit.date ?? '',
+        order: unit.order ?? '',
+      })),
+      ['id', 'group', 'name', 'date', 'order'],
+    );
+
+    const termsCsv = toCSV(
+      this.terms().map(term => ({
+        id: term.id,
+        lang: term.lang,
+        display: term.display,
+        lemma: term.lemma ?? '',
+        category: term.category ?? '',
+        genus: term.genus ?? '',
+        needs_vowel_article: term.needsVowelArticle ?? '',
+        unit_id: term.unitId ?? '',
+        ref: term.ref ?? '',
+        tags: term.tags?.join(',') ?? '',
+      })),
+      ['id','lang','display','lemma','category','genus','needs_vowel_article','unit_id','ref','tags'],
+    );
+
+    const linksCsv = toCSV(
+      this.links().map(link => ({
+        fr_id: link.fr_id,
+        de_id: link.de_id,
+        priority: link.priority ?? '',
+      })),
+      ['fr_id','de_id','priority'],
+    );
+
+    const sentencesCsv = toCSV(
+      this.sentences().map(sentence => ({
+        id: sentence.id,
+        unit_id: sentence.unitId,
+        fr: sentence.fr,
+        de: sentence.de,
+        note: sentence.note ?? '',
+      })),
+      ['id','unit_id','fr','de','note'],
+    );
+
+    return {
+      'units.csv': unitsCsv,
+      'terms.csv': termsCsv,
+      'term_links.csv': linksCsv,
+      'sentences.csv': sentencesCsv,
+    };
+  }
+}
