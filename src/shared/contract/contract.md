@@ -15,11 +15,12 @@ Dieses Dokument definiert das Datenformat zwischen:
 ## Inhaltsverzeichnis
 
 1. [Tabellen-Übersicht](#tabellen-übersicht)
-2. [units.csv](#unitscsv)
-3. [terms.csv](#termscsv)
-4. [term_links.csv](#term_linkscsv)
-5. [sentences.csv](#sentencescsv)
-6. [Sentence Syntax](#sentence-syntax)
+2. [groups.csv](#groupscsv)
+3. [units.csv](#unitscsv)
+4. [terms.csv](#termscsv)
+5. [term_links.csv](#term_linkscsv)
+6. [sentences.csv](#sentencescsv)
+7. [Sentence Syntax](#sentence-syntax)
 
 ---
 
@@ -29,7 +30,8 @@ Dieses Dokument definiert das Datenformat zwischen:
 
 | Datei          | Beschreibung                          |
 |----------------|---------------------------------------|
-| units.csv      | Logische Gruppen (Lektionen, Kapitel) |
+| groups.csv     | Übergeordnete Gruppen (Semester, etc.)|
+| units.csv      | Logische Einheiten (Lektionen)        |
 | terms.csv      | Begriffe beider Sprachen              |
 | term_links.csv | Übersetzungsbeziehungen               |
 | sentences.csv  | Sätze mit Annotationen                |
@@ -42,39 +44,68 @@ Dieses Dokument definiert das Datenformat zwischen:
 
 ---
 
-## units.csv
+## groups.csv
 
-Definiert logische Gruppen wie:
+Definiert übergeordnete Gruppen wie:
 
 - Semester
-- Lektionen
 - Bücher
-- Kapitel
-- freie Sammlungen
+- Freie Sammlungen
 
 ### Schema
 
 ```csv
-id;group;name;date;order
+id;name;date
 ```
 
 ### Felder
 
-| Feld  | Beschreibung              | Pflicht |
-|-------|---------------------------|---------|
-| id    | Eindeutige ID             | ✓       |
-| group | Gruppierung               | ✓       |
-| name  | Anzeigename               | ✓       |
-| date  | Datum (ISO-Format)        | –       |
-| order | Sortierreihenfolge        | –       |
+| Feld | Beschreibung     | Pflicht |
+|------|------------------|---------|
+| id   | Eindeutige ID    | ✓       |
+| name | Anzeigename      | ✓       |
+| date | Datum (ISO)      | –       |
 
 ### Beispiel
 
 ```csv
-id;group;name;date;order
-1;WiSe 2025;10.09.2025;2025-09-10;1
-2;WiSe 2025;17.09.2025;2025-09-17;2
-3;L'Étranger;Kapitel 1;;1
+id;name;date
+1;WiSe 2025;2025-09-10
+2;SoSe 2026;2026-01-28
+```
+
+---
+
+## units.csv
+
+Definiert logische Einheiten innerhalb einer Gruppe:
+
+- Lektionen
+- Kapitel
+
+### Schema
+
+```csv
+id;group_id;name;date;order
+```
+
+### Felder
+
+| Feld     | Beschreibung                  | Pflicht |
+|----------|-------------------------------|---------|
+| id       | Eindeutige ID                 | ✓       |
+| group_id | Referenz auf groups.csv       | ✓       |
+| name     | Anzeigename                   | ✓       |
+| date     | Datum (ISO-Format)            | –       |
+| order    | Sortierreihenfolge in Gruppe  | –       |
+
+### Beispiel
+
+```csv
+id;group_id;name;date;order
+1;1;Lektion 1 | 10.09.;2025-09-10;1
+2;1;Lektion 2 | 17.09.;2025-09-17;2
+13;2;Lektion 1 | 28.01.;2026-01-28;1
 ```
 
 ---
