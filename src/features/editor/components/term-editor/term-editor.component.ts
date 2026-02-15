@@ -3,6 +3,7 @@ import {Component, computed, effect, HostListener, inject, input, OnDestroy, sig
 import {FormsModule} from '@angular/forms';
 
 import {EditorStore} from '../../services/editor-store.service';
+import {TTSService} from '../../services/tts.service';
 import {Genus, Lang, TermCategory, TermRow} from '../../../../shared/contract/contract';
 import {beautifyGenus, getArticle, reverseLanguage} from '../../../app/helpers/utils';
 import {TermPickerComponent} from '../term-picker/term-picker.component';
@@ -19,6 +20,7 @@ type OverlayPosition = { x: number; y: number };
 export class TermEditorComponent implements OnDestroy {
 
   private readonly editorStore = inject(EditorStore);
+  private readonly ttsService = inject(TTSService);
 
   termId = input<number | null>(null);
 
@@ -29,6 +31,14 @@ export class TermEditorComponent implements OnDestroy {
   private audioElement: HTMLAudioElement | null = null;
   audioExists = signal<boolean | null>(null);
   isPlaying = signal(false);
+  isGenerating = signal(false);
+  generateError = signal<string | null>(null);
+
+  // Audio state for linked terms
+  private linkedAudioElement: HTMLAudioElement | null = null;
+  linkedTermAudioExists = signal<Map<number, boolean>>(new Map());
+  linkedTermPlaying = signal<number | null>(null);
+  linkedTermGenerating = signal<number | null>(null);
 
   readonly displaySegments = computed<TermDisplaySeg[]>(() => {
 
@@ -107,6 +117,16 @@ export class TermEditorComponent implements OnDestroy {
       // Check audio existence
       this.checkAudioExists();
     });
+
+    // Reactive effect: check linked terms audio existence
+    effect(() => {
+      const linked = this.linkedTerms();
+      for (const term of linked) {
+        if (this.isLinkedTermAudioExists(term.id) === null) {
+          this.checkLinkedTermAudioExists(term.id, term.lang);
+        }
+      }
+    });
   }
 
   ngOnDestroy() {
@@ -164,6 +184,130 @@ export class TermEditorComponent implements OnDestroy {
       this.stopAudio();
     } else {
       this.playAudio();
+    }
+  }
+
+  async generateAudio() {
+    const currentTermId = this.termId();
+    if (currentTermId == null) {
+      return;
+    }
+
+    this.isGenerating.set(true);
+    this.generateError.set(null);
+
+    const result = await this.ttsService.generateTermAudio(currentTermId);
+
+    this.isGenerating.set(false);
+
+    if (result.success) {
+      this.audioExists.set(true);
+      // Auto-play after generation
+      setTimeout(() => this.playAudio(), 100);
+    } else {
+      this.generateError.set(result.error ?? 'Unbekannter Fehler');
+    }
+  }
+
+  get ttsServerAvailable() {
+    return this.ttsService.serverAvailable();
+  }
+
+  // =========================================================
+  // Linked Term Audio
+  // =========================================================
+
+  getLinkedTermAudioPath(termId: number, lang: string): string {
+    return `sounds/term_${lang}${termId}.mp3`;
+  }
+
+  async checkLinkedTermAudioExists(termId: number, lang: string): Promise<boolean> {
+    const path = this.getLinkedTermAudioPath(termId, lang);
+    try {
+      const response = await fetch(path, { method: 'HEAD' });
+      const exists = response.ok;
+      this.linkedTermAudioExists.update(map => {
+        const newMap = new Map(map);
+        newMap.set(termId, exists);
+        return newMap;
+      });
+      return exists;
+    } catch {
+      this.linkedTermAudioExists.update(map => {
+        const newMap = new Map(map);
+        newMap.set(termId, false);
+        return newMap;
+      });
+      return false;
+    }
+  }
+
+  isLinkedTermAudioExists(termId: number): boolean | null {
+    return this.linkedTermAudioExists().get(termId) ?? null;
+  }
+
+  isLinkedTermPlaying(termId: number): boolean {
+    return this.linkedTermPlaying() === termId;
+  }
+
+  isLinkedTermGenerating(termId: number): boolean {
+    return this.linkedTermGenerating() === termId;
+  }
+
+  playLinkedTermAudio(termId: number, lang: string) {
+    this.stopLinkedTermAudio();
+
+    const path = this.getLinkedTermAudioPath(termId, lang);
+    this.linkedAudioElement = new Audio(path);
+    this.linkedAudioElement.onplay = () => this.linkedTermPlaying.set(termId);
+    this.linkedAudioElement.onended = () => this.linkedTermPlaying.set(null);
+    this.linkedAudioElement.onpause = () => this.linkedTermPlaying.set(null);
+    this.linkedAudioElement.onerror = () => {
+      this.linkedTermPlaying.set(null);
+      this.linkedTermAudioExists.update(map => {
+        const newMap = new Map(map);
+        newMap.set(termId, false);
+        return newMap;
+      });
+    };
+
+    this.linkedAudioElement.play().catch(() => {
+      this.linkedTermPlaying.set(null);
+    });
+  }
+
+  stopLinkedTermAudio() {
+    if (this.linkedAudioElement) {
+      this.linkedAudioElement.pause();
+      this.linkedAudioElement.currentTime = 0;
+      this.linkedAudioElement = null;
+    }
+    this.linkedTermPlaying.set(null);
+  }
+
+  toggleLinkedTermAudio(termId: number, lang: string) {
+    if (this.isLinkedTermPlaying(termId)) {
+      this.stopLinkedTermAudio();
+    } else {
+      this.playLinkedTermAudio(termId, lang);
+    }
+  }
+
+  async generateLinkedTermAudio(termId: number, lang: string) {
+    this.linkedTermGenerating.set(termId);
+
+    const result = await this.ttsService.generateTermAudio(termId);
+
+    this.linkedTermGenerating.set(null);
+
+    if (result.success) {
+      this.linkedTermAudioExists.update(map => {
+        const newMap = new Map(map);
+        newMap.set(termId, true);
+        return newMap;
+      });
+      // Auto-play after generation
+      setTimeout(() => this.playLinkedTermAudio(termId, lang), 100);
     }
   }
 

@@ -7,8 +7,10 @@ import {EditorStore} from '../../services/editor-store.service';
 import {SentenceRow} from '../../../../shared/contract/contract';
 import {AllTermsTranslationsComponent} from '../all-terms-translations/all-terms-translations.component';
 import {ExportService} from '../../services/export.service';
+import {TTSService} from '../../services/tts.service';
 
 type LoadState = 'idle' | 'loading' | 'ready' | 'error';
+type SaveState = 'idle' | 'saving' | 'success' | 'error';
 
 @Component({
   standalone: true,
@@ -19,9 +21,13 @@ type LoadState = 'idle' | 'loading' | 'ready' | 'error';
 export class EditorComponent {
   private readonly store = inject(EditorStore);
   private readonly exportService = inject(ExportService);
+  private readonly ttsService = inject(TTSService);
 
   state = signal<LoadState>('idle');
   error = signal<string | null>(null);
+
+  saveState = signal<SaveState>('idle');
+  saveError = signal<string | null>(null);
 
   filter = signal('');
   selectedGroupId = signal<number>(1);
@@ -224,6 +230,39 @@ export class EditorComponent {
   saveAsCSVs() {
     const exportedFiles = this.store.exportCSVs();
     this.exportService.exportAll(exportedFiles);
+  }
+
+  async saveDirectly() {
+    if (this.saveState() === 'saving') {
+      return;
+    }
+
+    this.saveState.set('saving');
+    this.saveError.set(null);
+
+    const exportedFiles = this.store.exportCSVs();
+
+    for (const [filename, content] of Object.entries(exportedFiles)) {
+      const result = await this.ttsService.saveCSV(filename, content);
+      if (!result.success) {
+        this.saveState.set('error');
+        this.saveError.set(result.error || `Fehler beim Speichern von ${filename}`);
+        return;
+      }
+    }
+
+    this.saveState.set('success');
+
+    // Reset nach 2 Sekunden
+    setTimeout(() => {
+      if (this.saveState() === 'success') {
+        this.saveState.set('idle');
+      }
+    }, 2000);
+  }
+
+  get serverAvailable() {
+    return this.ttsService.serverAvailable();
   }
 
   // convenience for template

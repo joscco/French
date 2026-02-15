@@ -6,9 +6,9 @@
       </div>
 
       <!-- Audio Button -->
-      <div class="flex items-center gap-2">
+      <div class="flex items-center gap-1">
         @if (audioExists() === null) {
-          <span class="text-xs text-slate-400">Checking audio…</span>
+          <span class="text-xs text-slate-400">…</span>
         } @else if (audioExists()) {
           <button
             type="button"
@@ -27,11 +27,50 @@
               <span>Play</span>
             }
           </button>
+
+          <!-- Regenerate Button -->
+          @if (ttsServerAvailable) {
+            <button
+              type="button"
+              class="flex items-center gap-1 rounded-lg border border-dashed border-slate-300 px-2 py-1 text-xs text-slate-500 hover:border-slate-400 hover:bg-slate-50 transition"
+              [disabled]="isGenerating()"
+              (click)="generateAudio()"
+              title="Audio neu generieren"
+            >
+              @if (isGenerating()) {
+                <span class="animate-spin">⏳</span>
+              } @else {
+                <span>🔄</span>
+              }
+            </button>
+          }
         } @else {
-          <span class="flex items-center gap-1 rounded-lg border border-dashed border-slate-300 px-2 py-1 text-xs text-slate-400">
-            <span>🔇</span>
-            <span>No audio</span>
-          </span>
+          <!-- No audio exists - show generate button if server available -->
+          @if (ttsServerAvailable) {
+            <button
+              type="button"
+              class="flex items-center gap-1 rounded-lg border border-dashed border-slate-300 px-2 py-1 text-xs text-slate-500 hover:border-slate-400 hover:bg-slate-50 transition"
+              [disabled]="isGenerating()"
+              (click)="generateAudio()"
+              title="Audio generieren"
+            >
+              @if (isGenerating()) {
+                <span class="animate-spin">⏳</span>
+                <span>Generiere…</span>
+              } @else {
+                <span>🎙️</span>
+                <span>Generate</span>
+              }
+            </button>
+          } @else {
+            <span class="flex items-center gap-1 rounded-lg border border-dashed border-slate-300 px-2 py-1 text-xs text-slate-400" title="TTS Server nicht verfügbar">
+              <span>🔇</span>
+            </span>
+          }
+        }
+
+        @if (generateError()) {
+          <span class="text-xs text-rose-600" [title]="generateError()">⚠️</span>
         }
       </div>
     </div>

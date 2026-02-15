@@ -8,7 +8,7 @@
           </div>
 
           <!-- Audio Button -->
-          <div class="flex items-center gap-2">
+          <div class="flex items-center gap-1">
             @if (audioExists() === null) {
               <span class="text-xs text-slate-400">…</span>
             } @else if (audioExists()) {
@@ -27,12 +27,46 @@
                   <span>▶</span>
                 }
               </button>
+
+              <!-- Regenerate Button -->
+              @if (ttsServerAvailable) {
+                <button
+                  type="button"
+                  class="flex items-center gap-1 rounded-lg border border-dashed border-slate-300 px-2 py-0.5 text-xs text-slate-500 hover:border-slate-400 hover:bg-slate-50 transition"
+                  [disabled]="isGenerating()"
+                  (click)="generateAudio()"
+                  title="Audio neu generieren"
+                >
+                  @if (isGenerating()) {
+                    <span class="animate-spin">⏳</span>
+                  } @else {
+                    <span>🔄</span>
+                  }
+                </button>
+              }
             } @else {
-              <span
-                class="flex items-center gap-1 rounded-lg border border-dashed border-slate-300 px-2 py-1 text-xs text-slate-400">
-                <span>🔇</span>
-                <span>No audio</span>
-              </span>
+              <!-- No audio exists - show generate button if server available -->
+              @if (ttsServerAvailable) {
+                <button
+                  type="button"
+                  class="flex items-center gap-1 rounded-lg border border-dashed border-slate-300 px-2 py-0.5 text-xs text-slate-500 hover:border-slate-400 hover:bg-slate-50 transition"
+                  [disabled]="isGenerating()"
+                  (click)="generateAudio()"
+                  title="Audio generieren"
+                >
+                  @if (isGenerating()) {
+                    <span class="animate-spin">⏳</span>
+                  } @else {
+                    <span>🎙️</span>
+                  }
+                </button>
+              } @else {
+                <span class="text-xs text-slate-300" title="TTS Server nicht verfügbar">🔇</span>
+              }
+            }
+
+            @if (generateError()) {
+              <span class="text-xs text-rose-600" [title]="generateError()">⚠️</span>
             }
           </div>
         </div>
@@ -96,6 +130,46 @@
       <div class="mt-2 flex flex-wrap gap-2">
         @for (linkedTermRow of linkedTermsWithSegments(); track linkedTermRow.id) {
           <span class="inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-3 py-1.5 text-sm">
+            <!-- Audio buttons for linked term -->
+            <span class="flex items-center gap-0.5">
+              @if (isLinkedTermAudioExists(linkedTermRow.id) === null) {
+                <span class="text-[10px] text-slate-300">…</span>
+              } @else if (isLinkedTermAudioExists(linkedTermRow.id)) {
+                <button
+                  type="button"
+                  class="rounded px-1 py-0.5 text-[10px] transition"
+                  [ngClass]="isLinkedTermPlaying(linkedTermRow.id)
+                    ? 'text-emerald-600 bg-emerald-50'
+                    : 'text-slate-400 hover:text-slate-600 hover:bg-slate-50'"
+                  (click)="toggleLinkedTermAudio(linkedTermRow.id, linkedTermRow.lang); $event.stopPropagation()"
+                  [title]="isLinkedTermPlaying(linkedTermRow.id) ? 'Stop' : 'Play'"
+                >
+                  {{ isLinkedTermPlaying(linkedTermRow.id) ? '⏹' : '▶' }}
+                </button>
+                @if (ttsServerAvailable) {
+                  <button
+                    type="button"
+                    class="rounded px-1 py-0.5 text-[10px] text-slate-400 hover:text-slate-600 hover:bg-slate-50 transition"
+                    [disabled]="isLinkedTermGenerating(linkedTermRow.id)"
+                    (click)="generateLinkedTermAudio(linkedTermRow.id, linkedTermRow.lang); $event.stopPropagation()"
+                    title="Neu generieren"
+                  >
+                    {{ isLinkedTermGenerating(linkedTermRow.id) ? '⏳' : '🔄' }}
+                  </button>
+                }
+              } @else if (ttsServerAvailable) {
+                <button
+                  type="button"
+                  class="rounded px-1 py-0.5 text-[10px] text-slate-400 hover:text-slate-600 hover:bg-slate-50 transition"
+                  [disabled]="isLinkedTermGenerating(linkedTermRow.id)"
+                  (click)="generateLinkedTermAudio(linkedTermRow.id, linkedTermRow.lang); $event.stopPropagation()"
+                  title="Audio generieren"
+                >
+                  {{ isLinkedTermGenerating(linkedTermRow.id) ? '⏳' : '🎙️' }}
+                </button>
+              }
+            </span>
+
             <span class="font-semibold text-slate-900">
               @if (linkedTermRow.isNoun && linkedTermRow.article) {
                 <span class="text-slate-400">

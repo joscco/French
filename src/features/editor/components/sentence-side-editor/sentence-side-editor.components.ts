@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { TermPickerComponent } from '../term-picker/term-picker.component';
 import { EditorStore } from '../../services/editor-store.service';
+import { TTSService } from '../../services/tts.service';
 import { Lang, TermRow } from '../../../../shared/contract/contract';
 import {
   parseSentenceMarkup,
@@ -22,6 +23,7 @@ type OverlayPosition = { x: number; y: number };
 })
 export class SentenceSideEditorComponent implements OnDestroy {
   private readonly store = inject(EditorStore);
+  private readonly ttsService = inject(TTSService);
 
   sentenceId = input.required<number>();
   lang = input.required<Lang>();
@@ -40,6 +42,8 @@ export class SentenceSideEditorComponent implements OnDestroy {
   private audioElement: HTMLAudioElement | null = null;
   audioExists = signal<boolean | null>(null); // null = checking, true = exists, false = not found
   isPlaying = signal(false);
+  isGenerating = signal(false);
+  generateError = signal<string | null>(null);
 
   // Derived
   sentence = computed(() => {
@@ -141,6 +145,30 @@ export class SentenceSideEditorComponent implements OnDestroy {
     } else {
       this.playAudio();
     }
+  }
+
+  async generateAudio() {
+    this.isGenerating.set(true);
+    this.generateError.set(null);
+
+    const result = await this.ttsService.generateSentenceAudio(
+      this.sentenceId(),
+      this.lang()
+    );
+
+    this.isGenerating.set(false);
+
+    if (result.success) {
+      this.audioExists.set(true);
+      // Auto-play after generation
+      setTimeout(() => this.playAudio(), 100);
+    } else {
+      this.generateError.set(result.error ?? 'Unbekannter Fehler');
+    }
+  }
+
+  get ttsServerAvailable() {
+    return this.ttsService.serverAvailable();
   }
 
   // =========================================================

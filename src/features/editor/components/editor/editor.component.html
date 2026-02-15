@@ -21,14 +21,47 @@
         All Terms
       </button>
     </div>
-    <button
-      type="button"
-      class="rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm font-semibold text-slate-900 hover:bg-slate-50"
-      (click)="saveAsCSVs()"
-      [disabled]="state() !== 'ready'"
-    >
-      Save (download CSVs)
-    </button>
+
+    <!-- Save Buttons -->
+    <div class="flex items-center gap-2">
+      <!-- Direct Save (wenn Server verfügbar) -->
+      @if (serverAvailable) {
+        <button
+          type="button"
+          class="rounded-xl border px-3 py-2 text-sm font-semibold transition"
+          [ngClass]="{
+            'border-emerald-300 bg-emerald-50 text-emerald-700': saveState() === 'success',
+            'border-rose-300 bg-rose-50 text-rose-700': saveState() === 'error',
+            'border-slate-200 bg-white text-slate-900 hover:bg-slate-50': saveState() === 'idle',
+            'border-slate-300 bg-slate-100 text-slate-500': saveState() === 'saving'
+          }"
+          (click)="saveDirectly()"
+          [disabled]="state() !== 'ready' || saveState() === 'saving'"
+          [title]="saveError() || ''"
+        >
+          @if (saveState() === 'saving') {
+            ⏳ Speichere…
+          } @else if (saveState() === 'success') {
+            ✅ Gespeichert
+          } @else if (saveState() === 'error') {
+            ⚠️ Fehler
+          } @else {
+            💾 Speichern
+          }
+        </button>
+      }
+
+      <!-- Download als Fallback -->
+      <button
+        type="button"
+        class="rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm font-semibold text-slate-900 hover:bg-slate-50"
+        (click)="saveAsCSVs()"
+        [disabled]="state() !== 'ready'"
+        [title]="serverAvailable ? 'Als ZIP herunterladen' : 'Server nicht verfügbar - Download als ZIP'"
+      >
+        📥 Download
+      </button>
+    </div>
   </div>
 
   <!-- Loading / Error -->
