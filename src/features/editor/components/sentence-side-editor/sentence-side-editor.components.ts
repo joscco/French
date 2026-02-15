@@ -177,10 +177,10 @@ export class SentenceSideEditorComponent {
     const isSelected = !!termId && selectedId === termId;
 
     const baseClass = termId
-      ? 'border-amber-200/70 bg-amber-100/60 hover:bg-amber-100'
-      : 'border-sky-200/70 bg-sky-100/60 hover:bg-sky-100';
+      ? 'border-amber-200 bg-amber-100 hover:bg-amber-200'
+      : 'border-sky-200 bg-sky-100 hover:bg-sky-200';
 
-    const selectedClass = isSelected ? 'ring-2 ring-slate-400' : '';
+    const selectedClass = isSelected ? 'ring-2 ring-slate-400/40' : '';
 
     return [baseClass, selectedClass].join(' ');
   }

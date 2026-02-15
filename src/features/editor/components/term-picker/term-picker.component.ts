@@ -18,7 +18,6 @@ export class TermPickerComponent {
 
   query = signal('');
   category = signal<'' | TermCategory>('');
-  newDisplay = signal('');
   newCategory = signal<'' | TermCategory>('');
   searchQuery = signal('');
   quickCreateDisplay = signal('');
@@ -49,7 +48,7 @@ export class TermPickerComponent {
   });
 
   create() {
-    const display = this.newDisplay().trim();
+    const display = this.quickCreateDisplay().trim();
     if (!display) return;
 
     const term = this.store.createTerm({
@@ -59,7 +58,7 @@ export class TermPickerComponent {
     });
 
     this.choose.emit(term);
-    this.newDisplay.set('');
+    this.quickCreateDisplay.set('');
     this.newCategory.set('');
     this.query.set('');
   }

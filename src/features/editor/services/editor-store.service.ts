@@ -1,10 +1,11 @@
 import {parseCSV, toBool, toCSV, toNum} from '../helpers/csv-utils';
 import {computed, Injectable, signal} from '@angular/core';
-import {Lang, SentenceRow, TermLinkRow, TermRow, UnitRow} from '../../../shared/contract/contract';
+import {GroupRow, Lang, SentenceRow, TermLinkRow, TermRow, UnitRow} from '../../../shared/contract/contract';
 
 @Injectable({ providedIn: 'root' })
 export class EditorStore {
   // --- state ---
+  readonly groups = signal<GroupRow[]>([]);
   readonly units = signal<UnitRow[]>([]);
   readonly terms = signal<TermRow[]>([]);
   readonly links = signal<TermLinkRow[]>([]);
@@ -18,6 +19,14 @@ export class EditorStore {
     return termMap;
   });
 
+  readonly groupById = computed(() => {
+    const groupMap = new Map<number, GroupRow>();
+    for (const group of this.groups()) {
+      groupMap.set(group.id, group);
+    }
+    return groupMap;
+  });
+
   readonly unitById = computed(() => {
     const unitMap = new Map<number, UnitRow>();
     for (const unit of this.units()) {
@@ -28,13 +37,17 @@ export class EditorStore {
 
   // --- loading ---
   async loadAll(): Promise<void> {
-    const [unitsResponse, termsResponse, linksResponse, sentencesResponse] = await Promise.all([
+    const [groupResponse, unitsResponse, termsResponse, linksResponse, sentencesResponse] = await Promise.all([
+      fetch('data/groups.csv'),
       fetch('data/units.csv'),
       fetch('data/terms.csv'),
       fetch('data/term_links.csv'),
       fetch('data/sentences.csv'),
     ]);
 
+    if (!groupResponse.ok) {
+      throw new Error('Failed to load groups.csv');
+    }
     if (!unitsResponse.ok) {
       throw new Error('Failed to load units.csv');
     }
@@ -48,6 +61,7 @@ export class EditorStore {
       throw new Error('Failed to load sentences.csv');
     }
 
+    this.groups.set(this.parseGroups(await groupResponse.text()));
     this.units.set(this.parseUnits(await unitsResponse.text()));
     this.terms.set(this.parseTerms(await termsResponse.text()));
     this.links.set(this.parseLinks(await linksResponse.text()));
@@ -55,6 +69,28 @@ export class EditorStore {
   }
 
   // --- parsing ---
+  private parseGroups(csv: string): GroupRow[] {
+    const csvRows = parseCSV(csv);
+    const parsedGroups: GroupRow[] = [];
+    for (const row of csvRows) {
+      const id = toNum(row['id']);
+      if (!id) {
+        continue;
+      }
+      const name = (row['name'] || '').trim();
+      if (!name) {
+        continue;
+      }
+      parsedGroups.push({
+        id,
+        name,
+        date: (row['date'] || '').trim() || undefined,
+      });
+    }
+    parsedGroups.sort((a, b) => a.id - b.id);
+    return parsedGroups;
+  }
+
   private parseUnits(csv: string): UnitRow[] {
     const csvRows = parseCSV(csv);
     const parsedUnits: UnitRow[] = [];
@@ -63,20 +99,20 @@ export class EditorStore {
       if (!id) {
         continue;
       }
-      const group = (row['group'] || '').trim();
+      const group_id = toNum(row['group_id']);
       const name = (row['name'] || '').trim();
-      if (!group || !name) {
+      if (!group_id || !name) {
         continue;
       }
       parsedUnits.push({
         id,
-        group,
+        group_id,
         name,
         date: (row['date'] || '').trim() || undefined,
         order: toNum(row['order']) ?? undefined,
       });
     }
-    parsedUnits.sort((a, b) => (a.group.localeCompare(b.group) || (a.order ?? 9999) - (b.order ?? 9999) || a.id - b.id));
+    parsedUnits.sort((a, b) => (a.group_id - b.group_id) || (a.order ?? 9999) - (b.order ?? 9999) || a.id - b.id);
     return parsedUnits;
   }
 
@@ -206,15 +242,24 @@ export class EditorStore {
 
   // --- export ---
   exportCSVs(): Record<string, string> {
+    const groupsCsv = toCSV(
+      this.groups().map(group => ({
+        id: group.id,
+        name: group.name,
+        date: group.date ?? '',
+      })),
+      ['id', 'name', 'date'],
+    );
+
     const unitsCsv = toCSV(
       this.units().map(unit => ({
         id: unit.id,
-        group: unit.group,
+        group_id: unit.group_id,
         name: unit.name,
         date: unit.date ?? '',
         order: unit.order ?? '',
       })),
-      ['id', 'group', 'name', 'date', 'order'],
+      ['id', 'group_id', 'name', 'date', 'order'],
     );
 
     const termsCsv = toCSV(
@@ -254,6 +299,7 @@ export class EditorStore {
     );
 
     return {
+      'groups.csv': groupsCsv,
       'units.csv': unitsCsv,
       'terms.csv': termsCsv,
       'term_links.csv': linksCsv,

@@ -35,22 +35,22 @@ export class UnitsService {
       if (!id) {
         continue;
       }
-      const group = (row['group'] || '').trim();
+      const group_id = toNum(row['group_id']);
       const name = (row['name'] || '').trim();
-      if (!group || !name) {
+      if (!group_id || !name) {
         continue;
       }
 
       parsedUnits.push({
         id,
-        group,
+        group_id,
         name,
         date: (row['date'] || '').trim() || undefined,
         order: toNum(row['order']) ?? undefined,
       });
     }
 
-    parsedUnits.sort((a, b) => (a.group.localeCompare(b.group) || (a.order ?? 9999) - (b.order ?? 9999) || a.id - b.id));
+    parsedUnits.sort((a, b) => (a.order ?? 0) - (b.order ?? 0));
     this._units.set(parsedUnits);
   }
 }

@@ -4,9 +4,15 @@ export type TermCategory = 'verb' | 'noun' | 'expression' | 'adjective' | 'other
 
 export type Genus = 'm' | 'f' | 'n' | 'pl' | 'mpl' | 'fpl' | 'npl' | 'm/f';
 
+export interface GroupRow {
+  id: number;
+  name: string;      // display label
+  date?: string;     // ISO "2025-09-10" recommended
+}
+
 export interface UnitRow {
   id: number;
-  group: string;     // "WiSe 2025" | "Book: ..." | ...
+  group_id: number;
   name: string;      // display label
   date?: string;     // ISO "2025-09-10" recommended
   order?: number;    // optional explicit ordering inside group

@@ -1,5 +1,7 @@
 id;lang;display;lemma;category;genus;needs_vowel_article;unit_id;ref;tags
 1;fr;s'inscrire à qc.;inscrire;verb;;;;;
 2;fr;cours de français;;noun;m;;;;
-3;de;Französischkurs;;noun;;;;;
-4;de;sich zu etwas anmelden;anmelden;verb;;;;;
+3;de;Französischkurs;;noun;m;;;;
+4;de;sich zu etw. anmelden;anmelden;verb;;;;;
+5;fr;magie;;noun;f;;;;
+6;fr;lieu;;noun;m;;;;

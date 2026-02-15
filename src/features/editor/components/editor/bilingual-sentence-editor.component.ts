@@ -18,90 +18,88 @@ type LoadState = 'idle' | 'loading' | 'ready' | 'error';
 export class BilingualSentenceEditorComponent {
   private readonly store = inject(EditorStore);
 
-  // -------------------------
-  // Load state
-  // -------------------------
   state = signal<LoadState>('idle');
   error = signal<string | null>(null);
 
-  // -------------------------
-  // UI state
-  // -------------------------
   filter = signal('');
-  selectedUnitId = signal<number | 'all'>('all');
-
+  selectedGroupId = signal<number>(1);
+  selectedUnitId = signal<number | null>(null);
   selectedSentenceId = signal<number | null>(null);
   selectedTermId = signal<number | null>(null);
 
-  // Create form
-  newSentenceUnitId = signal<number | null>(null);
-
-  // -------------------------
-  // Data from store
-  // -------------------------
+  groups = this.store.groups;
   units = this.store.units;
   sentences = this.store.sentences;
 
-  // -------------------------
-  // Derived
-  // -------------------------
-  unitOptions = computed(() => {
-    const all: Array<{ id: number | 'all'; label: string }> = [
-      { id: 'all', label: 'All units' },
-    ];
+  groupOptions = computed(() => {
+    const options: Array<{ id: number; label: string }> = [];
 
-    const u = this.units();
-    for (const unit of u) {
-      // label: "WiSe 2025 · 10.09.2025"
-      const name = unit.name?.trim() || `Unit ${unit.id}`;
-      const group = unit.group?.trim() || '';
-      const label = group ? `${group} · ${name}` : name;
-      all.push({ id: unit.id, label });
+    const allGroups = this.groups();
+    for (const group of allGroups) {
+      options.push({id: group.id, label: group.name?.trim() || `Group ${group.id}`});
     }
-    return all;
+    return options;
   });
 
-  private normalize(s: string) {
-    return (s ?? '')
-      .replaceAll('’', "'")
+  unitOptions = computed(() => {
+    const selectedGroupId = this.selectedGroupId();
+    const options: Array<{ id: number; label: string }> = [];
+
+    const allUnitsInGroup = this.units().filter(unit => {
+      return unit.group_id === selectedGroupId;
+    });
+
+    for (const unit of allUnitsInGroup) {
+      const name = unit.name?.trim() || `Unit ${unit.id}`;
+      options.push({id: unit.id, label: name});
+    }
+    return options;
+  });
+
+  private normalize(text: string): string {
+    return (text ?? '')
+      .replace(/[\u2018\u2019]/g, "'")
       .trim()
       .toLowerCase();
   }
 
   filteredSentences = computed((): SentenceRow[] => {
-    const q = this.normalize(this.filter());
-    const unitSel = this.selectedUnitId();
+    const searchQuery = this.normalize(this.filter());
+    const selectedUnit = this.selectedUnitId();
 
-    let list = this.sentences();
+    let sentenceList = this.sentences();
+    sentenceList = sentenceList.filter(sentence => sentence.unitId === selectedUnit);
 
-    if (unitSel !== 'all') {
-      list = list.filter(s => s.unitId === unitSel);
+    const sortedSentences = [...sentenceList].sort((a, b) => b.id - a.id);
+
+    if (!searchQuery) {
+      return sortedSentences;
     }
 
-    // newest first in list (nice for editing)
-    const sorted = [...list].sort((a, b) => b.id - a.id);
-
-    if (!q) return sorted;
-
-    return sorted.filter(s => {
-      const hay = this.normalize(`${s.fr} ${s.de} ${s.note ?? ''}`);
-      return hay.includes(q);
+    return sortedSentences.filter(sentence => {
+      const searchableText = this.normalize(`${sentence.fr} ${sentence.de} ${sentence.note ?? ''}`);
+      return searchableText.includes(searchQuery);
     });
   });
 
   selectedSentence = computed(() => {
-    const id = this.selectedSentenceId();
-    if (id == null) return null;
-    return this.sentences().find(s => s.id === id) ?? null;
+    const sentenceId = this.selectedSentenceId();
+    if (sentenceId == null) {
+      return null;
+    }
+    return this.sentences().find(sentence => sentence.id === sentenceId) ?? null;
   });
 
-  // Keep selection stable even when filtering changes
   private ensureSelectionIsValid() {
-    const cur = this.selectedSentenceId();
-    if (cur == null) return;
+    const currentId = this.selectedSentenceId();
+    if (currentId == null) {
+      return;
+    }
 
-    const stillExists = this.sentences().some(s => s.id === cur);
-    if (!stillExists) this.selectedSentenceId.set(null);
+    const stillExists = this.sentences().some(sentence => sentence.id === currentId);
+    if (!stillExists) {
+      this.selectedSentenceId.set(null);
+    }
   }
 
   // -------------------------
@@ -112,7 +110,9 @@ export class BilingualSentenceEditorComponent {
   }
 
   async load() {
-    if (this.state() === 'loading') return;
+    if (this.state() === 'loading') {
+      return;
+    }
     this.state.set('loading');
     this.error.set(null);
 
@@ -120,20 +120,20 @@ export class BilingualSentenceEditorComponent {
       await this.store.loadAll();
       this.state.set('ready');
 
-      // sensible defaults for create form
       const firstUnit = this.units()[0]?.id ?? null;
-      this.newSentenceUnitId.set(firstUnit);
+      this.selectedUnitId.set(firstUnit);
 
-      // auto-select first sentence (newest) if none selected
       if (this.selectedSentenceId() == null) {
-        const first = this.filteredSentences()[0];
-        if (first) this.selectedSentenceId.set(first.id);
+        const firstSentence = this.filteredSentences()[0];
+        if (firstSentence) {
+          this.selectedSentenceId.set(firstSentence.id);
+        }
       } else {
         this.ensureSelectionIsValid();
       }
-    } catch (e: any) {
+    } catch (error: any) {
       this.state.set('error');
-      this.error.set(String(e?.message ?? e));
+      this.error.set(String(error?.message ?? error));
     }
   }
 
@@ -152,35 +152,52 @@ export class BilingualSentenceEditorComponent {
     this.selectedTermId.set(null);
   }
 
-  changeUnitFilter(value: string) {
-    const v = (value ?? '').trim();
-    if (v === 'all') {
-      this.selectedUnitId.set('all');
-    } else {
-      const num = Number(v);
-      this.selectedUnitId.set(Number.isFinite(num) ? num : 'all');
-    }
+  changeGroupFilter(id: number) {
+    const numericValue = Number(id);
+    this.selectedGroupId.set(numericValue);
 
-    // if current selection isn't in filtered list, pick the first visible
-    const sel = this.selectedSentenceId();
-    const visible = this.filteredSentences();
-    if (!visible.length) {
+    this.selectFirstPossibleUnitId();
+    this.selectFirstPossibleSentence();
+  }
+
+  changeUnitFilter(id: number) {
+    const numericValue = Number(id);
+    this.selectedUnitId.set(numericValue);
+
+    this.selectFirstPossibleSentence();
+  }
+
+  private selectFirstPossibleUnitId() {
+    const currentSelection = this.selectedUnitId();
+    const visibleUnits = this.unitOptions();
+    if (!visibleUnits.length) {
+      this.selectedUnitId.set(null);
+      return;
+    }
+    if (currentSelection == null || !visibleUnits.some(unit => unit.id === currentSelection)) {
+      this.selectedUnitId.set(visibleUnits[0].id);
+    }
+  }
+
+  private selectFirstPossibleSentence() {
+    const currentSelection = this.selectedSentenceId();
+    const visibleSentences = this.filteredSentences();
+    if (!visibleSentences.length) {
       this.selectedSentenceId.set(null);
       return;
     }
-    if (sel == null || !visible.some(s => s.id === sel)) {
-      this.selectedSentenceId.set(visible[0].id);
+    if (currentSelection == null || !visibleSentences.some(sentence => sentence.id === currentSelection)) {
+      this.selectedSentenceId.set(visibleSentences[0].id);
     }
   }
 
   createSentence() {
-    // NOTE: your store currently doesn't have createSentence(),
-    // so we create it locally by extending sentences signal.
-    // This does NOT touch terms/links; only adds a sentence row.
-    const unitId = this.newSentenceUnitId();
-    if (!unitId) return;
+    const unitId = this.selectedUnitId();
+    if (!unitId) {
+      return;
+    }
 
-    const nextId = Math.max(0, ...this.sentences().map(s => s.id)) + 1;
+    const nextId = Math.max(0, ...this.sentences().map(sentence => sentence.id)) + 1;
 
     const newSentence: SentenceRow = {
       id: nextId,
@@ -205,11 +222,11 @@ export class BilingualSentenceEditorComponent {
 
   // convenience for template
   unitLabel(unitId: number): string {
-    const u = this.store.unitById().get(unitId);
-    if (!u) return `Unit ${unitId}`;
-    const group = u.group?.trim();
-    const name = u.name?.trim();
-    return group ? `${group} · ${name}` : `${name}`;
+    const unit = this.store.unitById().get(unitId);
+    if (!unit) {
+      return `Unit ${unitId}`;
+    }
+    return unit.name?.trim();
   }
 
   protected readonly Number = Number;
