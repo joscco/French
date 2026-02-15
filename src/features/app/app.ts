@@ -20,7 +20,7 @@ import {AllowedTermsService} from './services/sentence-ref.service';
   standalone: true,
   imports: [CommonModule, IconButtonComponent, PracticeDirectionToggleComponent, PracticePanelComponent, PracticeHostComponent],
   templateUrl: './app.html',
-  host: {'class': 'h-full max-h-[800px]'},
+  host: {'class': 'w-full h-full max-h-[800px] flex items-center justify-center'},
 })
 export class AppComponent {
   private pdf = inject(ExportPdfService);
