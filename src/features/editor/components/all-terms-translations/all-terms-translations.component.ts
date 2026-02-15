@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, computed, inject, signal } from '@angular/core';
+import { Component, computed, ElementRef, HostListener, inject, signal, ViewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 import { EditorStore } from '../../services/editor-store.service';
@@ -23,11 +23,11 @@ export class AllTermsTranslationsComponent {
   languageFilter = signal<Lang | 'all'>('all');
   sortKey = signal<SortKey>('count');
 
-  // selection / expand
   selectedTermId = signal<number | null>(null);
-  expandedTermIds = signal<Set<number>>(new Set<number>());
 
   readonly terms = this.store.terms;
+
+  @ViewChild('searchInput') searchInput?: ElementRef<HTMLInputElement>;
 
   private normalizeSearchText(value: string): string {
     return (value ?? '')
@@ -36,16 +36,15 @@ export class AllTermsTranslationsComponent {
       .toLowerCase();
   }
 
-  reverseLanguage(termLanguage: Lang): Lang {
-    return termLanguage === 'fr' ? 'de' : 'fr';
-  }
-
   getTranslationCount(termRow: TermRow): number {
     return this.store.getTranslationCount(termRow.id, termRow.lang);
   }
 
-  getLinkedTerms(termRow: TermRow): TermRow[] {
-    return this.store.getLinkedTerms(termRow.id, termRow.lang);
+  isInvalidTerm(termRow: TermRow): boolean {
+    const categoryMissing = !(termRow.category ?? '').trim();
+    const isNoun = (termRow.category ?? '') === 'noun';
+    const genusMissing = isNoun && !(termRow.genus ?? '').trim();
+    return categoryMissing || genusMissing;
   }
 
   filteredTerms = computed(() => {
@@ -73,43 +72,98 @@ export class AllTermsTranslationsComponent {
     }
 
     const selectedSortKey = this.sortKey();
-    return [...visibleTerms].sort((leftTerm, rightTerm) => {
+    return [...visibleTerms].sort((leftTermRow, rightTermRow) => {
       if (selectedSortKey === 'id') {
-        return leftTerm.id - rightTerm.id;
+        return leftTermRow.id - rightTermRow.id;
       }
       if (selectedSortKey === 'display') {
-        return (leftTerm.display ?? '').localeCompare(rightTerm.display ?? '') || (leftTerm.id - rightTerm.id);
+        return (leftTermRow.display ?? '').localeCompare(rightTermRow.display ?? '') || (leftTermRow.id - rightTermRow.id);
       }
 
-      const leftCount = this.getTranslationCount(leftTerm);
-      const rightCount = this.getTranslationCount(rightTerm);
-      return (rightCount - leftCount) || (leftTerm.id - rightTerm.id);
+      const leftCount = this.getTranslationCount(leftTermRow);
+      const rightCount = this.getTranslationCount(rightTermRow);
+      return (rightCount - leftCount) || (leftTermRow.id - rightTermRow.id);
     });
   });
 
-  isExpanded(termId: number): boolean {
-    return this.expandedTermIds().has(termId);
-  }
-
-  toggleExpanded(termId: number) {
-    const nextExpanded = new Set(this.expandedTermIds());
-    if (nextExpanded.has(termId)) {
-      nextExpanded.delete(termId);
-    } else {
-      nextExpanded.add(termId);
-    }
-    this.expandedTermIds.set(nextExpanded);
-  }
-
+  // 1) Toggle: click same row closes editor
   selectTerm(termId: number) {
+    const currentSelectedTermId = this.selectedTermId();
+    if (currentSelectedTermId === termId) {
+      this.selectedTermId.set(null);
+      return;
+    }
     this.selectedTermId.set(termId);
   }
 
-  selectLinkedTerm(linkedTermId: number) {
-    this.selectedTermId.set(linkedTermId);
+  private setSelectionByOffset(offset: number) {
+    const list = this.filteredTerms();
+    if (!list.length) {
+      this.selectedTermId.set(null);
+      return;
+    }
+
+    const currentId = this.selectedTermId();
+    const currentIndex = currentId == null ? -1 : list.findIndex((termRow) => termRow.id === currentId);
+
+    const nextIndexUnclamped = currentIndex < 0 ? (offset > 0 ? 0 : list.length - 1) : currentIndex + offset;
+    const nextIndex = Math.max(0, Math.min(list.length - 1, nextIndexUnclamped));
+
+    const nextId = list[nextIndex]?.id ?? null;
+    this.selectedTermId.set(nextId);
+
+    if (nextId != null) {
+      requestAnimationFrame(() => {
+        const el = document.querySelector(`[data-term-row="${nextId}"]`) as HTMLElement | null;
+        el?.scrollIntoView({ block: 'nearest' });
+      });
+    }
   }
 
-  removeTranslation(baseTermRow: TermRow, linkedTermRow: TermRow) {
-    this.store.removeLinkBetween(baseTermRow, linkedTermRow);
+  // 2) Keyboard workflow
+  @HostListener('document:keydown', ['$event'])
+  onDocumentKeydown(keyboardEvent: KeyboardEvent) {
+    // don’t steal keys while typing
+    const target = keyboardEvent.target as HTMLElement | null;
+    const isTyping = !!target && (target.tagName === 'INPUT' || target.tagName === 'TEXTAREA' || target.getAttribute('contenteditable') === 'true');
+    if (isTyping) {
+      return;
+    }
+
+    if (keyboardEvent.key === 'Escape') {
+      this.selectedTermId.set(null);
+      return;
+    }
+
+    if (keyboardEvent.key === 'ArrowDown') {
+      keyboardEvent.preventDefault();
+      this.setSelectionByOffset(+1);
+      return;
+    }
+
+    if (keyboardEvent.key === 'ArrowUp') {
+      keyboardEvent.preventDefault();
+      this.setSelectionByOffset(-1);
+      return;
+    }
+
+    if (keyboardEvent.key === 'Enter') {
+      // Enter toggles: open first if none, close if open
+      keyboardEvent.preventDefault();
+      if (this.selectedTermId() != null) {
+        this.selectedTermId.set(null);
+      } else {
+        this.setSelectionByOffset(+1);
+      }
+      return;
+    }
+
+    if ((keyboardEvent.ctrlKey || keyboardEvent.metaKey) && keyboardEvent.key.toLowerCase() === 'f') {
+      // focus search instead of browser find if you want
+      keyboardEvent.preventDefault();
+      this.searchInput?.nativeElement?.focus();
+      this.searchInput?.nativeElement?.select();
+      return;
+    }
   }
 }

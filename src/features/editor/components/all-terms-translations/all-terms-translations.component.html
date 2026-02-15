@@ -36,7 +36,7 @@
         <option value="id">Sort: id</option>
       </select>
 
-      <input
+      <input #searchInput
         class="w-[260px] rounded-xl border border-slate-200 px-3 py-2 text-sm outline-none focus:border-slate-400 placeholder:text-slate-400"
         placeholder="Search terms…"
         [ngModel]="query()"
@@ -67,6 +67,7 @@
           } @else {
             @for (termRow of filteredTerms(); track termRow.id) {
               <tr
+                [attr.data-term-row]="termRow.id"
                 class="border-t border-slate-100 align-top hover:bg-slate-50 cursor-pointer"
                 [class.bg-slate-50]="selectedTermId() === termRow.id"
                 (click)="selectTerm(termRow.id)"

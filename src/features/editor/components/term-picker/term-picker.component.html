@@ -1,9 +1,10 @@
 <div class="w-[420px] max-w-[90vw] rounded-2xl border border-slate-200 bg-white p-3 shadow-xl">
+  <!-- Search bar -->
   <div class="flex gap-2">
     <input
       [ngModel]="query()"
-      (ngModelChange)="query.set($event)"
-      class="w-full rounded-xl border border-slate-200 px-3 py-2 text-sm outline-none focus:border-slate-400"
+      (ngModelChange)="onQueryChange($event)"
+      class="w-full rounded-xl border border-slate-200 px-3 py-2 text-sm outline-none placeholder:text-slate-400 focus:border-slate-400"
       placeholder="Search terms…"
     />
     <select
@@ -12,34 +13,39 @@
       class="rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm outline-none focus:border-slate-400"
     >
       <option value="">(any)</option>
-      @for (c of categories; track c) {
-        <option [value]="c">{{ c }}</option>
+      @for (cat of categories; track cat) {
+        <option [value]="cat">{{ cat }}</option>
       }
     </select>
   </div>
 
+  <!-- Search results -->
   <div class="mt-3 max-h-64 space-y-2 overflow-auto">
-    @for (t of results(); track t.id) {
+    @for (term of results(); track term.id) {
       <button
         type="button"
         class="w-full rounded-xl border border-slate-200 bg-slate-50 px-3 py-2 text-left hover:bg-slate-100"
-        (click)="choose.emit(t)"
+        (click)="choose.emit(term)"
       >
-        <div class="text-sm font-semibold text-slate-900">{{ t.display }}</div>
-        <div class="text-xs text-slate-500">#{{ t.id }} · {{ t.category || '—' }}</div>
+        <div class="text-sm font-semibold text-slate-900">{{ term.display }}</div>
+        <div class="text-xs text-slate-500">#{{ term.id }} · {{ term.category || '—' }}</div>
       </button>
     }
   </div>
 
   <div class="my-3 h-px bg-slate-200"></div>
 
+  <!-- Quick create -->
   <div class="space-y-2">
     <div class="text-xs font-semibold uppercase tracking-wide text-slate-500">Quick create</div>
+
     <input
+      class="w-full rounded-xl border border-slate-200 px-3 py-2 text-sm outline-none placeholder:italic placeholder:text-slate-300 focus:border-slate-400"
       [ngModel]="quickCreateDisplay()"
-      (ngModelChange)="quickCreateDisplay.set($event)"
+      (ngModelChange)="onQuickCreateDisplayChange($event)"
       [placeholder]="suggestedDisplay() ? suggestedDisplay() : 'e.g. manger qc.'"
     />
+
     <div class="flex gap-2">
       <select
         [ngModel]="newCategory()"
@@ -47,8 +53,8 @@
         class="w-full rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm outline-none focus:border-slate-400"
       >
         <option value="">(empty)</option>
-        @for (c of categories; track c) {
-          <option [value]="c">{{ c }}</option>
+        @for (cat of categories; track cat) {
+          <option [value]="cat">{{ cat }}</option>
         }
       </select>
 
