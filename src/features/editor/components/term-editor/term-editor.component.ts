@@ -1,5 +1,5 @@
 import {CommonModule} from '@angular/common';
-import {Component, computed, HostListener, inject, input, signal} from '@angular/core';
+import {Component, computed, effect, HostListener, inject, input, OnDestroy, signal} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 
 import {EditorStore} from '../../services/editor-store.service';
@@ -16,7 +16,7 @@ type OverlayPosition = { x: number; y: number };
   imports: [CommonModule, FormsModule, TermPickerComponent],
   templateUrl: './term-editor.component.html',
 })
-export class TermEditorComponent {
+export class TermEditorComponent implements OnDestroy {
 
   private readonly editorStore = inject(EditorStore);
 
@@ -24,6 +24,11 @@ export class TermEditorComponent {
 
   translationOverlayOpen = signal(false);
   translationOverlayPosition = signal<OverlayPosition>({x: 24, y: 24});
+
+  // Audio state
+  private audioElement: HTMLAudioElement | null = null;
+  audioExists = signal<boolean | null>(null);
+  isPlaying = signal(false);
 
   readonly displaySegments = computed<TermDisplaySeg[]>(() => {
 
@@ -80,6 +85,87 @@ export class TermEditorComponent {
     ) ?? null;
 
   });
+
+  // Audio path for terms: sounds/term_{lang}{id}.mp3
+  readonly audioPath = computed(() => {
+    const term = this.selectedTerm();
+    if (!term) {
+      return null;
+    }
+    return `sounds/term_${term.lang}${term.id}.mp3`;
+  });
+
+  constructor() {
+    // Reactive effect: check audio existence whenever termId changes
+    effect(() => {
+      this.termId(); // Track termId changes
+
+      // Reset state
+      this.audioExists.set(null);
+      this.stopAudio();
+
+      // Check audio existence
+      this.checkAudioExists();
+    });
+  }
+
+  ngOnDestroy() {
+    this.stopAudio();
+  }
+
+  private async checkAudioExists() {
+    const path = this.audioPath();
+    if (!path) {
+      this.audioExists.set(false);
+      return;
+    }
+
+    try {
+      const response = await fetch(path, { method: 'HEAD' });
+      this.audioExists.set(response.ok);
+    } catch {
+      this.audioExists.set(false);
+    }
+  }
+
+  playAudio() {
+    const path = this.audioPath();
+    if (!path) {
+      return;
+    }
+
+    this.stopAudio();
+
+    this.audioElement = new Audio(path);
+    this.audioElement.onplay = () => this.isPlaying.set(true);
+    this.audioElement.onended = () => this.isPlaying.set(false);
+    this.audioElement.onpause = () => this.isPlaying.set(false);
+    this.audioElement.onerror = () => {
+      this.isPlaying.set(false);
+      this.audioExists.set(false);
+    };
+
+    this.audioElement.play().catch(() => {
+      this.isPlaying.set(false);
+    });
+  }
+
+  stopAudio() {
+    if (this.audioElement) {
+      this.audioElement.pause();
+      this.audioElement.currentTime = 0;
+      this.audioElement = null;
+    }
+    this.isPlaying.set(false);
+  }
+
+  toggleAudio() {
+    if (this.isPlaying()) {
+      this.stopAudio();
+    } else {
+      this.playAudio();
+    }
+  }
 
   readonly isNoun = computed((): boolean => {
 

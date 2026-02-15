@@ -107,8 +107,8 @@ id;unit_id;fr;de;note
 108;1;Il {a payé} en {petites} {coupures}.;Er {hat} mit {kleinen} {Scheinen} {bezahlt}.;
 109;1;Ils {arpentent} les {allées} du {marché}.;Sie {schlendern} durch die {Gänge} des {Marktes}.;
 110;1;C’est un {objet} {insolite}.;Das ist ein {ungewöhnlicher} {Gegenstand}.;
-111;1;J’{ai rapporté} un {souvenir} de Paris.;Ich {habe} ein {Souvenir} aus Paris {mitgebracht}.;
-112;1;On {ressent} la {magie} du {lieu}.;Man {spürt} die {Magie} des {Ortes}.;
+111;1;J’{ai rapporté|#34} un {souvenir|#36} de Paris.;Ich {habe|#33} ein {Souvenir|#35} aus Paris {mitgebracht|#33}.;
+112;1;On {ressent|#32} la {magie|#5} du {lieu|#6}.;Man {spürt|#31} die {Magie|#23} des {Ortes|#24}.;
 113;2;{Au fil des années}, ils sont devenus amis.;{Im Lauf der Jahre} sind sie Freunde geworden.;
 114;2;Vous étiez en {vacances} quand je vous ai appelés.;Ihr wart im {Urlaub}, als ich euch anrief.;
 115;2;Nous passons nos {vacances} en Croatie.;Wir verbringen unsere {Ferien} in Kroatien.;

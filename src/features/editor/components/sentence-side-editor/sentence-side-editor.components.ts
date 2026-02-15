@@ -1,4 +1,4 @@
-import { Component, computed, HostListener, inject, input, output, signal } from '@angular/core';
+import { Component, computed, effect, HostListener, inject, input, output, signal, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { TermPickerComponent } from '../term-picker/term-picker.component';
@@ -20,7 +20,7 @@ type OverlayPosition = { x: number; y: number };
   imports: [CommonModule, FormsModule, TermPickerComponent],
   templateUrl: './sentence-side-editor.component.html',
 })
-export class SentenceSideEditorComponent {
+export class SentenceSideEditorComponent implements OnDestroy {
   private readonly store = inject(EditorStore);
 
   sentenceId = input.required<number>();
@@ -35,6 +35,11 @@ export class SentenceSideEditorComponent {
 
   pendingAnnRaw = signal<string | null>(null);     // e.g. "{pomme}"
   pendingSurface = signal<string | null>(null);    // e.g. "pomme"
+
+  // Audio state
+  private audioElement: HTMLAudioElement | null = null;
+  audioExists = signal<boolean | null>(null); // null = checking, true = exists, false = not found
+  isPlaying = signal(false);
 
   // Derived
   sentence = computed(() => {
@@ -54,6 +59,89 @@ export class SentenceSideEditorComponent {
   ast = computed(() => parseSentenceMarkup(this.rawText()));
   rep = computed(() => representativeText(this.ast()));
   segs = computed(() => previewSegments(this.ast()));
+
+  // Audio path (for both French and German sentences)
+  audioPath = computed(() => {
+    const lang = this.lang();
+    const id = this.sentenceId();
+    return `sounds/${lang}${id}.mp3`;
+  });
+
+  // Check if audio file exists when sentence changes
+  constructor() {
+    // Reactive effect: check audio existence whenever sentenceId or lang changes
+    effect(() => {
+      // Access reactive inputs to track them
+      this.sentenceId(); // Track sentenceId changes
+      this.lang(); // Track lang changes
+
+      // Reset state
+      this.audioExists.set(null);
+      this.stopAudio();
+
+      // Check audio for both languages
+      this.checkAudioExists();
+    });
+  }
+
+  ngOnDestroy() {
+    this.stopAudio();
+  }
+
+  private async checkAudioExists() {
+    const path = this.audioPath();
+    if (!path) {
+      this.audioExists.set(false);
+      return;
+    }
+
+    try {
+      const response = await fetch(path, { method: 'HEAD' });
+      this.audioExists.set(response.ok);
+    } catch {
+      this.audioExists.set(false);
+    }
+  }
+
+  playAudio() {
+    const path = this.audioPath();
+    if (!path) {
+      return;
+    }
+
+    // Stop any currently playing audio
+    this.stopAudio();
+
+    this.audioElement = new Audio(path);
+    this.audioElement.onplay = () => this.isPlaying.set(true);
+    this.audioElement.onended = () => this.isPlaying.set(false);
+    this.audioElement.onpause = () => this.isPlaying.set(false);
+    this.audioElement.onerror = () => {
+      this.isPlaying.set(false);
+      this.audioExists.set(false);
+    };
+
+    this.audioElement.play().catch(() => {
+      this.isPlaying.set(false);
+    });
+  }
+
+  stopAudio() {
+    if (this.audioElement) {
+      this.audioElement.pause();
+      this.audioElement.currentTime = 0;
+      this.audioElement = null;
+    }
+    this.isPlaying.set(false);
+  }
+
+  toggleAudio() {
+    if (this.isPlaying()) {
+      this.stopAudio();
+    } else {
+      this.playAudio();
+    }
+  }
 
   // =========================================================
   // Global listeners
