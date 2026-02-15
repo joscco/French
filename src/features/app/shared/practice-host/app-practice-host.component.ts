@@ -12,6 +12,7 @@ import {SentencesService} from '../../../../services/sentence.service';
 import {SentenceRow} from '../../../../shared/contract/contract';
 import {extractTermRefs} from '../../helpers/extract-term-refs';
 import {SentenceVm} from '../../models/sentence-vm';
+import {parseSentenceMarkup, representativeText} from '../../../editor/helpers/sentence-markup';
 
 @Component({
   selector: 'app-practice-host',
@@ -20,93 +21,144 @@ import {SentenceVm} from '../../models/sentence-vm';
   templateUrl: 'app-practice-host.component.html',
 })
 export class PracticeHostComponent {
-  private wordService = inject(WordService);
-  private sentenceService = inject(SentencesService);
-  private routeState = inject(PracticeRouteStateService);
+  private readonly wordService = inject(WordService);
+  private readonly sentenceService = inject(SentencesService);
+  private readonly routeState = inject(PracticeRouteStateService);
 
   practiceKind = input<PracticeKind>('sentence');
   mode = this.wordService.mode;
   selectedLesson = signal<LessonOption | undefined>(undefined);
 
   index = signal<number>(0);
+
   vocabList = computed<WordCard[]>(() => this.wordService.words() ?? []);
+
   sentenceList = computed<SentenceVm[]>(() => {
-    const selected = this.selectedLesson();
-    const all = this.sentenceService.sentences(); // SentenceRow[]
+    const selectedLesson = this.selectedLesson();
+    const allSentenceRows = this.sentenceService.sentences(); // SentenceRow[]
 
-    const filtered =
-      !selected || selected.id === 'all'
-        ? all
-        : all.filter(s => s.unitId === selected.lesson); // <- hier ggf unitId/lesson mapping prüfen
+    const selectedUnitId = this.resolveSelectedUnitId(selectedLesson);
 
-    return filtered.map((s: SentenceRow) => ({
-      ...s,
-      refs: [
-        ...extractTermRefs(s.fr, 'fr'),
-        ...extractTermRefs(s.de, 'de'),
-      ],
-    }));
+    const filteredSentenceRows =
+      selectedUnitId === null
+        ? allSentenceRows
+        : allSentenceRows.filter((sentenceRow) => {
+          return sentenceRow.unitId === selectedUnitId;
+        });
+
+    return filteredSentenceRows.map((sentenceRow) => this.buildSentenceVm(sentenceRow));
   });
 
-  currentListLength = computed(() => this.practiceKind() === 'vocab'
-    ? this.vocabList().length
-    : this.sentenceList().length
-  );
+  currentListLength = computed(() => {
+    if (this.practiceKind() === 'vocab') {
+      return this.vocabList().length;
+    }
+    return this.sentenceList().length;
+  });
 
   currentVocab = computed(() => {
-    const list = this.vocabList();
-    const i = this.clamp(this.index(), list.length);
-    return list[i];
+    const vocabCards = this.vocabList();
+    const clampedIndex = this.clamp(this.index(), vocabCards.length);
+    return vocabCards[clampedIndex];
   });
 
   currentSentence = computed(() => {
-    const list = this.sentenceList();
-    const i = this.clamp(this.index(), list.length);
-    return list[i];
+    const sentences = this.sentenceList();
+    const clampedIndex = this.clamp(this.index(), sentences.length);
+    return sentences[clampedIndex];
   });
 
-  scrubLabelForIndex = (i: number) => {
+  scrubLabelForIndex = (index: number) => {
     if (this.practiceKind() === 'vocab') {
-      const wordCard = this.vocabList()[i];
+      const wordCard = this.vocabList()[index];
       const primaryString = (this.mode() === 'fr-de' ? wordCard?.frenchPrimary : wordCard?.germanPrimary) ?? '';
-      return (primaryString.trim()[0] ?? `${i + 1}`);
+      return (primaryString.trim()[0] ?? `${index + 1}`);
     }
-    return `${i + 1}`;
+    return `${index + 1}`;
   };
 
   constructor() {
     effect(() => {
-      const i = this.routeState.index();
-      const len = this.currentListLength();
-      if (!len) {
+      const routeIndex = this.routeState.index();
+      const listLength = this.currentListLength();
+
+      if (!listLength) {
         this.index.set(0);
         return;
       }
-      this.index.set(this.clamp(i, len));
+
+      this.index.set(this.clamp(routeIndex, listLength));
     });
   }
 
-
-  onCommitIndex(i: number) {
-    const next = this.clamp(i, this.currentListLength())
-    this.index.set(next);
-    this.routeState.patch({i: next});
-  }
-
-  shuffle() {
+  onCommitIndex(index: number) {
+    const nextIndex = this.clamp(index, this.currentListLength());
+    this.index.set(nextIndex);
+    this.routeState.patch({i: nextIndex});
   }
 
   onNextRequested() {
-    const len = this.currentListLength();
-    if (!len) return;
-    const next = (this.index() + 1) % len;
-    this.onCommitIndex(next);
+    const listLength = this.currentListLength();
+    if (!listLength) {
+      return;
+    }
+
+    const nextIndex = (this.index() + 1) % listLength;
+    this.onCommitIndex(nextIndex);
   }
 
-  private clamp(i: number, len: number) {
-    if (!len) {
+  shuffle() {
+
+  }
+
+  private clamp(index: number, listLength: number) {
+    if (!listLength) {
       return 0;
     }
-    return Math.max(0, Math.min(len - 1, i));
+    return Math.max(0, Math.min(listLength - 1, index));
+  }
+
+  private resolveSelectedUnitId(selectedLesson: LessonOption | undefined): number | null {
+    if (!selectedLesson || selectedLesson.id === 'all') {
+      return null;
+    }
+
+    // Dein Editor/SentenceRow arbeitet mit unitId.
+    // Wenn LessonOption.lesson die unitId ist, passt das direkt:
+    if (typeof selectedLesson.lesson === 'number') {
+      return selectedLesson.lesson;
+    }
+
+    // Fallback: falls id numerisch ist
+    const parsedFromId = Number(selectedLesson.id);
+    if (Number.isFinite(parsedFromId)) {
+      return parsedFromId;
+    }
+
+    return null;
+  }
+
+  private buildSentenceVm(sentenceRow: SentenceRow): SentenceVm {
+    const frenchRaw = sentenceRow.fr ?? '';
+    const germanRaw = sentenceRow.de ?? '';
+
+    const frenchPlain = representativeText(parseSentenceMarkup(frenchRaw));
+    const germanPlain = representativeText(parseSentenceMarkup(germanRaw));
+
+    return {
+      id: sentenceRow.id,
+      unitId: sentenceRow.unitId,
+
+      frRaw: frenchRaw,
+      deRaw: germanRaw,
+
+      fr: frenchPlain,
+      de: germanPlain,
+
+      refs: [
+        ...extractTermRefs(frenchRaw, 'fr'),
+        ...extractTermRefs(germanRaw, 'de'),
+      ],
+    };
   }
 }

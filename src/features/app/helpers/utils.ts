@@ -27,7 +27,7 @@ export function beautifyGenus(genus?: Genus): string {
 
 export function getArticle(language: Lang, genus?: Genus, needsFrenchVowelArticle = false): string {
   if (!genus) {
-    return '';
+    return '?';
   }
 
   if (language === 'de') {

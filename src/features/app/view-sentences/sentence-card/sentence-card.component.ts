@@ -57,15 +57,25 @@ export class SentenceCardComponent {
   readonly promptSegments = signal<PromptSegment[]>([]);
 
   readonly promptText = computed(() => {
-    const cur = this.sentence();
-    if (!cur) return '';
-    return this.mode() === 'de-fr' ? cur.de : cur.fr;
+    const currentSentence = this.sentence();
+    if (!currentSentence) {
+      return '';
+    }
+    if (this.mode() === 'de-fr') {
+      return currentSentence.de;
+    }
+    return currentSentence.fr;
   });
 
   readonly expectedText = computed(() => {
-    const cur = this.sentence();
-    if (!cur) return '';
-    return this.mode() === 'de-fr' ? cur.fr : cur.de;
+    const currentSentence = this.sentence();
+    if (!currentSentence) {
+      return '';
+    }
+    if (this.mode() === 'de-fr') {
+      return currentSentence.fr;
+    }
+    return currentSentence.de;
   });
 
   readonly promptRefs = computed<TermRefInSentence[]>(() => {

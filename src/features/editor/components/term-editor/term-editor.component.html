@@ -9,7 +9,7 @@
         <div class="mt-1 text-lg font-black text-slate-900">
           @if (isNoun(currentTerm)) {
             <span class="text-slate-400 text-sm">
-              {{ getArticle(currentTerm.lang, currentTerm.genus ?? 'm', currentTerm.needsVowelArticle ?? false) }}
+              {{ getArticle(currentTerm.lang, currentTerm.genus, currentTerm.needsVowelArticle ?? false) }}
             </span>
           }
           {{ currentTerm.display }}
@@ -54,7 +54,6 @@
         </select>
       </label>
 
-      <!-- ✅ Genus selector: disable unless noun -->
       <label class="block">
         <div class="mb-1 text-xs font-semibold text-slate-600">
           Gender

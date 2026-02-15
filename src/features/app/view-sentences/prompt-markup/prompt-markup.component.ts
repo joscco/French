@@ -11,10 +11,6 @@ import {TermRefInSentence} from '../../models/term-ref-in-sentence';
 })
 export class PromptMarkupComponent {
   segments = input<PromptSegment[]>([]);
-  readonly mergedSegments = computed(() =>
-    mergeTrailingPunctuation(this.segments() ?? [])
-  );
-
   fallbackText = input<string | undefined>('');
   activeRefKey = input<string | undefined>(undefined);
 
@@ -22,95 +18,118 @@ export class PromptMarkupComponent {
   termLeave = output<void>();
   termClick = output<{ ref: TermRefInSentence; el: HTMLElement }>();
 
-  private lastTermEl?: HTMLElement;
-  private lastIdx?: number;
+  readonly mergedSegments = computed(() => {
+    return mergeTrailingPunctuation(this.segments() ?? []);
+  });
 
-  refKey(ref?: TermRefInSentence) {
-    return ref ? `${ref.lang}:${ref.termId}` : undefined;
+  private lastTermElement?: HTMLElement;
+  private lastSegmentIndex?: number;
+
+  refKey(ref?: TermRefInSentence): string | undefined {
+    if (!ref) {
+      return undefined;
+    }
+    return `${ref.lang}#${ref.termId}`;
   }
 
-  private findTermElFromEventTarget(target: EventTarget | null): HTMLElement | null {
-    const el = target as HTMLElement | null;
-    if (!el) return null;
-    return el.closest?.('[data-term]') as HTMLElement | null;
+  private findTermElementFromEventTarget(target: EventTarget | null): HTMLElement | null {
+    const targetElement = target as HTMLElement | null;
+    if (!targetElement) {
+      return null;
+    }
+    return (targetElement.closest?.('[data-term]') as HTMLElement | null) ?? null;
   }
 
-  private getRefForTermEl(termEl: HTMLElement): { ref: TermRefInSentence; idx: number } | null {
-    const idxStr = termEl.getAttribute('data-seg-idx');
-    if (!idxStr) return null;
+  private getRefForTermElement(termElement: HTMLElement): { ref: TermRefInSentence; idx: number } | null {
+    const segmentIndexString = termElement.getAttribute('data-seg-idx');
+    if (!segmentIndexString) {
+      return null;
+    }
 
-    const idx = Number(idxStr);
-    if (!Number.isFinite(idx)) return null;
+    const segmentIndex = Number(segmentIndexString);
+    if (!Number.isFinite(segmentIndex)) {
+      return null;
+    }
 
-    const seg = (this.segments() ?? [])[idx];
-    if (!seg?.ref) return null;
+    const mergedSegments = this.mergedSegments() ?? [];
+    const segment = mergedSegments[segmentIndex];
 
-    return { ref: seg.ref, idx };
+    if (!segment?.ref) {
+      return null;
+    }
+
+    return { ref: segment.ref, idx: segmentIndex };
   }
 
-  onPointerMove(ev: PointerEvent) {
-    const termEl = this.findTermElFromEventTarget(ev.target);
-    if (!termEl) {
-      // pointer currently over non-term text
-      if (this.lastTermEl) {
-        this.lastTermEl = undefined;
-        this.lastIdx = undefined;
+  onPointerMove(pointerEvent: PointerEvent) {
+    const termElement = this.findTermElementFromEventTarget(pointerEvent.target);
+    if (!termElement) {
+      if (this.lastTermElement) {
+        this.lastTermElement = undefined;
+        this.lastSegmentIndex = undefined;
         this.termLeave.emit();
       }
       return;
     }
 
-    // still same element? do nothing
-    const info = this.getRefForTermEl(termEl);
-    if (!info) return;
+    const termInfo = this.getRefForTermElement(termElement);
+    if (!termInfo) {
+      return;
+    }
 
-    if (this.lastTermEl === termEl && this.lastIdx === info.idx) return;
+    if (this.lastTermElement === termElement && this.lastSegmentIndex === termInfo.idx) {
+      return;
+    }
 
-    // switched term
-    this.lastTermEl = termEl;
-    this.lastIdx = info.idx;
-    this.termEnter.emit({ ref: info.ref, el: termEl });
+    this.lastTermElement = termElement;
+    this.lastSegmentIndex = termInfo.idx;
+    this.termEnter.emit({ ref: termInfo.ref, el: termElement });
   }
 
   onPointerLeave() {
-    if (!this.lastTermEl) return;
-    this.lastTermEl = undefined;
-    this.lastIdx = undefined;
+    if (!this.lastTermElement) {
+      return;
+    }
+    this.lastTermElement = undefined;
+    this.lastSegmentIndex = undefined;
     this.termLeave.emit();
   }
 
-  onClick(ev: MouseEvent) {
-    const termEl = this.findTermElFromEventTarget(ev.target);
-    if (!termEl) return;
+  onClick(mouseEvent: MouseEvent) {
+    const termElement = this.findTermElementFromEventTarget(mouseEvent.target);
+    if (!termElement) {
+      return;
+    }
 
-    const info = this.getRefForTermEl(termEl);
-    if (!info) return;
+    const termInfo = this.getRefForTermElement(termElement);
+    if (!termInfo) {
+      return;
+    }
 
-    ev.preventDefault();
-    ev.stopPropagation();
-    this.termClick.emit({ ref: info.ref, el: termEl });
+    mouseEvent.preventDefault();
+    mouseEvent.stopPropagation();
+    this.termClick.emit({ ref: termInfo.ref, el: termElement });
   }
 }
 
 type Seg = { text: string; ref?: TermRefInSentence };
 
-const ATTACH_TO_PREV = /^[\.,!?;:]+$|^[)\]\}»”’]+$/; // Punkt/Komma/… + schließende Klammern/Quotes
+const ATTACH_TO_PREVIOUS = /^[\.,!?;:]+$|^[)\]\}»”’]+$/;
 
-function mergeTrailingPunctuation(segs: Seg[]): Seg[] {
-  const out: Seg[] = [];
+function mergeTrailingPunctuation(segments: Seg[]): Seg[] {
+  const merged: Seg[] = [];
 
-  for (const seg of segs) {
-    const isPunct = !seg.ref && ATTACH_TO_PREV.test(seg.text);
+  for (const segment of segments) {
+    const isPunctuation = !segment.ref && ATTACH_TO_PREVIOUS.test(segment.text);
 
-    if (isPunct && out.length) {
-      const prev = out[out.length - 1];
-      // Punkt an vorheriges Segment kleben (egal ob prev ref hat oder nicht)
-      out[out.length - 1] = { ...prev, text: prev.text + seg.text };
+    if (isPunctuation && merged.length) {
+      const previous = merged[merged.length - 1];
+      merged[merged.length - 1] = { ...previous, text: previous.text + segment.text };
       continue;
     }
 
-    out.push(seg);
+    merged.push(segment);
   }
 
-  return out;
+  return merged;
 }

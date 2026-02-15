@@ -130,7 +130,7 @@ export class SentenceSideEditorComponent {
 
     // Panel sizing assumptions (match your HTML)
     const panelWidthPx = 520;
-    const estimatedPanelHeightPx = 320; // rough; we clamp with some buffer
+    const estimatedPanelHeightPx = 480; // rough estimate; the HTML also has max-height as fallback
     const viewportPaddingPx = 12;
 
     // Default position: near click
@@ -144,19 +144,15 @@ export class SentenceSideEditorComponent {
       proposedTopPx = Math.round(anchorRect.bottom + 8);
     }
 
-    // Clamp horizontally
-    const maxLeftPx = Math.max(
-      viewportPaddingPx,
-      window.innerWidth - viewportPaddingPx - panelWidthPx
-    );
-    const clampedLeftPx = Math.min(Math.max(proposedLeftPx, viewportPaddingPx), maxLeftPx);
+    // Clamp horizontally: ensure panel stays within viewport with padding on both sides
+    const minLeftPx = viewportPaddingPx;
+    const maxLeftPx = window.innerWidth - panelWidthPx - viewportPaddingPx;
+    const clampedLeftPx = Math.max(minLeftPx, Math.min(proposedLeftPx, maxLeftPx));
 
-    // Clamp vertically (keep some space; avoid going off bottom)
-    const maxTopPx = Math.max(
-      viewportPaddingPx,
-      window.innerHeight - viewportPaddingPx - estimatedPanelHeightPx
-    );
-    const clampedTopPx = Math.min(Math.max(proposedTopPx, viewportPaddingPx), maxTopPx);
+    // Clamp vertically: ensure panel stays within viewport with padding on both sides
+    const minTopPx = viewportPaddingPx;
+    const maxTopPx = window.innerHeight - estimatedPanelHeightPx - viewportPaddingPx;
+    const clampedTopPx = Math.max(minTopPx, Math.min(proposedTopPx, maxTopPx));
 
     this.overlayPos.set({ x: clampedLeftPx, y: clampedTopPx });
     this.overlayOpen.set(true);

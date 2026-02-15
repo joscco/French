@@ -5,23 +5,18 @@
   (click)="onClick($event)"
 >
   @if (mergedSegments().length) {
-    @for (seg of mergedSegments()!; track $index) {
-      @if (seg.ref) {
+    @for (segment of mergedSegments(); track $index) {
+      @if (segment.ref) {
         <span
           data-term
-          class="inline-block cursor-pointer rounded-md px-0.5 my-1
-          transition-colors duration-150
-         bg-amber-100"
-          [class.bg-amber-300]="activeRefKey() === refKey(seg.ref)"
-          (mouseenter)="termEnter.emit({ ref: seg.ref!, el: $any($event.target) })"
-          (mouseleave)="termLeave.emit()"
-          (click)="termClick.emit({ ref: seg.ref!, el: $any($event.target)})"
+          [attr.data-seg-idx]="$index"
+          class="inline-block cursor-pointer rounded-md px-0.5 my-1 transition-colors duration-150 bg-amber-100"
+          [class.bg-amber-300]="activeRefKey() === refKey(segment.ref)"
         >
-          {{ seg.text }}
+          {{ segment.text }}
         </span>
-
       } @else {
-        <span class="inline">{{ seg.text }}</span>
+        <span class="inline">{{ segment.text }}</span>
       }
     }
   } @else {
