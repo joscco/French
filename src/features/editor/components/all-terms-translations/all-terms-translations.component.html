@@ -1,0 +1,151 @@
+<div class="h-full w-full flex-1 min-h-0 flex flex-row gap-3 overflow-hidden">
+  <!-- LEFT -->
+  <div class="min-h-0 min-w-0 flex-1 overflow-hidden rounded-2xl border border-slate-200 bg-white p-3 flex flex-col">
+    <div class="mb-3 flex flex-wrap items-center gap-2">
+      <div class="text-sm font-extrabold text-slate-900">All Terms</div>
+
+      <div class="flex-1"></div>
+
+      <label class="flex items-center gap-2 text-xs text-slate-600">
+        <input
+          type="checkbox"
+          class="h-4 w-4"
+          [ngModel]="showMissingOnly()"
+          (ngModelChange)="showMissingOnly.set(!!$event)"
+        />
+        Missing only
+      </label>
+
+      <select
+        class="rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm outline-none focus:border-slate-400"
+        [ngModel]="languageFilter()"
+        (ngModelChange)="languageFilter.set($event)"
+      >
+        <option value="all">All</option>
+        <option value="fr">FR</option>
+        <option value="de">DE</option>
+      </select>
+
+      <select
+        class="rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm outline-none focus:border-slate-400"
+        [ngModel]="sortKey()"
+        (ngModelChange)="sortKey.set($event)"
+      >
+        <option value="count">Sort: translations</option>
+        <option value="display">Sort: display</option>
+        <option value="id">Sort: id</option>
+      </select>
+
+      <input #searchInput
+             class="w-[260px] rounded-xl border border-slate-200 px-3 py-2 text-sm outline-none focus:border-slate-400 placeholder:text-slate-400"
+             placeholder="Search terms…"
+             [ngModel]="query()"
+             (ngModelChange)="query.set($event)"
+      />
+    </div>
+
+    <div class="min-h-0 flex-1 overflow-auto rounded-2xl border border-slate-200">
+      <table class="w-full table-fixed text-sm">
+        <thead class="sticky top-0 z-10 bg-slate-50">
+        <tr class="text-left text-xs font-extrabold uppercase tracking-wide text-slate-500">
+          <th class="w-16 px-3 py-2">ID</th>
+          <th class="w-14 px-3 py-2">Lang</th>
+          <th class="px-3 py-2">Display</th>
+          <th class="w-32 px-3 py-2">Translations</th>
+        </tr>
+        </thead>
+
+        <tbody>
+          @if (filteredTerms().length === 0) {
+            <tr>
+              <td colspan="4" class="px-3 py-6">
+                <div class="rounded-xl border border-dashed border-slate-300 p-3 text-sm text-slate-600">
+                  No terms match your filter.
+                </div>
+              </td>
+            </tr>
+          } @else {
+            @for (termRow of filteredTerms(); track termRow.id) {
+              <tr
+                [attr.data-term-row]="termRow.id"
+                class="border-t align-top cursor-pointer"
+                [ngClass]="{
+                    'bg-rose-50 border-rose-200': isInvalidTerm(termRow),
+                    'border-slate-100 hover:bg-slate-50': !isInvalidTerm(termRow),
+                    'bg-slate-100': selectedTermId() === termRow.id
+                  }"
+                (click)="selectTerm(termRow.id)"
+              >
+                <td class="px-3 py-2 font-mono text-xs text-slate-500">{{ termRow.id }}</td>
+
+                <td class="px-3 py-2">
+                  <span
+                    class="rounded-md border border-slate-200 bg-white px-2 py-0.5 text-xs font-semibold text-slate-700">
+                    {{ termRow.lang.toUpperCase() }}
+                  </span>
+                </td>
+
+                <td class="px-3 py-2">
+                  <div class="font-semibold text-slate-900">
+                    @if (isNoun(termRow) && getTermArticle(termRow)) {
+                      <span class="text-slate-400 mr-0.5">{{ getTermArticle(termRow) }}</span>
+                    }
+                    @for (segment of renderDisplaySegments(termRow.term_text); track $index) {
+                      @if (segment.kind === 'text') {
+                        <span>{{ segment.text }}</span>
+                      } @else {
+                        <span class="text-slate-400">{{ segment.text }}</span>
+                      }
+                    }
+                  </div>
+                </td>
+
+                <td class="px-3 py-2">
+                  <span
+                    class="inline-flex items-center rounded-lg border px-2 py-1 text-xs font-semibold"
+                    [ngClass]="getTranslationCount(termRow) === 0
+                      ? 'border-rose-200 bg-rose-50 text-rose-700'
+                      : 'border-slate-200 bg-white text-slate-700'"
+                  >
+                    {{ getTranslationCount(termRow) }}
+                  </span>
+                </td>
+              </tr>
+            }
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- RIGHT: Term Editor -->
+  <div
+    class="min-h-0 rounded-2xl border border-slate-200 bg-white transition-[width] duration-300 ease-out"
+    [class.w-0]="!selectedTermId()"
+    [class.w-104]="!!selectedTermId()"
+    [class.p-0]="!selectedTermId()"
+    [class.p-3]="!!selectedTermId()"
+    [class.border-transparent]="!selectedTermId()"
+  >
+    <div class="w-96" [class.hidden]="!selectedTermId()">
+      <div class="mb-2 flex items-center justify-between">
+        <div class="text-sm font-extrabold text-slate-900">Term details</div>
+
+        <button
+          type="button"
+          class="rounded-lg border border-slate-200 bg-white px-3 py-2 text-xs font-semibold hover:bg-slate-50"
+          (click)="selectedTermId.set(null)"
+        >
+          ✕
+        </button>
+      </div>
+
+      <div class="mb-2 text-xs text-slate-400">
+        Selected termId:
+        <span class="font-mono">{{ selectedTermId() ?? '—' }}</span>
+      </div>
+
+      <app-term-editor [termId]="selectedTermId()"></app-term-editor>
+    </div>
+  </div>
+</div>

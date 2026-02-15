@@ -1,51 +1,47 @@
-import {Injectable, signal, computed, inject} from '@angular/core';
-import {Sentence} from '../models/sentence';
-import {parseCSV} from '../helpers/csv-utils';
-import {SentenceRefService} from './sentence-ref.service';
+import {Injectable, signal} from '@angular/core';
+import {SentenceRow} from '../shared/contract/contract';
+import {parseCSV, toNum} from '../features/editor/helpers/csv-utils';
 
 @Injectable({ providedIn: 'root' })
-export class SentenceService {
-  private refs = inject(SentenceRefService);
-
-  private readonly _sentences = signal<Sentence[]>([]);
-  readonly sentencesWithRefs = computed<Sentence[]>(() => {
-    const base = this._sentences();
-    const byId = this.refs.bySentenceId();
-
-    // refs nur “dranhängen”, wenn vorhanden
-    return base.map(s => ({
-      ...s,
-      refs: byId[s.id] ?? [],
-    }));
-  });
+export class SentencesService {
+  private readonly _sentences = signal<SentenceRow[]>([]);
+  readonly sentences = this._sentences.asReadonly();
 
   private loaded = false;
 
   async loadAll(): Promise<void> {
-    if (this.loaded) return;
+    if (this.loaded) {
+      return;
+    }
     this.loaded = true;
 
-    try {
-      // parallel laden
-      const [sentRes] = await Promise.all([
-        fetch('data/generated/sentences.csv'),
-        this.refs.loadAll(),
-      ]);
-
-      if (!sentRes.ok) throw new Error('Fehler beim Laden `annotated-sentences.csv`');
-
-      const records = parseCSV(await sentRes.text());
-      const all: Sentence[] = records.map(r => ({
-        id: Number(r['id']),
-        lesson: Number(r['lesson']),
-        fr: (r['fr'] || '').trim(),
-        de: (r['de'] || '').trim(),
-      })).filter(s => !!s.id && !!s.fr && !!s.de);
-
-      this._sentences.set(all);
-    } catch (e) {
-      console.error('Sentences load failed', e);
-      this._sentences.set([]);
+    const response = await fetch('data/sentences.csv');
+    if (!response.ok) {
+      throw new Error('Failed to load sentences.csv');
     }
+
+    const csvRows = parseCSV(await response.text());
+    const parsedSentences: SentenceRow[] = [];
+
+    for (const row of csvRows) {
+      const id = toNum(row['id']);
+      const unitId = toNum(row['unit_id']);
+      const fr = (row['fr'] || '').trim();
+      const de = (row['de'] || '').trim();
+      if (!id || !unitId || !fr || !de) {
+        continue;
+      }
+
+      parsedSentences.push({
+        id,
+        unitId,
+        fr,
+        de,
+        note: (row['note'] || '').trim() || undefined,
+      });
+    }
+
+    parsedSentences.sort((a, b) => a.id - b.id);
+    this._sentences.set(parsedSentences);
   }
 }

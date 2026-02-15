@@ -1,0 +1,42 @@
+<section class="flex flex-col h-full w-full">
+  <div class="flex-1 w-full flex items-center justify-center min-h-0 pb-4 relative">
+
+    @if (showScrubber && length() > 1) {
+      <app-scrubber
+        [isTouchScreen]="isTouchScreen"
+        [length]="length()"
+        [thumbTopPct]="thumbTopPct()"
+        [hotspotMask]="hotspotMask()"
+        [scrubPreview]="scrubPreview()"
+        (pointerDown)="onScrubDown($event)"
+        (pointerMove)="onScrubMove($event)"
+        (pointerUp)="onScrubUp()"
+      ></app-scrubber>
+    }
+
+    <div #cardHost class="relative h-full w-[330px] md:w-[380px] transition-all mr-4">
+      <div #slideLayer class="h-full">
+        <div
+          class="group relative flex flex-col h-full w-full
+                 border-2 rounded-2xl bg-white">
+          <div class="flex-1 min-h-0 w-full">
+            <ng-content></ng-content>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="pb-6 flex items-center w-full justify-center gap-3 touch-manipulation select-none"
+       style="-webkit-tap-highlight-color: transparent;">
+    <app-icon-button iconName="arrow_back" tooltip="Zurück" (onClick)="triggerPrev()"/>
+    <div class="px-3 w-[100px] text-right font-semibold text-neutral-500 tabular-nums">
+      {{ counterText() }}
+    </div>
+    <app-icon-button iconName="arrow_forward" tooltip="Weiter" (onClick)="triggerNext()"/>
+
+    <app-icon-button iconName="shuffle" tooltip="Mischen" (onClick)="triggerShuffle()"/>
+    <app-icon-button iconName="low_priority" tooltip="Chronologisch" (onClick)="triggerUnshuffle()"/>
+  </div>
+</section>

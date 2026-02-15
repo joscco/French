@@ -1,0 +1,170 @@
+<div class="side-editor-root relative rounded-2xl border border-slate-200 bg-white p-3">
+  <div class="mb-2 flex flex-col flex-nowrap items-start justify-between gap-2">
+    <div class="flex items-center justify-between w-full gap-2">
+      <div class="text-sm font-extrabold text-slate-900">
+        {{ lang().toUpperCase() }} Markup
+      </div>
+
+      <!-- Audio Button -->
+      <div class="flex items-center gap-1">
+        @if (audioExists() === null) {
+          <span class="text-xs text-slate-400">…</span>
+        } @else if (audioExists()) {
+          <button
+            type="button"
+            class="flex items-center gap-1.5 rounded-lg border px-2 py-1 text-xs font-semibold transition"
+            [ngClass]="isPlaying()
+              ? 'border-emerald-300 bg-emerald-50 text-emerald-700 hover:bg-emerald-100'
+              : 'border-slate-200 bg-white text-slate-600 hover:bg-slate-50'"
+            (click)="toggleAudio()"
+            [title]="isPlaying() ? 'Stop audio' : 'Play audio'"
+          >
+            @if (isPlaying()) {
+              <span>⏹</span>
+              <span>Stop</span>
+            } @else {
+              <span>▶</span>
+              <span>Play</span>
+            }
+          </button>
+
+          <!-- Regenerate Button -->
+          @if (ttsServerAvailable) {
+            <button
+              type="button"
+              class="flex items-center gap-1 rounded-lg border border-dashed border-slate-300 px-2 py-1 text-xs text-slate-500 hover:border-slate-400 hover:bg-slate-50 transition"
+              [disabled]="isGenerating()"
+              (click)="generateAudio()"
+              title="Audio neu generieren"
+            >
+              @if (isGenerating()) {
+                <span class="animate-spin">⏳</span>
+              } @else {
+                <span>🔄</span>
+              }
+            </button>
+          }
+        } @else {
+          <!-- No audio exists - show generate button if server available -->
+          @if (ttsServerAvailable) {
+            <button
+              type="button"
+              class="flex items-center gap-1 rounded-lg border border-dashed border-slate-300 px-2 py-1 text-xs text-slate-500 hover:border-slate-400 hover:bg-slate-50 transition"
+              [disabled]="isGenerating()"
+              (click)="generateAudio()"
+              title="Audio generieren"
+            >
+              @if (isGenerating()) {
+                <span class="animate-spin">⏳</span>
+                <span>Generiere…</span>
+              } @else {
+                <span>🎙️</span>
+                <span>Generate</span>
+              }
+            </button>
+          } @else {
+            <span class="flex items-center gap-1 rounded-lg border border-dashed border-slate-300 px-2 py-1 text-xs text-slate-400" title="TTS Server nicht verfügbar">
+              <span>🔇</span>
+            </span>
+          }
+        }
+
+        @if (generateError()) {
+          <span class="text-xs text-rose-600" [title]="generateError()">⚠️</span>
+        }
+      </div>
+    </div>
+
+    <textarea
+      class="w-full min-h-[80px] rounded-xl border border-slate-200 bg-white px-3 py-2
+           text-sm leading-relaxed text-slate-600
+           placeholder:text-slate-300 placeholder:italic
+           outline-none focus:border-slate-400"
+      [ngModel]="rawText()"
+      (ngModelChange)="setText($event)"
+      placeholder="e.g. Maria [{mange}|{bouffe}] une {pomme}."
+    ></textarea>
+
+    <div class="text-xs text-slate-500">
+      Repräsentant:
+      <span class="font-semibold text-slate-700">{{ rep() }}</span>
+    </div>
+  </div>
+
+  <!-- Preview (keep readable but subtle) -->
+  <div class="mt-3 rounded-2xl border border-slate-200 bg-slate-50 p-3">
+    <div class="mb-2 text-[10px] font-extrabold uppercase tracking-wide text-slate-800">
+      Preview (click unresolved braces to link)
+    </div>
+
+    <div class="whitespace-pre-wrap text-sm leading-relaxed  text-slate-700">
+      @for (seg of segs(); track $index) {
+        @if (seg.kind === 'text') {
+          <span>{{ seg.text }}</span>
+        } @else if (seg.kind === 'altStart') {
+          <span class="rounded-md border border-violet-200/60 bg-violet-50/40 px-1 py-0.5 text-slate-600">[</span>
+        } @else if (seg.kind === 'altSep') {
+          <span class="mx-1 rounded-md border border-violet-200/60 bg-violet-50/40 px-1 py-0.5 text-slate-600">|</span>
+        } @else if (seg.kind === 'altEnd') {
+          <span class="rounded-md border border-violet-200/60 bg-violet-50/40 px-1 py-0.5 text-slate-600">]</span>
+        } @else if (seg.kind === 'ann') {
+          <button
+            type="button"
+            class="inline rounded-md border px-1 my-0.5 transition"
+            [ngClass]="annClass(seg.termId)"
+            (click)="onClickAnn(seg, $event)"
+            [title]="seg.termId ? ('term #' + seg.termId) : 'Unlinked — click to link'"
+          >
+            {{ seg.surface }}
+            @if (!seg.termId) {
+              <span class="ml-1 text-[10px] font-semibold text-slate-400/80">unlinked</span>
+            }
+          </button>
+        }
+      }
+    </div>
+  </div>
+</div>
+
+@if (overlayOpen()) {
+  <div class="fixed inset-0 z-[1000]">
+    <!-- Backdrop -->
+    <button
+      type="button"
+      class="absolute inset-0 h-full w-full bg-black/20"
+      (click)="closeOverlay()"
+      aria-label="Close overlay"
+    ></button>
+
+    <!-- Panel -->
+    <div
+      class="absolute w-[520px] max-w-[92vw] max-h-[calc(100vh-24px)] overflow-auto"
+      [style.left.px]="overlayPos().x"
+      [style.top.px]="overlayPos().y"
+    >
+      <div class="rounded-2xl border border-slate-200 bg-white p-3 shadow-2xl">
+        <div class="mb-2 flex items-center justify-between gap-2">
+          <div class="truncate text-sm font-semibold text-slate-900">
+            Link term for:
+            <span class="rounded-md bg-sky-100/70 px-2 py-0.5">{{ pendingSurface() }}</span>
+          </div>
+
+          <button
+            type="button"
+            class="rounded-lg px-2 py-1 text-slate-400 hover:bg-slate-50 hover:text-slate-700"
+            (click)="closeOverlay()"
+            aria-label="Close"
+          >
+            ✕
+          </button>
+        </div>
+
+        <app-term-picker
+          [lang]="lang()"
+          [suggestedDisplay]="pendingSurface()"
+          (choose)="onPickTerm($event)">
+        </app-term-picker>
+      </div>
+    </div>
+  </div>
+}

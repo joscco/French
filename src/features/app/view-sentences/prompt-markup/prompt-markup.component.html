@@ -1,0 +1,25 @@
+<div
+  class="whitespace-pre-wrap break-words text-lg leading-relaxed font-semibold"
+  (pointermove)="onPointerMove($event)"
+  (pointerleave)="onPointerLeave()"
+  (click)="onClick($event)"
+>
+  @if (mergedSegments().length) {
+    @for (segment of mergedSegments(); track $index) {
+      @if (segment.ref) {
+        <span
+          data-term
+          [attr.data-seg-idx]="$index"
+          class="inline-block cursor-pointer rounded-md px-0.5 my-1 transition-colors duration-150 bg-amber-100"
+          [class.bg-amber-300]="activeRefKey() === refKey(segment.ref)"
+        >
+          {{ segment.text }}
+        </span>
+      } @else {
+        <span class="inline">{{ segment.text }}</span>
+      }
+    }
+  } @else {
+    <span>{{ fallbackText() }}</span>
+  }
+</div>
