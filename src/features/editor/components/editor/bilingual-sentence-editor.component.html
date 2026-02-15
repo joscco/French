@@ -2,6 +2,25 @@
   <!-- Topbar -->
   <div class="flex flex-wrap items-center justify-between">
     <div class="text-lg font-extrabold text-slate-300 px-2">Editor</div>
+    <div class="flex items-center gap-2">
+      <button
+        type="button"
+        class="rounded-xl border px-3 py-2 text-sm font-semibold"
+        [ngClass]="viewMode() === 'sentences' ? 'border-slate-400 bg-slate-50 text-slate-900' : 'border-slate-200 bg-white text-slate-700 hover:bg-slate-50'"
+        (click)="setViewMode('sentences')"
+      >
+        Sentences
+      </button>
+
+      <button
+        type="button"
+        class="rounded-xl border px-3 py-2 text-sm font-semibold"
+        [ngClass]="viewMode() === 'terms' ? 'border-slate-400 bg-slate-50 text-slate-900' : 'border-slate-200 bg-white text-slate-700 hover:bg-slate-50'"
+        (click)="setViewMode('terms')"
+      >
+        All Terms
+      </button>
+    </div>
     <button
       type="button"
       class="rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm font-semibold text-slate-900 hover:bg-slate-50"
@@ -33,6 +52,7 @@
       </div>
     </div>
   }<!-- Body -->
+  @if (viewMode() === 'sentences') {
   <div class="w-full min-h-0 h-full flex-1 flex flex-row items-stretch gap-3">
 
     <!-- Sentence List Panel -->
@@ -153,12 +173,10 @@
           Clear
         </button>
       </div>
-
-      <div class="mb-2 text-xs text-slate-400">
-        Selected termId: <span class="font-mono">{{ selectedTermId() ?? '—' }}</span>
-      </div>
-
       <app-term-editor [termId]="selectedTermId()"/>
     </div>
   </div>
+  } @else {
+  <app-all-terms-translations class="h-full w-full"></app-all-terms-translations>
+}
 </div>

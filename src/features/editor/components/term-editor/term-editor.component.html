@@ -1,7 +1,7 @@
 @if (term(); as currentTerm) {
   <div class="rounded-2xl border border-slate-200 bg-white p-4">
     <div class="flex items-start justify-between gap-3">
-      <div>
+      <div class="min-w-0">
         <div class="text-xs font-extrabold uppercase tracking-wide text-slate-500">
           Term #{{ currentTerm.id }}
         </div>
@@ -21,6 +21,52 @@
       </div>
     </div>
 
+    <!-- ========================= -->
+    <!-- Translations -->
+    <!-- ========================= -->
+    <div class="mt-4 rounded-2xl border border-slate-200 bg-slate-50 p-3">
+      <div class="flex items-center justify-between gap-2">
+        <div class="text-xs font-extrabold uppercase tracking-wide text-slate-600">
+          Translations ({{ linkedTerms().length }})
+        </div>
+
+        <button
+          type="button"
+          class="rounded-lg border border-slate-200 bg-white px-2 py-1 text-xs font-semibold hover:bg-slate-50"
+          (click)="openTranslationOverlay($event)"
+        >
+          + Add translation
+        </button>
+      </div>
+
+      <div class="mt-2 flex flex-wrap gap-2">
+        @for (t of linkedTerms(); track t.id) {
+          <span class="inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-3 py-1.5 text-sm">
+            <span class="font-semibold text-slate-900">{{ t.display }}</span>
+            <span class="text-xs text-slate-500 font-mono">#{{ t.id }}</span>
+
+            <button
+              type="button"
+              class="ml-1 rounded-md px-2 py-0.5 text-xs font-semibold text-slate-500 hover:bg-slate-50 hover:text-rose-700"
+              (click)="removeTranslation(t)"
+              title="Remove link"
+            >
+              ✕
+            </button>
+          </span>
+        }
+
+        @if (linkedTerms().length === 0) {
+          <div class="rounded-xl border border-dashed border-slate-300 p-3 text-sm text-slate-600">
+            No translations linked yet.
+          </div>
+        }
+      </div>
+    </div>
+
+    <!-- ========================= -->
+    <!-- The rest of your fields -->
+    <!-- ========================= -->
     <div class="mt-4 space-y-3">
       <label class="block">
         <div class="mb-1 text-xs font-semibold text-slate-600">Display</div>
@@ -76,7 +122,6 @@
         </select>
       </label>
 
-      <!-- ✅ Vowel-article only for FR nouns -->
       @if (currentTerm.lang === 'fr' && isNoun(currentTerm)) {
         <div class="flex items-center justify-between gap-3 rounded-xl border border-slate-200 bg-slate-50 px-3 py-2">
           <div>
@@ -104,6 +149,50 @@
       }
     </div>
   </div>
+
+  <!-- Translation overlay -->
+  @if (translationOverlayOpen()) {
+    <div class="fixed inset-0 z-[1200]">
+      <button
+        type="button"
+        class="absolute inset-0 h-full w-full bg-black/20"
+        (click)="closeTranslationOverlay()"
+        aria-label="Close overlay"
+      ></button>
+
+      <div
+        class="absolute w-[520px] max-w-[92vw] max-h-[calc(100vh-24px)] overflow-auto"
+        [style.left.px]="translationOverlayPos().x"
+        [style.top.px]="translationOverlayPos().y"
+      >
+        <div class="rounded-2xl border border-slate-200 bg-white p-3 shadow-2xl">
+          <div class="mb-2 flex items-center justify-between gap-2">
+            <div class="truncate text-sm font-semibold text-slate-900">
+              Add translation ({{ oppositeLanguage()?.toUpperCase() }})
+            </div>
+
+            <button
+              type="button"
+              class="rounded-lg px-2 py-1 text-slate-400 hover:bg-slate-50 hover:text-slate-700"
+              (click)="closeTranslationOverlay()"
+              aria-label="Close"
+            >
+              ✕
+            </button>
+          </div>
+
+          @if (oppositeLanguage(); as targetLang) {
+            <app-term-picker
+              [lang]="targetLang"
+              [suggestedDisplay]="currentTerm.display"
+              [excludeIds]="excludedTranslationIds()"
+              (choose)="onChooseTranslation($event)"
+            ></app-term-picker>
+          }
+        </div>
+      </div>
+    </div>
+  }
 } @else {
   <div class="rounded-2xl border border-dashed border-slate-300 bg-white p-4 text-sm text-slate-600">
     Click an annotation to edit the linked term here.

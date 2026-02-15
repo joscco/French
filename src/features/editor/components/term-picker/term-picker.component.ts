@@ -41,10 +41,22 @@ export class TermPickerComponent {
     });
   }
 
+  excludeIds = input<number[] | null>(null);
+
   results = computed(() => {
-    const base = this.store.searchTerms(this.lang(), this.query());
-    const c = this.category();
-    return c ? base.filter(t => t.category === c) : base;
+    const baseResults = this.store.searchTerms(this.lang(), this.query());
+    const selectedCategory = this.category();
+    const excludedIds = new Set<number>(this.excludeIds() ?? []);
+
+    let visibleResults = baseResults;
+
+    if (selectedCategory) {
+      visibleResults = visibleResults.filter((termRow) => termRow.category === selectedCategory);
+    }
+
+    visibleResults = visibleResults.filter((termRow) => !excludedIds.has(termRow.id));
+
+    return visibleResults;
   });
 
   create() {

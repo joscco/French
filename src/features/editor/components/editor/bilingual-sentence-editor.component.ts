@@ -6,13 +6,14 @@ import {SentenceSideEditorComponent} from '../sentence-side-editor/sentence-side
 import {EditorStore} from '../../services/editor-store.service';
 import {SentenceRow} from '../../../../shared/contract/contract';
 import {downloadTextFile} from '../../helpers/download';
+import {AllTermsTranslationsComponent} from '../all-terms-translations/all-terms-translations.component';
 
 type LoadState = 'idle' | 'loading' | 'ready' | 'error';
 
 @Component({
   standalone: true,
   selector: 'app-bilingual-sentence-editor',
-  imports: [NgClass, FormsModule, SentenceSideEditorComponent, TermEditorComponent],
+  imports: [NgClass, FormsModule, SentenceSideEditorComponent, TermEditorComponent, AllTermsTranslationsComponent],
   templateUrl: './bilingual-sentence-editor.component.html',
 })
 export class BilingualSentenceEditorComponent {
@@ -55,6 +56,12 @@ export class BilingualSentenceEditorComponent {
     }
     return options;
   });
+
+  viewMode = signal<'sentences' | 'terms'>('sentences');
+
+  setViewMode(mode: 'sentences' | 'terms') {
+    this.viewMode.set(mode);
+  }
 
   private normalize(text: string): string {
     return (text ?? '')

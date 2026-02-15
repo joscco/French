@@ -240,6 +240,111 @@ export class EditorStore {
     this.links.set(this.links().filter(link => !(link.fr_id === frenchId && link.de_id === germanId)));
   }
 
+  readonly linksByFrenchId = computed(() => {
+    const linksForFrenchId = new Map<number, TermLinkRow[]>();
+
+    for (const linkRow of this.links()) {
+      const existingLinks = linksForFrenchId.get(linkRow.fr_id);
+      if (!existingLinks) {
+        linksForFrenchId.set(linkRow.fr_id, [linkRow]);
+      } else {
+        existingLinks.push(linkRow);
+      }
+    }
+
+    // stable sort by priority then id
+    for (const [frenchId, linkRows] of linksForFrenchId.entries()) {
+      linkRows.sort((a, b) => (a.priority ?? 9999) - (b.priority ?? 9999) || a.de_id - b.de_id);
+      linksForFrenchId.set(frenchId, linkRows);
+    }
+
+    return linksForFrenchId;
+  });
+
+  readonly linksByGermanId = computed(() => {
+    const linksForGermanId = new Map<number, TermLinkRow[]>();
+
+    for (const linkRow of this.links()) {
+      const existingLinks = linksForGermanId.get(linkRow.de_id);
+      if (!existingLinks) {
+        linksForGermanId.set(linkRow.de_id, [linkRow]);
+      } else {
+        existingLinks.push(linkRow);
+      }
+    }
+
+    for (const [germanId, linkRows] of linksForGermanId.entries()) {
+      linkRows.sort((a, b) => (a.priority ?? 9999) - (b.priority ?? 9999) || a.fr_id - b.fr_id);
+      linksForGermanId.set(germanId, linkRows);
+    }
+
+    return linksForGermanId;
+  });
+
+  getLinkedTermIds(termId: number, termLanguage: Lang): number[] {
+    if (termLanguage === 'fr') {
+      const linkRows = this.linksByFrenchId().get(termId) ?? [];
+      return linkRows.map((row) => row.de_id);
+    }
+
+    const linkRows = this.linksByGermanId().get(termId) ?? [];
+    return linkRows.map((row) => row.fr_id);
+  }
+
+  getLinkedTerms(termId: number, termLanguage: Lang): TermRow[] {
+    const termMap = this.termById();
+    const linkedTermIds = this.getLinkedTermIds(termId, termLanguage);
+
+    const linkedTerms: TermRow[] = [];
+    for (const linkedTermId of linkedTermIds) {
+      const linkedTermRow = termMap.get(linkedTermId);
+      if (linkedTermRow) {
+        linkedTerms.push(linkedTermRow);
+      }
+    }
+
+    // prefer stable order (priority already applied at id list level)
+    return linkedTerms;
+  }
+
+  getTranslationCount(termId: number, termLanguage: Lang): number {
+    return this.getLinkedTermIds(termId, termLanguage).length;
+  }
+
+  hasLinkBetween(frenchId: number, germanId: number): boolean {
+    return this.links().some((linkRow) => linkRow.fr_id === frenchId && linkRow.de_id === germanId);
+  }
+
+  /**
+   * Adds a link regardless of which side is currently selected.
+   * You pass two term rows (any order), we normalize to fr_id/de_id.
+   */
+  addLinkBetween(termA: TermRow, termB: TermRow, priority?: number) {
+    if (termA.lang === termB.lang) {
+      return; // invalid: must be cross-language
+    }
+
+    const frenchTerm = (termA.lang === 'fr') ? termA : termB;
+    const germanTerm = (termA.lang === 'de') ? termA : termB;
+
+    if (this.hasLinkBetween(frenchTerm.id, germanTerm.id)) {
+      return;
+    }
+
+    this.addLink(frenchTerm.id, germanTerm.id, priority);
+  }
+
+  removeLinkBetween(termA: TermRow, termB: TermRow) {
+    if (termA.lang === termB.lang) {
+      return;
+    }
+
+    const frenchTerm = (termA.lang === 'fr') ? termA : termB;
+    const germanTerm = (termA.lang === 'de') ? termA : termB;
+
+    this.removeLink(frenchTerm.id, germanTerm.id);
+  }
+
   // --- export ---
   exportCSVs(): Record<string, string> {
     const groupsCsv = toCSV(
