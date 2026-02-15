@@ -1,6 +1,6 @@
-<div class="h-full w-full min-h-0 flex flex-row gap-3">
+<div class="h-full w-full flex-1 min-h-0 flex flex-row gap-3 overflow-hidden">
   <!-- LEFT -->
-  <div class="min-h-0 min-w-0 flex-1 rounded-2xl border border-slate-200 bg-white p-3 flex flex-col">
+  <div class="min-h-0 min-w-0 flex-1 overflow-hidden rounded-2xl border border-slate-200 bg-white p-3 flex flex-col">
     <div class="mb-3 flex flex-wrap items-center gap-2">
       <div class="text-sm font-extrabold text-slate-900">All Terms</div>
 
@@ -68,8 +68,12 @@
             @for (termRow of filteredTerms(); track termRow.id) {
               <tr
                 [attr.data-term-row]="termRow.id"
-                class="border-t border-slate-100 align-top hover:bg-slate-50 cursor-pointer"
-                [class.bg-slate-50]="selectedTermId() === termRow.id"
+                class="border-t align-top cursor-pointer"
+                [ngClass]="{
+                    'bg-rose-50 border-rose-200': isInvalidTerm(termRow),
+                    'border-slate-100 hover:bg-slate-50': !isInvalidTerm(termRow),
+                    'bg-slate-100': selectedTermId() === termRow.id
+                  }"
                 (click)="selectTerm(termRow.id)"
               >
                 <td class="px-3 py-2 font-mono text-xs text-slate-500">{{ termRow.id }}</td>

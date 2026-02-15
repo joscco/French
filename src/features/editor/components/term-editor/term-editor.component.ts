@@ -16,15 +16,21 @@ type OverlayPosition = { x: number; y: number };
   templateUrl: './term-editor.component.html',
 })
 export class TermEditorComponent {
-  private readonly store = inject(EditorStore);
+
+  private readonly editorStore = inject(EditorStore);
 
   termId = input<number | null>(null);
 
-  // --- UI state for translations overlay
   translationOverlayOpen = signal(false);
-  translationOverlayPos = signal<OverlayPosition>({ x: 24, y: 24 });
+  translationOverlayPosition = signal<OverlayPosition>({x: 24, y: 24});
 
-  categories: TermCategory[] = ['verb', 'noun', 'expression', 'adjective', 'other'];
+  categories: TermCategory[] = [
+    'verb',
+    'noun',
+    'expression',
+    'adjective',
+    'other',
+  ];
 
   categoryLabel: Record<TermCategory, string> = {
     verb: 'Verb',
@@ -34,121 +40,228 @@ export class TermEditorComponent {
     other: 'Other',
   };
 
-  genusOptions: Array<{ value: Genus; label: string }> = [
-    { value: 'm', label: 'Masculine (m)' },
-    { value: 'f', label: 'Feminine (f)' },
-    { value: 'n', label: 'Neuter (n)' },
-    { value: 'mpl', label: 'Plural masc. (mpl)' },
-    { value: 'fpl', label: 'Plural fem. (fpl)' },
-  ];
+  readonly genusOptionsByLanguage: Record<Lang, Genus[]> = {
+    fr: ['m', 'f', 'mpl', 'fpl'], // no neuter in French
+    de: ['m', 'f', 'n', 'mpl', 'fpl'],
+  };
 
-  term = computed((): TermRow | null => {
+  readonly genusLabel: Record<Genus, string> = {
+    m: 'Masculine',
+    f: 'Feminine',
+    n: 'Neuter',
+    mpl: 'Plural masculine',
+    fpl: 'Plural feminine',
+    pl: 'Plural (genderless)',
+    npl: 'Plural neuter',
+    'm/f': 'Masculine or feminine',
+  };
+
+  readonly selectedTerm = computed((): TermRow | null => {
+
     const selectedTermId = this.termId();
+
     if (selectedTermId == null) {
       return null;
     }
-    return this.store.terms().find((termRow) => termRow.id === selectedTermId) ?? null;
+
+    return this.editorStore.terms().find(
+      (termRow) => termRow.id === selectedTermId
+    ) ?? null;
+
   });
 
-  linkedTerms = computed((): TermRow[] => {
-    const baseTermRow = this.term();
-    if (!baseTermRow) {
+  readonly isNoun = computed((): boolean => {
+
+    const termRow = this.selectedTerm();
+
+    return (termRow?.category ?? '') === 'noun';
+
+  });
+
+  readonly availableGenusOptions = computed(() => {
+
+    const termRow = this.selectedTerm();
+
+    if (!termRow || !this.isNoun()) {
       return [];
     }
-    return this.store.getLinkedTerms(baseTermRow.id, baseTermRow.lang);
+
+    return this.genusOptionsByLanguage[termRow.lang];
+
   });
 
-  excludedTranslationIds = computed((): number[] => {
-    const baseTermRow = this.term();
-    if (!baseTermRow) {
+  readonly linkedTerms = computed(() => {
+
+    const termRow = this.selectedTerm();
+
+    if (!termRow) {
       return [];
     }
 
-    const alreadyLinked = this.store.getLinkedTermIds(baseTermRow.id, baseTermRow.lang);
-    // exclude self too (paranoia)
-    return [baseTermRow.id, ...alreadyLinked];
+    return this.editorStore.getLinkedTerms(termRow.id, termRow.lang);
+
   });
 
-  oppositeLanguage = computed<Lang | null>(() => {
-    const baseTermRow = this.term();
-    if (!baseTermRow) {
+  readonly excludedTranslationIds = computed(() => {
+
+    const termRow = this.selectedTerm();
+
+    if (!termRow) {
+      return [];
+    }
+
+    const alreadyLinkedTermIds = this.editorStore.getLinkedTermIds(
+      termRow.id,
+      termRow.lang,
+    );
+
+    return [
+      termRow.id,
+      ...alreadyLinkedTermIds,
+    ];
+
+  });
+
+  readonly oppositeLanguage = computed<Lang | null>(() => {
+
+    const termRow = this.selectedTerm();
+
+    if (!termRow) {
       return null;
     }
-    return reverseLanguage(baseTermRow.lang);
+
+    return reverseLanguage(termRow.lang);
+
   });
 
-  isNoun(termRow: TermRow): boolean {
-    return (termRow.category ?? '') === 'noun';
-  }
+  readonly isCategoryMissing = computed(() => {
 
-  onCategoryChange(value: string) {
-    const category = (value || undefined) as TermCategory | undefined;
+    const termRow = this.selectedTerm();
 
-    if (category !== 'noun') {
-      this.commit({ category, genus: undefined });
+    return !(termRow?.category ?? '').trim();
+
+  });
+
+  readonly isGenusMissing = computed(() => {
+
+    const termRow = this.selectedTerm();
+
+    if (!termRow) {
+      return false;
+    }
+
+    if (termRow.category !== 'noun') {
+      return false;
+    }
+
+    return !(termRow.genus ?? '').trim();
+
+  });
+
+  readonly isTermInvalid = computed(() => {
+
+    return this.isCategoryMissing() || this.isGenusMissing();
+
+  });
+
+  updateTerm(patch: Partial<TermRow>) {
+
+    const selectedTermId = this.termId();
+
+    if (selectedTermId == null) {
       return;
     }
 
-    this.commit({ category });
+    this.editorStore.updateTerm(selectedTermId, patch);
+
   }
 
-  commit(patch: Partial<TermRow>) {
-    const currentTermId = this.termId();
-    if (currentTermId == null) {
+  onCategoryChanged(newCategory: string) {
+
+    const normalizedCategory =
+      (newCategory || undefined) as TermCategory | undefined;
+
+    if (normalizedCategory !== 'noun') {
+
+      this.updateTerm({
+        category: normalizedCategory,
+        genus: undefined,
+      });
+
       return;
-    }
-    this.store.updateTerm(currentTermId, patch);
-  }
 
-  autoGuessVowel(display: string) {
-    const normalized = (display || '').trim().toLowerCase();
-    const firstChar = normalized[0];
-    const guess = !!firstChar && 'aeiouyh'.includes(firstChar);
-    this.commit({ needsVowelArticle: guess });
-  }
-
-  openTranslationOverlay(anchorEvent: MouseEvent) {
-    anchorEvent.stopPropagation();
-
-    const panelWidthPx = 520;
-    const estimatedPanelHeightPx = 520;
-    const viewportPaddingPx = 12;
-
-    let proposedLeftPx = Math.round(anchorEvent.clientX);
-    let proposedTopPx = Math.round(anchorEvent.clientY + 12);
-
-    const anchorElement = anchorEvent.currentTarget as HTMLElement | null;
-    if (anchorElement) {
-      const anchorRect = anchorElement.getBoundingClientRect();
-      proposedLeftPx = Math.round(anchorRect.left);
-      proposedTopPx = Math.round(anchorRect.bottom + 8);
     }
 
-    const minLeftPx = viewportPaddingPx;
-    const maxLeftPx = window.innerWidth - panelWidthPx - viewportPaddingPx;
-    const clampedLeftPx = Math.max(minLeftPx, Math.min(proposedLeftPx, maxLeftPx));
+    this.updateTerm({
+      category: normalizedCategory,
+    });
 
-    const minTopPx = viewportPaddingPx;
-    const maxTopPx = window.innerHeight - estimatedPanelHeightPx - viewportPaddingPx;
-    const clampedTopPx = Math.max(minTopPx, Math.min(proposedTopPx, maxTopPx));
+  }
 
-    this.translationOverlayPos.set({ x: clampedLeftPx, y: clampedTopPx });
+  autoDetectVowel(displayValue: string) {
+
+    const normalizedDisplay =
+      (displayValue ?? '').trim().toLowerCase();
+
+    const firstCharacter = normalizedDisplay[0];
+
+    const beginsWithVowel =
+      !!firstCharacter && 'aeiouyh'.includes(firstCharacter);
+
+    this.updateTerm({
+      needsVowelArticle: beginsWithVowel,
+    });
+
+  }
+
+  openTranslationOverlay(mouseEvent: MouseEvent) {
+
+    mouseEvent.stopPropagation();
+
+    const panelWidth = 520;
+    const panelHeight = 520;
+    const padding = 12;
+
+    const anchorRect =
+      (mouseEvent.currentTarget as HTMLElement).getBoundingClientRect();
+
+    const targetLeft =
+      Math.max(
+        padding,
+        Math.min(
+          anchorRect.left,
+          window.innerWidth - panelWidth - padding,
+        ),
+      );
+
+    const targetTop =
+      Math.max(
+        padding,
+        Math.min(
+          anchorRect.bottom + 8,
+          window.innerHeight - panelHeight - padding,
+        ),
+      );
+
+    this.translationOverlayPosition.set({
+      x: targetLeft,
+      y: targetTop,
+    });
+
     this.translationOverlayOpen.set(true);
+
   }
 
   closeTranslationOverlay() {
+
     this.translationOverlayOpen.set(false);
+
   }
 
-  @HostListener('document:keydown', ['$event'])
-  onDocumentKeydown(keyboardEvent: KeyboardEvent) {
-    if (keyboardEvent.key === 'Escape') {
-      this.closeTranslationOverlay();
-    }
-  }
+  onTranslationChosen(selectedTermRow: TermRow) {
 
-  onChooseTranslation(selectedTermRow: TermRow) {
-    const baseTermRow = this.term();
+    const baseTermRow = this.selectedTerm();
+
     if (!baseTermRow) {
       return;
     }
@@ -157,18 +270,40 @@ export class TermEditorComponent {
       return;
     }
 
-    this.store.addLinkBetween(baseTermRow, selectedTermRow);
+    this.editorStore.addLinkBetween(
+      baseTermRow,
+      selectedTermRow,
+    );
+
     this.closeTranslationOverlay();
+
   }
 
   removeTranslation(linkedTermRow: TermRow) {
-    const baseTermRow = this.term();
+
+    const baseTermRow = this.selectedTerm();
+
     if (!baseTermRow) {
       return;
     }
-    this.store.removeLinkBetween(baseTermRow, linkedTermRow);
+
+    this.editorStore.removeLinkBetween(
+      baseTermRow,
+      linkedTermRow,
+    );
+
+  }
+
+  @HostListener('document:keydown', ['$event'])
+  onEscapeKeyPressed(keyboardEvent: KeyboardEvent) {
+
+    if (keyboardEvent.key === 'Escape') {
+      this.closeTranslationOverlay();
+    }
+
   }
 
   protected readonly beautifyGenus = beautifyGenus;
   protected readonly getArticle = getArticle;
+
 }
