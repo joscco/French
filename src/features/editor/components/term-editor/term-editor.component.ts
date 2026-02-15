@@ -34,6 +34,9 @@ export class TermEditorComponent implements OnDestroy {
   isGenerating = signal(false);
   generateError = signal<string | null>(null);
 
+  // TTS Server URL für Audio-Dateien (umgeht Angular's File-Watcher)
+  private readonly TTS_SERVER_URL = 'http://localhost:3001';
+
   // Audio state for linked terms
   private linkedAudioElement: HTMLAudioElement | null = null;
   linkedTermAudioExists = signal<Map<number, boolean>>(new Map());
@@ -96,14 +99,22 @@ export class TermEditorComponent implements OnDestroy {
 
   });
 
-  // Audio path for terms: sounds/term_{lang}{id}.mp3
-  readonly audioPath = computed(() => {
+  // Audio filename for terms: term_{lang}{id}.mp3
+  readonly audioFilename = computed(() => {
     const term = this.selectedTerm();
     if (!term) {
       return null;
     }
-    return `sounds/term_${term.lang}${term.id}.mp3`;
+    return `term_${term.lang}${term.id}.mp3`;
   });
+
+  // Audio path - im Editor immer TTS-Server verwenden (umgeht Angular's File-Watcher)
+  private getAudioPath(): string | null {
+    const filename = this.audioFilename();
+    if (!filename) return null;
+    // Im Editor immer TTS-Server verwenden
+    return `${this.TTS_SERVER_URL}/sounds/${filename}`;
+  }
 
   constructor() {
     // Reactive effect: check audio existence whenever termId changes
@@ -134,7 +145,7 @@ export class TermEditorComponent implements OnDestroy {
   }
 
   private async checkAudioExists() {
-    const path = this.audioPath();
+    const path = this.getAudioPath();
     if (!path) {
       this.audioExists.set(false);
       return;
@@ -149,7 +160,7 @@ export class TermEditorComponent implements OnDestroy {
   }
 
   playAudio() {
-    const path = this.audioPath();
+    const path = this.getAudioPath();
     if (!path) {
       return;
     }
@@ -217,8 +228,10 @@ export class TermEditorComponent implements OnDestroy {
   // Linked Term Audio
   // =========================================================
 
+  // Im Editor immer TTS-Server verwenden (umgeht Angular's File-Watcher)
   getLinkedTermAudioPath(termId: number, lang: string): string {
-    return `sounds/term_${lang}${termId}.mp3`;
+    const filename = `term_${lang}${termId}.mp3`;
+    return `${this.TTS_SERVER_URL}/sounds/${filename}`;
   }
 
   async checkLinkedTermAudioExists(termId: number, lang: string): Promise<boolean> {

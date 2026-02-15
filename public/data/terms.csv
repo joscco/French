@@ -12,7 +12,7 @@ id;lang;term_text;category;genus;needs_vowel_article;unit_id;ref;tags
 11;fr;désinfecter {qc.};verb;;;;;
 12;fr;plaie;noun;f;;;;
 13;de;Wunde;noun;f;;;;
-14;de;etw. desinfizieren;verb;;;;;
+14;de;{etw.} desinfizieren;verb;;;;;
 15;de;Kühlschrank;noun;m;;;;
 16;de;voll {von etw.};expression;;;;;
 17;de;Gemüse;noun;n;;;;
@@ -66,3 +66,6 @@ id;lang;term_text;category;genus;needs_vowel_article;unit_id;ref;tags
 65;fr;dénivelé;noun;m;;;;
 66;de;Höhenunterschied;noun;m;;;;
 67;de;Wanderung;noun;f;;;;
+68;fr;paysage;noun;m;;;;
+69;fr;portefeuille;noun;m;;;;
+70;de;Brieftasche;noun;f;;;;

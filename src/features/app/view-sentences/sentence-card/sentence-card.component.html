@@ -104,15 +104,31 @@
         [class.opacity-0]="!isChecked()"
       >
         <div class="flex flex-row items-center justify-center gap-3 h-12">
-          @if (mode() == 'de-fr') {
-            <!-- Only offer sound in de-fr mode-->
-            <app-icon-button
-              [iconName]="isPlaying() ? 'stop' : 'volume_up'"
-              [tooltip]="isPlaying() ? 'Audio stoppen' : 'Audio abspielen'"
-              (onClick)="togglePlay($event)"
-              [enabled]="isCorrect()"
-            ></app-icon-button>
-          }
+          <!-- Französisch Audio -->
+          <button
+            class="h-10 px-3 inline-flex items-center justify-center gap-1.5 rounded-xl border border-neutral-300
+                   transition-colors duration-150 bg-transparent hover:bg-neutral-200 active:bg-neutral-300
+                   disabled:opacity-50 disabled:pointer-events-none"
+            [disabled]="!isCorrect()"
+            (click)="playFr($event)"
+            title="Französisch abspielen"
+          >
+            <mat-icon class="text-lg">{{ isPlaying() ? 'stop' : 'volume_up' }}</mat-icon>
+            <span class="text-xs font-bold text-slate-500">FR</span>
+          </button>
+
+          <!-- Deutsch Audio -->
+          <button
+            class="h-10 px-3 inline-flex items-center justify-center gap-1.5 rounded-xl border border-neutral-300
+                   transition-colors duration-150 bg-transparent hover:bg-neutral-200 active:bg-neutral-300
+                   disabled:opacity-50 disabled:pointer-events-none"
+            [disabled]="!isCorrect()"
+            (click)="playDe($event)"
+            title="Deutsch abspielen"
+          >
+            <mat-icon class="text-lg">{{ isPlaying() ? 'stop' : 'volume_up' }}</mat-icon>
+            <span class="text-xs font-bold text-slate-500">DE</span>
+          </button>
 
           <app-icon-button
             iconName="edit"

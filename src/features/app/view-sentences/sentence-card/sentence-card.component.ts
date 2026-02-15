@@ -13,6 +13,7 @@ import {
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { MatIconModule } from '@angular/material/icon';
 import gsap from 'gsap';
 
 import { TermTooltipOverlayComponent } from '../term-tooltip-overlay/term-tooltip-overlay.component';
@@ -33,6 +34,7 @@ import { SentenceVm } from '../../models/sentence-vm';
   imports: [
     CommonModule,
     FormsModule,
+    MatIconModule,
     PromptMarkupComponent,
     TermTooltipOverlayComponent,
     IconButtonComponent,
@@ -169,7 +171,8 @@ export class SentenceCardComponent {
       }
 
       this.autoPlayedForCheck.set(true);
-      this.playAudio();
+      // Im de-fr Modus ist Französisch die Antwort-Sprache
+      this.playAudio('fr');
     });
   }
 
@@ -311,19 +314,25 @@ export class SentenceCardComponent {
   // Audio
   // =========================================================
 
-  private sentenceAudioSrc(): string | undefined {
+  private sentenceAudioSrc(lang?: 'fr' | 'de'): string | undefined {
     const sentenceId = this.sentence()?.id;
     if (sentenceId === undefined || sentenceId === null) {
       return undefined;
     }
-    return new URL(`sounds/fr${sentenceId}.mp3`, document.baseURI).toString();
+    // Wenn keine Sprache angegeben, verwende die Zielsprache (Antwortsprache)
+    const audioLang = lang ?? (this.mode() === 'de-fr' ? 'fr' : 'de');
+    return new URL(`sounds/${audioLang}${sentenceId}.mp3`, document.baseURI).toString();
   }
 
-  private playAudio() {
-    const src = this.sentenceAudioSrc();
+
+  private playAudio(lang?: 'fr' | 'de') {
+    const src = this.sentenceAudioSrc(lang);
     if (!src) {
       return;
     }
+
+    // Stoppe vorherige Wiedergabe
+    this.stopAudio();
 
     if (!this.audio) {
       this.audio = new Audio();
@@ -346,12 +355,12 @@ export class SentenceCardComponent {
     }
   }
 
-  togglePlay(event?: Event) {
+  togglePlay(event?: Event, lang?: 'fr' | 'de') {
     if (event) {
       event.stopPropagation();
     }
 
-    const src = this.sentenceAudioSrc();
+    const src = this.sentenceAudioSrc(lang);
     if (!src) {
       return;
     }
@@ -361,7 +370,15 @@ export class SentenceCardComponent {
       return;
     }
 
-    this.playAudio();
+    this.playAudio(lang);
+  }
+
+  playFr(event?: Event) {
+    this.togglePlay(event, 'fr');
+  }
+
+  playDe(event?: Event) {
+    this.togglePlay(event, 'de');
   }
 
   private stopAudio() {

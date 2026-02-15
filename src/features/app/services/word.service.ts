@@ -57,6 +57,8 @@ export class WordService {
         germanPrimary: germanTerm.term_text,
         frenchSecondary: undefined,
         germanSecondary: undefined,
+        frenchTermId: frenchTerm.id,
+        germanTermId: germanTerm.id,
         meta: {
           category: term.category,
           fr_genus: frenchTerm.genus,

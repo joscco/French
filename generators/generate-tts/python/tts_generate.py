@@ -154,6 +154,46 @@ def load_terms(ids: list[int] | None, lang: str | None = None):
   return rows
 
 
+def get_article_for_term(term: dict) -> str:
+  """
+  Gibt den Artikel für ein Nomen zurück.
+  Berücksichtigt Sprache, Genus und ob ein Vokal-Artikel benötigt wird.
+  """
+  category = term.get("category", "")
+  if category != "noun":
+    return ""
+
+  lang = term.get("lang", "")
+  genus = term.get("genus", "")
+  needs_vowel = term.get("needs_vowel_article", "").lower() in ("true", "1", "yes")
+
+  # Französische Artikel
+  if lang == "fr":
+    if needs_vowel:
+      return "l'"
+    if genus == "m":
+      return "le"
+    if genus == "f":
+      return "la"
+    if genus in ("mpl", "fpl", "pl"):
+      return "les"
+    return ""
+
+  # Deutsche Artikel
+  if lang == "de":
+    if genus == "m":
+      return "der"
+    if genus == "f":
+      return "die"
+    if genus == "n":
+      return "das"
+    if genus in ("mpl", "fpl", "pl", "npl"):
+      return "die"
+    return ""
+
+  return ""
+
+
 def tts_client():
   return texttospeech.TextToSpeechClient()
 
@@ -291,6 +331,15 @@ def generate_for_terms(terms):
       print(f"Überspringe Term ID {term_id} ({lang}) – kein Text")
       continue
 
+    # Bei Nomen: Artikel voranstellen
+    article = get_article_for_term(term)
+    if article:
+      # Bei l' kein Leerzeichen
+      if article.endswith("'"):
+        term_text = f"{article}{term_text}"
+      else:
+        term_text = f"{article} {term_text}"
+
     print(f"Generiere Audio für Term ID {term_id} ({lang}): {term_text}")
 
     pcm = synthesize(term_text, lang, client)
@@ -363,6 +412,15 @@ def generate_single_term(term_id: int) -> dict:
     print(f"[TTS] ❌ Kein Text für Term {term_id}")
     return {"success": False, "error": f"No text for term {term_id}"}
 
+  # Bei Nomen: Artikel voranstellen
+  article = get_article_for_term(term)
+  if article:
+    # Bei l' kein Leerzeichen
+    if article.endswith("'"):
+      term_text = f"{article}{term_text}"
+    else:
+      term_text = f"{article} {term_text}"
+
   print(f"[TTS] Text ({lang}): \"{term_text}\"")
 
   try:
@@ -399,6 +457,68 @@ class TTSHandler(BaseHTTPRequestHandler):
 
   def do_OPTIONS(self):
     self._send_json({})
+
+  def do_HEAD(self):
+    """Handle HEAD requests for sound files (used to check if file exists)."""
+    parsed = urllib.parse.urlparse(self.path)
+
+    if parsed.path.startswith("/sounds/"):
+      filename = parsed.path[8:]  # Remove "/sounds/" prefix
+
+      # Sicherheit: Nur .mp3 Dateien erlauben, keine Pfad-Traversal
+      if ".." in filename or "/" in filename or not filename.endswith(".mp3"):
+        self.send_response(400)
+        self.send_header("Access-Control-Allow-Origin", "*")
+        self.end_headers()
+        return
+
+      file_path = OUTPUT_BASE / filename
+
+      if file_path.exists():
+        self.send_response(200)
+        self.send_header("Content-Type", "audio/mpeg")
+        self.send_header("Content-Length", str(file_path.stat().st_size))
+        self.send_header("Access-Control-Allow-Origin", "*")
+        self.end_headers()
+      else:
+        self.send_response(404)
+        self.send_header("Access-Control-Allow-Origin", "*")
+        self.end_headers()
+    else:
+      self.send_response(404)
+      self.send_header("Access-Control-Allow-Origin", "*")
+      self.end_headers()
+
+  def _serve_sound_file(self, filename: str):
+    """Serve a sound file from the sounds directory."""
+    # Sicherheit: Nur .mp3 Dateien erlauben, keine Pfad-Traversal
+    if ".." in filename or "/" in filename or not filename.endswith(".mp3"):
+      self.send_response(400)
+      self.end_headers()
+      return
+
+    file_path = OUTPUT_BASE / filename
+
+    if not file_path.exists():
+      self.send_response(404)
+      self.end_headers()
+      return
+
+    try:
+      with open(file_path, "rb") as f:
+        content = f.read()
+
+      self.send_response(200)
+      self.send_header("Content-Type", "audio/mpeg")
+      self.send_header("Content-Length", str(len(content)))
+      self.send_header("Access-Control-Allow-Origin", "*")
+      self.send_header("Cache-Control", "no-cache")
+      self.end_headers()
+      self.wfile.write(content)
+    except Exception as e:
+      print(f"[Sound] ❌ Fehler beim Laden von {filename}: {e}")
+      self.send_response(500)
+      self.end_headers()
 
   def do_POST(self):
     parsed = urllib.parse.urlparse(self.path)
@@ -451,6 +571,11 @@ class TTSHandler(BaseHTTPRequestHandler):
     parsed = urllib.parse.urlparse(self.path)
     params = urllib.parse.parse_qs(parsed.query)
 
+    # Serve sound files directly to avoid Angular reload
+    if parsed.path.startswith("/sounds/"):
+      self._serve_sound_file(parsed.path[8:])  # Remove "/sounds/" prefix
+      return
+
     if parsed.path == "/generate/sentence":
       sentence_id = int(params.get("id", [0])[0])
       lang = params.get("lang", ["fr"])[0]
@@ -498,6 +623,7 @@ def run_server(port: int = 3001):
   print(f"  GET  /generate/sentence?id=123&lang=fr")
   print(f"  GET  /generate/sentence?id=123&lang=de")
   print(f"  GET  /generate/term?id=123")
+  print(f"  GET  /sounds/<filename>.mp3  (Audio-Dateien)")
   print(f"  GET  /health")
   print(f"  POST /save/csv  (body: {{filename, content}})")
   print()

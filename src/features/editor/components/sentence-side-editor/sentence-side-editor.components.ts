@@ -45,6 +45,9 @@ export class SentenceSideEditorComponent implements OnDestroy {
   isGenerating = signal(false);
   generateError = signal<string | null>(null);
 
+  // TTS Server URL für Audio-Dateien (umgeht Angular's File-Watcher)
+  private readonly TTS_SERVER_URL = 'http://localhost:3001';
+
   // Derived
   sentence = computed(() => {
     const selectedSentenceId = this.sentenceId();
@@ -64,12 +67,19 @@ export class SentenceSideEditorComponent implements OnDestroy {
   rep = computed(() => representativeText(this.ast()));
   segs = computed(() => previewSegments(this.ast()));
 
-  // Audio path (for both French and German sentences)
-  audioPath = computed(() => {
+  // Audio filename (for both French and German sentences)
+  audioFilename = computed(() => {
     const lang = this.lang();
     const id = this.sentenceId();
-    return `sounds/${lang}${id}.mp3`;
+    return `${lang}${id}.mp3`;
   });
+
+  // Audio path - im Editor immer TTS-Server verwenden (umgeht Angular's File-Watcher)
+  private getAudioPath(): string {
+    const filename = this.audioFilename();
+    // Im Editor immer TTS-Server verwenden
+    return `${this.TTS_SERVER_URL}/sounds/${filename}`;
+  }
 
   // Check if audio file exists when sentence changes
   constructor() {
@@ -93,7 +103,7 @@ export class SentenceSideEditorComponent implements OnDestroy {
   }
 
   private async checkAudioExists() {
-    const path = this.audioPath();
+    const path = this.getAudioPath();
     if (!path) {
       this.audioExists.set(false);
       return;
@@ -108,7 +118,7 @@ export class SentenceSideEditorComponent implements OnDestroy {
   }
 
   playAudio() {
-    const path = this.audioPath();
+    const path = this.getAudioPath();
     if (!path) {
       return;
     }

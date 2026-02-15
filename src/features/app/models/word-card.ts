@@ -9,6 +9,10 @@ export interface WordCard {
   germanPrimary: string;
   germanSecondary?: string;
 
+  // Term-IDs für Audio-Wiedergabe
+  frenchTermId?: number;
+  germanTermId?: number;
+
   meta?: {
     category?: string;
     lesson?: number;

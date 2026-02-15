@@ -1,8 +1,8 @@
 <div class="w-full h-full flex flex-col items-center p-6 cursor-pointer"
      (click)="onCardClick()">
     <div class="w-full flex flex-row items-center justify-between">
-      @if (meta && meta['category']) {
-        <div class="italic opacity-50">{{ meta['category'] }}</div>
+      @if (meta() && meta()!['category']) {
+        <div class="italic opacity-50">{{ meta()!['category'] }}</div>
       }
       <div class="flex items-center text-sm italic opacity-50 transition-opacity duration-300 hover:opacity-100">
         <mat-icon class="mr-1">ads_click</mat-icon>
@@ -16,19 +16,19 @@
       >
         @if (renderLanguage()=== 'fr') {
           <app-card-face
-            [primary]="frenchPrimary"
-            [secondary]="frenchSecondary"
+            [primary]="frenchPrimary()"
+            [secondary]="frenchSecondary()"
             [language]="'fr'"
-            [needsVowelArticle]="meta?.['fr_needs_vowel_article']"
-            [genus]="meta?.['fr_genus']"
+            [needsVowelArticle]="meta()?.['fr_needs_vowel_article']"
+            [genus]="meta()?.['fr_genus']"
           />
         } @else {
           <app-card-face
-            [primary]="germanPrimary"
-            [secondary]="germanSecondary"
+            [primary]="germanPrimary()"
+            [secondary]="germanSecondary()"
             [language]="'de'"
             [needsVowelArticle]="false"
-            [genus]="meta?.['de_genus']"
+            [genus]="meta()?.['de_genus']"
           />
         }
 
