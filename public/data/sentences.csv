@@ -2,9 +2,9 @@ id;unit_id;fr;de;note
 1;1;Je [vais {m'inscrire à|#1}|{m'inscris à|#1}] un {cours de français|#2}.;Ich {melde mich zu|#4} einem {Französischkurs|#3} {an|#4}.;
 2;1;Il y avait une {manifestation|#7} dans la {rue principale|#10}.;In der {Hauptstraße|#8} gab es eine {Demonstration|#9}.;
 3;1;Il faut {désinfecter|#11} la {plaie|#12}.;Man muss die {Wunde|#13} {desinfizieren|#14}.;
-4;1;Le [frigidaire] est [plein de]{plein de qc.} [légumes]{légume}.;Der [Kühlschrank] ist [voller]{voll von etw.} [Gemüse].;
-5;1;Nous faisons du [camping] [au bord du]{au bord de qc.} [lac].;Wir machen [Camping] [am]{am Ufer von etw.} [See].;
-6;1;J’[ai oublié]{oublier qc.} mon [sac de couchage].;Ich [habe]{etw. vergessen#A} meinen [Schlafsack] [vergessen]{#A}.;
+4;1;Le {frigidaire|#18} est {plein de|#19} {légumes|#20}.;Der {Kühlschrank|#15} ist {voller|#16} {Gemüse|#17}.;
+5;1;Nous faisons du {camping} {au bord du} {lac}.;Wir machen {Camping} {am} {See}.;
+6;1;J’{ai oublié|#21} mon {sac de couchage}.;Ich {habe|#22} meinen {Schlafsack} {vergessen|#22}.;
 7;1;C’est une [région viticole].;Das ist eine [Weinbauregion].;
 8;1;Nous [aimons]{aimer qc.} [faire des randonnées] en montagne.;Wir [gehen]{wandern#A} gern in den Bergen [wandern]{#A}.;
 9;1;On peut [randonner] dans le parc naturel.;Man kann im Naturpark [wandern].;

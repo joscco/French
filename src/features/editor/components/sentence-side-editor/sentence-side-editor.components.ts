@@ -130,7 +130,7 @@ export class SentenceSideEditorComponent {
 
     // Panel sizing assumptions (match your HTML)
     const panelWidthPx = 520;
-    const estimatedPanelHeightPx = 480; // rough estimate; the HTML also has max-height as fallback
+    const estimatedPanelHeightPx = 520; // rough estimate; the HTML also has max-height as fallback
     const viewportPaddingPx = 12;
 
     // Default position: near click
