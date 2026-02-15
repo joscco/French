@@ -30,14 +30,16 @@ export class AllowedTermsService {
 }
 
 export function extractTermIdsFromMarkup(text: string): number[] {
-  const s = String(text ?? '');
+  const stringValue = String(text ?? '');
   const ids: number[] = [];
-  const re = /#(\d+)/g;
+  const regex = /#(\d+)/g;
 
-  let m: RegExpExecArray | null;
-  while ((m = re.exec(s)) !== null) {
-    const id = Number(m[1]);
-    if (Number.isFinite(id) && id > 0) ids.push(id);
+  let match: RegExpExecArray | null;
+  while ((match = regex.exec(stringValue)) !== null) {
+    const id = Number(match[1]);
+    if (Number.isFinite(id) && id > 0) {
+      ids.push(id);
+    }
   }
   return ids;
 }

@@ -8,37 +8,44 @@ export function parseSentenceMarkup(input: string): Node[] {
 
   function parseAnnotation(): Node {
     let inner = '';
-    while (i < input.length && input[i] !== '}') inner += input[i++];
-    if (input[i] === '}') i++;
+    while (i < input.length && input[i] !== '}') {
+      inner += input[i];
+      i++;
+    }
+    if (input[i] === '}') {
+      i++;
+    }
 
     const parts = inner.split('|').map(s => s.trim()).filter(Boolean);
     const surface = parts[0] ?? '';
     const idPart = parts[1] ?? '';
-    const m = idPart.match(/^#(\d+)$/);
-    return { kind: 'ann', surface, termId: m ? Number(m[1]) : undefined };
+    const match = idPart.match(/^#(\d+)$/);
+    return { kind: 'ann', surface, termId: match ? Number(match[1]) : undefined };
   }
 
   function parseAlternatives(): Node {
     const options: Node[][] = [];
     let current: Node[] = [];
-    let buf = '';
+    let buffer = '';
 
     function flushText() {
-      if (buf) current.push({ kind: 'text', value: buf });
-      buf = '';
+      if (buffer) {
+        current.push({ kind: 'text', value: buffer });
+      }
+      buffer = '';
     }
 
     while (i < input.length) {
-      const ch = input[i];
+      const char = input[i];
 
-      if (ch === ']') {
+      if (char === ']') {
         flushText();
         i++;
         options.push(current);
         return { kind: 'alt', options };
       }
 
-      if (ch === '|') {
+      if (char === '|') {
         flushText();
         i++;
         options.push(current);
@@ -46,21 +53,21 @@ export function parseSentenceMarkup(input: string): Node[] {
         continue;
       }
 
-      if (ch === '{') {
+      if (char === '{') {
         flushText();
         i++;
         current.push(parseAnnotation());
         continue;
       }
 
-      if (ch === '[') {
+      if (char === '[') {
         flushText();
         i++;
         current.push(parseAlternatives());
         continue;
       }
 
-      buf += ch;
+      buffer += char;
       i++;
     }
 
@@ -70,31 +77,33 @@ export function parseSentenceMarkup(input: string): Node[] {
   }
 
   const out: Node[] = [];
-  let buf = '';
+  let buffer = '';
 
   function flush() {
-    if (buf) out.push({ kind: 'text', value: buf });
-    buf = '';
+    if (buffer) {
+      out.push({ kind: 'text', value: buffer });
+    }
+    buffer = '';
   }
 
   while (i < input.length) {
-    const ch = input[i];
+    const char = input[i];
 
-    if (ch === '{') {
+    if (char === '{') {
       flush();
       i++;
       out.push(parseAnnotation());
       continue;
     }
 
-    if (ch === '[') {
+    if (char === '[') {
       flush();
       i++;
       out.push(parseAlternatives());
       continue;
     }
 
-    buf += ch;
+    buffer += char;
     i++;
   }
 
@@ -103,15 +112,19 @@ export function parseSentenceMarkup(input: string): Node[] {
 }
 
 export function representativeText(nodes: Node[]): string {
-  const rep = (ns: Node[]): string =>
-    ns
-      .map(n => {
-        if (n.kind === 'text') return n.value;
-        if (n.kind === 'ann') return n.surface;
-        return rep(n.options[0] ?? []);
+  const represent = (nodeList: Node[]): string =>
+    nodeList
+      .map(node => {
+        if (node.kind === 'text') {
+          return node.value;
+        }
+        if (node.kind === 'ann') {
+          return node.surface;
+        }
+        return represent(node.options[0] ?? []);
       })
       .join('');
-  return rep(nodes);
+  return represent(nodes);
 }
 
 /** build flat "segments" for clickable preview */
@@ -123,32 +136,38 @@ export type PreviewSeg =
   | { kind: 'ann'; surface: string; termId?: number; raw: string };
 
 export function previewSegments(nodes: Node[]): PreviewSeg[] {
-  const segs: PreviewSeg[] = [];
+  const segments: PreviewSeg[] = [];
 
-  const walk = (ns: Node[]) => {
-    for (const n of ns) {
-      if (n.kind === 'text') {
-        if (n.value) segs.push({ kind: 'text', text: n.value });
-      } else if (n.kind === 'ann') {
-        const raw = n.termId ? `{${n.surface}|#${n.termId}}` : `{${n.surface}}`;
-        segs.push({ kind: 'ann', surface: n.surface, termId: n.termId, raw });
+  const walk = (nodeList: Node[]) => {
+    for (const node of nodeList) {
+      if (node.kind === 'text') {
+        if (node.value) {
+          segments.push({ kind: 'text', text: node.value });
+        }
+      } else if (node.kind === 'ann') {
+        const raw = node.termId ? `{${node.surface}|#${node.termId}}` : `{${node.surface}}`;
+        segments.push({ kind: 'ann', surface: node.surface, termId: node.termId, raw });
       } else {
-        segs.push({ kind: 'altStart' });
-        n.options.forEach((opt, idx) => {
-          if (idx > 0) segs.push({ kind: 'altSep' });
-          walk(opt);
+        segments.push({ kind: 'altStart' });
+        node.options.forEach((option, index) => {
+          if (index > 0) {
+            segments.push({ kind: 'altSep' });
+          }
+          walk(option);
         });
-        segs.push({ kind: 'altEnd' });
+        segments.push({ kind: 'altEnd' });
       }
     }
   };
 
   walk(nodes);
-  return segs;
+  return segments;
 }
 
-export function replaceFirstExact(hay: string, needle: string, replacement: string): string {
-  const idx = hay.indexOf(needle);
-  if (idx < 0) return hay;
-  return hay.slice(0, idx) + replacement + hay.slice(idx + needle.length);
+export function replaceFirstExact(haystack: string, needle: string, replacement: string): string {
+  const index = haystack.indexOf(needle);
+  if (index < 0) {
+    return haystack;
+  }
+  return haystack.slice(0, index) + replacement + haystack.slice(index + needle.length);
 }

@@ -5,10 +5,12 @@ const REF_RE = /\{([^|{}]+?)\|\s*#(\d+)\s*}/g;
 
 export function extractTermRefs(text: string, lang: Lang): TermRefInSentence[] {
   const refs: TermRefInSentence[] = [];
-  for (const m of text.matchAll(REF_RE)) {
-    const label = (m[1] ?? '').trim();
-    const termId = Number(m[2]);
-    if (!termId || Number.isNaN(termId)) continue;
+  for (const match of text.matchAll(REF_RE)) {
+    const label = (match[1] ?? '').trim();
+    const termId = Number(match[2]);
+    if (!termId || Number.isNaN(termId)) {
+      continue;
+    }
     refs.push({ lang, termId, label: label || undefined });
   }
   return refs;

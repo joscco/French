@@ -60,8 +60,8 @@ export class PracticeHostShellComponent implements AfterViewInit, OnDestroy {
   });
 
   readonly hotspotMask = computed(() => {
-    const y = this.hotspotTopPct();
-    return `radial-gradient(circle 70px at 50% ${y}%, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 72%)`;
+    const topPct = this.hotspotTopPct();
+    return `radial-gradient(circle 70px at 50% ${topPct}%, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 72%)`;
   });
 
   @ViewChild('cardHost', {static: true}) cardHost!: ElementRef<HTMLElement>;
@@ -116,10 +116,14 @@ export class PracticeHostShellComponent implements AfterViewInit, OnDestroy {
 
   @HostListener('document:keydown', ['$event'])
   onDocKeydown(ev: KeyboardEvent) {
-    if (this.length() <= 1) return;
+    if (this.length() <= 1) {
+      return;
+    }
 
-    const t = ev.target as HTMLElement | null;
-    if (t?.closest('textarea, input, [contenteditable="true"]')) return;
+    const target = ev.target as HTMLElement | null;
+    if (target?.closest('textarea, input, [contenteditable="true"]')) {
+      return;
+    }
 
     if (ev.key === 'ArrowLeft') {
       ev.preventDefault();
@@ -285,42 +289,50 @@ export class PracticeHostShellComponent implements AfterViewInit, OnDestroy {
   }
 
   onScrubMove(ev: PointerEvent) {
-    if (!this.scrubbing()) return;
+    if (!this.scrubbing()) {
+      return;
+    }
     ev.preventDefault();
     this.updateScrub(ev, true);
   }
 
   onScrubUp() {
-    if (!this.scrubbing()) return;
+    if (!this.scrubbing()) {
+      return;
+    }
     this.scrubbing.set(false);
 
-    const s = this.scrubPreview();
-    this.scrubPreview.set({ ...s, active: false });
+    const preview = this.scrubPreview();
+    this.scrubPreview.set({ ...preview, active: false });
 
-    const from = this.index();
-    const to = this.clamp(s.idx);
-    if (to === from) return;
-
-    const dir: NavDir = to > from ? 'next' : 'prev';
-
-    this.animateSequential(dir, () => this.commitIndex.emit(to));
-  }
-
-  private updateScrub(ev: PointerEvent, active: boolean) {
-    const el = this.scrubberComponent?.scrubberEl?.nativeElement;
-    if (!el) return;
-
-    const rect = el.getBoundingClientRect();
-    const y = ev.clientY - rect.top;
-    const t = Math.max(0, Math.min(1, y / rect.height));
-    const idx = this.clamp(Math.floor(t * (this.length() - 1)));
-    const label = this.scrubLabelForIndex?.(idx) ?? `${idx + 1}`;
-
-    if (this.scrubPreview().idx === idx && this.scrubPreview().active === active) {
+    const fromIndex = this.index();
+    const toIndex = this.clamp(preview.idx);
+    if (toIndex === fromIndex) {
       return;
     }
 
-    this.scrubPreview.set({active, idx, label});
-    this.commitIndex.emit(idx);
+    const direction: NavDir = toIndex > fromIndex ? 'next' : 'prev';
+
+    this.animateSequential(direction, () => this.commitIndex.emit(toIndex));
+  }
+
+  private updateScrub(ev: PointerEvent, active: boolean) {
+    const element = this.scrubberComponent?.scrubberEl?.nativeElement;
+    if (!element) {
+      return;
+    }
+
+    const rect = element.getBoundingClientRect();
+    const yPosition = ev.clientY - rect.top;
+    const ratio = Math.max(0, Math.min(1, yPosition / rect.height));
+    const index = this.clamp(Math.floor(ratio * (this.length() - 1)));
+    const label = this.scrubLabelForIndex?.(index) ?? `${index + 1}`;
+
+    if (this.scrubPreview().idx === index && this.scrubPreview().active === active) {
+      return;
+    }
+
+    this.scrubPreview.set({active, idx: index, label});
+    this.commitIndex.emit(index);
   }
 }

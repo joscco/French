@@ -1,6 +1,6 @@
 import {Component, computed, effect, inject, input, signal} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {WordCardComponent} from '../../view-words/word-cart/word-card.component';
+import {WordCardComponent} from '../../view-words/word-card/word-card.component';
 import {PracticeHostShellComponent} from '../practice-host-shell/practice-host-shell.component';
 import {SentenceCardComponent} from '../../view-sentences/sentence-card/sentence-card.component';
 import {WordService} from '../../services/word.service';

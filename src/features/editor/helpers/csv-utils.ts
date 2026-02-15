@@ -23,28 +23,35 @@ export function parseCSV(input: string): Record<string, string>[] {
 }
 
 function csvEscape(value: unknown): string {
-  const s = String(value ?? '');
-  // quote if contains delimiter, quote, or newline
-  if (/[;"\n\r]/.test(s)) return `"${s.replaceAll('"', '""')}"`;
-  return s;
+  const stringValue = String(value ?? '');
+  if (/[;"\n\r]/.test(stringValue)) {
+    return `"${stringValue.replaceAll('"', '""')}"`;
+  }
+  return stringValue;
 }
 
 export function toCSV(rows: Array<Record<string, unknown>>, columns: string[]): string {
   const header = columns.join(';');
-  const lines = rows.map(r => columns.map(c => csvEscape(r[c])).join(';'));
+  const lines = rows.map(row => columns.map(col => csvEscape(row[col])).join(';'));
   return [header, ...lines].join('\n') + '\n';
 }
 
 
-export function toNum(v: unknown): number | null {
-  const n = Number(String(v ?? '').trim());
-  return Number.isFinite(n) && n > 0 ? n : null;
+export function toNum(value: unknown): number | null {
+  const parsedNumber = Number(String(value ?? '').trim());
+  return Number.isFinite(parsedNumber) && parsedNumber > 0 ? parsedNumber : null;
 }
 
-export function toBool(v: unknown): boolean | undefined {
-  const s = String(v ?? '').trim().toLowerCase();
-  if (!s) return undefined;
-  if (s === 'true' || s === '1' || s === 'yes' || s === 'y') return true;
-  if (s === 'false' || s === '0' || s === 'no' || s === 'n') return false;
+export function toBool(value: unknown): boolean | undefined {
+  const stringValue = String(value ?? '').trim().toLowerCase();
+  if (!stringValue) {
+    return undefined;
+  }
+  if (stringValue === 'true' || stringValue === '1' || stringValue === 'yes' || stringValue === 'y') {
+    return true;
+  }
+  if (stringValue === 'false' || stringValue === '0' || stringValue === 'no' || stringValue === 'n') {
+    return false;
+  }
   return undefined;
 }

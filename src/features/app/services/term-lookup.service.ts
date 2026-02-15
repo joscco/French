@@ -18,10 +18,9 @@ export class TermLookupService {
   private links = inject(TermLinksService);
 
   getTooltipVm(termId: number): TermTooltipVm {
-    const t = this.terms.getById(termId);
+    const term = this.terms.getById(termId);
 
-    // graceful fallback wenn term fehlt
-    if (!t) {
+    if (!term) {
       return {
         title: `#${termId}`,
         lang: 'fr',
@@ -30,22 +29,21 @@ export class TermLookupService {
       };
     }
 
-    const linkedIds = this.links.getLinkedIds(t.lang, t.id);
+    const linkedIds = this.links.getLinkedIds(term.lang, term.id);
 
-    // Optional: wirklich nur "Gegensprache" zeigen
-    const targetLang: Lang = t.lang === 'fr' ? 'de' : 'fr';
+    const targetLang: Lang = term.lang === 'fr' ? 'de' : 'fr';
 
     const translations = linkedIds
       .map(id => this.terms.getById(id))
-      .filter((x): x is TermRow => !!x)
-      .filter(x => x.lang === targetLang);
+      .filter((row): row is TermRow => !!row)
+      .filter(row => row.lang === targetLang);
 
     return {
-      title: t.term_text,
-      lang: t.lang,
-      genus: t.genus,
-      category: t.category,
-      needsVowelArticle: t.lang === 'fr' && t.needsVowelArticle === true,
+      title: term.term_text,
+      lang: term.lang,
+      genus: term.genus,
+      category: term.category,
+      needsVowelArticle: term.lang === 'fr' && term.needsVowelArticle === true,
       translations,
     };
   }

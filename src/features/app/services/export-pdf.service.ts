@@ -63,14 +63,13 @@ export class ExportPdfService {
       columnStyles: {0: {cellWidth: 50}, 1: {cellWidth: 235}, 2: {cellWidth: 235}},
       margin: {left: marginLeft, right: marginLeft},
       didDrawPage: (data: HookData) => {
-        // Seitenzahl unten mittig
-        const page = doc.getCurrentPageInfo().pageNumber;
-        const pageText = `Seite ${page}`;
+        const pageNumber = doc.getCurrentPageInfo().pageNumber;
+        const pageText = `Seite ${pageNumber}`;
         doc.setFontSize(10);
         const textWidth = doc.getTextWidth(pageText);
-        const x = (doc.internal.pageSize.getWidth() - textWidth) / 2;
-        const y = doc.internal.pageSize.getHeight() - 20;
-        doc.text(pageText, x, y);
+        const xPosition = (doc.internal.pageSize.getWidth() - textWidth) / 2;
+        const yPosition = doc.internal.pageSize.getHeight() - 20;
+        doc.text(pageText, xPosition, yPosition);
       }
     } as any);
 

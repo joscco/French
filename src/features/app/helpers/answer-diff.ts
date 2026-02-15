@@ -243,44 +243,44 @@ export function buildWordOverlayTokens(expectedRaw: string, answerRaw: string): 
 export function collapseOverlayRuns(tokens: OverlayToken[]): DisplayToken[] {
   const display: DisplayToken[] = [];
 
-  const isWhitespaceToken = (t: OverlayToken) =>
-    !t.isWord && /^\s+$/.test(t.text ?? '');
+  const isWhitespaceToken = (token: OverlayToken) =>
+    !token.isWord && /^\s+$/.test(token.text ?? '');
 
   for (let i = 0; i < tokens.length; i++) {
-    const t = tokens[i];
+    const token = tokens[i];
 
-    if (!t.isWord) {
-      display.push({ isWord: false, text: t.text });
+    if (!token.isWord) {
+      display.push({ isWord: false, text: token.text });
       continue;
     }
 
-    if (t.kind === 'missing') {
+    if (token.kind === 'missing') {
       display.push({
         isWord: true,
         text: '',
         kind: 'missing',
-        badge: t.expectedHint,
+        badge: token.expectedHint,
         badgeColor: 'green',
       });
       continue;
     }
 
-    if (t.kind !== 'wrong') {
+    if (token.kind !== 'wrong') {
       display.push({
         isWord: true,
-        text: t.text,
-        kind: t.kind,
-        badge: t.kind === 'soft' ? t.expectedHint : undefined,
-        badgeColor: t.kind === 'soft' && t.expectedHint ? 'green' : undefined,
+        text: token.text,
+        kind: token.kind,
+        badge: token.kind === 'soft' ? token.expectedHint : undefined,
+        badgeColor: token.kind === 'soft' && token.expectedHint ? 'green' : undefined,
       });
       continue;
     }
 
     // WRONG RUN: merge "wrong (space wrong)*" into one display token
-    let mergedText = t.text;
+    let mergedText = token.text;
     const expectedHints: string[] = [];
-    if (t.expectedHint) {
-      expectedHints.push(t.expectedHint);
+    if (token.expectedHint) {
+      expectedHints.push(token.expectedHint);
     }
 
     while (true) {
@@ -299,7 +299,9 @@ export function collapseOverlayRuns(tokens: OverlayToken[]): DisplayToken[] {
       }
 
       mergedText += maybeSpace.text + maybeNextWrong.text;
-      if (maybeNextWrong.expectedHint) expectedHints.push(maybeNextWrong.expectedHint);
+      if (maybeNextWrong.expectedHint) {
+        expectedHints.push(maybeNextWrong.expectedHint);
+      }
 
       i += 2;
     }

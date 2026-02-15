@@ -1,15 +1,31 @@
 <div class="absolute left-0 top-1/2 -translate-y-1/2 y-4
             flex flex-col items-start justify-center gap-2">
   <div class="flex flex-row items-baseline">
-    @if (genus) {
-      <div class="text-base opacity-50 mr-1"> {{ getArticle(language, genus, needsVowelArticle) }}</div>
+    @if (genus()) {
+      <div class="text-base opacity-50 mr-1"> {{ getArticle(language(), genus(), needsVowelArticle()) }}</div>
     }
-    <div class="text-xl font-semibold">{{ primary }}</div>
-    @if (needsVowelArticle || genus === 'mpl' || genus === 'fpl') {
-      <div class="text-base italic opacity-50 ml-2">{{ '(' + beautifyGenus(genus) + ')' }}</div>
+    <div class="text-xl font-semibold">
+      @for (segment of primarySegments(); track $index) {
+        @if (segment.kind === 'text') {
+          <span>{{ segment.text }}</span>
+        } @else {
+          <span class="opacity-50">{{ segment.text }}</span>
+        }
+      }
+    </div>
+    @if (needsVowelArticle() || genus() === 'mpl' || genus() === 'fpl') {
+      <div class="text-base italic opacity-50 ml-2">{{ '(' + beautifyGenus(genus()) + ')' }}</div>
     }
   </div>
-  @if (secondary) {
-    <div>{{ secondary }}</div>
+  @if (hasSecondary()) {
+    <div>
+      @for (segment of secondarySegments(); track $index) {
+        @if (segment.kind === 'text') {
+          <span>{{ segment.text }}</span>
+        } @else {
+          <span class="opacity-50">{{ segment.text }}</span>
+        }
+      }
+    </div>
   }
 </div>

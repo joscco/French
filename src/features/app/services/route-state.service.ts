@@ -7,36 +7,59 @@ export class PracticeRouteStateService {
   private readonly route = inject(ActivatedRoute);
   private readonly router = inject(Router);
 
-  private readonly queryParams = signal<Record<string, any>>({});
+  private readonly queryParams = signal<Record<string, string>>({});
 
-  readonly kind = computed<PracticeKind>(() => (this.queryParams()['kind'] as PracticeKind) ?? 'sentence');
-  readonly mode = computed<PracticeMode>(() => (this.queryParams()['mode'] as PracticeMode) ?? 'de-fr');
-  readonly lesson = computed<string>(() => (this.queryParams()['lesson'] as string) ?? 'all');
+  readonly kind = computed<PracticeKind>(() => {
+    return (this.queryParams()['kind'] as PracticeKind) ?? 'sentence';
+  });
+
+  readonly mode = computed<PracticeMode>(() => {
+    return (this.queryParams()['mode'] as PracticeMode) ?? 'de-fr';
+  });
+
+  readonly lesson = computed<string>(() => {
+    return (this.queryParams()['lesson'] as string) ?? 'all';
+  });
+
   readonly index = computed<number>(() => {
-    const n = Number(this.queryParams()['i']);
-    return Number.isFinite(n) ? Math.max(0, n) : 0;
+    const parsedIndex = Number(this.queryParams()['i']);
+    return Number.isFinite(parsedIndex) ? Math.max(0, parsedIndex) : 0;
   });
 
   constructor() {
-    this.route.queryParamMap.subscribe(map => {
-      const obj: Record<string, any> = {};
-      map.keys.forEach(k => (obj[k] = map.get(k)));
-      this.queryParams.set(obj);
+    this.route.queryParamMap.subscribe(paramMap => {
+      const params: Record<string, string> = {};
+      for (const key of paramMap.keys) {
+        const value = paramMap.get(key);
+        if (value != null) {
+          params[key] = value;
+        }
+      }
+      this.queryParams.set(params);
     });
   }
 
   patch(params: Partial<{ kind: PracticeKind; mode: PracticeMode; lesson: string; i: number }>) {
-    const queryParams: any = {};
-    if (params.kind != null) queryParams.kind = params.kind;
-    if (params.mode != null) queryParams.mode = params.mode;
-    if (params.lesson != null) queryParams.lesson = params.lesson;
-    if (params.i != null) queryParams.i = params.i;
+    const updatedParams: Record<string, string | number> = {};
+
+    if (params.kind != null) {
+      updatedParams['kind'] = params.kind;
+    }
+    if (params.mode != null) {
+      updatedParams['mode'] = params.mode;
+    }
+    if (params.lesson != null) {
+      updatedParams['lesson'] = params.lesson;
+    }
+    if (params.i != null) {
+      updatedParams['i'] = params.i;
+    }
 
     return this.router.navigate([], {
       relativeTo: this.route,
-      queryParams,
+      queryParams: updatedParams,
       queryParamsHandling: 'merge',
-      replaceUrl: true, // wichtig fürs scrubben
+      replaceUrl: true,
     });
   }
 }

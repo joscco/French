@@ -130,9 +130,9 @@ export class WordCardComponent implements OnChanges, OnDestroy {
       this.audio.src = src;
       this.audio.load();
       this.isSpeaking.set(true);
-      const p = this.audio.play();
-      if (p && typeof p.then === 'function') {
-        p.catch((err) => {
+      const playPromise = this.audio.play();
+      if (playPromise && typeof playPromise.then === 'function') {
+        playPromise.catch((err) => {
           console.error('Audio play() abgelehnt/fehlgeschlagen', {src, err});
           this.stopSpeaking();
         });

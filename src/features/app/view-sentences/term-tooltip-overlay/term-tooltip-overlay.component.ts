@@ -33,23 +33,28 @@ export class TermTooltipOverlayComponent {
     });
 
     effect(() => {
-      if (!this.open()) return;
-      const el = this.panel()?.nativeElement;
-      if (!el) return;
+      if (!this.open()) {
+        return;
+      }
+      const element = this.panel()?.nativeElement;
+      if (!element) {
+        return;
+      }
 
-      // nach Layout messen
       requestAnimationFrame(() => {
-        const r = el.getBoundingClientRect();
-        this.panelRectChange.emit(r);
+        const rect = element.getBoundingClientRect();
+        this.panelRectChange.emit(rect);
       });
     })
 
     let open = effect(() => {
-      const el = this.panel()?.nativeElement;
-      if (!el) return;
+      const element = this.panel()?.nativeElement;
+      if (!element) {
+        return;
+      }
 
-      gsap.killTweensOf(el);
-      gsap.to(el, {
+      gsap.killTweensOf(element);
+      gsap.to(element, {
         autoAlpha: this.open() ? 1 : 0,
         scale: this.open() ? 1 : 0.98,
         duration: 0.14,

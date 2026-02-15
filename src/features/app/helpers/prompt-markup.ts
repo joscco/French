@@ -5,8 +5,8 @@ export interface PromptSegment {
   ref?: TermRefInSentence; // gesetzt => markiertes Segment
 }
 
-function escapeRegExp(s: string): string {
-  return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+function escapeRegExp(str: string): string {
+  return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 }
 
 /**
@@ -14,18 +14,15 @@ function escapeRegExp(s: string): string {
  * Dadurch wird z.B. "an" nicht in "Französischkurs" gematcht.
  */
 function makeBoundedRe(phrase: string): RegExp {
-  const p = escapeRegExp(phrase);
+  const escapedPhrase = escapeRegExp(phrase);
   // Boundary: links/rechts darf kein Unicode-Letter/Mark sein
-  return new RegExp(`(?<![\\p{L}\\p{M}])${p}(?![\\p{L}\\p{M}])`, 'gu');
+  return new RegExp(`(?<![\\p{L}\\p{M}])${escapedPhrase}(?![\\p{L}\\p{M}])`, 'gu');
 }
 
 function splitPhraseParts(phrase: string): string[] {
-  // unterstützt "..." und "…"
-  // Beispiel: "melde mich ... an" => ["melde mich", "an"]
-  // trim + leere Teile raus
   return phrase
     .split(/\s*(?:\.{3}|…)\s*/g)
-    .map(p => p.trim())
+    .map(part => part.trim())
     .filter(Boolean);
 }
 
@@ -37,95 +34,94 @@ type Match = { start: number; end: number; ref: TermRefInSentence; phrase: strin
  * Ergebnis: einzelne Matches je Part (damit alle Teile highlightbar sind)
  */
 function findChainedPartMatches(text: string, parts: string[], ref: TermRefInSentence): Match[] {
-  if (!parts.length) return [];
+  if (!parts.length) {
+    return [];
+  }
 
-  const out: Match[] = [];
+  const matches: Match[] = [];
   let cursor = 0;
 
   while (cursor < text.length) {
-    // 1) ersten Part ab cursor suchen (bounded)
-    const firstRe = makeBoundedRe(parts[0]);
-    firstRe.lastIndex = cursor;
-    const m1 = firstRe.exec(text);
-    if (!m1) break;
+    const firstRegex = makeBoundedRe(parts[0]);
+    firstRegex.lastIndex = cursor;
+    const firstMatch = firstRegex.exec(text);
+    if (!firstMatch) {
+      break;
+    }
 
     const chain: Match[] = [];
     chain.push({
-      start: m1.index,
-      end: m1.index + m1[0].length,
+      start: firstMatch.index,
+      end: firstMatch.index + firstMatch[0].length,
       ref,
       phrase: parts[0],
     });
 
-    // 2) restliche Parts der Reihe nach hinterher suchen (bounded)
-    let ok = true;
+    let isComplete = true;
     let chainCursor = chain[0].end;
 
-    for (let pi = 1; pi < parts.length; pi++) {
-      const p = parts[pi];
-      const re = makeBoundedRe(p);
-      re.lastIndex = chainCursor;
-      const mi = re.exec(text);
-      if (!mi) {
-        ok = false;
+    for (let partIndex = 1; partIndex < parts.length; partIndex++) {
+      const part = parts[partIndex];
+      const regex = makeBoundedRe(part);
+      regex.lastIndex = chainCursor;
+      const partMatch = regex.exec(text);
+      if (!partMatch) {
+        isComplete = false;
         break;
       }
       chain.push({
-        start: mi.index,
-        end: mi.index + mi[0].length,
+        start: partMatch.index,
+        end: partMatch.index + partMatch[0].length,
         ref,
-        phrase: p,
+        phrase: part,
       });
       chainCursor = chain[chain.length - 1].end;
     }
 
-    if (ok) {
-      out.push(...chain);
-      // nächste Kette erst NACH dem letzten Part suchen
+    if (isComplete) {
+      matches.push(...chain);
       cursor = chainCursor;
     } else {
-      // wenn keine vollständige Kette: nach dem gefundenen ersten Part weiter
       cursor = chain[0].end;
     }
   }
 
-  return out;
+  return matches;
 }
 
 export function buildPromptSegments(prompt: string, refs: TermRefInSentence[]): PromptSegment[] {
   const text = prompt ?? '';
-  const usable = (refs ?? [])
-    .map(r => ({ ref: r, phrase: (r.label ?? '').trim() }))
-    .filter(x => x.phrase.length > 0);
+  const usableRefs = (refs ?? [])
+    .map(ref => ({ ref, phrase: (ref.label ?? '').trim() }))
+    .filter(item => item.phrase.length > 0);
 
-  if (!text || !usable.length) {
+  if (!text || !usableRefs.length) {
     return [{ text }];
   }
 
   const matches: Match[] = [];
 
-  for (const u of usable) {
-    const parts = splitPhraseParts(u.phrase);
+  for (const usableRef of usableRefs) {
+    const parts = splitPhraseParts(usableRef.phrase);
 
-    // Split-Ref (…/...) => Ketten-Matching
     if (parts.length > 1) {
-      matches.push(...findChainedPartMatches(text, parts, u.ref));
+      matches.push(...findChainedPartMatches(text, parts, usableRef.ref));
       continue;
     }
 
-    // Normal: alle Vorkommen (bounded)
-    const phrase = parts[0]; // nur ein Teil
-    const re = makeBoundedRe(phrase);
-    let m: RegExpExecArray | null;
-    while ((m = re.exec(text))) {
+    const phrase = parts[0];
+    const regex = makeBoundedRe(phrase);
+    let match: RegExpExecArray | null;
+    while ((match = regex.exec(text))) {
       matches.push({
-        start: m.index,
-        end: m.index + m[0].length,
-        ref: u.ref,
+        start: match.index,
+        end: match.index + match[0].length,
+        ref: usableRef.ref,
         phrase,
       });
-      // Schutz gegen Zero-Length (eigentlich unmöglich hier)
-      if (m.index === re.lastIndex) re.lastIndex++;
+      if (match.index === regex.lastIndex) {
+        regex.lastIndex++;
+      }
     }
   }
 
@@ -133,28 +129,31 @@ export function buildPromptSegments(prompt: string, refs: TermRefInSentence[]): 
     return [{ text }];
   }
 
-  // Sort: start asc, length desc
   matches.sort((a, b) => (a.start - b.start) || (b.end - b.start) - (a.end - a.start));
 
-  // Greedy: nimm nur nicht-overlappende Matches
-  const picked: Match[] = [];
+  const pickedMatches: Match[] = [];
   let lastEnd = -1;
-  for (const m of matches) {
-    if (m.start < lastEnd) continue;
-    picked.push(m);
-    lastEnd = m.end;
+  for (const match of matches) {
+    if (match.start < lastEnd) {
+      continue;
+    }
+    pickedMatches.push(match);
+    lastEnd = match.end;
   }
 
-  // Segmente bauen
-  const out: PromptSegment[] = [];
+  const segments: PromptSegment[] = [];
   let cursor = 0;
 
-  for (const m of picked) {
-    if (m.start > cursor) out.push({ text: text.slice(cursor, m.start) });
-    out.push({ text: text.slice(m.start, m.end), ref: m.ref });
-    cursor = m.end;
+  for (const match of pickedMatches) {
+    if (match.start > cursor) {
+      segments.push({ text: text.slice(cursor, match.start) });
+    }
+    segments.push({ text: text.slice(match.start, match.end), ref: match.ref });
+    cursor = match.end;
   }
-  if (cursor < text.length) out.push({ text: text.slice(cursor) });
+  if (cursor < text.length) {
+    segments.push({ text: text.slice(cursor) });
+  }
 
-  return out.filter(s => s.text.length > 0);
+  return segments.filter(segment => segment.text.length > 0);
 }
