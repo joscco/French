@@ -69,3 +69,12 @@ id;lang;term_text;category;genus;needs_vowel_article;unit_id;ref;tags
 68;fr;paysage;noun;m;;;;
 69;fr;portefeuille;noun;m;;;;
 70;de;Brieftasche;noun;f;;;;
+71;fr;embrumé;adjective;;;;;
+72;de;Landschaft;noun;f;;;;
+73;de;neblig;adjective;;;;;
+74;fr;effacement;noun;m;true;;;
+75;de;Entfernen;noun;n;;;;
+76;fr;graffiti;;;;;;
+77;de;Graffiti;;;;;;
+78;fr;s'insurger {contre qc.};verb;;;;;
+79;de;sich {über etw.} empören;verb;;;;;
