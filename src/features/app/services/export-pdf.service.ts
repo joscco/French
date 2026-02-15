@@ -14,7 +14,7 @@ export class ExportPdfService {
       (a.frenchPrimary || '').localeCompare(b.frenchPrimary || '', 'fr', {sensitivity: 'base'})
     );
 
-    const title = `Vokabelliste${selected.id === 'all' ? '' : ' – ' + selected.label}`;
+    const title = `Vokabelliste${selected.type === 'all' ? '' : ' – ' + selected.label}`;
 
     const doc = new jsPDF({orientation: 'portrait', unit: 'pt', format: 'a4'});
     const marginLeft = 40;
@@ -73,7 +73,7 @@ export class ExportPdfService {
       }
     } as any);
 
-    const safeSel = selected.id === 'all' ? 'alle' : selected.id;
+    const safeSel = selected.type === 'all' ? 'alle' : `${selected.type}-${selected.id}`;
     const filename = `vokabelliste_${safeSel}.pdf`;
     doc.save(filename);
   }

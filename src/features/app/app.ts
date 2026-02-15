@@ -1,6 +1,7 @@
-import {Component, computed, inject, signal} from '@angular/core';
+import {Component, inject, signal} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {UnitsService} from '../../services/units.service';
+import {GroupsService} from '../../services/groups.service';
 import {TermLinksService} from '../../services/termLinks.service';
 import {TermsService} from '../../services/terms.service';
 import {IconButtonComponent} from './shared/icon-button/icon-button.component';
@@ -23,42 +24,27 @@ import {AllowedTermsService} from './services/sentence-ref.service';
   host: {'class': 'w-full h-full max-h-[800px] flex items-center justify-center'},
 })
 export class AppComponent {
-  private pdf = inject(ExportPdfService);
-  private termsService = inject(TermsService)
-  private translationService = inject(TermLinksService)
-
-  private allowedTerms = inject(AllowedTermsService);
-  private practiceCardsService = inject(WordService);
-  private lessonService = inject(UnitsService);
-  private sentenceService = inject(SentencesService);
-  public routeStateService = inject(PracticeRouteStateService);
+  private readonly pdf = inject(ExportPdfService);
+  private readonly termsService = inject(TermsService);
+  private readonly translationService = inject(TermLinksService);
+  private readonly groupsService = inject(GroupsService);
+  private readonly unitsService = inject(UnitsService);
+  private readonly sentenceService = inject(SentencesService);
+  private readonly allowedTerms = inject(AllowedTermsService);
+  private readonly practiceCardsService = inject(WordService);
+  public readonly routeStateService = inject(PracticeRouteStateService);
 
   panelOpen = signal(false);
   loading = signal(true);
   practiceKind = signal<PracticeKind>('sentence');
-  selectedLessons = signal<LessonOption | undefined>(undefined);
+  selectedLesson = signal<LessonOption | undefined>(undefined);
 
   practiceMode = this.practiceCardsService.mode;
 
-  lessons = computed<LessonOption[]>(() => {
-    const units = this.lessonService.units(); // UnitRow[]
-    const allOption: LessonOption = { id: 'all', label: 'Alle' };
-
-    const lessonOptions: LessonOption[] = [...units]
-      .sort((a, b) => a.id - b.id)
-      .map(u => ({
-        id: u.id,
-        lesson: u.id,                  // wenn du LessonOption so beibehalten willst
-        date: u.name,                  // oder u.date, je nach UnitRow
-        label: `${u.id} - ${u.name}`,   // + optional group
-      }));
-
-    return [allOption, ...lessonOptions];
-  });
-
   constructor() {
     Promise.all([
-      this.lessonService.loadAll(),
+      this.groupsService.loadAll(),
+      this.unitsService.loadAll(),
       this.termsService.loadAll(),
       this.translationService.loadAll(),
       this.sentenceService.loadAll()
@@ -70,14 +56,36 @@ export class AppComponent {
         this.practiceKind.set(this.routeStateService.kind());
         this.practiceMode.set(this.routeStateService.mode());
 
-        const lessonId = this.routeStateService.lesson();
-        const opts = this.lessons();
-        const match =
-          lessonId === 'all'
-            ? opts.find(o => o.id === 'all')
-            : opts.find(o => String(o.lesson) === lessonId);
+        // Initiale Auswahl basierend auf URL-Parametern (ohne Index zu resetten)
+        const routeGroupId = this.routeStateService.groupId();
+        const routeUnitId = this.routeStateService.unitId();
 
-        this.onLessonsChange(match ?? opts[0]);
+        if (routeUnitId !== null) {
+          const unit = this.unitsService.units().find(u => u.id === routeUnitId);
+          if (unit) {
+            this.applyLessonSelection({
+              type: 'unit',
+              id: unit.id,
+              groupId: unit.group_id,
+              unitId: unit.id,
+              label: unit.name,
+              date: unit.date,
+            }, false);
+          }
+        } else if (routeGroupId !== null) {
+          const group = this.groupsService.groups().find(g => g.id === routeGroupId);
+          if (group) {
+            this.applyLessonSelection({
+              type: 'group',
+              id: group.id,
+              groupId: group.id,
+              label: group.name,
+              date: group.date,
+            }, false);
+          }
+        } else {
+          this.applyLessonSelection({ type: 'all', id: 'all', label: 'Alle' }, false);
+        }
       });
   }
 
@@ -89,24 +97,37 @@ export class AppComponent {
     this.panelOpen.update(isShown => !isShown);
   }
 
-  onLessonsChange(selectedLesson: LessonOption) {
-    this.selectedLessons.set(selectedLesson);
+  onLessonChange(selected: LessonOption) {
+    this.applyLessonSelection(selected, true);
+  }
 
-    if (selectedLesson.id === 'all') {
+  private applyLessonSelection(selected: LessonOption, resetIndex: boolean) {
+    this.selectedLesson.set(selected);
+
+    if (selected.type === 'all') {
       this.allowedTerms.selectedUnitIds.set('all');
-    } else if (typeof selectedLesson.lesson === 'number') {
-      this.allowedTerms.selectedUnitIds.set([selectedLesson.lesson]);
-    } else {
-      this.allowedTerms.selectedUnitIds.set([]);
+      if (resetIndex) {
+        this.routeStateService.patch({ group: 'all', unit: 'all', i: 0 });
+      }
+    } else if (selected.type === 'group') {
+      const groupUnits = this.unitsService.units()
+        .filter(unit => unit.group_id === selected.groupId)
+        .map(unit => unit.id);
+      this.allowedTerms.selectedUnitIds.set(groupUnits);
+      if (resetIndex) {
+        this.routeStateService.patch({ group: String(selected.groupId), unit: 'all', i: 0 });
+      }
+    } else if (selected.type === 'unit') {
+      this.allowedTerms.selectedUnitIds.set([selected.unitId!]);
+      if (resetIndex) {
+        this.routeStateService.patch({ group: 'all', unit: String(selected.unitId), i: 0 });
+      }
     }
-
-    const lessonParam = selectedLesson.id === 'all' ? 'all' : String(selectedLesson.lesson);
-    this.routeStateService.patch({ lesson: lessonParam, i: 0 });
   }
 
   exportPdf() {
     const cards = this.practiceCardsService.words();
-    const selected = this.selectedLessons();
+    const selected = this.selectedLesson();
 
     if (!cards?.length || !selected) {
       return;
@@ -118,11 +139,11 @@ export class AppComponent {
   onPracticeKindChange($event: PracticeKind) {
     this.practiceKind.set($event);
     this.routeStateService.patch({kind: $event, i: 0});
-    this.closePanel()
+    this.closePanel();
   }
 
   onPracticeModeChange($event: PracticeMode) {
     this.practiceMode.set($event);
-    this.routeStateService.patch({mode: $event, i: 0})
+    this.routeStateService.patch({mode: $event, i: 0});
   }
 }

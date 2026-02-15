@@ -17,8 +17,22 @@ export class PracticeRouteStateService {
     return (this.queryParams()['mode'] as PracticeMode) ?? 'de-fr';
   });
 
-  readonly lesson = computed<string>(() => {
-    return (this.queryParams()['lesson'] as string) ?? 'all';
+  readonly groupId = computed<number | null>(() => {
+    const raw = this.queryParams()['group'];
+    if (!raw || raw === 'all') {
+      return null;
+    }
+    const parsed = Number(raw);
+    return Number.isFinite(parsed) ? parsed : null;
+  });
+
+  readonly unitId = computed<number | null>(() => {
+    const raw = this.queryParams()['unit'];
+    if (!raw || raw === 'all') {
+      return null;
+    }
+    const parsed = Number(raw);
+    return Number.isFinite(parsed) ? parsed : null;
   });
 
   readonly index = computed<number>(() => {
@@ -39,7 +53,7 @@ export class PracticeRouteStateService {
     });
   }
 
-  patch(params: Partial<{ kind: PracticeKind; mode: PracticeMode; lesson: string; i: number }>) {
+  patch(params: Partial<{ kind: PracticeKind; mode: PracticeMode; group: string; unit: string; i: number }>) {
     const updatedParams: Record<string, string | number> = {};
 
     if (params.kind != null) {
@@ -48,8 +62,11 @@ export class PracticeRouteStateService {
     if (params.mode != null) {
       updatedParams['mode'] = params.mode;
     }
-    if (params.lesson != null) {
-      updatedParams['lesson'] = params.lesson;
+    if (params.group != null) {
+      updatedParams['group'] = params.group;
+    }
+    if (params.unit != null) {
+      updatedParams['unit'] = params.unit;
     }
     if (params.i != null) {
       updatedParams['i'] = params.i;

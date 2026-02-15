@@ -1,6 +1,10 @@
+export type LessonOptionType = 'all' | 'group' | 'unit';
+
 export interface LessonOption {
+  type: LessonOptionType;
   id: 'all' | number;
   label: string;
-  lesson?: number;
+  groupId?: number;
+  unitId?: number;
   date?: string;
 }

@@ -70,12 +70,10 @@
 
       <!-- Lektion -->
       <div class="flex flex-col gap-2">
-        <div class="text-xs font-semibold tracking-wide text-neutral-500">Lektion</div>
+        <div class="text-xs font-semibold tracking-wide text-neutral-500">Auswahl</div>
 
         <app-lesson-selector
-          [lessons]="lessons()"
-          [selected]="selectedLesson()"
-          (selectedChange)="onLessonSelected($event)"
+          (selectionChange)="onLessonSelected($event)"
         />
       </div>
 

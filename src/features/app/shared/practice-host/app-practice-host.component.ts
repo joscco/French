@@ -9,6 +9,7 @@ import {PracticeKind} from '../../models/types';
 import {LessonOption} from '../../models/lesson-option';
 import {WordCard} from '../../models/word-card';
 import {SentencesService} from '../../../../services/sentence.service';
+import {UnitsService} from '../../../../services/units.service';
 import {SentenceRow} from '../../../../shared/contract/contract';
 import {extractTermRefs} from '../../helpers/extract-term-refs';
 import {SentenceVm} from '../../models/sentence-vm';
@@ -23,28 +24,28 @@ import {parseSentenceMarkup, representativeText} from '../../../editor/helpers/s
 export class PracticeHostComponent {
   private readonly wordService = inject(WordService);
   private readonly sentenceService = inject(SentencesService);
+  private readonly unitsService = inject(UnitsService);
   private readonly routeState = inject(PracticeRouteStateService);
 
   practiceKind = input<PracticeKind>('sentence');
+  selectedLesson = input<LessonOption | undefined>(undefined);
   mode = this.wordService.mode;
-  selectedLesson = signal<LessonOption | undefined>(undefined);
 
   index = signal<number>(0);
+  private initialIndexApplied = signal(false);
 
   vocabList = computed<WordCard[]>(() => this.wordService.words() ?? []);
 
   sentenceList = computed<SentenceVm[]>(() => {
-    const selectedLesson = this.selectedLesson();
-    const allSentenceRows = this.sentenceService.sentences(); // SentenceRow[]
+    const selected = this.selectedLesson();
+    const allSentenceRows = this.sentenceService.sentences();
 
-    const selectedUnitId = this.resolveSelectedUnitId(selectedLesson);
+    const allowedUnitIds = this.resolveAllowedUnitIds(selected);
 
     const filteredSentenceRows =
-      selectedUnitId === null
+      allowedUnitIds === null
         ? allSentenceRows
-        : allSentenceRows.filter((sentenceRow) => {
-          return sentenceRow.unitId === selectedUnitId;
-        });
+        : allSentenceRows.filter((sentenceRow) => allowedUnitIds.includes(sentenceRow.unitId));
 
     return filteredSentenceRows.map((sentenceRow) => this.buildSentenceVm(sentenceRow));
   });
@@ -78,16 +79,21 @@ export class PracticeHostComponent {
   };
 
   constructor() {
+    // Initiales Setzen des Index aus der URL (einmalig, wenn Liste geladen)
     effect(() => {
-      const routeIndex = this.routeState.index();
       const listLength = this.currentListLength();
+      const routeIndex = this.routeState.index();
 
-      if (!listLength) {
-        this.index.set(0);
+      // Warte bis die Liste geladen ist
+      if (listLength === 0) {
         return;
       }
 
-      this.index.set(this.clamp(routeIndex, listLength));
+      // Nur einmal beim initialen Laden anwenden
+      if (!this.initialIndexApplied()) {
+        this.initialIndexApplied.set(true);
+        this.index.set(this.clamp(routeIndex, listLength));
+      }
     });
   }
 
@@ -118,21 +124,19 @@ export class PracticeHostComponent {
     return Math.max(0, Math.min(listLength - 1, index));
   }
 
-  private resolveSelectedUnitId(selectedLesson: LessonOption | undefined): number | null {
-    if (!selectedLesson || selectedLesson.id === 'all') {
+  private resolveAllowedUnitIds(selected: LessonOption | undefined): number[] | null {
+    if (!selected || selected.type === 'all') {
       return null;
     }
 
-    // Dein Editor/SentenceRow arbeitet mit unitId.
-    // Wenn LessonOption.lesson die unitId ist, passt das direkt:
-    if (typeof selectedLesson.lesson === 'number') {
-      return selectedLesson.lesson;
+    if (selected.type === 'unit' && selected.unitId != null) {
+      return [selected.unitId];
     }
 
-    // Fallback: falls id numerisch ist
-    const parsedFromId = Number(selectedLesson.id);
-    if (Number.isFinite(parsedFromId)) {
-      return parsedFromId;
+    if (selected.type === 'group' && selected.groupId != null) {
+      return this.unitsService.units()
+        .filter(unit => unit.group_id === selected.groupId)
+        .map(unit => unit.id);
     }
 
     return null;

@@ -21,16 +21,17 @@
     <app-practice-panel
       [open]="panelOpen()"
       [practiceKind]="practiceKind()"
-      [lessons]="lessons()"
-      [selectedLesson]="selectedLessons()"
       (close)="closePanel()"
       (practiceKindChange)="onPracticeKindChange($event)"
-      (lessonChange)="onLessonsChange($event)"
+      (lessonChange)="onLessonChange($event)"
       (exportPdf)="exportPdf()"
     />
 
     <main class="mt-8 grow w-full">
-        <app-practice-host [practiceKind]="practiceKind()"/>
+        <app-practice-host
+          [practiceKind]="practiceKind()"
+          [selectedLesson]="selectedLesson()"
+        />
     </main>
   </div>
 } @else {

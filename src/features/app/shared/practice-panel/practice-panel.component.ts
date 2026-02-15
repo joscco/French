@@ -23,11 +23,9 @@ import {LessonOption} from '../../models/lesson-option';
   templateUrl: './practice-panel.component.html',
 })
 export class PracticePanelComponent implements AfterViewInit {
-  practiceKind= input<PracticeKind>('sentence');
-  lessons = input<LessonOption[]>([{ id: 'all', label: 'Alle' }]);
-  selectedLesson = input<LessonOption | undefined>(undefined);
+  practiceKind = input<PracticeKind>('sentence');
 
-  open = input<boolean>(false)
+  open = input<boolean>(false);
 
   // ---- outputs (events) ----
   @Output() close = new EventEmitter<void>();
