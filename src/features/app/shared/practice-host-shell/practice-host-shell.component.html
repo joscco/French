@@ -29,15 +29,14 @@
   </div>
 
   <div class="pb-6 flex items-center w-full justify-center gap-3 touch-manipulation select-none"
-      style="-webkit-tap-highlight-color: transparent;">
+       style="-webkit-tap-highlight-color: transparent;">
     <app-icon-button iconName="arrow_back" tooltip="Zurück" (onClick)="triggerPrev()"/>
     <div class="px-3 w-[100px] text-right font-semibold text-neutral-500 tabular-nums">
       {{ counterText() }}
     </div>
     <app-icon-button iconName="arrow_forward" tooltip="Weiter" (onClick)="triggerNext()"/>
 
-    @if (showShuffle) {
-      <app-icon-button iconName="shuffle" tooltip="Mischen" (onClick)="triggerShuffle()"/>
-    }
+    <app-icon-button iconName="shuffle" tooltip="Mischen" (onClick)="triggerShuffle()"/>
+    <app-icon-button iconName="low_priority" tooltip="Chronologisch" (onClick)="triggerUnshuffle()"/>
   </div>
 </section>

@@ -31,13 +31,13 @@ export class PracticeHostShellComponent implements AfterViewInit, OnDestroy {
   index = input<number>(0);
   length = input<number>(0);
 
-  @Input() showShuffle = true;
   @Input() showScrubber = true;
   @Input() canSwipe = true;
   @Input() animation: Anim = 'slide';
   @Input() scrubLabelForIndex?: (idx: number) => string;
 
   @Output() shuffle = new EventEmitter<void>();
+  @Output() unshuffle = new EventEmitter<void>();
   @Output() commitIndex = new EventEmitter<number>();
 
   readonly counterText = computed(() => `${this.index() + 1} / ${this.length()}`);
@@ -149,6 +149,14 @@ export class PracticeHostShellComponent implements AfterViewInit, OnDestroy {
     }
 
     this.animateSequential('next', () => this.shuffle.emit());
+  }
+
+  triggerUnshuffle() {
+    if (this.length() <= 1) {
+      return;
+    }
+
+    this.animateSequential('prev', () => this.unshuffle.emit());
   }
 
   private requestStep(d: -1 | 1) {

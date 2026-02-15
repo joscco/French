@@ -33,10 +33,11 @@ export class PracticeHostComponent {
 
   index = signal<number>(0);
   private initialIndexApplied = signal(false);
+  private shuffledIndices = signal<number[] | null>(null);
 
-  vocabList = computed<WordCard[]>(() => this.wordService.words() ?? []);
+  private baseVocabList = computed<WordCard[]>(() => this.wordService.words() ?? []);
 
-  sentenceList = computed<SentenceVm[]>(() => {
+  private baseSentenceList = computed<SentenceVm[]>(() => {
     const selected = this.selectedLesson();
     const allSentenceRows = this.sentenceService.sentences();
 
@@ -49,6 +50,10 @@ export class PracticeHostComponent {
 
     return filteredSentenceRows.map((sentenceRow) => this.buildSentenceVm(sentenceRow));
   });
+
+  vocabList = computed<WordCard[]>(() => this.applyShuffleOrder(this.baseVocabList()));
+
+  sentenceList = computed<SentenceVm[]>(() => this.applyShuffleOrder(this.baseSentenceList()));
 
   currentListLength = computed(() => {
     if (this.practiceKind() === 'vocab') {
@@ -114,7 +119,36 @@ export class PracticeHostComponent {
   }
 
   shuffle() {
+    const listLength = this.currentListLength();
+    if (listLength === 0) {
+      return;
+    }
 
+    const indices = Array.from({length: listLength}, (_, i) => i);
+    for (let i = indices.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [indices[i], indices[j]] = [indices[j], indices[i]];
+    }
+
+    this.shuffledIndices.set(indices);
+    this.index.set(0);
+    this.routeState.patch({i: 0});
+  }
+
+  unshuffle() {
+    this.shuffledIndices.set(null);
+    this.index.set(0);
+    this.routeState.patch({i: 0});
+  }
+
+  isShuffled = computed(() => this.shuffledIndices() !== null);
+
+  private applyShuffleOrder<T>(list: T[]): T[] {
+    const indices = this.shuffledIndices();
+    if (!indices || indices.length !== list.length) {
+      return list;
+    }
+    return indices.map(i => list[i]);
   }
 
   private clamp(index: number, listLength: number) {

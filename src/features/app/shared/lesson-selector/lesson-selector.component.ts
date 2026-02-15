@@ -9,7 +9,8 @@ import {LessonOption} from '../../models/lesson-option';
   selector: 'app-lesson-selector',
   standalone: true,
   imports: [CommonModule, FormsModule],
-  templateUrl: './lesson-selector.component.html'
+  templateUrl: './lesson-selector.component.html',
+  host: {'class': 'w-full'}
 })
 export class LessonSelectorComponent {
   private readonly groupsService = inject(GroupsService);
