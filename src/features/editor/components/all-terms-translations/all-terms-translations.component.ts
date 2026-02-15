@@ -6,8 +6,9 @@ import { EditorStore } from '../../services/editor-store.service';
 import { Lang, TermRow } from '../../../../shared/contract/contract';
 import { TermEditorComponent } from '../term-editor/term-editor.component';
 import {parseTermDisplayMarkup, TermDisplaySeg} from '../../helpers/term-display-markup';
+import {getArticle} from '../../../app/helpers/utils';
 
-type SortKey = 'id' | 'term_text' | 'count';
+type SortKey = 'id' | 'display' | 'count';
 
 @Component({
   standalone: true,
@@ -30,6 +31,27 @@ export class AllTermsTranslationsComponent {
 
     return parseTermDisplayMarkup(display);
 
+  }
+
+  private getSortableText(termText: string): string {
+    const segments = parseTermDisplayMarkup(termText ?? '');
+    return segments
+      .filter(seg => seg.kind === 'text')
+      .map(seg => seg.text)
+      .join('')
+      .trim()
+      .toLowerCase();
+  }
+
+  isNoun(termRow: TermRow): boolean {
+    return (termRow.category ?? '') === 'noun';
+  }
+
+  getTermArticle(termRow: TermRow): string {
+    if (!this.isNoun(termRow) || !termRow.genus) {
+      return '';
+    }
+    return getArticle(termRow.lang, termRow.genus, termRow.needsVowelArticle ?? false);
   }
 
   readonly terms = this.store.terms;
@@ -83,8 +105,10 @@ export class AllTermsTranslationsComponent {
       if (selectedSortKey === 'id') {
         return leftTermRow.id - rightTermRow.id;
       }
-      if (selectedSortKey === 'term_text') {
-        return (leftTermRow.term_text ?? '').localeCompare(rightTermRow.term_text ?? '') || (leftTermRow.id - rightTermRow.id);
+      if (selectedSortKey === 'display') {
+        const leftSortText = this.getSortableText(leftTermRow.term_text);
+        const rightSortText = this.getSortableText(rightTermRow.term_text);
+        return leftSortText.localeCompare(rightSortText) || (leftTermRow.id - rightTermRow.id);
       }
 
       const leftCount = this.getTranslationCount(leftTermRow);
