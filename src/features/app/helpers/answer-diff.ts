@@ -139,7 +139,6 @@ export function buildWordOverlayTokens(expectedRaw: string, answerRaw: string): 
   const answerWords = answerTokens.filter(t => t.isWord).map(t => t.text);
 
   const edits = diffWordLists(expectedWords, answerWords);
-  console.log(edits)
 
   const overlay: OverlayToken[] = [];
   let editPos = 0;

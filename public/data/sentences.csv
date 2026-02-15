@@ -102,7 +102,7 @@ id;unit_id;fr;de;note
 103;1;{Peu à peu}, une {passion} m'a gagnée.;{Nach und nach} hat mich eine {Leidenschaft} ergriffen.;
 104;1;Elle est {rayonnante} de {bonheur}.;Sie {strahlt} vor {Glück}.;
 105;1;Il a {cédé} à la {tentation} d'acheter ce {tableau}.;Er ist der {Versuchung} {erlegen}, das Bild zu kaufen.;
-106;1;Le {paysage|#68} est {embrumé} ce matin.;Die {Landschaft} ist heute Morgen {neblig}.;
+106;1;Le {paysage|#68} est {embrumé|#71} ce matin.;Die {Landschaft|#72} ist heute Morgen {neblig|#73}.;
 107;1;J'ai perdu mon {portefeuille|#69}.;Ich habe meine {Brieftasche|#70} verloren.;
 108;1;Il {a payé|#47} en {petites|#48} {coupures|#49}.;Er {hat|#50} mit {kleinen|#51} {Scheinen|#52} {bezahlt|#50}.;
 109;1;Ils {arpentent|#44} les {allées|#45} du {marché|#46}.;Sie {schlendern|#43} durch die {Gänge|#42} des {Marktes|#41}.;
@@ -471,8 +471,8 @@ id;unit_id;fr;de;note
 473;11;Le centre a été {piétonnisé} cet été.;Das Zentrum wurde diesen Sommer zur {Fußgängerzone} umgewandelt.;
 474;11;Le terrain est {en pente} derrière la maison.;Hinter dem Haus ist das Gelände {abschüssig}.;
 475;11;Ils ont enlevé les {barrières} après les {travaux}.;Sie haben die Absperrungen nach den {Arbeiten} entfernt.;
-476;11;Les habitants {se sont insurgés} contre le projet.;Die Bewohner haben {sich} über das Projekt {empört}.;
-477;11;L’{effacement} des {graffitis} a coûté cher.;Die {Entfernung} der {Graffitis} war teuer.;
+476;11;Les habitants {se sont insurgés contre|#78} le projet.;Die Bewohner haben {sich|#79} über das Projekt {empört}.;
+477;11;L’{effacement|#74} des {graffitis|#76} a coûté cher.;Die {Entfernung|#75} der {Graffitis|#77} war teuer.;
 478;11;Il {avance} d’un pas {mal assuré}.;Er geht mit einem {unsicheren} Schritt.;
 479;11;Il se sent {mal assuré} dans cette situation.;Er fühlt sich in dieser Situation {unsicher}.;
 480;12;{Autrefois}, la ville était beaucoup plus calme.;{Früher} war die Stadt viel ruhiger.;
