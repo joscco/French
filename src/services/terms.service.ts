@@ -34,8 +34,8 @@ export class TermsService {
     for (const row of csvRows) {
       const id = toNum(row['id']);
       const lang = (row['lang'] || '').trim() as Lang;
-      const display = (row['display'] || '').trim();
-      if (!id || (lang !== 'fr' && lang !== 'de') || !display) {
+      const termText = (row['term_text'] || '').trim();
+      if (!id || (lang !== 'fr' && lang !== 'de') || !termText) {
         continue;
       }
 
@@ -47,8 +47,7 @@ export class TermsService {
       parsedTerms.push({
         id,
         lang,
-        display,
-        lemma: (row['lemma'] || '').trim() || undefined,
+        term_text: termText,
         category: (row['category'] || '').trim() as any || undefined,
         genus: (row['genus'] || '').trim() as any || undefined,
         needsVowelArticle: toBool(row['needs_vowel_article']),
@@ -60,28 +59,6 @@ export class TermsService {
 
     parsedTerms.sort((a, b) => a.id - b.id);
     this._terms.set(parsedTerms);
-  }
-
-  search(lang: Lang, query: string, limit = 50): TermRow[] {
-    const searchTerm = query.trim().toLowerCase();
-    const filteredTerms = this._terms().filter(term => term.lang === lang);
-
-    if (!searchTerm) {
-      return filteredTerms.slice(0, limit);
-    }
-
-    const scoredTerms = filteredTerms.map(term => {
-      const tagsString = term.tags?.join(' ') ?? '';
-      const searchableText = `${term.display} ${term.lemma ?? ''} ${tagsString}`.toLowerCase();
-      const score =
-        searchableText === searchTerm ? 100 :
-          searchableText.startsWith(searchTerm) ? 80 :
-            searchableText.includes(searchTerm) ? 60 : 0;
-      return { term, score };
-    }).filter(entry => entry.score > 0);
-
-    scoredTerms.sort((a, b) => b.score - a.score || a.term.id - b.term.id);
-    return scoredTerms.slice(0, limit).map(entry => entry.term);
   }
 
   getById(id: number | null | undefined): TermRow | undefined {

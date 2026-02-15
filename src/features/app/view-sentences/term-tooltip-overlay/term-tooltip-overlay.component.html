@@ -13,13 +13,23 @@
         data-tooltip
         class="pointer-events-auto bg-white border border-neutral-200 rounded-2xl px-3 py-2 text-xs shadow-md"
       >
-        <div class="flex flex-row items-baseline gap-x-1">
+        <div class="flex flex-row items-baseline gap-x-1 text-sm">
+          <span>
           @if (m.genus) {
-            <span class="text-sm italic opacity-50">
+            <span class="italic opacity-50">
               {{ getArticle(m.lang, m.genus, m.needsVowelArticle) }}
             </span>
           }
-          <span class="text-sm font-semibold">{{ m.title }}</span>
+          @for (segment of parseDisplaySegments(m.title); track $index) {
+            @if (segment.kind === 'text') {
+              <span>{{ segment.text }}</span>
+            } @else {
+              <span class="italic opacity-50">
+                  {{ segment.text }}
+                </span>
+            }
+          }
+          </span>
         </div>
 
         @if (m.translations.length) {
@@ -34,7 +44,15 @@
                     {{ getArticleFromTerm(reverseLanguage(m.lang), translation) }}
                   </span>
                 }
-                {{ translation?.display }}
+                @for (segment of parseDisplaySegments(translation.term_text); track $index) {
+                  @if (segment.kind === 'text') {
+                    <span>{{ segment.text }}</span>
+                  } @else {
+                    <span class="italic opacity-50">
+                      {{ segment.text }}
+                    </span>
+                  }
+                }
               </span>
             }
           </div>

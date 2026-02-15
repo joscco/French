@@ -117,7 +117,7 @@ Alle Begriffe beider Sprachen.
 ### Schema
 
 ```csv
-id;lang;display;lemma;category;genus;needs_vowel_article;unit_id;ref;tags
+id;lang;term_text;category;genus;needs_vowel_article;unit_id;ref;tags
 ```
 
 ### Felder
@@ -126,8 +126,7 @@ id;lang;display;lemma;category;genus;needs_vowel_article;unit_id;ref;tags
 |---------------------|-------------------------------------------|---------|------------------------------------------------------------------------|
 | id                  | Eindeutige ID                             | ✓       |                                                                        |
 | lang                | Sprache                                   | ✓       | `fr` / `de`                                                            |
-| display             | Anzeigeform                               | ✓       |                                                                        |
-| lemma               | Grundform                                 | –       |                                                                        |
+| term_text           | Anzeigeform                               | ✓       |                                                                        |
 | category            | Wortart                                   | ✓       | `verb` / `noun` / `adjective` / `expression` / `other`                 |
 | genus               | Geschlecht                                | –       | `m` / `f` / `n` / `pl` / `mpl` / `fpl` / `npl` / `m/f` |
 | needs_vowel_article | Erfordert Vokal-Artikel (nur Französisch) | –       | `true` / `false`                                                       |
@@ -138,11 +137,11 @@ id;lang;display;lemma;category;genus;needs_vowel_article;unit_id;ref;tags
 ### Beispiel
 
 ```csv
-id;lang;display;lemma;category;genus;needs_vowel_article;unit_id
-701;fr;s'inscrire à qc.;s'inscrire;verb;;;1
-702;fr;cours de français;;noun;m;false;1
-801;de;sich anmelden;;verb;;;1
-802;de;Französischkurs;;noun;m;;1
+id;lang;term_text;category;genus;needs_vowel_article;unit_id
+701;fr;s'inscrire à qc.;verb;;;1
+702;fr;cours de français;noun;m;false;1
+801;de;sich anmelden;verb;;;1
+802;de;Französischkurs;noun;m;;1
 ```
 
 ---

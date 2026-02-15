@@ -5,8 +5,8 @@ import {TermEditorComponent} from '../term-editor/term-editor.component';
 import {SentenceSideEditorComponent} from '../sentence-side-editor/sentence-side-editor.components';
 import {EditorStore} from '../../services/editor-store.service';
 import {SentenceRow} from '../../../../shared/contract/contract';
-import {downloadTextFile} from '../../helpers/download';
 import {AllTermsTranslationsComponent} from '../all-terms-translations/all-terms-translations.component';
+import {ExportService} from '../../services/export.service';
 
 type LoadState = 'idle' | 'loading' | 'ready' | 'error';
 
@@ -14,10 +14,11 @@ type LoadState = 'idle' | 'loading' | 'ready' | 'error';
   standalone: true,
   selector: 'app-bilingual-sentence-editor',
   imports: [NgClass, FormsModule, SentenceSideEditorComponent, TermEditorComponent, AllTermsTranslationsComponent],
-  templateUrl: './bilingual-sentence-editor.component.html',
+  templateUrl: './editor.component.html',
 })
-export class BilingualSentenceEditorComponent {
+export class EditorComponent {
   private readonly store = inject(EditorStore);
+  private readonly exportService = inject(ExportService);
 
   state = signal<LoadState>('idle');
   error = signal<string | null>(null);
@@ -222,9 +223,7 @@ export class BilingualSentenceEditorComponent {
 
   saveAsCSVs() {
     const exportedFiles = this.store.exportCSVs();
-    for (const [fileName, fileContent] of Object.entries(exportedFiles)) {
-      downloadTextFile(fileName, fileContent);
-    }
+    this.exportService.exportAll(exportedFiles);
   }
 
   // convenience for template

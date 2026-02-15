@@ -5,8 +5,9 @@ import { FormsModule } from '@angular/forms';
 import { EditorStore } from '../../services/editor-store.service';
 import { Lang, TermRow } from '../../../../shared/contract/contract';
 import { TermEditorComponent } from '../term-editor/term-editor.component';
+import {parseTermDisplayMarkup, TermDisplaySeg} from '../../helpers/term-display-markup';
 
-type SortKey = 'id' | 'display' | 'count';
+type SortKey = 'id' | 'term_text' | 'count';
 
 @Component({
   standalone: true,
@@ -24,6 +25,12 @@ export class AllTermsTranslationsComponent {
   sortKey = signal<SortKey>('count');
 
   selectedTermId = signal<number | null>(null);
+
+  renderDisplaySegments(display: string): TermDisplaySeg[] {
+
+    return parseTermDisplayMarkup(display);
+
+  }
 
   readonly terms = this.store.terms;
 
@@ -65,7 +72,7 @@ export class AllTermsTranslationsComponent {
     if (normalizedQuery.length > 0) {
       visibleTerms = visibleTerms.filter((termRow) => {
         const searchableText = this.normalizeSearchText(
-          `${termRow.display} ${termRow.lemma ?? ''} ${(termRow.tags ?? []).join(' ')}`
+          `${termRow.term_text} ${(termRow.tags ?? []).join(' ')}`
         );
         return searchableText.includes(normalizedQuery);
       });
@@ -76,8 +83,8 @@ export class AllTermsTranslationsComponent {
       if (selectedSortKey === 'id') {
         return leftTermRow.id - rightTermRow.id;
       }
-      if (selectedSortKey === 'display') {
-        return (leftTermRow.display ?? '').localeCompare(rightTermRow.display ?? '') || (leftTermRow.id - rightTermRow.id);
+      if (selectedSortKey === 'term_text') {
+        return (leftTermRow.term_text ?? '').localeCompare(rightTermRow.term_text ?? '') || (leftTermRow.id - rightTermRow.id);
       }
 
       const leftCount = this.getTranslationCount(leftTermRow);

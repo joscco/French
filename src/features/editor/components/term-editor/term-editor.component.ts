@@ -6,6 +6,7 @@ import {EditorStore} from '../../services/editor-store.service';
 import {Genus, Lang, TermCategory, TermRow} from '../../../../shared/contract/contract';
 import {beautifyGenus, getArticle, reverseLanguage} from '../../../app/helpers/utils';
 import {TermPickerComponent} from '../term-picker/term-picker.component';
+import {parseTermDisplayMarkup, TermDisplaySeg} from '../../helpers/term-display-markup';
 
 type OverlayPosition = { x: number; y: number };
 
@@ -23,6 +24,16 @@ export class TermEditorComponent {
 
   translationOverlayOpen = signal(false);
   translationOverlayPosition = signal<OverlayPosition>({x: 24, y: 24});
+
+  readonly displaySegments = computed<TermDisplaySeg[]>(() => {
+
+    const termRow = this.selectedTerm();
+    if (!termRow) {
+      return [];
+    }
+
+    return parseTermDisplayMarkup(termRow.term_text);
+  });
 
   categories: TermCategory[] = [
     'verb',
@@ -99,6 +110,19 @@ export class TermEditorComponent {
     }
 
     return this.editorStore.getLinkedTerms(termRow.id, termRow.lang);
+
+  });
+
+  readonly linkedTermsWithSegments = computed(() => {
+
+    return this.linkedTerms().map(linkedTerm => ({
+      ...linkedTerm,
+      segments: parseTermDisplayMarkup(linkedTerm.term_text),
+      isNoun: linkedTerm.category === 'noun',
+      article: linkedTerm.category === 'noun'
+        ? getArticle(linkedTerm.lang, linkedTerm.genus, linkedTerm.needsVowelArticle ?? false)
+        : null,
+    }));
 
   });
 

@@ -2,8 +2,8 @@ import {ApplicationConfig, provideBrowserGlobalErrorListeners, provideZoneChange
 import {provideRouter, withComponentInputBinding} from '@angular/router';
 import {AppComponent} from '../features/app/app';
 import {
-  BilingualSentenceEditorComponent
-} from '../features/editor/components/editor/bilingual-sentence-editor.component';
+  EditorComponent
+} from '../features/editor/components/editor/editor.component';
 
 export const shellConfig: ApplicationConfig = {
   providers: [
@@ -12,7 +12,7 @@ export const shellConfig: ApplicationConfig = {
     provideRouter(
       [
         { path: '', component: AppComponent },
-        { path: 'editor', component: BilingualSentenceEditorComponent }
+        { path: 'editor', component: EditorComponent }
       ],
       withComponentInputBinding()
     ),

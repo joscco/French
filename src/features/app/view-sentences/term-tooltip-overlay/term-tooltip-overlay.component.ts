@@ -4,6 +4,7 @@ import {gsap} from 'gsap';
 import {TermTooltipVm} from '../../services/term-lookup.service';
 import {Lang, TermRow} from '../../../../shared/contract/contract';
 import {getArticle, reverseLanguage} from '../../helpers/utils';
+import {parseTermDisplayMarkup, TermDisplaySeg} from '../../../editor/helpers/term-display-markup';
 
 @Component({
   selector: 'app-term-tooltip-overlay',
@@ -20,6 +21,11 @@ export class TermTooltipOverlayComponent {
   panelRectChange = output<DOMRect>();
   panel = viewChild<ElementRef<HTMLElement>>('panel');
   lastVm: TermTooltipVm | undefined;
+  protected parseDisplaySegments(display: string): TermDisplaySeg[] {
+
+    return parseTermDisplayMarkup(display);
+
+  }
 
   constructor() {
     effect(() => {

@@ -37,10 +37,10 @@
       </select>
 
       <input #searchInput
-        class="w-[260px] rounded-xl border border-slate-200 px-3 py-2 text-sm outline-none focus:border-slate-400 placeholder:text-slate-400"
-        placeholder="Search terms…"
-        [ngModel]="query()"
-        (ngModelChange)="query.set($event)"
+             class="w-[260px] rounded-xl border border-slate-200 px-3 py-2 text-sm outline-none focus:border-slate-400 placeholder:text-slate-400"
+             placeholder="Search terms…"
+             [ngModel]="query()"
+             (ngModelChange)="query.set($event)"
       />
     </div>
 
@@ -86,10 +86,22 @@
                 </td>
 
                 <td class="px-3 py-2">
-                  <div class="font-semibold text-slate-900">{{ termRow.display }}</div>
-                  @if (termRow.lemma) {
-                    <div class="text-xs text-slate-500">{{ termRow.lemma }}</div>
-                  }
+                  <div class="font-semibold text-slate-900">
+                    <div class="font-semibold text-slate-900">
+                      @for (segment of renderDisplaySegments(termRow.term_text); track $index) {
+                        @if (segment.kind === 'text') {
+                          <span>{{ segment.text }}</span>
+                        } @else {
+                          <span
+                            class="ml-1 inline-flex items-center rounded-md bg-slate-100 px-1.5 py-0.5 text-[10px] font-semibold text-slate-500"
+                            title="Not part of the term"
+                          >
+                            {{ segment.text }}
+                          </span>
+                                            }
+                      }
+                    </div>
+                  </div>
                 </td>
 
                 <td class="px-3 py-2">

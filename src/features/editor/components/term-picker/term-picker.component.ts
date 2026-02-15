@@ -82,14 +82,14 @@ export class TermPickerComponent {
   }
 
   create() {
-    const display = this.quickCreateDisplay().trim();
-    if (!display) {
+    const termText = this.quickCreateDisplay().trim();
+    if (!termText) {
       return;
     }
 
     const term = this.store.createTerm({
       lang: this.lang(),
-      display,
+      term_text: termText,
       category: (this.newCategory() || undefined) as any,
     });
 

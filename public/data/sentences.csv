@@ -104,8 +104,8 @@ id;unit_id;fr;de;note
 105;1;Il a cédé à la tentation d’acheter ce tableau.;Er ist der Versuchung erlegen, das Bild zu kaufen.;
 106;1;Le paysage est embrumé ce matin.;Die Landschaft ist heute Morgen neblig.;
 107;1;J’ai perdu mon portefeuille.;Ich habe meine Brieftasche verloren.;
-108;1;Il a payé en petites coupures.;Er hat mit kleinen Scheinen bezahlt.;
-109;1;Ils arpentent les allées du marché.;Sie schlendern durch die Gänge des Marktes.;
+108;1;Il {a payé|#47} en {petites|#48} {coupures|#49}.;Er {hat|#50} mit {kleinen|#51} {Scheinen|#52} {bezahlt|#50}.;
+109;1;Ils {arpentent|#44} les {allées|#45} du {marché|#46}.;Sie {schlendern|#43} durch die {Gänge|#42} des {Marktes|#41}.;
 110;1;C’est un {objet|#39} {insolite|#38}.;Das ist ein {ungewöhnlicher|#37} {Gegenstand|#40}.;
 111;1;J’{ai rapporté|#34} un {souvenir|#36} de Paris.;Ich {habe|#33} ein {Souvenir|#35} aus Paris {mitgebracht|#33}.;
 112;1;On {ressent|#32} la {magie|#5} du {lieu|#6}.;Man {spürt|#31} die {Magie|#23} des {Ortes|#24}.;

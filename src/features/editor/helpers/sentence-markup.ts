@@ -1,4 +1,3 @@
-// src/app/helpers/sentence-markup.ts
 export type Node =
   | { kind: 'text'; value: string }
   | { kind: 'ann'; surface: string; termId?: number } // {pomme|#200} or {pomme}

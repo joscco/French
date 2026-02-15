@@ -41,7 +41,7 @@ export class TermLookupService {
       .filter(x => x.lang === targetLang);
 
     return {
-      title: t.display,
+      title: t.term_text,
       lang: t.lang,
       genus: t.genus,
       category: t.category,

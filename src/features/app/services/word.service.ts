@@ -53,8 +53,8 @@ export class WordService {
       cards.push({
         id: term.id,
         headLanguage: term.lang,
-        frenchPrimary: frenchTerm.display,
-        germanPrimary: germanTerm.display,
+        frenchPrimary: frenchTerm.term_text,
+        germanPrimary: germanTerm.term_text,
         frenchSecondary: undefined,
         germanSecondary: undefined,
         meta: {

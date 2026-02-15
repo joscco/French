@@ -23,8 +23,7 @@ export interface TermRow {
   id: number;
   lang: Lang;
   category?: TermCategory;
-  display: string;
-  lemma?: string;
+  term_text: string;
   genus?: Genus;               // only meaningful if category === 'noun'
   needsVowelArticle?: boolean;  // only meaningful if lang === 'fr' && category === 'noun'
   ref?: string;
@@ -52,6 +51,7 @@ export interface SentenceRow {
 }
 
 export interface AuthoringDB {
+  groups: GroupRow[];
   units: UnitRow[];
   terms: TermRow[];
   termLinks: TermLinkRow[];

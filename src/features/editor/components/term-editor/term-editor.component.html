@@ -6,13 +6,23 @@
           Term #{{ currentTerm.id }}
         </div>
 
-        <div class="mt-1 text-lg font-black text-slate-900">
+        <div class="mt-1 text-slate-900 text-lg">
           @if (isNoun()) {
-            <span class="text-slate-400 text-sm">
+            <span class="text-slate-400">
               {{ getArticle(currentTerm.lang, currentTerm.genus, currentTerm.needsVowelArticle ?? false) }}
             </span>
           }
-          {{ currentTerm.display }}
+          <span>
+          @for (segment of displaySegments(); track $index) {
+            @if (segment.kind === 'text') {
+              <span class="font-black">{{ segment.text }}</span>
+            } @else {
+              <span class="text-slate-400">
+                {{ segment.text }}
+              </span>
+            }
+          }
+        </span>
         </div>
 
         <div class="mt-1 text-sm text-slate-600">
@@ -20,10 +30,15 @@
         </div>
 
         @if (isTermInvalid()) {
-          <div class="mt-2 inline-flex items-center gap-2 rounded-xl border border-rose-200 bg-rose-50 px-3 py-1 text-xs font-semibold text-rose-700">
+          <div
+            class="mt-2 inline-flex items-center gap-2 rounded-xl border border-rose-200 bg-rose-50 px-3 py-1 text-xs font-semibold text-rose-700">
             Missing required fields
-            @if (isCategoryMissing()) { <span class="rounded-md bg-white px-2 py-0.5">Category</span> }
-            @if (isGenusMissing()) { <span class="rounded-md bg-white px-2 py-0.5">Genus</span> }
+            @if (isCategoryMissing()) {
+              <span class="rounded-md bg-white px-2 py-0.5">Category</span>
+            }
+            @if (isGenusMissing()) {
+              <span class="rounded-md bg-white px-2 py-0.5">Genus</span>
+            }
           </div>
         }
       </div>
@@ -48,9 +63,22 @@
       </div>
 
       <div class="mt-2 flex flex-wrap gap-2">
-        @for (linkedTermRow of linkedTerms(); track linkedTermRow.id) {
+        @for (linkedTermRow of linkedTermsWithSegments(); track linkedTermRow.id) {
           <span class="inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-3 py-1.5 text-sm">
-            <span class="font-semibold text-slate-900">{{ linkedTermRow.display }}</span>
+            <span class="font-semibold text-slate-900">
+              @if (linkedTermRow.isNoun && linkedTermRow.article) {
+                <span class="text-slate-400">
+                  {{ linkedTermRow.article }}
+                </span>
+              }
+              @for (segment of linkedTermRow.segments; track $index) {
+                @if (segment.kind === 'text') {
+                  <span>{{ segment.text }}</span>
+                } @else {
+                  <span class="text-slate-400">{{ segment.text }}</span>
+                }
+              }
+            </span>
             <span class="text-xs text-slate-500 font-mono">#{{ linkedTermRow.id }}</span>
 
             <button
@@ -77,20 +105,11 @@
     <!-- ========================= -->
     <div class="mt-4 space-y-3">
       <label class="block">
-        <div class="mb-1 text-xs font-semibold text-slate-600">Display</div>
+        <div class="mb-1 text-xs font-semibold text-slate-600">Term Text</div>
         <input
           class="w-full rounded-xl border border-slate-200 px-3 py-2 text-sm outline-none focus:border-slate-400"
-          [ngModel]="currentTerm.display"
-          (ngModelChange)="updateTerm({ display: $event })"
-        />
-      </label>
-
-      <label class="block">
-        <div class="mb-1 text-xs font-semibold text-slate-600">Lemma (optional)</div>
-        <input
-          class="w-full rounded-xl border border-slate-200 px-3 py-2 text-sm outline-none focus:border-slate-400"
-          [ngModel]="currentTerm.lemma ?? ''"
-          (ngModelChange)="updateTerm({ lemma: ($event || '').trim() ? $event : undefined })"
+          [ngModel]="currentTerm.term_text"
+          (ngModelChange)="updateTerm({ term_text: $event })"
         />
       </label>
 
@@ -98,7 +117,8 @@
         <div class="mb-1 text-xs font-semibold text-slate-600">
           Category
           @if (isCategoryMissing()) {
-            <span class="ml-2 rounded-md bg-rose-50 px-2 py-0.5 text-xs font-semibold text-rose-700 border border-rose-200">
+            <span
+              class="ml-2 rounded-md bg-rose-50 px-2 py-0.5 text-xs font-semibold text-rose-700 border border-rose-200">
               required
             </span>
           }
@@ -126,7 +146,8 @@
             <span class="ml-1 text-xs text-slate-400">(only for nouns)</span>
           }
           @if (isNoun() && isGenusMissing()) {
-            <span class="ml-2 rounded-md bg-rose-50 px-2 py-0.5 text-xs font-semibold text-rose-700 border border-rose-200">
+            <span
+              class="ml-2 rounded-md bg-rose-50 px-2 py-0.5 text-xs font-semibold text-rose-700 border border-rose-200">
               required
             </span>
           }
@@ -162,7 +183,7 @@
             <button
               type="button"
               class="rounded-lg border border-slate-200 bg-white px-2 py-1 text-xs font-semibold hover:bg-slate-50"
-              (click)="autoDetectVowel(currentTerm.display)"
+              (click)="autoDetectVowel(currentTerm.term_text)"
             >
               Auto
             </button>
@@ -213,7 +234,7 @@
           @if (oppositeLanguage(); as targetLanguage) {
             <app-term-picker
               [lang]="targetLanguage"
-              [suggestedDisplay]="currentTerm.display"
+              [suggestedDisplay]="currentTerm.term_text"
               [excludeIds]="excludedTranslationIds()"
               (choose)="onTranslationChosen($event)"
             ></app-term-picker>
