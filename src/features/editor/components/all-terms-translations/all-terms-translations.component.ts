@@ -5,8 +5,8 @@ import { FormsModule } from '@angular/forms';
 import { EditorStore } from '../../services/editor-store.service';
 import { Lang, TermRow } from '../../../../shared/contract/contract';
 import { TermEditorComponent } from '../term-editor/term-editor.component';
-import {parseTermDisplayMarkup, TermDisplaySeg} from '../../helpers/term-display-markup';
 import {getArticle} from '../../../app/helpers/utils';
+import {getSortableText, parseTermDisplayMarkup, TermDisplaySeg} from '../../../../shared/helpers/term-display-markup';
 
 type SortKey = 'id' | 'display' | 'count';
 
@@ -31,16 +31,6 @@ export class AllTermsTranslationsComponent {
 
     return parseTermDisplayMarkup(display);
 
-  }
-
-  private getSortableText(termText: string): string {
-    const segments = parseTermDisplayMarkup(termText ?? '');
-    return segments
-      .filter(seg => seg.kind === 'text')
-      .map(seg => seg.text)
-      .join('')
-      .trim()
-      .toLowerCase();
   }
 
   isNoun(termRow: TermRow): boolean {
@@ -106,8 +96,8 @@ export class AllTermsTranslationsComponent {
         return leftTermRow.id - rightTermRow.id;
       }
       if (selectedSortKey === 'display') {
-        const leftSortText = this.getSortableText(leftTermRow.term_text);
-        const rightSortText = this.getSortableText(rightTermRow.term_text);
+        const leftSortText = getSortableText(leftTermRow.term_text);
+        const rightSortText = getSortableText(rightTermRow.term_text);
         return leftSortText.localeCompare(rightSortText) || (leftTermRow.id - rightTermRow.id);
       }
 

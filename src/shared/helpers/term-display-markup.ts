@@ -92,17 +92,13 @@ export function parseTermDisplayMarkup(input: string): TermDisplaySeg[] {
 
 }
 
-/**
- * "Lemma" in deinem neuen Verständnis:
- * Alles ohne hint-Teile. Ideal für Suche/Sort.
- */
-export function lemmaFromDisplay(display: string): string {
 
-  return parseTermDisplayMarkup(display)
-    .filter((segment) => segment.kind === 'text')
-    .map((segment) => segment.text)
+export function getSortableText(termText: string): string {
+  const segments = parseTermDisplayMarkup(termText ?? '');
+  return segments
+    .filter(seg => seg.kind === 'text')
+    .map(seg => seg.text)
     .join('')
-    .replace(/\s+/g, ' ')
-    .trim();
-
+    .trim()
+    .toLowerCase();
 }

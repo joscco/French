@@ -7,7 +7,7 @@ import {RouterOutlet} from '@angular/router';
   standalone: true,
   imports: [CommonModule, RouterOutlet],
   templateUrl: './shell.html',
-  host: {'class': 'w-full h-full'},
+  host: {'class': 'w-full h-full flex items-center justify-center'},
 })
 export class ShellComponent {
 }

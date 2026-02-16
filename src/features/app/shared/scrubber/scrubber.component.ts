@@ -38,12 +38,14 @@ export class ScrubberComponent {
   });
 
   private getOpacityForDistance(distance: number): number {
-    if (distance === 0) return 1;
-    if (distance === 1) return 0.7;
-    if (distance === 2) return 0.5;
-    if (distance === 3) return 0.35;
-    if (distance === 4) return 0.25;
-    if (distance === 5) return 0.15;
-    return 0.08;
+    switch (distance) {
+      case 0: return 1;
+      case 1: return 0.7;
+      case 2: return 0.5;
+      case 3: return 0.35;
+      case 4: return 0.25;
+      case 5: return 0.15;
+      default: return 0.08;
+    }
   }
 }

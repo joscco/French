@@ -2,7 +2,7 @@ import {Component, computed, input} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {Genus, Lang} from '../../../../shared/contract/contract';
 import {beautifyGenus, getArticle} from '../../helpers/utils';
-import {parseTermDisplayMarkup, TermDisplaySeg} from '../../../editor/helpers/term-display-markup';
+import {parseTermDisplayMarkup, TermDisplaySeg} from '../../../../shared/helpers/term-display-markup';
 
 @Component({
   selector: 'app-card-face',

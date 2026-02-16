@@ -17,6 +17,7 @@ type SaveState = 'idle' | 'saving' | 'success' | 'error';
   selector: 'app-bilingual-sentence-editor',
   imports: [NgClass, FormsModule, SentenceSideEditorComponent, TermEditorComponent, AllTermsTranslationsComponent],
   templateUrl: './editor.component.html',
+  host: {'class': 'w-full h-full flex items-center justify-center'},
 })
 export class EditorComponent {
   private readonly store = inject(EditorStore);

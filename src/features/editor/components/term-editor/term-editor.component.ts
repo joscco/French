@@ -7,7 +7,7 @@ import {TTSService} from '../../services/tts.service';
 import {Genus, Lang, TermCategory, TermRow} from '../../../../shared/contract/contract';
 import {beautifyGenus, getArticle, reverseLanguage} from '../../../app/helpers/utils';
 import {TermPickerComponent} from '../term-picker/term-picker.component';
-import {parseTermDisplayMarkup, TermDisplaySeg} from '../../helpers/term-display-markup';
+import {parseTermDisplayMarkup, TermDisplaySeg} from '../../../../shared/helpers/term-display-markup';
 
 type OverlayPosition = { x: number; y: number };
 

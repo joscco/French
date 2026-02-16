@@ -1,8 +1,8 @@
-<div class="absolute -right-4 top-0 bottom-4 w-8">
+<div class="w-full h-8">
   <div
     #scrubberEl
     data-scrubber
-    class="absolute inset-y-0 right-0 w-8 cursor-grab active:cursor-grabbing touch-none select-none z-40"
+    class="absolute inset-x-0 top-0 h-8 cursor-grab active:cursor-grabbing touch-none select-none z-40"
     style="
       -webkit-user-select: none;
       user-select: none;
@@ -15,7 +15,7 @@
     (pointercancel)="pointerUp.emit($event)"
   >
     <!-- Track mit individuellen Punkten -->
-    <div class="absolute inset-y-0 right-4 w-2 flex flex-col justify-between items-center py-1 transition-opacity duration-150"
+    <div class="absolute inset-x-0 bottom-2 h-2 flex flex-row justify-between items-center px-1 transition-opacity duration-150"
          [class.opacity-100]="scrubPreview()?.active || isTouchScreen()"
          [class.opacity-40]="!(scrubPreview()?.active || isTouchScreen())"
     >
@@ -30,18 +30,18 @@
 
     <!-- Thumb (normal, clean) -->
     <div
-      class="absolute right-1 w-4 h-10 rounded-full
+      class="absolute bottom-3 h-4 w-10 rounded-full
      bg-neutral-400/60 shadow-sm
      opacity-0 transition-opacity duration-150"
       [class.opacity-100]="scrubPreview()?.active"
-      [style.top.%]="length() > 1 ? (currentIndex() / (length() - 1)) * 100 : 0"
-      style="transform: translateY(-50%) translateX(-50%)"
+      [style.left.%]="length() > 1 ? (currentIndex() / (length() - 1)) * 100 : 0"
+      style="transform: translateX(-50%) translateY(50%)"
     ></div>
 
 
     <!-- Bubble -->
     @if (scrubPreview()?.active) {
-      <div class="absolute right-9" [style.top.%]="length() > 1 ? ((scrubPreview()?.idx ?? 0) / (length() - 1)) * 100 : 0" style="transform: translateY(-50%)">
+      <div class="absolute bottom-9" [style.left.%]="length() > 1 ? ((scrubPreview()?.idx ?? 0) / (length() - 1)) * 100 : 0" style="transform: translateX(-50%)">
         <div class="px-2 py-1 rounded-lg border bg-white text-xs shadow">
           {{ scrubPreview()?.label }}
         </div>

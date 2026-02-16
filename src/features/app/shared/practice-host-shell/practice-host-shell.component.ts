@@ -311,9 +311,9 @@ export class PracticeHostShellComponent implements AfterViewInit, OnDestroy {
     }
 
     const rect = element.getBoundingClientRect();
-    const yPosition = ev.clientY - rect.top;
-    const ratio = Math.max(0, Math.min(1, yPosition / rect.height));
-    const index = this.clamp(Math.floor(ratio * (this.length() - 1)));
+    const xPosition = ev.clientX - rect.left;
+    const ratio = Math.max(0, Math.min(1, xPosition / rect.width));
+    const index = this.clamp(Math.round(ratio * (this.length() - 1)));
     const label = this.scrubLabelForIndex?.(index) ?? `${index + 1}`;
 
     if (this.scrubPreview().idx === index && this.scrubPreview().active === active) {

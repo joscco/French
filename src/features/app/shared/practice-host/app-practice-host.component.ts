@@ -14,6 +14,7 @@ import {SentenceRow} from '../../../../shared/contract/contract';
 import {extractTermRefs} from '../../helpers/extract-term-refs';
 import {SentenceVm} from '../../models/sentence-vm';
 import {parseSentenceMarkup, representativeText} from '../../../editor/helpers/sentence-markup';
+import {getSortableText} from '../../../../shared/helpers/term-display-markup';
 
 @Component({
   selector: 'app-practice-host',
@@ -78,7 +79,7 @@ export class PracticeHostComponent {
     if (this.practiceKind() === 'vocab') {
       const wordCard = this.vocabList()[index];
       const primaryString = (this.mode() === 'fr-de' ? wordCard?.frenchPrimary : wordCard?.germanPrimary) ?? '';
-      return (primaryString.trim()[0] ?? `${index + 1}`);
+      return (getSortableText(primaryString)[0] ?? `${index + 1}`);
     }
     return `${index + 1}`;
   };

@@ -1,25 +1,28 @@
 <section class="flex flex-col h-full w-full">
-  <div class="flex-1 w-full flex items-center justify-center min-h-0 pb-4 relative">
+  <div class="flex-1 w-full flex flex-col items-center justify-center min-h-0 pb-4 relative">
+    <div class="relative w-[330px] md:w-[380px] flex flex-col h-full">
+      @if (showScrubber && length() > 1) {
+        <div class="relative w-full mb-2">
+          <app-scrubber
+            [isTouchScreen]="isTouchScreen"
+            [length]="length()"
+            [currentIndex]="currentIndex()"
+            [scrubPreview]="scrubPreview()"
+            (pointerDown)="onScrubDown($event)"
+            (pointerMove)="onScrubMove($event)"
+            (pointerUp)="onScrubUp()"
+          ></app-scrubber>
+        </div>
+      }
 
-    @if (showScrubber && length() > 1) {
-      <app-scrubber
-        [isTouchScreen]="isTouchScreen"
-        [length]="length()"
-        [currentIndex]="currentIndex()"
-        [scrubPreview]="scrubPreview()"
-        (pointerDown)="onScrubDown($event)"
-        (pointerMove)="onScrubMove($event)"
-        (pointerUp)="onScrubUp()"
-      ></app-scrubber>
-    }
-
-    <div #cardHost class="relative h-full w-[330px] md:w-[380px] transition-all mr-4">
-      <div #slideLayer class="h-full">
-        <div
-          class="group relative flex flex-col h-full w-full
-                 border-2 rounded-2xl bg-white">
-          <div class="flex-1 min-h-0 w-full">
-            <ng-content></ng-content>
+      <div #cardHost class="relative flex-1 min-h-0 w-full transition-all">
+        <div #slideLayer class="h-full">
+          <div
+            class="group relative flex flex-col h-full w-full
+                   border-2 rounded-2xl bg-white">
+            <div class="flex-1 min-h-0 w-full">
+              <ng-content></ng-content>
+            </div>
           </div>
         </div>
       </div>

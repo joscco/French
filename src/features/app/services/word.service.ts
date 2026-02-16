@@ -4,6 +4,7 @@ import { TermLinksService } from '../../../services/termLinks.service';
 import { AllowedTermsService } from './sentence-ref.service';
 import { WordCard } from '../models/word-card';
 import { TermRow, Lang } from '../../../shared/contract/contract';
+import {getSortableText} from '../../../shared/helpers/term-display-markup';
 
 export type PracticeMode = 'fr-de' | 'de-fr';
 
@@ -73,8 +74,8 @@ export class WordService {
 
     const collator = new Intl.Collator(frontLanguage === 'fr' ? 'fr' : 'de', { sensitivity: 'base' });
     cards.sort((a, b) => {
-      const keyA = frontLanguage === 'fr' ? a.frenchPrimary : a.germanPrimary;
-      const keyB = frontLanguage === 'fr' ? b.frenchPrimary : b.germanPrimary;
+      const keyA = getSortableText(frontLanguage === 'fr' ? a.frenchPrimary : a.germanPrimary);
+      const keyB = getSortableText(frontLanguage === 'fr' ? b.frenchPrimary : b.germanPrimary);
       return collator.compare(keyA, keyB) || a.id - b.id;
     });
 
