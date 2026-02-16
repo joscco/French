@@ -54,6 +54,7 @@ export class TermsService {
         unitId: toNum(row['unit_id']) ?? undefined,
         ref: (row['ref'] || '').trim() || undefined,
         tags,
+        has_audio: toBool(row['has_audio']) ?? false,
       });
     }
 

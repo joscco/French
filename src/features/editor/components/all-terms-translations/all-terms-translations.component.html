@@ -48,17 +48,18 @@
       <table class="w-full table-fixed text-sm">
         <thead class="sticky top-0 z-10 bg-slate-50">
         <tr class="text-left text-xs font-extrabold uppercase tracking-wide text-slate-500">
-          <th class="w-16 px-3 py-2">ID</th>
-          <th class="w-14 px-3 py-2">Lang</th>
+          <th class="w-16 px-3 py-2 text-right">ID</th>
+          <th class="w-16 px-3 py-2">Lang</th>
           <th class="px-3 py-2">Display</th>
-          <th class="w-32 px-3 py-2">Translations</th>
+          <th class="w-20 px-3 py-2 text-center">#Links</th>
+          <th class="w-20 px-3 py-2 text-center">Audio</th>
         </tr>
         </thead>
 
         <tbody>
           @if (filteredTerms().length === 0) {
             <tr>
-              <td colspan="4" class="px-3 py-6">
+              <td colspan="5" class="px-3 py-6">
                 <div class="rounded-xl border border-dashed border-slate-300 p-3 text-sm text-slate-600">
                   No terms match your filter.
                 </div>
@@ -68,7 +69,7 @@
             @for (termRow of filteredTerms(); track termRow.id) {
               <tr
                 [attr.data-term-row]="termRow.id"
-                class="border-t align-top cursor-pointer"
+                class="border-t cursor-pointer"
                 [ngClass]="{
                     'bg-rose-50 border-rose-200': isInvalidTerm(termRow),
                     'border-slate-100 hover:bg-slate-50': !isInvalidTerm(termRow),
@@ -76,7 +77,7 @@
                   }"
                 (click)="selectTerm(termRow.id)"
               >
-                <td class="px-3 py-2 font-mono text-xs text-slate-500">{{ termRow.id }}</td>
+                <td class="px-3 py-2 font-mono text-xs text-slate-500 text-right">{{ termRow.id }}</td>
 
                 <td class="px-3 py-2">
                   <span
@@ -100,7 +101,7 @@
                   </div>
                 </td>
 
-                <td class="px-3 py-2">
+                <td class="px-3 py-2 text-center">
                   <span
                     class="inline-flex items-center rounded-lg border px-2 py-1 text-xs font-semibold"
                     [ngClass]="getTranslationCount(termRow) === 0
@@ -109,6 +110,14 @@
                   >
                     {{ getTranslationCount(termRow) }}
                   </span>
+                </td>
+
+                <td class="px-3 py-2 text-center">
+                  @if (termRow.has_audio) {
+                    <mat-icon style="color: #22c55e;" title="Audio vorhanden">check</mat-icon>
+                  } @else {
+                    <mat-icon style="color: #ef4444;" title="Kein Audio vorhanden">close</mat-icon>
+                  }
                 </td>
               </tr>
             }

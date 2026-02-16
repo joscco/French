@@ -259,6 +259,7 @@ export class EditorComponent {
     setTimeout(() => {
       if (this.saveState() === 'success') {
         this.saveState.set('idle');
+        this.load();
       }
     }, 2000);
   }

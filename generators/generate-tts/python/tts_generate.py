@@ -582,6 +582,62 @@ class TTSHandler(BaseHTTPRequestHandler):
           shutil.copy(public_path, backup_path)
           print(f"[Save] Backup erstellt: {backup_path}")
 
+        # --- NEU: has_audio-Spalte setzen, falls terms.csv oder sentences.csv ---
+        if filename == "terms.csv":
+          import io
+          f_in = io.StringIO(content)
+          reader = csv.DictReader(f_in, delimiter=";")
+          rows = list(reader)
+          fieldnames = list(reader.fieldnames) if reader.fieldnames else []
+          if "has_audio" not in fieldnames:
+            fieldnames.append("has_audio")
+          for row in rows:
+            lang = row.get("lang", "fr")
+            term_id = row.get("id", "")
+            audiofile = OUTPUT_BASE / f"term_{lang}{term_id}.mp3"
+            exists = audiofile.exists()
+            row["has_audio"] = "true" if exists else "false"
+            if not exists:
+              print(f"[Check] Kein Audio für Term: {audiofile} (lang={lang}, id={term_id})")
+          f_out = io.StringIO()
+          writer = csv.DictWriter(f_out, fieldnames=fieldnames, delimiter=";", lineterminator="\n")
+          writer.writeheader()
+          for row in rows:
+            writer.writerow(row)
+          content = f_out.getvalue()
+        elif filename == "sentences.csv":
+          import io
+          f_in = io.StringIO(content)
+          reader = csv.DictReader(f_in, delimiter=";")
+          rows = list(reader)
+          fieldnames = list(reader.fieldnames) if reader.fieldnames else []
+          # Entferne alte has_audio, falls vorhanden
+          fieldnames = [f for f in fieldnames if f != "has_audio"]
+          if "has_audio_fr" not in fieldnames:
+            fieldnames.append("has_audio_fr")
+          if "has_audio_de" not in fieldnames:
+            fieldnames.append("has_audio_de")
+          for row in rows:
+            sentence_id = row.get("id", "")
+            audiofile_fr = OUTPUT_BASE / f"fr{sentence_id}.mp3"
+            audiofile_de = OUTPUT_BASE / f"de{sentence_id}.mp3"
+            exists_fr = audiofile_fr.exists()
+            exists_de = audiofile_de.exists()
+            row["has_audio_fr"] = "true" if exists_fr else "false"
+            row["has_audio_de"] = "true" if exists_de else "false"
+            if not exists_fr:
+              print(f"[Check] Kein französisches Audio für Satz: {audiofile_fr} (id={sentence_id})")
+            if not exists_de:
+              print(f"[Check] Kein deutsches Audio für Satz: {audiofile_de} (id={sentence_id})")
+            if "has_audio" in row:
+              del row["has_audio"]
+          f_out = io.StringIO()
+          writer = csv.DictWriter(f_out, fieldnames=fieldnames, delimiter=";", lineterminator="\n")
+          writer.writeheader()
+          for row in rows:
+            writer.writerow(row)
+          content = f_out.getvalue()
+
         # Direkt in public/data speichern
         # Hot-Reload wird durch Session-Cache im Browser abgefangen
         with open(public_path, "w", encoding="utf-8", newline="") as f:

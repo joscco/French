@@ -29,8 +29,8 @@ export interface TermRow {
   ref?: string;
   unitId?: number;              // introduced in
   tags?: string[];
-  image?: string;
-  audio?: string;
+  has_image?: boolean;
+  has_audio: boolean;
 }
 
 export interface TermLinkRow {
@@ -45,9 +45,9 @@ export interface SentenceRow {
   fr: string;     // template string with [] and {surface|#id}
   de: string;
   note?: string;
-  fr_audio?: string;
-  de_audio?: string;
-  image?: string;
+  has_audio_fr?: boolean;
+  has_audio_de?: boolean;
+  has_image?: boolean;
 }
 
 export interface AuthoringDB {

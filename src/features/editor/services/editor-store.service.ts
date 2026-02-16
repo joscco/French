@@ -1,8 +1,7 @@
 import {parseCSV, toBool, toCSV, toNum} from '../helpers/csv-utils';
 import {computed, Injectable, signal} from '@angular/core';
 import {GroupRow, Lang, SentenceRow, TermLinkRow, TermRow, UnitRow} from '../../../shared/contract/contract';
-import {normalizeSearchText} from '../helpers/term-text';
-import { normalizeForCheck } from '../../app/helpers/normalize';
+import {normalizeForCheck} from '../../app/helpers/normalize';
 
 const TTS_SERVER_URL = 'http://localhost:3001';
 
@@ -13,8 +12,6 @@ export class EditorStore {
   readonly terms = signal<TermRow[]>([]);
   readonly links = signal<TermLinkRow[]>([]);
   readonly sentences = signal<SentenceRow[]>([]);
-
-  private usingTTSServer = false;
 
   readonly termById = computed(() => {
     const termMap = new Map<number, TermRow>();
@@ -39,7 +36,6 @@ export class EditorStore {
     if (ttsServerAvailable) {
       console.log('[EditorStore] Loading from TTS server...');
       await this.loadFromTTSServer();
-      this.usingTTSServer = true;
     } else {
       console.log('[EditorStore] TTS server not available, loading from Angular...');
       await this.loadFromAngular();
@@ -165,16 +161,14 @@ export class EditorStore {
       const id = toNum(row['id']);
       const lang = (row['lang'] || '').trim() as Lang;
       const term_text = (row['term_text'] || '').trim();
-
       if (!id || (lang !== 'fr' && lang !== 'de') || !term_text) {
         continue;
       }
-
       const tagsRaw = (row['tags'] || '').trim();
       const tags = tagsRaw
         ? tagsRaw.split(',').map((tag) => tag.trim()).filter((tag) => tag.length > 0)
         : undefined;
-
+      const has_audio = row['has_audio'] === 'true';
       parsedTerms.push({
         id,
         lang,
@@ -186,10 +180,9 @@ export class EditorStore {
         unitId: toNum(row['unit_id']) ?? undefined,
         ref: (row['ref'] || '').trim() || undefined,
         tags,
-      });
-
+        has_audio,
+      } as any);
     }
-
     parsedTerms.sort((a, b) => a.id - b.id);
     return parsedTerms;
 
@@ -221,7 +214,10 @@ export class EditorStore {
       if (!id || !unitId || !fr || !de) {
         continue;
       }
-      parsedSentences.push({ id, unitId, fr, de, note: (row['note'] || '').trim() || undefined });
+      // NEU: has_audio_fr und has_audio_de
+      const has_audio_fr = row['has_audio_fr'] === 'true';
+      const has_audio_de = row['has_audio_de'] === 'true';
+      parsedSentences.push({ id, unitId, fr, de, note: (row['note'] || '').trim() || undefined, has_audio_fr, has_audio_de });
     }
     parsedSentences.sort((a, b) => a.id - b.id);
     return parsedSentences;
@@ -413,7 +409,7 @@ export class EditorStore {
     );
 
     const termsCsv = toCSV(
-      this.terms().map((termRow) => ({
+      this.terms().map((termRow: any) => ({
         id: termRow.id,
         lang: termRow.lang,
         term_text: termRow.term_text, // includes {…}
@@ -423,10 +419,10 @@ export class EditorStore {
         unit_id: termRow.unitId ?? '',
         ref: termRow.ref ?? '',
         tags: termRow.tags?.join(',') ?? '',
+        has_audio: termRow.has_audio ? 'true' : 'false',
       })),
-      ['id','lang','term_text','category','genus','needs_vowel_article','unit_id','ref','tags'],
+      ['id','lang','term_text','category','genus','needs_vowel_article','unit_id','ref','tags','has_audio'],
     );
-
 
     const linksCsv = toCSV(
       this.links().map(link => ({
@@ -438,14 +434,16 @@ export class EditorStore {
     );
 
     const sentencesCsv = toCSV(
-      this.sentences().map(sentence => ({
+      this.sentences().map((sentence: any) => ({
         id: sentence.id,
         unit_id: sentence.unitId,
         fr: sentence.fr,
         de: sentence.de,
         note: sentence.note ?? '',
+        has_audio_fr: sentence.has_audio_fr ? 'true' : 'false',
+        has_audio_de: sentence.has_audio_de ? 'true' : 'false',
       })),
-      ['id','unit_id','fr','de','note'],
+      ['id','unit_id','fr','de','note','has_audio_fr','has_audio_de'],
     );
 
     return {

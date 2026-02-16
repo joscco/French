@@ -87,6 +87,7 @@ export class TermPickerComponent {
       lang: this.lang(),
       term_text: termText,
       category: (this.newCategory() || undefined) as any,
+      has_audio: false,
     });
 
     this.choose.emit(term);

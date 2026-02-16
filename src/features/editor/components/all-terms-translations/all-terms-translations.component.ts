@@ -1,20 +1,21 @@
-import { CommonModule } from '@angular/common';
-import { Component, computed, ElementRef, HostListener, inject, signal, ViewChild } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import {CommonModule} from '@angular/common';
+import {Component, computed, ElementRef, HostListener, inject, signal, ViewChild} from '@angular/core';
+import {FormsModule} from '@angular/forms';
 
-import { EditorStore } from '../../services/editor-store.service';
-import { Lang, TermRow } from '../../../../shared/contract/contract';
-import { TermEditorComponent } from '../term-editor/term-editor.component';
+import {EditorStore} from '../../services/editor-store.service';
+import {Lang, TermRow} from '../../../../shared/contract/contract';
+import {TermEditorComponent} from '../term-editor/term-editor.component';
 import {getArticle} from '../../../app/helpers/utils';
-import {getSortableText, parseTermDisplayMarkup, TermDisplaySeg} from '../../../../shared/helpers/term-display-markup';
+import {getSortableText, parseTermDisplayMarkup} from '../../../../shared/helpers/term-display-markup';
 import {normalizeForCheck} from '../../../app/helpers/normalize';
+import {MatIcon} from '@angular/material/icon';
 
 type SortKey = 'id' | 'display' | 'count';
 
 @Component({
   standalone: true,
   selector: 'app-all-terms-translations',
-  imports: [CommonModule, FormsModule, TermEditorComponent],
+  imports: [CommonModule, FormsModule, TermEditorComponent, MatIcon],
   templateUrl: './all-terms-translations.component.html',
 })
 export class AllTermsTranslationsComponent {
