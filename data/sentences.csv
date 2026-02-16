@@ -16,10 +16,10 @@ id;unit_id;fr;de;note
 15;1;Le voyage était {crevant|#96}.;Die Reise war {anstrengend|#97}.;
 16;1;C’est un {travail|#98} très {fatigant|#99}.;Das ist eine sehr {ermüdende|#100} {Arbeit|#101}.;
 17;1;{L’examen|#102} était très {dur|#103}.;Die {Prüfung|#104} war sehr {schwer|#105}.;
-18;1;Il a {joué un rôle} important.;Er hat {eine} wichtige {Rolle gespielt}.;
-19;1;Ce {repas} est {dégoûtant}.;Dieses {Essen} ist {ekelhaft}.;
-20;1;La maison est sur une {colline}.;Das Haus liegt auf einem {Hügel}.;
-21;1;Il porte une {sacoche} en {cuir}.;Er trägt eine {Umhängetasche} aus {Leder}.;
+18;1;Il a {joué un rôle|#106} important.;Er hat {eine|#107} wichtige {Rolle gespielt|#107}.;
+19;1;Ce {repas|#109} est {dégoûtant|#108}.;Dieses {Essen|#110} ist {ekelhaft|#111}.;
+20;1;La maison est sur une {colline|#122}.;Das Haus liegt auf einem {Hügel|#121}.;
+21;1;Il porte une {sacoche|#123} en {cuir|#126}.;Er trägt eine {Umhängetasche|#124} aus {Leder|#125}.;
 22;1;J’ai perdu mes {bagages} à {l’aéroport}.;Ich habe mein {Gepäck} am {Flughafen} verloren.;
 23;1;Il a dû {pousser} son vélo en montée.;Er musste sein Rad bergauf {schieben}.;
 24;1;La voiture {roule} {vite}.;Das Auto {fährt} {schnell}.;
@@ -98,10 +98,10 @@ id;unit_id;fr;de;note
 99;1;Le temps semble {suspendu} {au fil des} {conversations}.;Die Zeit scheint {während} der {Gespräche} {stillzustehen}.;
 100;1;J'ai ressenti un {frisson} de {joie}.;Ich habe ein {Kribbeln} vor {Freude} gespürt.;
 101;1;Elle {s'assoit} sur une chaise en {rotin}.;Sie {setzt sich} auf einen {Rattanstuhl}.;
-102;1;J'ai {souri} {malgré moi}.;Ich habe {unwillkürlich} {gelächelt}.;
+102;1;J'ai {souri|#112} {malgré moi|#113}.;Ich habe {unwillkürlich|#114} {gelächelt}.;
 103;1;{Peu à peu}, une {passion} m'a gagnée.;{Nach und nach} hat mich eine {Leidenschaft} ergriffen.;
 104;1;Elle est {rayonnante} de {bonheur}.;Sie {strahlt} vor {Glück}.;
-105;1;Il a {cédé} à la {tentation} d'acheter ce {tableau}.;Er ist der {Versuchung} {erlegen}, das Bild zu kaufen.;
+105;1;Il a {cédé|#115} à la {tentation|#117} d'acheter ce {tableau|#119}.;Er ist der {Versuchung|#118} {erlegen|#116}, das {Bild|#120} zu kaufen.;
 106;1;Le {paysage|#68} est {embrumé|#71} ce matin.;Die {Landschaft|#72} ist heute Morgen {neblig|#73}.;
 107;1;J'ai perdu mon {portefeuille|#69}.;Ich habe meine {Brieftasche|#70} verloren.;
 108;1;Il {a payé|#47} en {petites|#48} {coupures|#49}.;Er {hat|#50} mit {kleinen|#51} {Scheinen|#52} {bezahlt|#50}.;
