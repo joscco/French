@@ -78,8 +78,8 @@ id;lang;term_text;category;genus;needs_vowel_article;unit_id;ref;tags;has_audio
 77;de;Graffiti;noun;n;;;;;true
 78;fr;{s'}insurger {contre qc.};verb;;;;;;true
 79;de;{sich über etw.} empören;verb;;;;;;true
-80;fr;chapelle;noun;;;;;;false
-81;de;Kapelle;noun;f;;;;;false
+80;fr;chapelle;noun;f;;;;;true
+81;de;Kapelle;noun;f;;;;;true
 82;fr;habiter;verb;;;;;;true
 83;fr;en Bavière;expression;;;;;;true
 84;de;wohnen;verb;;;;;;true
@@ -116,7 +116,7 @@ id;lang;term_text;category;genus;needs_vowel_article;unit_id;ref;tags;has_audio
 115;fr;céder {à qc.};verb;;;;;;true
 116;de;{etw.} erliegen;verb;;;;;;true
 117;fr;tentation;noun;f;;;;;true
-118;de;Versuchung;noun;f;;;;;false
+118;de;Versuchung;noun;f;;;;;true
 119;fr;tableau;noun;m;;;;;true
 120;de;Bild;noun;n;;;;;true
 121;de;Hügel;noun;m;;;;;true
@@ -128,7 +128,7 @@ id;lang;term_text;category;genus;needs_vowel_article;unit_id;ref;tags;has_audio
 127;fr;frigo;noun;m;;;;;true
 128;fr;rayonnant;adjective;;;;;;true
 129;fr;bonheur;noun;m;;;;;true
-130;fr;pousser {qc.};verb;;;;;;false
+130;fr;pousser {qc.};verb;;;;;;true
 131;de;{etw.} schieben;verb;;;;;;true
 132;fr;négocier {qc.};verb;;;;;;true
 133;fr;peu à peu;expression;;;;;;true
@@ -163,31 +163,31 @@ id;lang;term_text;category;genus;needs_vowel_article;unit_id;ref;tags;has_audio
 162;fr;briller;verb;;;;;;true
 163;de;leuchten;verb;;;;;;true
 164;de;Gesicht;noun;n;;;;;true
-165;fr;mise en scène;;;;;;;false
-166;de;Inszenierung;;;;;;;false
-167;fr;corbeau;;;;;;;false
-168;fr;corneille;;;;;;;false
-169;de;Rabe;;;;;;;false
-170;de;Krähe;;;;;;;false
-171;fr;papillon;;;;;;;false
-172;fr;{se} poser {sur qc.};verb;;;;;;false
-173;de;Schmetterling;;;;;;;false
-174;de;sich auf etw. setzen;verb;;;;;;false
-175;fr;atelier;;;;;;;false
-176;de;Workshop;;;;;;;false
-177;fr;stage;;;;;;;false
-178;fr;entreprise;noun;f;true;;;;false
-179;de;Praktikum;noun;n;;;;;false
-180;de;Unternehmen;noun;n;;;;;false
+165;fr;mise en scène;noun;f;;;;;true
+166;de;Inszenierung;noun;f;;;;;true
+167;fr;corbeau;noun;m;;;;;true
+168;fr;corneille;noun;f;;;;;true
+169;de;Rabe;noun;m;;;;;true
+170;de;Krähe;noun;f;;;;;true
+171;fr;papillon;noun;m;;;;;true
+172;fr;{se} poser {sur qc.};verb;;;;;;true
+173;de;Schmetterling;noun;m;;;;;true
+174;de;{sich auf etw.} setzen;verb;;;;;;true
+175;fr;atelier;noun;m;true;;;;true
+176;de;Workshop;noun;m;;;;;true
+177;fr;stage;noun;m;;;;;true
+178;fr;entreprise;noun;f;true;;;;true
+179;de;Praktikum;noun;n;;;;;true
+180;de;Unternehmen;noun;n;;;;;true
 181;fr;écureuil;noun;m;true;;;;true
 182;fr;grimper;verb;;;;;;true
-183;de;Eichhörnchen;noun;n;;;;;false
+183;de;Eichhörnchen;noun;n;;;;;true
 184;de;klettern;verb;;;;;;true
-185;fr;moineau;noun;m;;;;;false
-186;fr;picorer {qc.};verb;;;;;;false
-187;fr;miette;noun;f;;;;;false
-188;de;Spatz;noun;m;;;;;false
-189;de;{etw.} picken;verb;;;;;;false
+185;fr;moineau;noun;m;;;;;true
+186;fr;picorer {qc.};verb;;;;;;true
+187;fr;miette;noun;f;;;;;true
+188;de;Spatz;noun;m;;;;;true
+189;de;{etw.} picken;verb;;;;;;true
 190;de;Krümel;noun;m;;;;;true
 191;fr;escargot;noun;m;true;;;;true
 192;de;Schnecke;noun;f;;;;;true
@@ -201,4 +201,67 @@ id;lang;term_text;category;genus;needs_vowel_article;unit_id;ref;tags;has_audio
 200;de;strahlend;adjective;;;;;;true
 201;fr;coquille;noun;f;;;;;true
 202;de;{etw.} verhandeln;verb;;;;;;true
-203;de;{etw.} gern tun;verb;;;;;;false
+203;de;{etw.} gern tun;verb;;;;;;true
+204;fr;{s'}assoir {sur qc.};verb;;;;;;true
+205;fr;rotin;noun;m;;;;;true
+206;de;Rattan;noun;n;;;;;true
+207;fr;frisson;noun;m;;;;;true
+208;fr;joie;noun;f;;;;;true
+209;de;Kribbeln;noun;n;;;;;true
+210;de;Freude;noun;f;;;;;true
+211;fr;médecin généraliste;noun;m;;;;;true
+212;de;Hausarzt;noun;m;;;;;true
+213;fr;déclencher {qc.};verb;;;;;;true
+214;de;{etw.} auslösen;verb;;;;;;true
+215;de;von Hand;expression;;;;;;true
+216;fr;à la main;adjective;;;;;;true
+217;fr;perroquet;noun;m;;;;;true
+218;fr;répeter {qc.};verb;;;;;;true
+219;fr;mot;noun;m;;;;;true
+220;de;Papagei;noun;m;;;;;true
+221;de;{etw.} wiederholen;verb;;;;;;true
+222;de;Wort;noun;n;;;;;true
+223;fr;trouver {qc.};verb;;;;;;true
+224;fr;ver de terre;noun;m;;;;;true
+225;de;{etw.} finden;verb;;;;;;true
+226;de;Regenwurm;noun;m;;;;;true
+227;fr;entendre {qc.};verb;;;;;;true
+228;fr;mousse;noun;f;;;;;true
+229;fr;pierre;;;;;;;false
+230;de;Stein;;;;;;;false
+231;de;Moos;noun;n;;;;;true
+232;fr;forêt;;;;;;;false
+233;de;Wald;;;;;;;false
+234;de;Marder;noun;m;;;;;true
+235;fr;vivre;;;;;;;false
+236;de;leben;;;;;;;false
+237;fr;martre;noun;f;;;;;true
+238;fr;coccinelle;;;;;;;false
+239;de;Marienkäfer;;;;;;;false
+240;fr;mésange;;;;;;;false
+241;de;Meise;;;;;;;false
+242;de;Korn;;;;;;;false
+243;fr;graine;;;;;;;false
+244;fr;manger {qc.};;;;;;;false
+245;de;{etw.} fressen;;;;;;;false
+246;fr;rouge-gorge;;;;;;;false
+247;fr;chanter;;;;;;;false
+248;de;Rotkehlchen;;;;;;;false
+249;de;singen;;;;;;;false
+250;fr;pic vert;;;;;;;false
+251;de;{etw.} hören;verb;;;;;;true
+252;de;Grünspecht;;;;;;;false
+253;fr;album photo;;;;;;;false
+254;de;Fotoalbum;;;;;;;false
+255;fr;transcrire qc.;;;;;;;false
+256;de;transkribieren qc.;;;;;;;false
+257;fr;stylo bille;;;;;;;false
+258;de;Kugelschreiber;;;;;;;false
+259;fr;stylo plume;;;;;;;false
+260;de;Füller;;;;;;;false
+261;fr;encrier;;;;;;;false
+262;de;Tintenfass;;;;;;;false
+263;fr;écriture manuscrite;;;;;;;false
+264;de;Schreibschrift;;;;;;;false
+265;fr;caractère d’imprimerie;noun;m;;;;;true
+266;de;Druckbuchstabe;noun;m;;;;;true

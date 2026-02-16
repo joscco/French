@@ -96,8 +96,8 @@ id;unit_id;fr;de;note;has_audio_fr;has_audio_de
 97;1;Les {vendeurs} partagent volontiers des {anecdotes} sur leurs {trésors}.;Die {Verkäufer} erzählen gerne {Anekdoten} über ihre {Schätze}.;;true;false
 98;1;La {convivialité} est {au cœur de} cet {événement}.;Die {Geselligkeit} steht {im Mittelpunkt} dieser {Veranstaltung}.;;true;false
 99;1;Le temps semble {suspendu} {au fil des} {conversations}.;Die Zeit scheint {während} der {Gespräche} {stillzustehen}.;;true;false
-100;1;J'ai ressenti un {frisson} de {joie}.;Ich habe ein {Kribbeln} vor {Freude} gespürt.;;true;false
-101;1;Elle {s'assoit} sur une chaise en {rotin}.;Sie {setzt sich} auf einen {Rattanstuhl}.;;true;true
+100;1;J'ai ressenti un {frisson|#207} de {joie|#208}.;Ich habe ein {Kribbeln|#209} vor {Freude|#210} gespürt.;;true;false
+101;1;Elle {s'assoit sur|#204} une chaise en {rotin|#205}.;Sie {setzt sich auf|#174} einen Stuhl aus {Rattan|#206}.;;true;true
 102;1;J'ai {souri|#112} {malgré moi|#113}.;Ich habe {unwillkürlich|#114} {gelächelt|#137}.;;true;false
 103;1;{Peu à peu|#133}, une {passion|#135} m'a gagnée.;{Nach und nach|#134} hat mich eine {Leidenschaft|#136} ergriffen.;;true;false
 104;1;Elle est {rayonnante|#128} de {bonheur|#129}.;Sie {strahlt|#138} vor {Glück|#139}.;;true;false
@@ -534,27 +534,27 @@ id;unit_id;fr;de;note;has_audio_fr;has_audio_de
 536;13;Elle fait un {stage|#177} dans une {entreprise|#178}.;Sie macht ein {Praktikum|#179} in einem {Unternehmen|#180}.;;false;false
 537;13;L’{écureuil|#181} a {grimpé|#182} dans l’arbre.;Das {Eichhörnchen|#183} {ist|#184} auf den Baum {geklettert|#184}.;;true;true
 538;13;L'{escargot|#191} est très lent.;Die {Schnecke|#192} ist sehr langsam.;;true;true
-539;13;La {limace|#193} n’a pas de coquille.;Die {Nacktschnecke|#195} hat kein {Haus|#194}.;;false;false
+539;13;La {limace|#193} n’a pas de {coquille|#201}.;Die {Nacktschnecke|#195} hat kein {Haus|#194}.;;false;false
 540;13;La {disparition|#196} du chat est {étrange|#197}.;Das {Verschwinden|#198} der Katze ist {seltsam|#199}.;;false;false
-541;13;Le {perroquet} {répète} souvent les mêmes mots.;Der Papagei wiederholt oft dieselben Wörter.;;false;false
-542;13;J’ai {trouvé} un {ver de terre} dans le jardin.;Ich habe einen Regenwurm im Garten gefunden.;;false;false
-543;13;On {entend} le {pic vert} dans les arbres.;Man hört den Grünspecht in den Bäumen.;;false;false
-544;13;Un {rouge-gorge} {chante} près de la fenêtre.;Ein {Rotkehlchen} {singt} in der Nähe des Fensters.;;false;false
-545;13;La {mésange} {mange} des {graines}.;Die {Meise} {frisst} {Körner}.;;false;false
-546;13;Une {coccinelle} {s’est posée sur} mon pull.;Ein {Marienkäfer} {hat sich auf} meinen Pullover {gesetzt}.;;false;false
-547;13;La {martre} {vit} dans la {forêt}.;Der {Marder} lebt im {Wald}.;;false;false
+541;13;Le {perroquet|#217} {répète|#218} souvent les mêmes {mots|#219}.;Der {Papagei|#220} {wiederholt|#221} oft dieselben {Wörter|#222}.;;false;false
+542;13;J’{ai trouvé|#223} un {ver de terre|#224} dans le jardin.;Ich {habe|#225} einen {Regenwurm|#226} im Garten {gefunden|#225}.;;false;false
+543;13;On {entend|#227} le {pic vert|#250} dans les arbres.;Man {hört|#251} den {Grünspecht|#252} in den Bäumen.;;false;false
+544;13;Un {rouge-gorge|#246} {chante|#247} près de la fenêtre.;Ein {Rotkehlchen|#248} {singt|#249} in der Nähe des Fensters.;;false;false
+545;13;La {mésange|#240} {mange|#244} des {graines|#243}.;Die {Meise|#241} {frisst|#245} {Körner|#242}.;;false;false
+546;13;Une {coccinelle|#238} {s’est posée sur|#172} mon pull.;Ein {Marienkäfer|#239} {hat sich auf|#174} meinen Pullover {gesetzt|#174}.;;false;false
+547;13;La {martre|#237} {vit|#235} dans la {forêt|#232}.;Der {Marder|#234} {lebt|#236} im {Wald|#233}.;;false;false
 548;13;Un {moineau|#185} {picore|#186} des {miettes|#187}.;Ein {Spatz|#188} {pickt|#189} {Krümel|#190}.;;false;false
-549;13;Il y a de la {mousse} sur les pierres.;Auf den {Steinen} ist {Moos}.;;false;false
+549;13;Il y a de la {mousse|#228} sur les {pierres|#229}.;Auf den {Steinen|#230} ist {Moos|#231}.;;false;false
 550;13;On {va analyser|#150} ce {jeu de données|#151}.;Wir {werden|#153} diesen {Datensatz|#152} {analysieren|#153}.;;true;true
 551;13;La {chouette|#144} {vole|#145} {sans bruit|#146}.;Die {Eule|#147} {fliegt|#148} {lautlos|#149}.;;true;true
 552;13;Le {hibou|#140} a de grands {yeux|#141}.;Der {Uhu|#142} hat große {Augen|#143}.;;true;true
-553;14;Je vais chez mon {médecin généraliste}.;Ich gehe zu meinem {Hausarzt}.;;false;false
-554;14;Cela a {déclenché} une réaction.;Das hat eine Reaktion {ausgelöst}.;;false;false
-555;14;Il a écrit la lettre {à la main}.;Er hat den Brief {von Hand} geschrieben.;;false;false
-556;14;J’ai regardé un {album photo}.;Ich habe ein {Fotoalbum} angeschaut.;;false;false
-557;14;Elle va {transcrire} le texte.;Sie wird den Text {transkribieren}.;;false;false
-558;14;J’écris avec un {stylo bille}.;Ich schreibe mit einem {Kugelschreiber}.;;false;false
-559;14;Il préfère écrire avec un {stylo plume}.;Er schreibt lieber mit einem {Füller}.;;false;false
-560;14;Il a mis de l’encre dans l’{encrier}.;Er hat Tinte in das {Tintenfass} getan.;;false;false
-561;14;Son {écriture manuscrite} est difficile à lire.;Seine {Schreibschrift} ist schwer zu lesen.;;false;false
-562;14;Il écrit en {caractères d’imprimerie}.;Er schreibt in {Druckbuchstaben}.;;false;false
+553;14;Je vais chez mon {médecin généraliste|#211}.;Ich gehe zu meinem {Hausarzt|#212}.;;false;false
+554;14;Cela a {déclenché|#213} une réaction.;Das hat eine Reaktion {ausgelöst|#214}.;;false;false
+555;14;Il a écrit la lettre {à la main|#216}.;Er hat den Brief {von Hand|#215} geschrieben.;;false;false
+556;14;J’ai regardé un {album photo|#253}.;Ich habe ein {Fotoalbum|#254} angeschaut.;;false;false
+557;14;Elle va {transcrire|#255} le texte.;Sie wird den Text {transkribieren|#256}.;;false;false
+558;14;J’écris avec un {stylo bille|#257}.;Ich schreibe mit einem {Kugelschreiber|#258}.;;false;false
+559;14;Il préfère écrire avec un {stylo plume|#259}.;Er schreibt lieber mit einem {Füller|#260}.;;false;false
+560;14;Il a mis de l’encre dans l’{encrier|#261}.;Er hat Tinte in das {Tintenfass|#262} getan.;;false;false
+561;14;Son {écriture manuscrite|#263} est difficile à lire.;Seine {Schreibschrift|#264} ist schwer zu lesen.;;false;false
+562;14;Il écrit en {caractères d’imprimerie|#265}.;Er schreibt in {Druckbuchstaben|#266}.;;false;false
