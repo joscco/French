@@ -5,8 +5,7 @@
       <app-scrubber
         [isTouchScreen]="isTouchScreen"
         [length]="length()"
-        [thumbTopPct]="thumbTopPct()"
-        [hotspotMask]="hotspotMask()"
+        [currentIndex]="currentIndex()"
         [scrubPreview]="scrubPreview()"
         (pointerDown)="onScrubDown($event)"
         (pointerMove)="onScrubMove($event)"

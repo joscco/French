@@ -3,6 +3,8 @@ import {computed, Injectable, signal} from '@angular/core';
 import {GroupRow, Lang, SentenceRow, TermLinkRow, TermRow, UnitRow} from '../../../shared/contract/contract';
 import {normalizeSearchText} from '../helpers/term-text';
 
+const TTS_SERVER_URL = 'http://localhost:3001';
+
 @Injectable({ providedIn: 'root' })
 export class EditorStore {
   readonly groups = signal<GroupRow[]>([]);
@@ -10,6 +12,8 @@ export class EditorStore {
   readonly terms = signal<TermRow[]>([]);
   readonly links = signal<TermLinkRow[]>([]);
   readonly sentences = signal<SentenceRow[]>([]);
+
+  private usingTTSServer = false;
 
   readonly termById = computed(() => {
     const termMap = new Map<number, TermRow>();
@@ -28,6 +32,49 @@ export class EditorStore {
   });
 
   async loadAll(): Promise<void> {
+    // Versuche zuerst vom TTS-Server zu laden (verhindert Hot-Reload bei Speichern)
+    const ttsServerAvailable = await this.checkTTSServer();
+
+    if (ttsServerAvailable) {
+      console.log('[EditorStore] Loading from TTS server...');
+      await this.loadFromTTSServer();
+      this.usingTTSServer = true;
+    } else {
+      console.log('[EditorStore] TTS server not available, loading from Angular...');
+      await this.loadFromAngular();
+    }
+  }
+
+  private async checkTTSServer(): Promise<boolean> {
+    try {
+      const response = await fetch(`${TTS_SERVER_URL}/health`, { method: 'GET' });
+      return response.ok;
+    } catch {
+      return false;
+    }
+  }
+
+  private async loadFromTTSServer(): Promise<void> {
+    const [groupResponse, unitsResponse, termsResponse, linksResponse, sentencesResponse] = await Promise.all([
+      fetch(`${TTS_SERVER_URL}/data/groups.csv`),
+      fetch(`${TTS_SERVER_URL}/data/units.csv`),
+      fetch(`${TTS_SERVER_URL}/data/terms.csv`),
+      fetch(`${TTS_SERVER_URL}/data/term_links.csv`),
+      fetch(`${TTS_SERVER_URL}/data/sentences.csv`),
+    ]);
+
+    if (!groupResponse.ok || !unitsResponse.ok || !termsResponse.ok || !linksResponse.ok || !sentencesResponse.ok) {
+      throw new Error('Failed to load CSVs from TTS server');
+    }
+
+    this.groups.set(this.parseGroups(await groupResponse.text()));
+    this.units.set(this.parseUnits(await unitsResponse.text()));
+    this.terms.set(this.parseTerms(await termsResponse.text()));
+    this.links.set(this.parseLinks(await linksResponse.text()));
+    this.sentences.set(this.parseSentences(await sentencesResponse.text()));
+  }
+
+  private async loadFromAngular(): Promise<void> {
     const [groupResponse, unitsResponse, termsResponse, linksResponse, sentencesResponse] = await Promise.all([
       fetch('data/groups.csv'),
       fetch('data/units.csv'),
@@ -58,6 +105,7 @@ export class EditorStore {
     this.links.set(this.parseLinks(await linksResponse.text()));
     this.sentences.set(this.parseSentences(await sentencesResponse.text()));
   }
+
 
   private parseGroups(csv: string): GroupRow[] {
     const csvRows = parseCSV(csv);

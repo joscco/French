@@ -16,6 +16,7 @@ export class CardFaceComponent {
   readonly genus = input<Genus | undefined>();
   readonly language = input<Lang>('fr');
   readonly needsVowelArticle = input(false);
+  readonly tags = input<string[] | undefined>();
 
   readonly primarySegments = computed<TermDisplaySeg[]>(() =>
     parseTermDisplayMarkup(this.primary())
@@ -26,6 +27,7 @@ export class CardFaceComponent {
   );
 
   readonly hasSecondary = computed(() => this.secondary().length > 0);
+  readonly hasTags = computed(() => (this.tags() ?? []).length > 0);
 
   protected readonly getArticle = getArticle;
   protected readonly beautifyGenus = beautifyGenus;

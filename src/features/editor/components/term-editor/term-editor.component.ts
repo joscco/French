@@ -431,6 +431,14 @@ export class TermEditorComponent implements OnDestroy {
 
   });
 
+  readonly tagsDisplay = computed(() => {
+    const termRow = this.selectedTerm();
+    if (!termRow?.tags) {
+      return '';
+    }
+    return termRow.tags.join(', ');
+  });
+
   updateTerm(patch: Partial<TermRow>) {
 
     const selectedTermId = this.termId();
@@ -441,6 +449,23 @@ export class TermEditorComponent implements OnDestroy {
 
     this.editorStore.updateTerm(selectedTermId, patch);
 
+  }
+
+  onTagsChanged(value: string) {
+    const tags = value
+      .split(',')
+      .map(tag => tag.trim())
+      .filter(tag => tag.length > 0);
+    this.updateTerm({ tags: tags.length > 0 ? tags : undefined });
+  }
+
+  removeTag(tagToRemove: string) {
+    const termRow = this.selectedTerm();
+    if (!termRow?.tags) {
+      return;
+    }
+    const newTags = termRow.tags.filter(tag => tag !== tagToRemove);
+    this.updateTerm({ tags: newTags.length > 0 ? newTags : undefined });
   }
 
   onCategoryChanged(newCategory: string) {

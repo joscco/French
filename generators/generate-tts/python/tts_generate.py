@@ -520,6 +520,40 @@ class TTSHandler(BaseHTTPRequestHandler):
       self.send_response(500)
       self.end_headers()
 
+  def _serve_csv_file(self, filename: str):
+    """Serve a CSV file from the data directory."""
+    # Sicherheit: Nur erlaubte CSV-Dateien, keine Pfad-Traversal
+    allowed_files = ["sentences.csv", "terms.csv", "term_links.csv", "units.csv", "groups.csv"]
+
+    if ".." in filename or "/" in filename or filename not in allowed_files:
+      self.send_response(400)
+      self.end_headers()
+      return
+
+    file_path = PROJECT_ROOT / "public/data" / filename
+
+    if not file_path.exists():
+      self.send_response(404)
+      self.end_headers()
+      return
+
+    try:
+      with open(file_path, "r", encoding="utf-8") as f:
+        content = f.read()
+
+      content_bytes = content.encode("utf-8")
+      self.send_response(200)
+      self.send_header("Content-Type", "text/csv; charset=utf-8")
+      self.send_header("Content-Length", str(len(content_bytes)))
+      self.send_header("Access-Control-Allow-Origin", "*")
+      self.send_header("Cache-Control", "no-cache")
+      self.end_headers()
+      self.wfile.write(content_bytes)
+    except Exception as e:
+      print(f"[CSV] ❌ Fehler beim Laden von {filename}: {e}")
+      self.send_response(500)
+      self.end_headers()
+
   def do_POST(self):
     parsed = urllib.parse.urlparse(self.path)
 
@@ -533,37 +567,37 @@ class TTSHandler(BaseHTTPRequestHandler):
         content = data.get("content", "")
 
         # Nur erlaubte Dateien
-        allowed_files = {
-          "sentences.csv": PROJECT_ROOT / "public/data/sentences.csv",
-          "terms.csv": PROJECT_ROOT / "public/data/terms.csv",
-          "term_links.csv": PROJECT_ROOT / "public/data/term_links.csv",
-          "units.csv": PROJECT_ROOT / "public/data/units.csv",
-          "groups.csv": PROJECT_ROOT / "public/data/groups.csv",
-        }
+        allowed_files = ["sentences.csv", "terms.csv", "term_links.csv", "units.csv", "groups.csv"]
 
         if filename not in allowed_files:
           self._send_json({"success": False, "error": f"File not allowed: {filename}"}, 400)
           return
 
-        file_path = allowed_files[filename]
+        public_path = PROJECT_ROOT / "public/data" / filename
 
-        # Backup erstellen
-        backup_path = file_path.with_suffix(".csv.bak")
-        if file_path.exists():
+        # Backup erstellen (von public/data)
+        backup_path = public_path.with_suffix(".csv.bak")
+        if public_path.exists():
           import shutil
-          shutil.copy(file_path, backup_path)
+          shutil.copy(public_path, backup_path)
           print(f"[Save] Backup erstellt: {backup_path}")
 
-        # Datei speichern
-        with open(file_path, "w", encoding="utf-8", newline="") as f:
+        # Direkt in public/data speichern
+        # Hot-Reload wird durch Session-Cache im Browser abgefangen
+        with open(public_path, "w", encoding="utf-8", newline="") as f:
           f.write(content)
+        print(f"[Save] ✅ Gespeichert: {public_path}")
 
-        print(f"[Save] ✅ Gespeichert: {file_path}")
-        self._send_json({"success": True, "path": str(file_path)})
+        self._send_json({"success": True, "path": str(public_path)})
 
       except Exception as e:
         print(f"[Save] ❌ Fehler: {e}")
         self._send_json({"success": False, "error": str(e)}, 500)
+
+      except Exception as e:
+        print(f"[Save] ❌ Fehler: {e}")
+        self._send_json({"success": False, "error": str(e)}, 500)
+
     else:
       self._send_json({"error": "Not found"}, 404)
 
@@ -574,6 +608,11 @@ class TTSHandler(BaseHTTPRequestHandler):
     # Serve sound files directly to avoid Angular reload
     if parsed.path.startswith("/sounds/"):
       self._serve_sound_file(parsed.path[8:])  # Remove "/sounds/" prefix
+      return
+
+    # Serve CSV files directly to avoid Angular reload on save
+    if parsed.path.startswith("/data/"):
+      self._serve_csv_file(parsed.path[6:])  # Remove "/data/" prefix
       return
 
     if parsed.path == "/generate/sentence":
@@ -624,6 +663,7 @@ def run_server(port: int = 3001):
   print(f"  GET  /generate/sentence?id=123&lang=de")
   print(f"  GET  /generate/term?id=123")
   print(f"  GET  /sounds/<filename>.mp3  (Audio-Dateien)")
+  print(f"  GET  /data/<filename>.csv    (CSV-Dateien)")
   print(f"  GET  /health")
   print(f"  POST /save/csv  (body: {{filename, content}})")
   print()

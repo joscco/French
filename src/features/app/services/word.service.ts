@@ -64,6 +64,8 @@ export class WordService {
           fr_genus: frenchTerm.genus,
           de_genus: germanTerm.genus,
           fr_needs_vowel_article: frenchTerm.needsVowelArticle ?? false,
+          fr_tags: frenchTerm.tags,
+          de_tags: germanTerm.tags,
         },
         frontLanguage,
       });

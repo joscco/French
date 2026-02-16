@@ -21,6 +21,7 @@
             [language]="'fr'"
             [needsVowelArticle]="meta()?.['fr_needs_vowel_article']"
             [genus]="meta()?.['fr_genus']"
+            [tags]="meta()?.['fr_tags']"
           />
         } @else {
           <app-card-face
@@ -29,6 +30,7 @@
             [language]="'de'"
             [needsVowelArticle]="false"
             [genus]="meta()?.['de_genus']"
+            [tags]="meta()?.['de_tags']"
           />
         }
 

@@ -23,7 +23,18 @@
             "assets": [
               {
                 "glob": "**/*",
-                "input": "public"
+                "input": "public",
+                "ignore": ["data/**", "sounds/**"]
+              },
+              {
+                "glob": "**/*",
+                "input": "public/data",
+                "output": "data"
+              },
+              {
+                "glob": "**/*",
+                "input": "public/sounds",
+                "output": "sounds"
               }
             ],
             "styles": [
@@ -58,7 +69,8 @@
           "builder": "@angular/build:dev-server",
           "options": {
             "liveReload": true,
-            "watch": true
+            "watch": false,
+            "buildTarget": "FrenchCourse:build:development"
           },
           "configurations": {
             "production": {

@@ -19,6 +19,8 @@ export interface WordCard {
     fr_genus?: Genus;
     de_genus?: Genus;
     fr_needs_vowel_article?: boolean;
+    fr_tags?: string[];
+    de_tags?: string[];
   };
 
   frontLanguage?: Lang;
