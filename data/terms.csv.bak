@@ -1,200 +1,204 @@
-id;lang;term_text;category;genus;needs_vowel_article;unit_id;ref;tags
-1;fr;s'inscrire à {qc.};verb;;;;;
-2;fr;cours de français;noun;m;;;;
-3;de;Französischkurs;noun;m;;;;
-4;de;{sich zu etw.} anmelden;verb;;;;;
-5;fr;magie;noun;f;;;;
-6;fr;lieu;noun;m;;;;
-7;fr;manifestation;noun;f;;;;
-8;de;Hauptstraße;noun;f;;;;
-9;de;Demonstration;noun;f;;;;
-10;fr;rue principale;noun;f;;;;
-11;fr;désinfecter {qc.};verb;;;;;
-12;fr;plaie;noun;f;;;;
-13;de;Wunde;noun;f;;;;
-14;de;{etw.} desinfizieren;verb;;;;;
-15;de;Kühlschrank;noun;m;;;;
-16;de;voll {von etw.};expression;;;;;
-17;de;Gemüse;noun;n;;;;
-18;fr;frigidaire;noun;m;;;;
-19;fr;plein {de qc.};expression;;;;;
-20;fr;légume;noun;m;;;;
-21;fr;oublier {qc.};verb;;;;;
-22;de;{etw.} vergessen;verb;;;;;
-23;de;Magie;noun;f;;;;
-24;de;Ort;noun;m;;;;
-25;fr;camping;noun;m;;;;
-26;fr;au bord {de qc.};expression;;;;;
-27;fr;lac;noun;m;;;;
-28;de;Camping;noun;n;;;;
-29;de;am Rande {von etw.};expression;;;;;
-30;de;See;noun;m;;;;
-31;de;{etw.} spüren;verb;;;;;
-32;fr;ressentir {qc.};verb;;;;;
-33;de;{etw.} mitbringen;verb;;;;;
-34;fr;rapporter {qc.};verb;;;;;
-35;de;Souvenir;noun;n;;;;
-36;fr;souvenir;noun;m;;;;
-37;de;ungewöhnlich;adjective;;;;;
-38;fr;insolite;adjective;;;;;
-39;fr;objet;noun;m;true;;;
-40;de;Gegenstand;noun;m;;;;
-41;de;Markt;noun;m;;;;
-42;de;Gang;noun;m;;;;
-43;de;{etw.} durchschlendern;verb;;;;;
-44;fr;arpenter {qc.};verb;;;;;
-45;fr;allée;noun;f;true;;;
-46;fr;marché;noun;m;;;;
-47;fr;payer {qc.};verb;;;;;
-48;fr;petit;adjective;;;;;
-49;fr;coupure;noun;f;;;;
-50;de;{etw.} bezahlen;verb;;;;;
-51;de;klein;adjective;;;;;
-52;de;Geldschein;noun;m;;;;
-53;fr;sac de couchage;noun;m;;;;
-54;de;Schlafsack;noun;m;;;;
-55;fr;région viticole;noun;f;;;;
-56;de;Weinbauregion;noun;f;;;;
-57;fr;aimer faire {qc.};verb;;;;;
-58;fr;faire des randonnées;verb;;;;;
-59;de;wandern gehen;verb;;;;;
-60;de;wandern;verb;;;;;
-61;fr;randonner;verb;;;;;
-62;fr;parc naturel;noun;m;;;;
-63;de;Naturpark;noun;m;;;;
-64;fr;randonnée;noun;f;;;;
-65;fr;dénivelé;noun;m;;;;
-66;de;Höhenunterschied;noun;m;;;;
-67;de;Wanderung;noun;f;;;;
-68;fr;paysage;noun;m;;;;
-69;fr;portefeuille;noun;m;;;;
-70;de;Brieftasche;noun;f;;;;
-71;fr;embrumé;adjective;;;;;
-72;de;Landschaft;noun;f;;;;
-73;de;neblig;adjective;;;;;
-74;fr;effacement;noun;m;true;;;
-75;de;Entfernen;noun;n;;;;
-76;fr;graffiti;noun;m;;;;
-77;de;Graffiti;noun;n;;;;
-78;fr;{s'}insurger {contre qc.};verb;;;;;
-79;de;{sich über etw.} empören;verb;;;;;
-80;fr;chapelle;noun;;;;;
-81;de;Kapelle;noun;;;;;
-82;fr;habiter;verb;;;;;
-83;fr;en Bavière;expression;;;;;
-84;de;wohnen;verb;;;;;
-85;de;in Bayern;expression;;;;;
-86;fr;ville;;;;;;
-87;fr;célèbre;;;;;;
-88;fr;station thermale;;;;;;
-89;de;berühmt;;;;;;
-90;de;Stadt;;;;;;
-91;de;Kurort;;;;;;
-92;fr;grand-mère;;;;;;
-93;fr;aller en cure;verb;;;;;
-94;de;Oma;noun;;;;;
-95;de;zur Kur fahren;verb;;;;;
-96;fr;crevant;adjective;;;;;
-97;de;anstrengend;adjective;;;;;
-98;fr;travail;noun;m;;;;
-99;fr;fatigant;adjective;;;;;
-100;de;ermüdend;adjective;;;;;
-101;de;Arbeit;noun;f;;;;
-102;fr;examen;noun;m;true;;;
-103;fr;dur;adjective;;;;;
-104;de;Prüfung;noun;f;;;;
-105;de;schwer;adjective;;;;;
-106;fr;jouer {un} rôle;expression;;;;;
-107;de;{eine} Rolle spielen;expression;;;;;
-108;fr;dégoûtant;adjective;;;;;
-109;fr;repas;noun;m;;;;
-110;de;Essen;noun;n;;;;
-111;de;ekelhaft;adjective;;;;;
-112;fr;sourire;verb;;;;;
-113;fr;faire {qc.} malgré soi;verb;;;;;
-114;de;{etw.} unwillkürlich tun;verb;;;;;
-115;fr;céder {à qc.};verb;;;;;
-116;de;{etw.} erliegen;verb;;;;;
-117;fr;tentation;noun;f;;;;
-118;de;Versuchung;noun;f;;;;
-119;fr;tableau;noun;m;;;;
-120;de;Bild;noun;n;;;;
-121;de;Hügel;noun;m;;;;
-122;fr;colline;noun;f;;;;
-123;fr;sacoche;noun;f;;;;
-124;de;Umhängetasche;noun;f;;;;
-125;de;Leder;noun;n;;;;
-126;fr;cuir;noun;m;;;;
-127;fr;frigo;noun;m;;;;
-128;fr;rayonnant;;;;;;
-129;fr;bonheur;noun;m;;;;
-130;fr;pousser {qc.};verb;;;;;
-131;de;{etw.} schieben;verb;;;;;
-132;fr;négocier;verb;;;;;
-133;fr;peu à peu;expression;;;;;
-134;de;nach und nach;expression;;;;;
-135;fr;passion;noun;f;;;;
-136;de;Leidenschaft;noun;f;;;;
-137;de;lächeln;verb;;;;;
-138;de;strahlen;verb;;;;;
-139;de;Glück;noun;n;;;;
-140;fr;hibou;noun;m;;;;
-141;fr;oeil;noun;m;true;;;
-142;de;Uhu;noun;m;;;;
-143;de;Auge;noun;n;;;;
-144;fr;chouette;noun;f;;;;
-145;fr;voler;verb;;;;;Motion
-146;fr;sans bruit;expression;;;;;
-147;de;Eule;noun;f;;;;
-148;de;fliegen;verb;;;;;
-149;de;lautlos;expression;;;;;
-150;fr;analyser {qc.};verb;;;;;
-151;fr;jeu de données;noun;m;;;;
-152;de;Datensatz;noun;m;;;;
-153;de;{etw.} analysieren;verb;;;;;
-154;fr;dinde;noun;f;;;;
-155;fr;marcher;verb;;;;;
-156;de;Pute;noun;f;;;;
-157;de;laufen;verb;;;;;
-158;fr;rayonner;verb;;;;;
-159;fr;bourse;noun;f;;;;
-160;de;Stipendium;noun;n;;;;
-161;fr;visage;noun;m;;;;
-162;fr;briller;verb;;;;;
-163;de;leuchten;verb;;;;;
-164;de;Gesicht;noun;n;;;;
-165;fr;mise en scène;;;;;;
-166;de;Inszenierung;;;;;;
-167;fr;corbeau;;;;;;
-168;fr;corneille;;;;;;
-169;de;Rabe;;;;;;
-170;de;Krähe;;;;;;
-171;fr;papillon;;;;;;
-172;fr;{se} poser {sur qc.};verb;;;;;
-173;de;Schmetterling;;;;;;
-174;de;sich auf etw. setzen;verb;;;;;
-175;fr;atelier;;;;;;
-176;de;Workshop;;;;;;
-177;fr;stage;;;;;;
-178;fr;entreprise;;;;;;
-179;de;Praktikum;;;;;;
-180;de;Unternehmen;;;;;;
-181;fr;écureuil;noun;m;true;;;
-182;fr;grimper;verb;;;;;
-183;de;Eichhörnchen;;;;;;
-184;de;klettern;verb;;;;;
-185;fr;moineau;;;;;;
-186;fr;picorer {qc.};verb;;;;;
-187;fr;miette;noun;f;;;;
-188;de;Spatz;;;;;;
-189;de;{etw.} picken;;;;;;
-190;de;Krümel;noun;m;;;;
-191;fr;escargot;noun;m;true;;;
-192;de;Schnecke;noun;f;;;;
-193;fr;limace;noun;f;;;;
-194;de;Schneckenhaus;noun;n;;;;
-195;de;Nacktschnecke;noun;f;;;;
-196;fr;disparition;;;;;;
-197;fr;étrange;;;;;;
-198;de;Verschwinden;;;;;;
-199;de;seltsam;;;;;;
+id;lang;term_text;category;genus;needs_vowel_article;unit_id;ref;tags;has_audio
+1;fr;s'inscrire à {qc.};verb;;;;;;true
+2;fr;cours de français;noun;m;;;;;true
+3;de;Französischkurs;noun;m;;;;;true
+4;de;{sich zu etw.} anmelden;verb;;;;;;true
+5;fr;magie;noun;f;;;;;true
+6;fr;lieu;noun;m;;;;;true
+7;fr;manifestation;noun;f;;;;;true
+8;de;Hauptstraße;noun;f;;;;;true
+9;de;Demonstration;noun;f;;;;;true
+10;fr;rue principale;noun;f;;;;;true
+11;fr;désinfecter {qc.};verb;;;;;;true
+12;fr;plaie;noun;f;;;;;true
+13;de;Wunde;noun;f;;;;;true
+14;de;{etw.} desinfizieren;verb;;;;;;true
+15;de;Kühlschrank;noun;m;;;;;true
+16;de;voll {von etw.};expression;;;;;;true
+17;de;Gemüse;noun;n;;;;;true
+18;fr;frigidaire;noun;m;;;;;true
+19;fr;plein {de qc.};expression;;;;;;true
+20;fr;légume;noun;m;;;;;true
+21;fr;oublier {qc.};verb;;;;;;true
+22;de;{etw.} vergessen;verb;;;;;;true
+23;de;Magie;noun;f;;;;;true
+24;de;Ort;noun;m;;;;;true
+25;fr;camping;noun;m;;;;;true
+26;fr;au bord {de qc.};expression;;;;;;true
+27;fr;lac;noun;m;;;;;true
+28;de;Camping;noun;n;;;;;true
+29;de;am Rande {von etw.};expression;;;;;;true
+30;de;See;noun;m;;;;;true
+31;de;{etw.} spüren;verb;;;;;;true
+32;fr;ressentir {qc.};verb;;;;;;true
+33;de;{etw.} mitbringen;verb;;;;;;true
+34;fr;rapporter {qc.};verb;;;;;;true
+35;de;Souvenir;noun;n;;;;;true
+36;fr;souvenir;noun;m;;;;;true
+37;de;ungewöhnlich;adjective;;;;;;true
+38;fr;insolite;adjective;;;;;;true
+39;fr;objet;noun;m;true;;;;true
+40;de;Gegenstand;noun;m;;;;;true
+41;de;Markt;noun;m;;;;;true
+42;de;Gang;noun;m;;;;;true
+43;de;{etw.} durchschlendern;verb;;;;;;true
+44;fr;arpenter {qc.};verb;;;;;;true
+45;fr;allée;noun;f;true;;;;true
+46;fr;marché;noun;m;;;;;true
+47;fr;payer {qc.};verb;;;;;;true
+48;fr;petit;adjective;;;;;;true
+49;fr;coupure;noun;f;;;;;true
+50;de;{etw.} bezahlen;verb;;;;;;true
+51;de;klein;adjective;;;;;;true
+52;de;Geldschein;noun;m;;;;;true
+53;fr;sac de couchage;noun;m;;;;;true
+54;de;Schlafsack;noun;m;;;;;true
+55;fr;région viticole;noun;f;;;;;true
+56;de;Weinbauregion;noun;f;;;;;true
+57;fr;aimer faire {qc.};verb;;;;;;true
+58;fr;faire des randonnées;verb;;;;;;true
+59;de;wandern gehen;verb;;;;;;true
+60;de;wandern;verb;;;;;;true
+61;fr;randonner;verb;;;;;;true
+62;fr;parc naturel;noun;m;;;;;true
+63;de;Naturpark;noun;m;;;;;true
+64;fr;randonnée;noun;f;;;;;true
+65;fr;dénivelé;noun;m;;;;;true
+66;de;Höhenunterschied;noun;m;;;;;true
+67;de;Wanderung;noun;f;;;;;true
+68;fr;paysage;noun;m;;;;;true
+69;fr;portefeuille;noun;m;;;;;true
+70;de;Brieftasche;noun;f;;;;;true
+71;fr;embrumé;adjective;;;;;;true
+72;de;Landschaft;noun;f;;;;;true
+73;de;neblig;adjective;;;;;;true
+74;fr;effacement;noun;m;true;;;;true
+75;de;Entfernen;noun;n;;;;;true
+76;fr;graffiti;noun;m;;;;;true
+77;de;Graffiti;noun;n;;;;;true
+78;fr;{s'}insurger {contre qc.};verb;;;;;;true
+79;de;{sich über etw.} empören;verb;;;;;;true
+80;fr;chapelle;noun;;;;;;false
+81;de;Kapelle;noun;f;;;;;false
+82;fr;habiter;verb;;;;;;true
+83;fr;en Bavière;expression;;;;;;true
+84;de;wohnen;verb;;;;;;true
+85;de;in Bayern;expression;;;;;;true
+86;fr;ville;noun;f;;;;;true
+87;fr;célèbre;adjective;;;;;;true
+88;fr;station thermale;noun;f;;;;;true
+89;de;berühmt;adjective;;;;;;true
+90;de;Stadt;noun;f;;;;;true
+91;de;Kurort;noun;m;;;;;true
+92;fr;grand-mère;noun;f;;;;;true
+93;fr;aller en cure;verb;;;;;;true
+94;de;Oma;noun;f;;;;;true
+95;de;zur Kur fahren;verb;;;;;;true
+96;fr;crevant;adjective;;;;;;true
+97;de;anstrengend;adjective;;;;;;true
+98;fr;travail;noun;m;;;;;true
+99;fr;fatigant;adjective;;;;;;true
+100;de;ermüdend;adjective;;;;;;true
+101;de;Arbeit;noun;f;;;;;true
+102;fr;examen;noun;m;true;;;;true
+103;fr;dur;adjective;;;;;;true
+104;de;Prüfung;noun;f;;;;;true
+105;de;schwer;adjective;;;;;;true
+106;fr;jouer {un} rôle;expression;;;;;;true
+107;de;{eine} Rolle spielen;expression;;;;;;true
+108;fr;dégoûtant;adjective;;;;;;true
+109;fr;repas;noun;m;;;;;true
+110;de;Essen;noun;n;;;;;true
+111;de;ekelhaft;adjective;;;;;;true
+112;fr;sourire;verb;;;;;;true
+113;fr;faire {qc.} malgré soi;verb;;;;;;true
+114;de;{etw.} unwillkürlich tun;verb;;;;;;true
+115;fr;céder {à qc.};verb;;;;;;true
+116;de;{etw.} erliegen;verb;;;;;;true
+117;fr;tentation;noun;f;;;;;true
+118;de;Versuchung;noun;f;;;;;false
+119;fr;tableau;noun;m;;;;;true
+120;de;Bild;noun;n;;;;;true
+121;de;Hügel;noun;m;;;;;true
+122;fr;colline;noun;f;;;;;true
+123;fr;sacoche;noun;f;;;;;true
+124;de;Umhängetasche;noun;f;;;;;true
+125;de;Leder;noun;n;;;;;true
+126;fr;cuir;noun;m;;;;;true
+127;fr;frigo;noun;m;;;;;true
+128;fr;rayonnant;adjective;;;;;;true
+129;fr;bonheur;noun;m;;;;;true
+130;fr;pousser {qc.};verb;;;;;;false
+131;de;{etw.} schieben;verb;;;;;;true
+132;fr;négocier {qc.};verb;;;;;;true
+133;fr;peu à peu;expression;;;;;;true
+134;de;nach und nach;expression;;;;;;true
+135;fr;passion;noun;f;;;;;true
+136;de;Leidenschaft;noun;f;;;;;true
+137;de;lächeln;verb;;;;;;true
+138;de;strahlen;verb;;;;;;true
+139;de;Glück;noun;n;;;;;true
+140;fr;hibou;noun;m;;;;;true
+141;fr;oeil;noun;m;true;;;;true
+142;de;Uhu;noun;m;;;;;true
+143;de;Auge;noun;n;;;;;true
+144;fr;chouette;noun;f;;;;;true
+145;fr;voler;verb;;;;;Motion;true
+146;fr;sans bruit;expression;;;;;;true
+147;de;Eule;noun;f;;;;;true
+148;de;fliegen;verb;;;;;;true
+149;de;lautlos;expression;;;;;;true
+150;fr;analyser {qc.};verb;;;;;;true
+151;fr;jeu de données;noun;m;;;;;true
+152;de;Datensatz;noun;m;;;;;true
+153;de;{etw.} analysieren;verb;;;;;;true
+154;fr;dinde;noun;f;;;;;true
+155;fr;marcher;verb;;;;;;true
+156;de;Pute;noun;f;;;;;true
+157;de;laufen;verb;;;;;;true
+158;fr;rayonner;verb;;;;;;true
+159;fr;bourse;noun;f;;;;;true
+160;de;Stipendium;noun;n;;;;;true
+161;fr;visage;noun;m;;;;;true
+162;fr;briller;verb;;;;;;true
+163;de;leuchten;verb;;;;;;true
+164;de;Gesicht;noun;n;;;;;true
+165;fr;mise en scène;;;;;;;false
+166;de;Inszenierung;;;;;;;false
+167;fr;corbeau;;;;;;;false
+168;fr;corneille;;;;;;;false
+169;de;Rabe;;;;;;;false
+170;de;Krähe;;;;;;;false
+171;fr;papillon;;;;;;;false
+172;fr;{se} poser {sur qc.};verb;;;;;;false
+173;de;Schmetterling;;;;;;;false
+174;de;sich auf etw. setzen;verb;;;;;;false
+175;fr;atelier;;;;;;;false
+176;de;Workshop;;;;;;;false
+177;fr;stage;;;;;;;false
+178;fr;entreprise;noun;f;true;;;;false
+179;de;Praktikum;noun;n;;;;;false
+180;de;Unternehmen;noun;n;;;;;false
+181;fr;écureuil;noun;m;true;;;;true
+182;fr;grimper;verb;;;;;;true
+183;de;Eichhörnchen;noun;n;;;;;false
+184;de;klettern;verb;;;;;;true
+185;fr;moineau;noun;m;;;;;false
+186;fr;picorer {qc.};verb;;;;;;false
+187;fr;miette;noun;f;;;;;false
+188;de;Spatz;noun;m;;;;;false
+189;de;{etw.} picken;verb;;;;;;false
+190;de;Krümel;noun;m;;;;;true
+191;fr;escargot;noun;m;true;;;;true
+192;de;Schnecke;noun;f;;;;;true
+193;fr;limace;noun;f;;;;;true
+194;de;Schneckenhaus;noun;n;;;;;true
+195;de;Nacktschnecke;noun;f;;;;;true
+196;fr;disparition;noun;f;;;;;true
+197;fr;étrange;adjective;;;;;;true
+198;de;Verschwinden;noun;n;;;;;true
+199;de;seltsam;adjective;;;;;;true
+200;de;strahlend;adjective;;;;;;true
+201;fr;coquille;noun;f;;;;;true
+202;de;{etw.} verhandeln;verb;;;;;;true
+203;de;{etw.} gern tun;verb;;;;;;false
