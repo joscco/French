@@ -98,7 +98,7 @@ id;unit_id;fr;de;note
 99;1;Le temps semble {suspendu} {au fil des} {conversations}.;Die Zeit scheint {während} der {Gespräche} {stillzustehen}.;
 100;1;J'ai ressenti un {frisson} de {joie}.;Ich habe ein {Kribbeln} vor {Freude} gespürt.;
 101;1;Elle {s'assoit} sur une chaise en {rotin}.;Sie {setzt sich} auf einen {Rattanstuhl}.;
-102;1;J'ai {souri|#112} {malgré moi|#113}.;Ich habe {unwillkürlich|#114} {gelächelt}.;
+102;1;J'ai {souri|#112} {malgré moi|#113}.;Ich habe {unwillkürlich|#114} {gelächelt|#137}.;
 103;1;{Peu à peu|#133}, une {passion|#135} m'a gagnée.;{Nach und nach|#134} hat mich eine {Leidenschaft|#136} ergriffen.;
 104;1;Elle est {rayonnante|#128} de {bonheur|#129}.;Sie {strahlt} vor {Glück}.;
 105;1;Il a {cédé|#115} à la {tentation|#117} d'acheter ce {tableau|#119}.;Er ist der {Versuchung|#118} {erlegen|#116}, das {Bild|#120} zu kaufen.;
