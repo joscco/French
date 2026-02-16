@@ -7,14 +7,14 @@
             Term #{{ currentTerm.id }}
           </div>
 
-          <!-- Audio Button -->
-          <div class="flex items-center gap-1">
+          <!-- Audio Button (oben) -->
+          <div class="flex items-center gap-2 mb-2">
             @if (audioExists() === null) {
               <span class="text-xs text-slate-400">…</span>
             } @else if (audioExists()) {
               <button
                 type="button"
-                class="flex items-center gap-1 rounded-lg border px-2 py-0.5 text-xs font-semibold transition"
+                class="flex items-center gap-1.5 rounded-lg border px-2 py-1 text-xs font-semibold transition"
                 [ngClass]="isPlaying()
                   ? 'border-emerald-300 bg-emerald-50 text-emerald-700 hover:bg-emerald-100'
                   : 'border-slate-200 bg-white text-slate-600 hover:bg-slate-50'"
@@ -22,9 +22,11 @@
                 [title]="isPlaying() ? 'Stop audio' : 'Play audio'"
               >
                 @if (isPlaying()) {
-                  <span>⏹</span>
+                  <mat-icon>stop</mat-icon>
+                  <span>Stop</span>
                 } @else {
-                  <span>▶</span>
+                  <mat-icon>play_arrow</mat-icon>
+                  <span>Play</span>
                 }
               </button>
 
@@ -32,15 +34,17 @@
               @if (ttsServerAvailable) {
                 <button
                   type="button"
-                  class="flex items-center gap-1 rounded-lg border border-dashed border-slate-300 px-2 py-0.5 text-xs text-slate-500 hover:border-slate-400 hover:bg-slate-50 transition"
+                  class="flex items-center gap-1 rounded-lg border border-dashed border-slate-300 px-2 py-1 text-xs text-slate-500 hover:border-slate-400 hover:bg-slate-50 transition"
                   [disabled]="isGenerating()"
                   (click)="generateAudio()"
                   title="Audio neu generieren"
                 >
                   @if (isGenerating()) {
-                    <span class="animate-spin">⏳</span>
+                    <mat-icon class="animate-spin" fontIcon="hourglass_empty"></mat-icon>
+                    <span>Generiere…</span>
                   } @else {
-                    <span>🔄</span>
+                    <mat-icon fontIcon="autorenew"></mat-icon>
+                    <span>Regenerate</span>
                   }
                 </button>
               }
@@ -49,24 +53,32 @@
               @if (ttsServerAvailable) {
                 <button
                   type="button"
-                  class="flex items-center gap-1 rounded-lg border border-dashed border-slate-300 px-2 py-0.5 text-xs text-slate-500 hover:border-slate-400 hover:bg-slate-50 transition"
+                  class="flex items-center gap-1 rounded-lg border border-dashed border-slate-300 px-2 py-1 text-xs text-slate-500 hover:border-slate-400 hover:bg-slate-50 transition"
                   [disabled]="isGenerating()"
                   (click)="generateAudio()"
                   title="Audio generieren"
                 >
                   @if (isGenerating()) {
-                    <span class="animate-spin">⏳</span>
+                    <mat-icon class="animate-spin" fontIcon="hourglass_empty"></mat-icon>
+                    <span>Generiere…</span>
                   } @else {
-                    <span>🎙️</span>
+                    <mat-icon fontIcon="mic"></mat-icon>
+                    <span>Generate</span>
                   }
                 </button>
               } @else {
-                <span class="text-xs text-slate-300" title="TTS Server nicht verfügbar">🔇</span>
+                <span
+                  class="flex items-center gap-1 rounded-lg border border-dashed border-slate-300 px-2 py-1 text-xs text-slate-400"
+                  title="TTS Server nicht verfügbar">
+                  <mat-icon fontIcon="volume_off"></mat-icon>
+                </span>
               }
             }
 
             @if (generateError()) {
-              <span class="text-xs text-rose-600" [title]="generateError()">⚠️</span>
+              <span class="text-xs text-rose-600" [title]="generateError()">
+                <mat-icon>warning</mat-icon>
+              </span>
             }
           </div>
         </div>
@@ -129,43 +141,43 @@
 
       <div class="mt-2 flex flex-wrap gap-2">
         @for (linkedTermRow of linkedTermsWithSegments(); track linkedTermRow.id) {
-          <span class="inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-3 py-1.5 text-sm">
+          <span class="inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-2 py-1 text-sm">
             <!-- Audio buttons for linked term -->
-            <span class="flex items-center gap-0.5">
+            <span class="flex items-center justify-center gap-0.5">
               @if (isLinkedTermAudioExists(linkedTermRow.id) === null) {
-                <span class="text-[10px] text-slate-300">…</span>
+                <span class="text-slate-300">…</span>
               } @else if (isLinkedTermAudioExists(linkedTermRow.id)) {
                 <button
                   type="button"
-                  class="rounded px-1 py-0.5 text-[10px] transition"
+                  class="rounded transition flex items-center"
                   [ngClass]="isLinkedTermPlaying(linkedTermRow.id)
                     ? 'text-emerald-600 bg-emerald-50'
                     : 'text-slate-400 hover:text-slate-600 hover:bg-slate-50'"
                   (click)="toggleLinkedTermAudio(linkedTermRow.id, linkedTermRow.lang); $event.stopPropagation()"
                   [title]="isLinkedTermPlaying(linkedTermRow.id) ? 'Stop' : 'Play'"
                 >
-                  {{ isLinkedTermPlaying(linkedTermRow.id) ? '⏹' : '▶' }}
+                  <mat-icon>{{ isLinkedTermPlaying(linkedTermRow.id) ? 'stop' : 'play_arrow' }}</mat-icon>
                 </button>
                 @if (ttsServerAvailable) {
                   <button
                     type="button"
-                    class="rounded px-1 py-0.5 text-[10px] text-slate-400 hover:text-slate-600 hover:bg-slate-50 transition"
+                    class="rounded text-slate-400 hover:text-slate-600 hover:bg-slate-50 transition flex items-center"
                     [disabled]="isLinkedTermGenerating(linkedTermRow.id)"
                     (click)="generateLinkedTermAudio(linkedTermRow.id, linkedTermRow.lang); $event.stopPropagation()"
                     title="Neu generieren"
                   >
-                    {{ isLinkedTermGenerating(linkedTermRow.id) ? '⏳' : '🔄' }}
+                    <mat-icon>{{ isLinkedTermGenerating(linkedTermRow.id) ? 'hourglass_empty' : 'autorenew' }}</mat-icon>
                   </button>
                 }
               } @else if (ttsServerAvailable) {
                 <button
                   type="button"
-                  class="rounded px-1 py-0.5 text-[10px] text-slate-400 hover:text-slate-600 hover:bg-slate-50 transition"
+                  class="rounded text-slate-400 hover:text-slate-600 hover:bg-slate-50 transition flex items-center"
                   [disabled]="isLinkedTermGenerating(linkedTermRow.id)"
                   (click)="generateLinkedTermAudio(linkedTermRow.id, linkedTermRow.lang); $event.stopPropagation()"
                   title="Audio generieren"
                 >
-                  {{ isLinkedTermGenerating(linkedTermRow.id) ? '⏳' : '🎙️' }}
+                  <mat-icon>{{ isLinkedTermGenerating(linkedTermRow.id) ? 'hourglass_empty' : 'mic' }}</mat-icon>
                 </button>
               }
             </span>
@@ -268,7 +280,6 @@
           (ngModelChange)="updateTerm({ genus: $event || undefined })"
         >
           <option value="">(none)</option>
-
           @for (genusOption of availableGenusOptions(); track genusOption) {
             <option [value]="genusOption">
               {{ genusLabel[genusOption] }}
@@ -321,7 +332,8 @@
       @if (currentTerm.tags && currentTerm.tags.length > 0) {
         <div class="flex flex-wrap gap-1.5">
           @for (tag of currentTerm.tags; track tag) {
-            <span class="inline-flex items-center gap-1 rounded-full bg-slate-100 px-2.5 py-0.5 text-xs font-medium text-slate-700">
+            <span
+              class="inline-flex items-center gap-1 rounded-full bg-slate-100 px-2.5 py-0.5 text-xs font-medium text-slate-700">
               {{ tag }}
               <button
                 type="button"

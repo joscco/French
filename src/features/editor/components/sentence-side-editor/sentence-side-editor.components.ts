@@ -12,13 +12,14 @@ import {
   replaceFirstExact,
   representativeText,
 } from '../../helpers/sentence-markup';
+import {MatIcon} from '@angular/material/icon';
 
 type OverlayPosition = { x: number; y: number };
 
 @Component({
   standalone: true,
   selector: 'app-sentence-side-editor',
-  imports: [CommonModule, FormsModule, TermPickerComponent],
+  imports: [CommonModule, FormsModule, TermPickerComponent, MatIcon],
   templateUrl: './sentence-side-editor.component.html',
 })
 export class SentenceSideEditorComponent implements OnDestroy {

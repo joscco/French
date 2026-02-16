@@ -20,10 +20,10 @@
             [title]="isPlaying() ? 'Stop audio' : 'Play audio'"
           >
             @if (isPlaying()) {
-              <span>⏹</span>
+              <mat-icon fontIcon="stop"></mat-icon>
               <span>Stop</span>
             } @else {
-              <span>▶</span>
+              <mat-icon fontIcon="play_arrow"></mat-icon>
               <span>Play</span>
             }
           </button>
@@ -38,9 +38,10 @@
               title="Audio neu generieren"
             >
               @if (isGenerating()) {
-                <span class="animate-spin">⏳</span>
+                <mat-icon class="animate-spin" fontIcon="hourglass_empty"></mat-icon>
               } @else {
-                <span>🔄</span>
+                <mat-icon fontIcon="autorenew"></mat-icon>
+                <span>Regenerate</span>
               }
             </button>
           }
@@ -55,22 +56,24 @@
               title="Audio generieren"
             >
               @if (isGenerating()) {
-                <span class="animate-spin">⏳</span>
+                <mat-icon class="animate-spin" fontIcon="hourglass_empty"></mat-icon>
                 <span>Generiere…</span>
               } @else {
-                <span>🎙️</span>
+                <mat-icon fontIcon="mic"></mat-icon>
                 <span>Generate</span>
               }
             </button>
           } @else {
             <span class="flex items-center gap-1 rounded-lg border border-dashed border-slate-300 px-2 py-1 text-xs text-slate-400" title="TTS Server nicht verfügbar">
-              <span>🔇</span>
+              <mat-icon fontIcon="volume_off"></mat-icon>
             </span>
           }
         }
 
         @if (generateError()) {
-          <span class="text-xs text-rose-600" [title]="generateError()">⚠️</span>
+          <span class="text-xs text-rose-600" [title]="generateError()">
+            <mat-icon fontIcon="warning"></mat-icon>
+          </span>
         }
       </div>
     </div>

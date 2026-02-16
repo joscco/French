@@ -90,7 +90,7 @@
                     @if (isNoun(termRow) && getTermArticle(termRow)) {
                       <span class="text-slate-400 mr-0.5">{{ getTermArticle(termRow) }}</span>
                     }
-                    @for (segment of renderDisplaySegments(termRow.term_text); track $index) {
+                    @for (segment of parseTermDisplayMarkup(termRow.term_text); track $index) {
                       @if (segment.kind === 'text') {
                         <span>{{ segment.text }}</span>
                       } @else {

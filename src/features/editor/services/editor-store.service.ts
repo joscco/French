@@ -2,6 +2,7 @@ import {parseCSV, toBool, toCSV, toNum} from '../helpers/csv-utils';
 import {computed, Injectable, signal} from '@angular/core';
 import {GroupRow, Lang, SentenceRow, TermLinkRow, TermRow, UnitRow} from '../../../shared/contract/contract';
 import {normalizeSearchText} from '../helpers/term-text';
+import { normalizeForCheck } from '../../app/helpers/normalize';
 
 const TTS_SERVER_URL = 'http://localhost:3001';
 
@@ -253,33 +254,24 @@ export class EditorStore {
 
 
   searchTerms(lang: Lang, query: string, limit = 50): TermRow[] {
-
-    const searchTerm = normalizeSearchText(query);
+    const searchTerm = normalizeForCheck(query);
     const languageTerms = this.terms().filter((termRow) => termRow.lang === lang);
-
     if (!searchTerm) {
       return languageTerms.slice(0, limit);
     }
-
     const scoredTerms = languageTerms
       .map((termRow) => {
-
         const tagsText = termRow.tags?.join(' ') ?? '';
-        const searchableText = `${normalizeSearchText(termRow.term_text)} ${normalizeSearchText(tagsText)}`.trim();
-
+        const searchableText = `${normalizeForCheck(termRow.term_text)} ${normalizeForCheck(tagsText)}`.trim();
         const score =
           searchableText === searchTerm ? 100 :
             searchableText.startsWith(searchTerm) ? 80 :
               searchableText.includes(searchTerm) ? 60 : 0;
-
         return { termRow, score };
-
       })
       .filter((entry) => entry.score > 0)
       .sort((a, b) => b.score - a.score || a.termRow.id - b.termRow.id);
-
     return scoredTerms.slice(0, limit).map((entry) => entry.termRow);
-
   }
 
   addLink(frenchId: number, germanId: number, priority?: number) {

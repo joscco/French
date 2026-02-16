@@ -7,6 +7,7 @@ import { Lang, TermRow } from '../../../../shared/contract/contract';
 import { TermEditorComponent } from '../term-editor/term-editor.component';
 import {getArticle} from '../../../app/helpers/utils';
 import {getSortableText, parseTermDisplayMarkup, TermDisplaySeg} from '../../../../shared/helpers/term-display-markup';
+import {normalizeForCheck} from '../../../app/helpers/normalize';
 
 type SortKey = 'id' | 'display' | 'count';
 
@@ -27,12 +28,6 @@ export class AllTermsTranslationsComponent {
 
   selectedTermId = signal<number | null>(null);
 
-  renderDisplaySegments(display: string): TermDisplaySeg[] {
-
-    return parseTermDisplayMarkup(display);
-
-  }
-
   isNoun(termRow: TermRow): boolean {
     return (termRow.category ?? '') === 'noun';
   }
@@ -49,10 +44,7 @@ export class AllTermsTranslationsComponent {
   @ViewChild('searchInput') searchInput?: ElementRef<HTMLInputElement>;
 
   private normalizeSearchText(value: string): string {
-    return (value ?? '')
-      .replace(/[\u2018\u2019]/g, "'")
-      .trim()
-      .toLowerCase();
+    return normalizeForCheck(value);
   }
 
   getTranslationCount(termRow: TermRow): number {
@@ -187,4 +179,6 @@ export class AllTermsTranslationsComponent {
       return;
     }
   }
+
+  protected readonly parseTermDisplayMarkup = parseTermDisplayMarkup;
 }

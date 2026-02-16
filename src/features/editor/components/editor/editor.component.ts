@@ -8,6 +8,7 @@ import {SentenceRow} from '../../../../shared/contract/contract';
 import {AllTermsTranslationsComponent} from '../all-terms-translations/all-terms-translations.component';
 import {ExportService} from '../../services/export.service';
 import {TTSService} from '../../services/tts.service';
+import {MatIcon} from '@angular/material/icon';
 
 type LoadState = 'idle' | 'loading' | 'ready' | 'error';
 type SaveState = 'idle' | 'saving' | 'success' | 'error';
@@ -15,7 +16,7 @@ type SaveState = 'idle' | 'saving' | 'success' | 'error';
 @Component({
   standalone: true,
   selector: 'app-bilingual-sentence-editor',
-  imports: [NgClass, FormsModule, SentenceSideEditorComponent, TermEditorComponent, AllTermsTranslationsComponent],
+  imports: [NgClass, FormsModule, SentenceSideEditorComponent, TermEditorComponent, AllTermsTranslationsComponent, MatIcon],
   templateUrl: './editor.component.html',
   host: {'class': 'w-full h-full flex items-center justify-center'},
 })

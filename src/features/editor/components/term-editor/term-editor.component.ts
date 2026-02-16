@@ -8,13 +8,14 @@ import {Genus, Lang, TermCategory, TermRow} from '../../../../shared/contract/co
 import {beautifyGenus, getArticle, reverseLanguage} from '../../../app/helpers/utils';
 import {TermPickerComponent} from '../term-picker/term-picker.component';
 import {parseTermDisplayMarkup, TermDisplaySeg} from '../../../../shared/helpers/term-display-markup';
+import {MatIcon} from '@angular/material/icon';
 
 type OverlayPosition = { x: number; y: number };
 
 @Component({
   standalone: true,
   selector: 'app-term-editor',
-  imports: [CommonModule, FormsModule, TermPickerComponent],
+  imports: [CommonModule, FormsModule, TermPickerComponent, MatIcon],
   templateUrl: './term-editor.component.html',
 })
 export class TermEditorComponent implements OnDestroy {

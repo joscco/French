@@ -28,7 +28,7 @@
       @if (serverAvailable) {
         <button
           type="button"
-          class="rounded-xl border px-3 py-2 text-sm font-semibold transition"
+          class="rounded-xl border px-3 py-2 text-sm font-semibold transition flex items-center gap-2"
           [ngClass]="{
             'border-emerald-300 bg-emerald-50 text-emerald-700': saveState() === 'success',
             'border-rose-300 bg-rose-50 text-rose-700': saveState() === 'error',
@@ -40,26 +40,39 @@
           [title]="saveError() || ''"
         >
           @if (saveState() === 'saving') {
-            ⏳ Speichere…
+            <mat-icon>hourglass_empty</mat-icon>
           } @else if (saveState() === 'success') {
-            ✅ Gespeichert
+            <mat-icon>check_circle</mat-icon>
           } @else if (saveState() === 'error') {
-            ⚠️ Fehler
+            <mat-icon>warning</mat-icon>
           } @else {
-            💾 Speichern
+            <mat-icon>save</mat-icon>
           }
+          <span>
+            @if (saveState() === 'saving') {
+              Speichere…
+            } @else if (saveState() === 'success') {
+              Gespeichert
+            } @else if (saveState() === 'error') {
+              Fehler
+            } @else {
+              Speichern
+            }
+          </span>
         </button>
       }
 
       <!-- Download als Fallback -->
       <button
         type="button"
-        class="rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm font-semibold text-slate-900 hover:bg-slate-50"
+        class="rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm font-semibold
+        text-slate-900 hover:bg-slate-50 flex items-center gap-2"
         (click)="saveAsCSVs()"
         [disabled]="state() !== 'ready'"
         [title]="serverAvailable ? 'Als ZIP herunterladen' : 'Server nicht verfügbar - Download als ZIP'"
       >
-        📥 Download
+        <mat-icon>file_download</mat-icon>
+        <span>Download</span>
       </button>
     </div>
   </div>

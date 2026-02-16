@@ -1,7 +1,7 @@
-import { Component, computed, effect, inject, input, output, signal } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { Lang, TermCategory, TermRow } from '../../../../shared/contract/contract';
-import { EditorStore } from '../../services/editor-store.service';
+import {Component, computed, effect, inject, input, output, signal} from '@angular/core';
+import {FormsModule} from '@angular/forms';
+import {Lang, TermCategory, TermRow} from '../../../../shared/contract/contract';
+import {EditorStore} from '../../services/editor-store.service';
 
 @Component({
   standalone: true,
@@ -47,10 +47,6 @@ export class TermPickerComponent {
 
       if (!this.isQuickCreateDirty() && !(this.quickCreateDisplay() ?? '').trim()) {
         this.quickCreateDisplay.set(suggestedValue);
-      }
-
-      if (!this.isSearchDirty() && !(this.query() ?? '').trim()) {
-        this.query.set(suggestedValue);
       }
     });
   }
