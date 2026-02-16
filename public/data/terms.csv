@@ -227,38 +227,38 @@ id;lang;term_text;category;genus;needs_vowel_article;unit_id;ref;tags;has_audio
 226;de;Regenwurm;noun;m;;;;;true
 227;fr;entendre {qc.};verb;;;;;;true
 228;fr;mousse;noun;f;;;;;true
-229;fr;pierre;;;;;;;false
-230;de;Stein;;;;;;;false
+229;fr;pierre;noun;f;;;;;true
+230;de;Stein;noun;m;;;;;true
 231;de;Moos;noun;n;;;;;true
-232;fr;forêt;;;;;;;false
-233;de;Wald;;;;;;;false
+232;fr;forêt;noun;f;;;;;true
+233;de;Wald;noun;m;;;;;true
 234;de;Marder;noun;m;;;;;true
-235;fr;vivre;;;;;;;false
-236;de;leben;;;;;;;false
+235;fr;vivre;verb;;;;;;true
+236;de;leben;verb;;;;;;true
 237;fr;martre;noun;f;;;;;true
 238;fr;coccinelle;;;;;;;false
-239;de;Marienkäfer;;;;;;;false
+239;de;Marienkäfer;noun;m;;;;;true
 240;fr;mésange;;;;;;;false
-241;de;Meise;;;;;;;false
-242;de;Korn;;;;;;;false
+241;de;Meise;noun;f;;;;;false
+242;de;Korn;noun;n;;;;;true
 243;fr;graine;;;;;;;false
-244;fr;manger {qc.};;;;;;;false
-245;de;{etw.} fressen;;;;;;;false
+244;fr;manger {qc.};verb;;;;;;true
+245;de;{etw.} fressen;verb;;;;;;true
 246;fr;rouge-gorge;;;;;;;false
-247;fr;chanter;;;;;;;false
-248;de;Rotkehlchen;;;;;;;false
-249;de;singen;;;;;;;false
-250;fr;pic vert;;;;;;;false
+247;fr;chanter;verb;;;;;;true
+248;de;Rotkehlchen;noun;n;;;;;true
+249;de;singen;verb;;;;;;true
+250;fr;pic vert;noun;m;;;;;true
 251;de;{etw.} hören;verb;;;;;;true
-252;de;Grünspecht;;;;;;;false
+252;de;Grünspecht;noun;m;;;;;true
 253;fr;album photo;;;;;;;false
 254;de;Fotoalbum;;;;;;;false
-255;fr;transcrire qc.;;;;;;;false
-256;de;transkribieren qc.;;;;;;;false
+255;fr;transcrire {qc.};verb;;;;;;true
+256;de;{etw.} transkribieren;verb;;;;;;true
 257;fr;stylo bille;;;;;;;false
 258;de;Kugelschreiber;;;;;;;false
-259;fr;stylo plume;;;;;;;false
-260;de;Füller;;;;;;;false
+259;fr;stylo plume;noun;m;;;;;true
+260;de;Füller;noun;m;;;;;true
 261;fr;encrier;;;;;;;false
 262;de;Tintenfass;;;;;;;false
 263;fr;écriture manuscrite;;;;;;;false

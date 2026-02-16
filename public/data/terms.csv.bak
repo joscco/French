@@ -209,56 +209,56 @@ id;lang;term_text;category;genus;needs_vowel_article;unit_id;ref;tags;has_audio
 208;fr;joie;noun;f;;;;;true
 209;de;Kribbeln;noun;n;;;;;true
 210;de;Freude;noun;f;;;;;true
-211;fr;médecin généraliste;noun;m;;;;;false
-212;de;Hausarzt;noun;m;;;;;false
-213;fr;déclencher {qc.};verb;;;;;;false
-214;de;{etw.} auslösen;verb;;;;;;false
-215;de;von Hand;expression;;;;;;false
-216;fr;à la main;adjective;;;;;;false
-217;fr;perroquet;noun;m;;;;;false
-218;fr;répeter {qc.};verb;;;;;;false
-219;fr;mot;noun;m;;;;;false
-220;de;Papagei;noun;m;;;;;false
-221;de;{etw.} wiederholen;verb;;;;;;false
-222;de;Wort;noun;n;;;;;false
-223;fr;trouver {qc.};verb;;;;;;false
-224;fr;ver de terre;noun;m;;;;;false
-225;de;etw. finden;verb;;;;;;false
-226;de;Regenwurm;noun;m;;;;;false
-227;fr;entendre {qc.};verb;;;;;;false
-228;fr;mousse;noun;f;;;;;false
-229;fr;pierre;;;;;;;false
-230;de;Stein;;;;;;;false
-231;de;Moos;noun;n;;;;;false
-232;fr;forêt;;;;;;;false
-233;de;Wald;;;;;;;false
-234;de;Marder;noun;m;;;;;false
-235;fr;vivre;;;;;;;false
-236;de;leben;;;;;;;false
-237;fr;martre;noun;f;;;;;false
+211;fr;médecin généraliste;noun;m;;;;;true
+212;de;Hausarzt;noun;m;;;;;true
+213;fr;déclencher {qc.};verb;;;;;;true
+214;de;{etw.} auslösen;verb;;;;;;true
+215;de;von Hand;expression;;;;;;true
+216;fr;à la main;adjective;;;;;;true
+217;fr;perroquet;noun;m;;;;;true
+218;fr;répeter {qc.};verb;;;;;;true
+219;fr;mot;noun;m;;;;;true
+220;de;Papagei;noun;m;;;;;true
+221;de;{etw.} wiederholen;verb;;;;;;true
+222;de;Wort;noun;n;;;;;true
+223;fr;trouver {qc.};verb;;;;;;true
+224;fr;ver de terre;noun;m;;;;;true
+225;de;{etw.} finden;verb;;;;;;true
+226;de;Regenwurm;noun;m;;;;;true
+227;fr;entendre {qc.};verb;;;;;;true
+228;fr;mousse;noun;f;;;;;true
+229;fr;pierre;noun;f;;;;;true
+230;de;Stein;noun;m;;;;;true
+231;de;Moos;noun;n;;;;;true
+232;fr;forêt;noun;f;;;;;true
+233;de;Wald;noun;m;;;;;true
+234;de;Marder;noun;m;;;;;true
+235;fr;vivre;verb;;;;;;true
+236;de;leben;verb;;;;;;true
+237;fr;martre;noun;f;;;;;true
 238;fr;coccinelle;;;;;;;false
-239;de;Marienkäfer;;;;;;;false
+239;de;Marienkäfer;noun;m;;;;;false
 240;fr;mésange;;;;;;;false
-241;de;Meise;;;;;;;false
-242;de;Korn;;;;;;;false
+241;de;Meise;noun;f;;;;;false
+242;de;Korn;noun;n;;;;;true
 243;fr;graine;;;;;;;false
-244;fr;manger {qc.};;;;;;;false
-245;de;{etw.} fressen;;;;;;;false
+244;fr;manger {qc.};verb;;;;;;true
+245;de;{etw.} fressen;verb;;;;;;true
 246;fr;rouge-gorge;;;;;;;false
-247;fr;chanter;;;;;;;false
-248;de;Rotkehlchen;;;;;;;false
-249;de;singen;;;;;;;false
-250;fr;pic vert;;;;;;;false
-251;de;{etw.} hören;verb;;;;;;false
-252;de;Grünspecht;;;;;;;false
+247;fr;chanter;verb;;;;;;true
+248;de;Rotkehlchen;noun;n;;;;;true
+249;de;singen;verb;;;;;;true
+250;fr;pic vert;noun;m;;;;;true
+251;de;{etw.} hören;verb;;;;;;true
+252;de;Grünspecht;noun;m;;;;;true
 253;fr;album photo;;;;;;;false
 254;de;Fotoalbum;;;;;;;false
-255;fr;transcrire qc.;;;;;;;false
-256;de;transkribieren qc.;;;;;;;false
+255;fr;transcrire {qc.};verb;;;;;;true
+256;de;{etw.} transkribieren;verb;;;;;;true
 257;fr;stylo bille;;;;;;;false
 258;de;Kugelschreiber;;;;;;;false
-259;fr;stylo plume;;;;;;;false
-260;de;Füller;;;;;;;false
+259;fr;stylo plume;noun;m;;;;;true
+260;de;Füller;noun;m;;;;;true
 261;fr;encrier;;;;;;;false
 262;de;Tintenfass;;;;;;;false
 263;fr;écriture manuscrite;;;;;;;false
