@@ -16,9 +16,9 @@ type SortKey = 'id' | 'display' | 'count';
   standalone: true,
   selector: 'app-all-terms-translations',
   imports: [CommonModule, FormsModule, TermEditorComponent, MatIcon],
-  templateUrl: './all-terms-table.component.html',
+  templateUrl: './terms-table.component.html',
 })
-export class AllTermsTableComponent {
+export class TermsTableComponent {
   private readonly store = inject(EditorStore);
 
   // filters

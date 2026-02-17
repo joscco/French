@@ -2,17 +2,14 @@ import {Component, computed, inject, signal} from '@angular/core';
 import {NgClass} from '@angular/common';
 import {FormsModule} from '@angular/forms';
 import {MatIcon} from '@angular/material/icon';
-
-import {TermEditorComponent} from '../term-editor/term-editor.component';
-import {SentenceSideEditorComponent} from '../sentence-side-editor/sentence-side-editor.components';
-import {AllTermsTableComponent} from '../terms-table/all-terms-table.component';
+import {TermsTableComponent} from '../terms-table/terms-table.component';
 
 import {EditorStore} from '../../services/editor-store.service';
 import {ExportService} from '../../services/export.service';
 import {TTSService} from '../../services/tts.service';
 
 import {SentenceRow} from '../../../../shared/contract/contract';
-import {SentencePairsTableComponent} from '../sentences-table/sentences-table.component';
+import {SentencesTableComponent} from '../sentences-table/sentences-table.component';
 
 type LoadState = 'idle' | 'loading' | 'ready' | 'error';
 type SaveState = 'idle' | 'saving' | 'success' | 'error';
@@ -24,11 +21,8 @@ type SaveState = 'idle' | 'saving' | 'success' | 'error';
     NgClass,
     FormsModule,
     MatIcon,
-    SentenceSideEditorComponent,
-    TermEditorComponent,
-    AllTermsTableComponent,
-    SentencePairsTableComponent,
-    SentencePairsTableComponent,
+    TermsTableComponent,
+    SentencesTableComponent,
   ],
   templateUrl: './editor.component.html',
   host: { class: 'w-full h-full flex items-center justify-center' },

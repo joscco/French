@@ -265,3 +265,14 @@ id;lang;term_text;category;genus;needs_vowel_article;unit_id;ref;tags;has_audio
 264;de;Schreibschrift;;;;;;;false
 265;fr;caractère d’imprimerie;noun;m;;;;;true
 266;de;Druckbuchstabe;noun;m;;;;;true
+267;de;Geselligkeit;noun;f;;;;;false
+268;de;im Mittelpunkt {von etw.} stehen;verb;;;;;;true
+269;de;Veranstaltung;noun;f;;;;;true
+270;fr;convivialité;noun;f;;;;;true
+271;fr;être au cœur {de qc.};adjective;;;;;;true
+272;fr;événement;noun;m;true;;;;true
+273;fr;conversation;noun;f;;;;;false
+274;fr;au fil de {qc.};expression;;;;;;false
+275;fr;suspendre {qc.};verb;;;;;;false
+276;de;während {etw.};expression;;;;;;false
+277;de;Gespräch;noun;n;;;;;false

@@ -1,0 +1,116 @@
+<div class="flex flex-wrap items-center gap-2 mb-3">
+  <div class="text-sm font-extrabold text-slate-900">Sentences</div>
+  <div class="flex-1"></div>
+
+  <label class="flex items-center gap-2 text-xs text-slate-600">
+    <input type="checkbox" class="h-4 w-4" [ngModel]="onlyIssues()" (ngModelChange)="onlyIssues.set(!!$event)" />
+    Issues only
+  </label>
+
+  <input
+    #searchInput
+    class="w-[280px] rounded-xl border border-slate-200 px-3 py-2 text-sm outline-none focus:border-slate-400 placeholder:text-slate-400"
+    placeholder="Search (FR/DE/note)…"
+    [ngModel]="query()"
+    (ngModelChange)="query.set($event)"
+  />
+</div>
+
+<div class="min-h-0 flex-1 overflow-auto rounded-2xl border border-slate-200">
+  <table class="w-full table-fixed text-sm">
+    <thead class="sticky top-0 z-10 bg-slate-50">
+    <tr class="text-left text-xs font-extrabold uppercase tracking-wide text-slate-500">
+      <th class="w-16 px-3 py-2 text-right">ID</th>
+      <th class="px-3 py-2">FR</th>
+      <th class="px-3 py-2">DE</th>
+      <th class="w-20 px-3 py-2 text-center">Audio</th>
+      <th class="w-20 px-3 py-2 text-center">Unlinked</th>
+      <th class="w-20 px-3 py-2 text-center">Linked</th>
+      <th class="w-24 px-3 py-2 text-center">Invalid</th>
+    </tr>
+    </thead>
+
+    <tbody>
+      @if (filteredRows().length === 0) {
+        <tr>
+          <td colspan="7" class="px-3 py-6">
+            <div class="rounded-xl border border-dashed border-slate-300 p-3 text-sm text-slate-600">
+              No sentences match your filter.
+            </div>
+          </td>
+        </tr>
+      } @else {
+        @for (row of filteredRows(); track row.sentence.id) {
+          <tr
+            [attr.data-sentence-row]="row.sentence.id"
+            class="border-t cursor-pointer"
+            [ngClass]="{
+              'bg-slate-100': selectedSentenceId() === row.sentence.id,
+              'border-slate-100 hover:bg-slate-50': selectedSentenceId() !== row.sentence.id
+            }"
+            (click)="onRowClick(row.sentence.id)"
+          >
+            <td class="px-3 py-2 font-mono text-xs text-slate-500 text-right">{{ row.sentence.id }}</td>
+
+            <td class="px-3 py-2">
+              <div class="truncate font-semibold text-slate-900">{{ row.stats.frRep }}</div>
+            </td>
+
+            <td class="px-3 py-2">
+              <div class="truncate font-semibold text-slate-900">{{ row.stats.deRep }}</div>
+            </td>
+
+            <td class="px-3 py-2 text-center">
+              <div class="inline-flex items-center gap-1">
+                @if (row.stats.frAudio === null) {
+                  <span class="text-xs text-slate-400">…</span>
+                } @else if (row.stats.frAudio) {
+                  <mat-icon style="color:#22c55e" title="FR Audio vorhanden">check</mat-icon>
+                } @else {
+                  <mat-icon style="color:#ef4444" title="FR Audio fehlt">close</mat-icon>
+                }
+
+                @if (row.stats.deAudio === null) {
+                  <span class="text-xs text-slate-400">…</span>
+                } @else if (row.stats.deAudio) {
+                  <mat-icon style="color:#22c55e" title="DE Audio vorhanden">check</mat-icon>
+                } @else {
+                  <mat-icon style="color:#ef4444" title="DE Audio fehlt">close</mat-icon>
+                }
+              </div>
+            </td>
+
+            <td class="px-3 py-2 text-center">
+              <span
+                class="inline-flex items-center rounded-lg border px-2 py-1 text-xs font-semibold"
+                [ngClass]="row.stats.unlinkedCount > 0
+                  ? 'border-rose-200 bg-rose-50 text-rose-700'
+                  : 'border-slate-200 bg-white text-slate-700'"
+              >
+                {{ row.stats.unlinkedCount }}
+              </span>
+            </td>
+
+            <td class="px-3 py-2 text-center">
+              <span class="inline-flex items-center rounded-lg border border-slate-200 bg-white px-2 py-1 text-xs font-semibold text-slate-700">
+                {{ row.stats.linkedCount }}
+              </span>
+            </td>
+
+            <td class="px-3 py-2 text-center">
+              <span
+                class="inline-flex items-center rounded-lg border px-2 py-1 text-xs font-semibold"
+                [ngClass]="row.stats.invalidLinkedCount > 0
+                  ? 'border-amber-200 bg-amber-50 text-amber-800'
+                  : 'border-slate-200 bg-white text-slate-700'"
+                [title]="row.stats.invalidLinkedCount > 0 ? 'Referenced terms with missing category/genus' : ''"
+              >
+                {{ row.stats.invalidLinkedCount }}
+              </span>
+            </td>
+          </tr>
+        }
+      }
+    </tbody>
+  </table>
+</div>
