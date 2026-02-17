@@ -244,7 +244,7 @@ id;lang;term_text;category;genus;needs_vowel_article;unit_id;ref;tags;has_audio
 243;fr;graine;;;;;;;false
 244;fr;manger {qc.};verb;;;;;;true
 245;de;{etw.} fressen;verb;;;;;;true
-246;fr;rouge-gorge;;;;;;;false
+246;fr;rouge-gorge;noun;m;;;;;true
 247;fr;chanter;verb;;;;;;true
 248;de;Rotkehlchen;noun;n;;;;;true
 249;de;singen;verb;;;;;;true

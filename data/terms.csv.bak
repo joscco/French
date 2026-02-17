@@ -237,7 +237,7 @@ id;lang;term_text;category;genus;needs_vowel_article;unit_id;ref;tags;has_audio
 236;de;leben;verb;;;;;;true
 237;fr;martre;noun;f;;;;;true
 238;fr;coccinelle;;;;;;;false
-239;de;Marienkäfer;noun;m;;;;;false
+239;de;Marienkäfer;noun;m;;;;;true
 240;fr;mésange;;;;;;;false
 241;de;Meise;noun;f;;;;;false
 242;de;Korn;noun;n;;;;;true
