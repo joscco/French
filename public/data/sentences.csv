@@ -96,12 +96,12 @@ id;unit_id;fr;de;note;has_audio_fr;has_audio_de
 97;1;Les {vendeurs} partagent volontiers des {anecdotes} sur leurs {trésors}.;Die {Verkäufer} erzählen gerne {Anekdoten} über ihre {Schätze}.;;true;false
 98;1;La {convivialité} est {au cœur de} cet {événement}.;Die {Geselligkeit} steht {im Mittelpunkt} dieser {Veranstaltung}.;;true;false
 99;1;Le temps semble {suspendu} {au fil des} {conversations}.;Die Zeit scheint {während} der {Gespräche} {stillzustehen}.;;true;false
-100;1;J'ai ressenti un {frisson|#207} de {joie|#208}.;Ich habe ein {Kribbeln|#209} vor {Freude|#210} gespürt.;;true;false
+100;1;J'ai ressenti un {frisson|#207} de {joie|#208}.;Ich habe ein {Kribbeln|#209} vor {Freude|#210} gespürt.;;true;true
 101;1;Elle {s'assoit sur|#204} une chaise en {rotin|#205}.;Sie {setzt sich auf|#174} einen Stuhl aus {Rattan|#206}.;;true;true
-102;1;J'ai {souri|#112} {malgré moi|#113}.;Ich habe {unwillkürlich|#114} {gelächelt|#137}.;;true;false
-103;1;{Peu à peu|#133}, une {passion|#135} m'a gagnée.;{Nach und nach|#134} hat mich eine {Leidenschaft|#136} ergriffen.;;true;false
-104;1;Elle est {rayonnante|#128} de {bonheur|#129}.;Sie {strahlt|#138} vor {Glück|#139}.;;true;false
-105;1;Il a {cédé|#115} à la {tentation|#117} d'acheter ce {tableau|#119}.;Er ist der {Versuchung|#118} {erlegen|#116}, das {Bild|#120} zu kaufen.;;true;false
+102;1;J'ai {souri|#112} {malgré moi|#113}.;Ich habe {unwillkürlich|#114} {gelächelt|#137}.;;true;true
+103;1;{Peu à peu|#133}, une {passion|#135} m'a gagnée.;{Nach und nach|#134} hat mich eine {Leidenschaft|#136} ergriffen.;;true;true
+104;1;Elle est {rayonnante|#128} de {bonheur|#129}.;Sie {strahlt|#138} vor {Glück|#139}.;;true;true
+105;1;Il a {cédé|#115} à la {tentation|#117} d'acheter ce {tableau|#119}.;Er ist der {Versuchung|#118} {erlegen|#116}, das {Bild|#120} zu kaufen.;;true;true
 106;1;Le {paysage|#68} est {embrumé|#71} ce matin.;Die {Landschaft|#72} ist heute Morgen {neblig|#73}.;;true;true
 107;1;J'ai perdu mon {portefeuille|#69}.;Ich habe meine {Brieftasche|#70} verloren.;;true;true
 108;1;Il {a payé|#47} en {petites|#48} {coupures|#49}.;Er {hat|#50} mit {kleinen|#51} {Scheinen|#52} {bezahlt|#50}.;;true;true
@@ -409,7 +409,7 @@ id;unit_id;fr;de;note;has_audio_fr;has_audio_de
 411;10;La {probabilité} de gagner est très faible.;Die {Gewinnwahrscheinlichkeit} ist sehr gering.;;true;false
 412;10;Le {plagiat} est puni par la {loi}.;{Plagiate} werden {gesetzlich} bestraft.;;true;false
 413;10;Les enfants apprennent la {table de multiplication} à l'école.;Die Kinder lernen in der Schule das {Einmaleins}.;;true;false
-414;11;La police a {interpellé} le {conducteur}.;Die Polizei hat den {Fahrer} {gestellt}.;;true;false
+414;11;La police a {interpelé} le {conducteur}.;Die Polizei hat den {Fahrer} {gestellt}.;;false;false
 415;11;Le {chantier} bloque une partie de la route.;Die {Baustelle} blockiert einen Teil der Straße.;;true;false
 416;11;Il y a des {travaux} dans la rue aujourd'hui.;Heute gibt es {Straßenarbeiten}.;;true;false
 417;11;La {piste cyclable} est fermée pour travaux.;Der {Fahrradweg} ist wegen Bauarbeiten gesperrt.;;true;false
@@ -426,7 +426,7 @@ id;unit_id;fr;de;note;has_audio_fr;has_audio_de
 428;11;Il est interdit de {doubler} ici.;Hier ist {Überholen} verboten.;;true;false
 429;11;Un {scarabée} traverse la route.;Ein {Käfer} überquert die Straße.;;true;false
 430;11;Il a acheté une vieille {Coccinelle}.;Er hat einen alten {VW-Käfer} gekauft.;;true;false
-431;11;On peut passer sur le {périphérique} pour éviter le centre.;Man kann über die {Ringstraße} fahren, um das Zentrum zu vermeiden.;;true;false
+431;11;On peut {passer par} le {périphérique} pour éviter le centre.;Man kann über die {Ringstraße} fahren, um das Zentrum zu vermeiden.;;false;false
 432;11;Il a {klaxonné} pour prévenir le cycliste.;Er hat {gehupt}, um den Radfahrer zu warnen.;;true;false
 433;11;Les {GPS} indiquent un autre {itinéraire}.;Die {GPS-Geräte} zeigen eine andere {Route} an.;;true;false
 434;11;Le {frein} ne répond plus !;Die {Bremse} reagiert nicht mehr!;;true;false
@@ -443,7 +443,7 @@ id;unit_id;fr;de;note;has_audio_fr;has_audio_de
 445;11;La {circulation} est fluide ce soir.;Der {Verkehr} ist heute Abend flüssig.;;true;false
 446;11;Un {bouchon} bloque l'{autoroute}.;Ein {Stau} blockiert die {Autobahn}.;;true;false
 447;11;J'ai remis le {bouchon} sur la bouteille.;Ich habe den {Flaschenverschluss} wieder aufgesetzt.;;true;false
-448;11;J'aime aller dans Paris en {train}.;Ich fahre gern mit dem {Zug} nach Paris hinein.;;true;false
+448;11;J'aime aller à Paris en {train}.;Ich fahre gern mit dem {Zug} nach Paris hinein.;;false;false
 449;11;Ma voiture a une {vignette} Crit'Air 2.;Mein Auto hat eine Crit'Air-{Plakette} 2.;;true;false
 450;11;Le {trottoir} est {encombré} de {scooters}.;Der {Gehweg} ist mit {Rollern} {blockiert}.;;true;false
 451;11;On respire mieux depuis la {réduction} du trafic.;Man atmet besser, seit der Verkehr {reduziert} wurde.;;true;false
@@ -454,7 +454,7 @@ id;unit_id;fr;de;note;has_audio_fr;has_audio_de
 456;11;Il faut être {muni} d'un {justificatif de domicile}.;Man muss einen {Wohnsitznachweis} bei sich haben.;;true;false
 457;11;On doit présenter un {justificatif de domicile}.;Man muss einen {Wohnsitznachweis} vorlegen.;;true;false
 458;11;Il {s'agace} quand on lui {coupe la parole}.;Er wird {genervt}, wenn man ihn {unterbricht}.;;true;false
-459;11;Il ne faut pas {crier} dessus les enfants.;Man sollte Kinder nicht {anschreien}.;;true;false
+459;11;Il ne faut pas {crier} après les enfants.;Man sollte Kinder nicht {anschreien}.;;false;false
 460;11;Il est toujours {jovial} avec ses collègues.;Er ist immer {fröhlich} mit seinen Kollegen.;;true;false
 461;11;Cette {voie} est réservée aux bus.;Diese {Fahrspur} ist für Busse reserviert.;;true;false
 462;11;Au sol, le {traçage} des voies {interpelle} les passants.;Die {Markierung} der Fahrbahnen am Boden {fällt} Passanten {auf}.;;true;false
@@ -469,7 +469,7 @@ id;unit_id;fr;de;note;has_audio_fr;has_audio_de
 471;11;On veut {embellir} le {centre-ville}.;Man möchte die {Innenstadt} {verschönern}.;;true;false
 472;11;La ville veut {végétaliser} les toits.;Die Stadt möchte die Dächer {begrünen}.;;true;false
 473;11;Le centre a été {piétonnisé} cet été.;Das Zentrum wurde diesen Sommer zur {Fußgängerzone} umgewandelt.;;true;false
-474;11;Le terrain est {en pente} derrière la maison.;Hinter dem Haus ist das Gelände {abschüssig}.;;true;false
+474;11;Derrière la maison, le terrain est {en pente} .;Hinter dem Haus ist das Gelände {abschüssig}.;;false;false
 475;11;Ils ont enlevé les {barrières} après les {travaux}.;Sie haben die Absperrungen nach den {Arbeiten} entfernt.;;true;false
 476;11;Les habitants {se sont insurgés contre|#78} le projet.;Die Bewohner haben {sich|#79} über das Projekt {empört}.;;true;false
 477;11;L’{effacement|#74} des {graffitis|#76} a coûté cher.;Die {Entfernung|#75} der {Graffitis|#77} war teuer.;;true;false

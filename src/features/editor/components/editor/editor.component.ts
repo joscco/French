@@ -1,14 +1,18 @@
 import {Component, computed, inject, signal} from '@angular/core';
 import {NgClass} from '@angular/common';
 import {FormsModule} from '@angular/forms';
+import {MatIcon} from '@angular/material/icon';
+
 import {TermEditorComponent} from '../term-editor/term-editor.component';
 import {SentenceSideEditorComponent} from '../sentence-side-editor/sentence-side-editor.components';
+import {AllTermsTableComponent} from '../terms-table/all-terms-table.component';
+
 import {EditorStore} from '../../services/editor-store.service';
-import {SentenceRow} from '../../../../shared/contract/contract';
-import {AllTermsTranslationsComponent} from '../all-terms-translations/all-terms-translations.component';
 import {ExportService} from '../../services/export.service';
 import {TTSService} from '../../services/tts.service';
-import {MatIcon} from '@angular/material/icon';
+
+import {SentenceRow} from '../../../../shared/contract/contract';
+import {SentencePairsTableComponent} from '../sentences-table/sentences-table.component';
 
 type LoadState = 'idle' | 'loading' | 'ready' | 'error';
 type SaveState = 'idle' | 'saving' | 'success' | 'error';
@@ -16,9 +20,18 @@ type SaveState = 'idle' | 'saving' | 'success' | 'error';
 @Component({
   standalone: true,
   selector: 'app-bilingual-sentence-editor',
-  imports: [NgClass, FormsModule, SentenceSideEditorComponent, TermEditorComponent, AllTermsTranslationsComponent, MatIcon],
+  imports: [
+    NgClass,
+    FormsModule,
+    MatIcon,
+    SentenceSideEditorComponent,
+    TermEditorComponent,
+    AllTermsTableComponent,
+    SentencePairsTableComponent,
+    SentencePairsTableComponent,
+  ],
   templateUrl: './editor.component.html',
-  host: {'class': 'w-full h-full flex items-center justify-center'},
+  host: { class: 'w-full h-full flex items-center justify-center' },
 })
 export class EditorComponent {
   private readonly store = inject(EditorStore);
@@ -43,10 +56,9 @@ export class EditorComponent {
 
   groupOptions = computed(() => {
     const options: Array<{ id: number; label: string }> = [];
-
     const allGroups = this.groups();
     for (const group of allGroups) {
-      options.push({id: group.id, label: group.name?.trim() || `Group ${group.id}`});
+      options.push({ id: group.id, label: group.name?.trim() || `Group ${group.id}` });
     }
     return options;
   });
@@ -61,7 +73,7 @@ export class EditorComponent {
 
     for (const unit of allUnitsInGroup) {
       const name = unit.name?.trim() || `Unit ${unit.id}`;
-      options.push({id: unit.id, label: name});
+      options.push({ id: unit.id, label: name });
     }
     return options;
   });
@@ -255,7 +267,6 @@ export class EditorComponent {
 
     this.saveState.set('success');
 
-    // Reset nach 2 Sekunden
     setTimeout(() => {
       if (this.saveState() === 'success') {
         this.saveState.set('idle');
@@ -268,7 +279,6 @@ export class EditorComponent {
     return this.ttsService.serverAvailable();
   }
 
-  // convenience for template
   unitLabel(unitId: number): string {
     const unit = this.store.unitById().get(unitId);
     if (!unit) {
