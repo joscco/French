@@ -149,13 +149,14 @@ export class TermsTableComponent {
       return;
     }
 
-    if (keyboardEvent.key === 'ArrowDown') {
+    // Pfeiltasten und ASDW
+    if (keyboardEvent.key === 'ArrowDown' || keyboardEvent.key.toLowerCase() === 's') {
       keyboardEvent.preventDefault();
       this.setSelectionByOffset(+1);
       return;
     }
 
-    if (keyboardEvent.key === 'ArrowUp') {
+    if (keyboardEvent.key === 'ArrowUp' || keyboardEvent.key.toLowerCase() === 'w') {
       keyboardEvent.preventDefault();
       this.setSelectionByOffset(-1);
       return;

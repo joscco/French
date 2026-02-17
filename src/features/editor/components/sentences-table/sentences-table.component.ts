@@ -1,4 +1,4 @@
-import { Component, inject, computed, signal } from '@angular/core';
+import { Component, inject, computed, signal, HostListener } from '@angular/core';
 import { EditorStore } from '../../services/editor-store.service';
 import { SentenceRow } from '../../../../shared/contract/contract';
 import {TermEditorComponent} from '../term-editor/term-editor.component';
@@ -153,5 +153,58 @@ export class SentencesTableComponent {
 
   private normalize(text: string): string {
     return (text ?? '').replace(/[\u2018\u2019]/g, "'").trim().toLowerCase();
+  }
+
+  @HostListener('document:keydown', ['$event'])
+  onDocumentKeydown(keyboardEvent: KeyboardEvent) {
+    const target = keyboardEvent.target as HTMLElement | null;
+    const isTyping = !!target && (target.tagName === 'INPUT' || target.tagName === 'TEXTAREA' || target.getAttribute('contenteditable') === 'true');
+    if (isTyping) {
+      return;
+    }
+
+    if (keyboardEvent.key === 'Escape') {
+      this.selectedSentenceId.set(null);
+      return;
+    }
+
+    if (keyboardEvent.key === 'ArrowDown' || keyboardEvent.key.toLowerCase() === 's') {
+      keyboardEvent.preventDefault();
+      this.setSelectionByOffset(+1);
+      return;
+    }
+
+    if (keyboardEvent.key === 'ArrowUp' || keyboardEvent.key.toLowerCase() === 'w') {
+      keyboardEvent.preventDefault();
+      this.setSelectionByOffset(-1);
+      return;
+    }
+
+    if (keyboardEvent.key === 'Enter') {
+      keyboardEvent.preventDefault();
+      if (this.selectedSentenceId() != null) {
+        this.selectedSentenceId.set(null);
+      } else {
+        this.setSelectionByOffset(+1);
+      }
+      return;
+    }
+  }
+
+  private setSelectionByOffset(offset: number) {
+    const list = this.filteredSentences();
+    if (!list.length) {
+      this.selectedSentenceId.set(null);
+      return;
+    }
+    const currentId = this.selectedSentenceId();
+    const currentIndex = currentId == null ? -1 : list.findIndex((row) => row.id === currentId);
+    const nextIndexUnclamped = currentIndex < 0 ? (offset > 0 ? 0 : list.length - 1) : currentIndex + offset;
+    const nextIndex = Math.max(0, Math.min(list.length - 1, nextIndexUnclamped));
+    const nextId = list[nextIndex]?.id ?? null;
+    this.selectedSentenceId.set(nextId);
+    if (nextId != null) {
+      // Scroll into view logic if needed
+    }
   }
 }
