@@ -21,8 +21,8 @@ export class SentencesTableComponent {
 
   // Lokale States für Filter und Auswahl
   filter = signal('');
-  selectedGroupId = signal<number>(1);
-  selectedUnitId = signal<number | null>(null);
+  selectedGroupId = signal<number>(-1);
+  selectedUnitId = signal<number>(-1);
   selectedSentenceId = signal<number | null>(null);
   selectedTermId = signal<number | null>(null);
 
@@ -31,7 +31,7 @@ export class SentencesTableComponent {
   sentences = this.store.sentences;
 
   groupOptions = computed(() => {
-    const options: Array<{ id: number; label: string }> = [];
+    const options: Array<{ id: number; label: string }> = [{ id: -1, label: 'All' }];
     const allGroups = this.groups();
     for (const group of allGroups) {
       options.push({ id: group.id, label: group.name?.trim() || `Group ${group.id}` });
@@ -41,8 +41,10 @@ export class SentencesTableComponent {
 
   unitOptions = computed(() => {
     const selectedGroupId = this.selectedGroupId();
-    const options: Array<{ id: number; label: string }> = [];
-    const allUnitsInGroup = this.units().filter(unit => unit.group_id === selectedGroupId);
+    const options: Array<{ id: number; label: string }> = [{ id: -1, label: 'All' }];
+    const allUnitsInGroup = selectedGroupId === -1
+      ? this.units()
+      : this.units().filter(unit => unit.group_id === selectedGroupId);
     for (const unit of allUnitsInGroup) {
       const name = unit.name?.trim() || `Unit ${unit.id}`;
       options.push({ id: unit.id, label: name });
@@ -56,7 +58,16 @@ export class SentencesTableComponent {
     const searchQuery = this.normalize(this.filter());
     const selectedUnit = this.selectedUnitId();
     let sentenceList = this.sentences();
-    sentenceList = sentenceList.filter(sentence => sentence.unitId === selectedUnit);
+    // Filterlogik: Wenn Group gesetzt ist und Unit auf 'All', dann alle Sätze der Gruppe anzeigen
+    const selectedGroup = this.selectedGroupId();
+    if (selectedGroup !== -1 && (selectedUnit === -1 || selectedUnit == null)) {
+      sentenceList = sentenceList.filter(sentence => {
+        const unit = this.units().find(u => u.id === sentence.unitId);
+        return unit && unit.group_id === selectedGroup;
+      });
+    } else if (selectedUnit !== -1) {
+      sentenceList = sentenceList.filter(sentence => sentence.unitId === selectedUnit);
+    }
     const sortedSentences = [...sentenceList].sort((a, b) => b.id - a.id);
     if (!searchQuery) {
       return sortedSentences;
@@ -100,7 +111,7 @@ export class SentencesTableComponent {
     const currentSelection = this.selectedUnitId();
     const visibleUnits = this.unitOptions();
     if (!visibleUnits.length) {
-      this.selectedUnitId.set(null);
+      this.selectedUnitId.set(-1);
       return;
     }
     if (currentSelection == null || !visibleUnits.some(unit => unit.id === currentSelection)) {

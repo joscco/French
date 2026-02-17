@@ -10,10 +10,20 @@
         <input
           type="checkbox"
           class="h-4 w-4"
-          [ngModel]="showMissingOnly()"
-          (ngModelChange)="showMissingOnly.set(!!$event)"
+          [ngModel]="showMissingTranslationOnly()"
+          (ngModelChange)="showMissingTranslationOnly.set(!!$event)"
         />
-        Missing only
+        Missing Translation only
+      </label>
+
+      <label class="flex items-center gap-2 text-xs text-slate-600">
+        <input
+          type="checkbox"
+          class="h-4 w-4"
+          [ngModel]="showMissingAudioOnly()"
+          (ngModelChange)="showMissingAudioOnly.set(!!$event)"
+        />
+        Missing Audio only
       </label>
 
       <select
@@ -34,6 +44,26 @@
         <option value="count">Sort: translations</option>
         <option value="display">Sort: display</option>
         <option value="id">Sort: id</option>
+      </select>
+
+      <select
+        class="rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm outline-none focus:border-slate-400"
+        [ngModel]="selectedGroupId()"
+        (ngModelChange)="selectedGroupId.set($event)"
+      >
+        @for (option of groupOptions(); track option.id) {
+          <option [ngValue]="option.id">{{ option.label }}</option>
+        }
+      </select>
+
+      <select
+        class="rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm outline-none focus:border-slate-400"
+        [ngModel]="selectedUnitId()"
+        (ngModelChange)="selectedUnitId.set($event)"
+      >
+        @for (option of unitOptions(); track option.id) {
+          <option [ngValue]="option.id">{{ option.label }}</option>
+        }
       </select>
 
       <input #searchInput

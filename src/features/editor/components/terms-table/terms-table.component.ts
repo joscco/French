@@ -23,7 +23,8 @@ export class TermsTableComponent {
 
   // filters
   query = signal('');
-  showMissingOnly = signal(false);
+  showMissingTranslationOnly = signal(false);
+  showMissingAudioOnly = signal(false);
   languageFilter = signal<Lang | 'all'>('all');
   sortKey = signal<SortKey>('count');
 
@@ -59,10 +60,38 @@ export class TermsTableComponent {
     return categoryMissing || genusMissing;
   }
 
+  groupOptions = computed(() => {
+    const options: Array<{ id: number; label: string }> = [{ id: -1, label: 'All' }];
+    const allGroups = this.store.groups();
+    for (const group of allGroups) {
+      options.push({ id: group.id, label: group.name?.trim() || `Group ${group.id}` });
+    }
+    return options;
+  });
+
+  unitOptions = computed(() => {
+    const selectedGroupId = this.selectedGroupId();
+    const options: Array<{ id: number; label: string }> = [{ id: -1, label: 'All' }];
+    const allUnitsInGroup = selectedGroupId === -1
+      ? this.store.units()
+      : this.store.units().filter(unit => unit.group_id === selectedGroupId);
+    for (const unit of allUnitsInGroup) {
+      const name = unit.name?.trim() || `Unit ${unit.id}`;
+      options.push({ id: unit.id, label: name });
+    }
+    return options;
+  });
+
+  selectedGroupId = signal<number>(-1);
+  selectedUnitId = signal<number>(-1);
+
   filteredTerms = computed(() => {
     const selectedLanguage = this.languageFilter();
     const normalizedQuery = this.normalizeSearchText(this.query());
-    const missingOnly = this.showMissingOnly();
+    const missingOnly = this.showMissingTranslationOnly();
+    const selectedGroupId = this.selectedGroupId();
+    const selectedUnitId = this.selectedUnitId();
+    const missingAudioOnly = this.showMissingAudioOnly();
 
     let visibleTerms = this.terms();
 
@@ -70,8 +99,20 @@ export class TermsTableComponent {
       visibleTerms = visibleTerms.filter((termRow) => termRow.lang === selectedLanguage);
     }
 
+    if (selectedGroupId !== -1) {
+      visibleTerms = visibleTerms.filter((termRow) => termRow.unitId != null && this.store.units().find(u => u.id === termRow.unitId)?.group_id === selectedGroupId);
+    }
+
+    if (selectedUnitId !== -1) {
+      visibleTerms = visibleTerms.filter((termRow) => termRow.unitId === selectedUnitId);
+    }
+
     if (missingOnly) {
       visibleTerms = visibleTerms.filter((termRow) => this.getTranslationCount(termRow) === 0);
+    }
+
+    if (missingAudioOnly) {
+      visibleTerms = visibleTerms.filter((termRow) => !termRow.has_audio);
     }
 
     if (normalizedQuery.length > 0) {

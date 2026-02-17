@@ -523,7 +523,7 @@ id;unit_id;fr;de;note;has_audio_fr;has_audio_de
 525;12;C’est plus {commode} de venir en métro.;Es ist {bequemer}, mit der U-Bahn zu kommen.;;true;false
 526;12;J’{attends} une réponse.;Ich {erwarte} eine Antwort.;;true;false
 527;12;Il a réussi à {se garer}.;Er hat es geschafft, {einzuparken}.;;true;false
-528;12;Le mur s’{est effondré}.;Die Mauer ist {eingestürzt}.;;true;false
+528;12;Le {mur|#280} {s’est effondré|#281}.;Die {Mauer|#279} {ist eingestürzt|#282}.;;true;false
 529;13;La {dinde|#154} {marchait|#155} lentement dans le jardin.;Die {Pute|#156} {lief|#157} langsam durch den Garten.;;true;true
 530;13;Elle a {rayonné|#158} quand elle a reçu la {bourse|#159}.;Sie hat {gestrahlt|#138}, als sie das {Stipendium|#160} [bekommen hat|bekam].;;true;true
 531;13;Son {visage|#161} a {brillé|#162} de joie.;Ihr {Gesicht|#164} hat vor Freude {geleuchtet|#163}.;;true;true
