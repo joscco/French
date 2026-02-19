@@ -519,8 +519,8 @@ id;unit_id;fr;de;note;has_audio_fr;has_audio_de
 521;12;On suit la {trace} laissée au sol.;Man folgt der am Boden hinterlassenen {Spur}.;;true;false
 522;12;La ville veut {élargir} la route.;Die Stadt will die Straße {verbreitern}.;;true;false
 523;12;Il {regrette} cette décision.;Er {bereut} diese Entscheidung.;;true;false
-524;12;Elle {regrette} son amie.;Sie {trauert} ihrer Freundin {nach}.;;true;false
-525;12;C’est plus {commode} de venir en métro.;Es ist {bequemer}, mit der U-Bahn zu kommen.;;true;false
+524;12;Elle {regrette|#352} son amie.;Sie {trauert|#353} ihrer Freundin {nach|#353}.;;true;true
+525;12;C’est plus {commode|#350} de venir en métro.;Es ist {bequemer|#351}, mit der U-Bahn zu kommen.;;true;false
 526;12;J’{attends|#348} une réponse.;Ich {erwarte|#349} eine Antwort.;;true;false
 527;12;Il a réussi à {se garer|#309}.;Er hat es geschafft, {einzuparken|#310}.;;true;false
 528;12;Le {mur|#280} {s’est effondré|#281}.;Die {Mauer|#279} {ist eingestürzt|#282}.;;true;true
@@ -563,13 +563,13 @@ id;unit_id;fr;de;note;has_audio_fr;has_audio_de
 565;15;Le professeur demande aussi d’utiliser des {lettres minuscules|#341}.;Der Lehrer verlangt auch, {Kleinbuchstaben|#342} zu verwenden.;;false;false
 566;15;Nous avons commencé à utiliser une {tablette|#339} en classe.;Wir haben angefangen, ein {Tablet|#340} im Unterricht zu benutzen.;;false;false
 567;15;Mon fils va à {l’école primaire (f.)|#337} près de chez nous.;Mein Sohn geht in die {Grundschule|#338} in unserer Nähe.;;false;false
-568;15;Après {le collège (m.)|#333}, elle veut aller au {lycée (m.)|#336}.;Nach der {Mittelschule|#334} möchte sie auf das {Gymnasium|#335} gehen.;;false;false
-569;15;Il fait des {études de droit (f.)|#331} à l’université.;Er studiert {Jura|#332} an der Universität.;;false;false
+568;15;Après {le collège|#333}, elle veut aller au {lycée|#336}.;Nach der {Mittelschule|#334} möchte sie auf das {Gymnasium|#335} gehen.;;true;true
+569;15;Il fait des {études de droit|#331} à l’université.;Er studiert {Jura|#332} an der Universität.;;true;true
 570;15;Je dois {me concentrer sur|#330} ce problème.;Ich muss mich {auf|#329} dieses Problem {konzentrieren|#329}.;;false;false
-571;15;Les mathématiques sont {une matière (f.)|#327} difficile pour lui.;Mathematik ist für ihn ein schwieriges {Fach|#328}.;;false;false
-572;15;Demain, nous avons {une interrogation écrite (f.)|#325}.;Morgen haben wir einen {schriftlichen Test|#326}.;;false;false
-573;15;Vendredi, il y a un {devoir sur table|#323} en histoire.;Am Freitag gibt es eine {Klassenarbeit|#324} in Geschichte.;;false;false
-574;15;À la fin de l’année, nous passons {un examen|#321} important.;Am Ende des Jahres machen wir eine wichtige {Prüfung|#322}.;;false;false
+571;15;Les mathématiques sont {une matière|#327} difficile pour lui.;Mathematik ist für ihn ein schwieriges {Fach|#328}.;;true;true
+572;15;Demain, nous avons {une interrogation écrite|#325}.;Morgen haben wir einen {schriftlichen Test|#326}.;;false;false
+573;15;Vendredi, il y a un {devoir sur table|#323} en histoire.;Am Freitag gibt es eine {Klassenarbeit|#324} in Geschichte.;;true;true
+574;15;À la fin de l’année, nous passons {un examen|#321} important.;Am Ende des Jahres machen wir eine wichtige {Prüfung|#322}.;;true;true
 575;15;J’utilise {un protège-cahier|#317} pour protéger mon cahier.;Ich benutze einen {Heftumschlag|#318}, um mein Heft zu schützen.;;true;true
 576;15;J’achète souvent des livres {d’occasion|#315} pour {économiser de l’argent|#319}.;Ich kaufe oft {gebrauchte|#316} Bücher, um {Geld zu sparen|#320}.;;true;true
 577;15;Les enfants écrivent sur une {ardoise|#311} avec un {crayon d'ardoise|#312}.;Die Kinder schreiben auf einer {Schiefertafel|#313} mit einem {Griffel|#314}.;;true;true
