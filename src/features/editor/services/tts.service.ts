@@ -74,7 +74,7 @@ export class TTSService {
     } catch (error) {
       return {
         success: false,
-        error: 'Server nicht erreichbar. Starte den Server mit: ./generators/generate-tts/start_tts_server.sh',
+        error: 'Server nicht erreichbar. Starte den Server mit: ./generators/generate-tts/start_server.sh',
       };
     }
   }

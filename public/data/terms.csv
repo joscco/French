@@ -323,18 +323,18 @@ id;lang;term_text;category;genus;needs_vowel_article;unit_id;ref;tags;has_audio
 322;de;Prüfung;noun;f;;;;;true
 323;fr;devoir sur table;noun;m;;;;;true
 324;de;Klassenarbeit;noun;f;;;;;true
-325;fr;interrogation écrite;noun;f;;;;;false
-326;de;{schriftliche} Test;noun;m;;;;;false
-327;fr;matière;noun;f;;;;;false
-328;de;Fach;;;;;;;false
-329;de;{sich auf etw.} konzentrieren;verb;;;;;;false
-330;fr;{se} concentrer {sur qc.};verb;;;;;;false
-331;fr;études de droit (f.);;;;;;;false
-332;de;Jura;;;;;;;false
-333;fr;le collège (m.);;;;;;;false
-334;de;Mittelschule;;;;;;;false
-335;de;Gymnasium;;;;;;;false
-336;fr;lycée (m.);;;;;;;false
+325;fr;interrogation écrite;noun;f;true;;;;true
+326;de;{schriftliche} Test;noun;m;;;;;true
+327;fr;matière;noun;f;;;;;true
+328;de;Fach;noun;n;;;;;true
+329;de;{sich auf etw.} konzentrieren;verb;;;;;;true
+330;fr;{se} concentrer {sur qc.};verb;;;;;;true
+331;fr;études de droit;noun;fpl;;;;;true
+332;de;Jura{-Studium};noun;n;;;;;true
+333;fr;collège;noun;m;;;;;true
+334;de;Mittelschule;noun;f;;;;;true
+335;de;Gymnasium;noun;n;;;;;true
+336;fr;lycée;noun;m;;;;;true
 337;fr;l’école primaire (f.);;;;;;;false
 338;de;Grundschule;;;;;;;false
 339;fr;une tablette (f.);;;;;;;false
@@ -348,3 +348,7 @@ id;lang;term_text;category;genus;needs_vowel_article;unit_id;ref;tags;has_audio
 347;de;Enkelkinder;;;;;;;false
 348;fr;attendre {qc.};;;;;;;false
 349;de;{etw.} erwarten;;;;;;;false
+350;fr;commode;adjective;;;;;;false
+351;de;bequem;adjective;;;;;;false
+352;fr;regretter {qc.};;;;;;;true
+353;de;{etw.} nachtrauern;verb;;;;;;true

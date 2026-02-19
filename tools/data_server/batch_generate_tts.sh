@@ -2,15 +2,17 @@
 set -euo pipefail
 
 # -------- config --------
-VENV_DIR=".venv-tts"
+VENV_DIR=".venv-data-server"
 PYTHON_BIN="python3"
-PY_SCRIPT="generators/generate-tts/python/tts_generate.py"
-REQ_FILE="generators/generate-tts/requirements-tts.txt"
-ENV_FILE=".env"
-PORT="${1:-3001}"
+PY_SCRIPT="tools/data_server/python/tts_generate.py"
+REQ_FILE="tools/data_server/requirements-tts.txt"
+ENV_FILE=".env"                      # optional
 # ------------------------
 
-echo "▶ TTS Server starten"
+# Forward all args to python script, e.g. ./batch_generate_tts.sh sentences --ids "1-10" --lang fr
+ARGS=("$@")
+
+echo "▶ TTS Batch-Generierung"
 
 # Check Google credentials
 if [ -z "${GOOGLE_APPLICATION_CREDENTIALS:-}" ]; then
@@ -52,14 +54,22 @@ else
   echo "⚠️  $REQ_FILE not found — skipping pip install"
 fi
 
-echo ""
-echo "════════════════════════════════════════════════════════════"
-echo "  TTS Server läuft auf http://localhost:$PORT"
-echo "  Drücke Ctrl+C zum Beenden"
-echo "════════════════════════════════════════════════════════════"
-echo ""
+# Quick hint if .env missing (dotenv will still work if vars are in shell)
+if [ ! -f "$ENV_FILE" ]; then
+  echo "ℹ️  No $ENV_FILE found (ok if you export env vars another way)"
+fi
 
-python "$PY_SCRIPT" server --port "$PORT"
+echo "▶ Running: python -m tools.data_server.python.tts_generate ${ARGS[*]:-}"
+python -m tools.data_server.python.tts_generate "${ARGS[@]}"
+
+STATUS=$?
 
 deactivate || true
 
+if [ $STATUS -eq 0 ]; then
+  echo "✅ Done"
+else
+  echo "❌ Failed"
+fi
+
+exit $STATUS

@@ -37,22 +37,34 @@ npm start
 - Filter für Gruppen, Units, Sprache, Audio-Status, uvm.
 - Material Icons für Aktionen und Status
 
-#### TTS-Server starten
+#### TTS-Server & Batch-Generierung
+
+Die TTS-Skripte und der Server werden jetzt als Python-Module ausgeführt (wichtig für relative Imports):
+
 ```bash
-./generators/generate-tts/start_tts_server.sh
+# Server starten
+./tools/data_server/start_server.sh
+
+# Batch-Generierung
+./tools/data_server/batch_generate_tts.sh sentences --ids "1-10" --lang fr
 ```
-- Setzt GOOGLE_APPLICATION_CREDENTIALS automatisch
-- Erstellt/aktiviert Python venv, installiert Dependencies
-- Startet Server auf http://localhost:3001
+
+Intern wird immer
+
+python -m tools.data_server.python.tts_generate ...
+
+verwendet (nicht mehr direkt python tools/data_server/python/tts_generate.py ...).
+
+Die gesamte Logik ist modularisiert (siehe tools/data_server/python/README.md für Details).
 
 #### Audio-Generierung
 - Einzelgenerierung im Editor (🎙️-Button)
 - Batch-Generierung:
 ```bash
-./generators/generate-tts/generate_tts.sh sentences --ids 1-100 --lang fr
-./generators/generate-tts/generate_tts.sh sentences --ids 1-100 --lang de
-./generators/generate-tts/generate_tts.sh sentences --ids 1-100 --lang both
-./generators/generate-tts/generate_tts.sh terms --ids 1-50
+./generators/generate-tts/batch_generate_tts.sh sentences --ids 1-100 --lang fr
+./generators/generate-tts/batch_generate_tts.sh sentences --ids 1-100 --lang de
+./generators/generate-tts/batch_generate_tts.sh sentences --ids 1-100 --lang both
+./generators/generate-tts/batch_generate_tts.sh terms --ids 1-50
 ```
 - Audio-Dateien: public/sounds/{lang}{id}.mp3, public/sounds/term_{lang}{id}.mp3
 - Statusspalten in CSV werden automatisch aktualisiert
