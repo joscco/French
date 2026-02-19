@@ -31,13 +31,10 @@ export class PracticeHostComponent {
   practiceKind = input<PracticeKind>('sentence');
   selectedLesson = input<LessonOption | undefined>(undefined);
   mode = this.wordService.mode;
-
   index = signal<number>(0);
-  private initialIndexApplied = signal(false);
+
   private shuffledIndices = signal<number[] | null>(null);
-
   private baseVocabList = computed<WordCard[]>(() => this.wordService.words() ?? []);
-
   private baseSentenceList = computed<SentenceVm[]>(() => {
     const selected = this.selectedLesson();
     const allSentenceRows = this.sentenceService.sentences();
@@ -53,7 +50,6 @@ export class PracticeHostComponent {
   });
 
   vocabList = computed<WordCard[]>(() => this.applyShuffleOrder(this.baseVocabList()));
-
   sentenceList = computed<SentenceVm[]>(() => this.applyShuffleOrder(this.baseSentenceList()));
 
   currentListLength = computed(() => {
@@ -85,21 +81,11 @@ export class PracticeHostComponent {
   };
 
   constructor() {
-    // Initiales Setzen des Index aus der URL (einmalig, wenn Liste geladen)
+    this.onCommitIndex(this.routeState.index())
+
     effect(() => {
-      const listLength = this.currentListLength();
-      const routeIndex = this.routeState.index();
-
-      // Warte bis die Liste geladen ist
-      if (listLength === 0) {
-        return;
-      }
-
-      // Nur einmal beim initialen Laden anwenden
-      if (!this.initialIndexApplied()) {
-        this.initialIndexApplied.set(true);
-        this.index.set(this.clamp(routeIndex, listLength));
-      }
+      const _listLength = this.currentListLength();
+      this.onCommitIndex(this.index());
     });
   }
 
@@ -135,14 +121,6 @@ export class PracticeHostComponent {
     this.index.set(0);
     this.routeState.patch({i: 0});
   }
-
-  unshuffle() {
-    this.shuffledIndices.set(null);
-    this.index.set(0);
-    this.routeState.patch({i: 0});
-  }
-
-  isShuffled = computed(() => this.shuffledIndices() !== null);
 
   private applyShuffleOrder<T>(list: T[]): T[] {
     const indices = this.shuffledIndices();
