@@ -1,19 +1,17 @@
 @if (lastVm; as m) {
   <div data-tooltip class="absolute inset-0 pointer-events-none z-50">
     <div
-      class="absolute pointer-events-none"
-      [style.left.px]="x()"
-      [style.top.px]="y()"
-      [style]="'transform: translate(' +
+      class="absolute pointer-events-none left-0 top-0"
+      [style]="'transform: translate3d(' + x() + 'px,' + y() + 'px,0) translate(' +
       (basisX() === 'left' ? '0' : basisX() === 'right' ? '-100' : '-50') +
       '%, calc(-100% - 10px));'"
     >
       <div
         #panel
         data-tooltip
-        class="pointer-events-auto bg-white border border-neutral-200 rounded-2xl px-3 py-2 text-xs shadow-md"
+        class="pointer-events-auto bg-white border border-neutral-200 rounded-2xl px-3 py-2 shadow-md w-max"
       >
-        <div class="flex flex-row items-baseline gap-x-1 text-sm">
+        <div class="flex flex-row items-baseline gap-x-1 text-sm whitespace-nowrap">
           <span>
           @if (m.genus) {
             <span class="italic opacity-50">
@@ -33,11 +31,11 @@
         </div>
 
         @if (m.translations.length) {
-          <div class="mt-2 flex flex-wrap gap-2">
+          <div class="mt-1 flex flex-wrap gap-1 text-xs">
             @for (translation of m.translations; track $index) {
               <span
                 data-tooltip
-                class="px-2 py-1 rounded-lg bg-neutral-200"
+                class="px-1.5 py-1 rounded-md bg-neutral-200"
               >
                 @if (translation.genus) {
                   <span class="italic opacity-50">

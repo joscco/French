@@ -11,22 +11,22 @@ import {
   signal,
   ViewChild,
 } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { MatIconModule } from '@angular/material/icon';
+import {CommonModule} from '@angular/common';
+import {FormsModule} from '@angular/forms';
+import {MatIconModule} from '@angular/material/icon';
 import gsap from 'gsap';
 
-import { TermTooltipOverlayComponent } from '../term-tooltip-overlay/term-tooltip-overlay.component';
-import { PromptMarkupComponent } from '../prompt-markup/prompt-markup.component';
-import { IconButtonComponent } from '../../shared/icon-button/icon-button.component';
-import { PracticeMode } from '../../models/types';
-import { TermLookupService, TermTooltipVm } from '../../services/term-lookup.service';
-import { PracticeRouteStateService } from '../../services/route-state.service';
-import { AnswerCheckService } from '../../services/answer-check.service';
-import { DisplayToken } from '../../helpers/answer-diff';
-import { buildPromptSegments, PromptSegment } from '../../helpers/prompt-markup';
-import { TermRefInSentence } from '../../models/term-ref-in-sentence';
-import { SentenceVm } from '../../models/sentence-vm';
+import {TermTooltipOverlayComponent} from '../term-tooltip-overlay/term-tooltip-overlay.component';
+import {PromptMarkupComponent} from '../prompt-markup/prompt-markup.component';
+import {IconButtonComponent} from '../../shared/icon-button/icon-button.component';
+import {PracticeMode} from '../../models/types';
+import {TermLookupService, TermTooltipVm} from '../../services/term-lookup.service';
+import {PracticeRouteStateService} from '../../services/route-state.service';
+import {AnswerCheckService} from '../../services/answer-check.service';
+import {DisplayToken} from '../../helpers/answer-diff';
+import {buildPromptSegments, PromptSegment} from '../../helpers/prompt-markup';
+import {TermRefInSentence} from '../../models/term-ref-in-sentence';
+import {SentenceVm} from '../../models/sentence-vm';
 
 @Component({
   selector: 'app-sentence-card',
@@ -36,8 +36,8 @@ import { SentenceVm } from '../../models/sentence-vm';
     FormsModule,
     MatIconModule,
     PromptMarkupComponent,
-    TermTooltipOverlayComponent,
     IconButtonComponent,
+    TermTooltipOverlayComponent,
   ],
   templateUrl: './sentence-card.component.html',
 })
