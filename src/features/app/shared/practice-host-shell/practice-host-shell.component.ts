@@ -1,16 +1,16 @@
 import {
   AfterViewInit,
   Component,
+  computed,
   ElementRef,
   EventEmitter,
   HostListener,
   Input,
+  input,
   OnDestroy,
   Output,
-  ViewChild,
-  computed,
-  input,
   signal,
+  ViewChild,
 } from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {MatIconModule} from '@angular/material/icon';
@@ -145,7 +145,7 @@ export class PracticeHostShellComponent implements AfterViewInit, OnDestroy {
     }
 
     const from = this.index();
-    const to = this.clamp(from + d);
+    const to = this.clamp(from + d, 0, this.length() - 1);
     if (to === from) {
       return;
     }
@@ -230,10 +230,26 @@ export class PracticeHostShellComponent implements AfterViewInit, OnDestroy {
     this.ghostEl = undefined;
   }
 
-  private clamp(i: number) {
-    const len = this.length();
-    if (!len) return 0;
-    return Math.max(0, Math.min(len - 1, i));
+  /**
+   * Clamps or wraps an index between min and max.
+   *
+   * @param i   Der gewünschte Index
+   * @param min Untere Grenze (meist 0)
+   * @param max Obere Grenze (meist length-1)
+   * @param wrap Wenn true, wrappt der Index (z.B. -1 → max, max+1 → min)
+   */
+  private clamp(i: number, min: number, max: number, wrap = true): number {
+    if (max < min) {
+      return min;
+    }
+    const len = max - min + 1;
+    if (!len) {
+      return min;
+    }
+    if (!wrap) {
+      return Math.max(min, Math.min(max, i));
+    }
+    return ((i - min) % len + len) % len + min;
   }
 
   private onTouchStart = (e: TouchEvent) => {
@@ -294,7 +310,7 @@ export class PracticeHostShellComponent implements AfterViewInit, OnDestroy {
     this.scrubPreview.set({ ...preview, active: false });
 
     const fromIndex = this.index();
-    const toIndex = this.clamp(preview.idx);
+    const toIndex = this.clamp(preview.idx, 0, this.length() - 1, false);
     if (toIndex === fromIndex) {
       return;
     }
@@ -313,7 +329,7 @@ export class PracticeHostShellComponent implements AfterViewInit, OnDestroy {
     const rect = element.getBoundingClientRect();
     const xPosition = ev.clientX - rect.left;
     const ratio = Math.max(0, Math.min(1, xPosition / rect.width));
-    const index = this.clamp(Math.round(ratio * (this.length() - 1)));
+    const index = this.clamp(Math.round(ratio * (this.length() - 1)), 0, this.length() - 1, false);
     const label = this.scrubLabelForIndex?.(index) ?? `${index + 1}`;
 
     if (this.scrubPreview().idx === index && this.scrubPreview().active === active) {

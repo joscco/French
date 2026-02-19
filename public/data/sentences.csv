@@ -521,8 +521,8 @@ id;unit_id;fr;de;note;has_audio_fr;has_audio_de
 523;12;Il {regrette} cette décision.;Er {bereut} diese Entscheidung.;;true;false
 524;12;Elle {regrette} son amie.;Sie {trauert} ihrer Freundin {nach}.;;true;false
 525;12;C’est plus {commode} de venir en métro.;Es ist {bequemer}, mit der U-Bahn zu kommen.;;true;false
-526;12;J’{attends} une réponse.;Ich {erwarte} eine Antwort.;;true;false
-527;12;Il a réussi à {se garer}.;Er hat es geschafft, {einzuparken}.;;true;false
+526;12;J’{attends|#348} une réponse.;Ich {erwarte|#349} eine Antwort.;;true;false
+527;12;Il a réussi à {se garer|#309}.;Er hat es geschafft, {einzuparken|#310}.;;true;false
 528;12;Le {mur|#280} {s’est effondré|#281}.;Die {Mauer|#279} {ist eingestürzt|#282}.;;true;true
 529;13;La {dinde|#154} {marchait|#155} lentement dans le jardin.;Die {Pute|#156} {lief|#157} langsam durch den Garten.;;true;true
 530;13;Elle a {rayonné|#158} quand elle a reçu la {bourse|#159}.;Sie hat {gestrahlt|#138}, als sie das {Stipendium|#160} [bekommen hat|bekam].;;true;true
@@ -558,3 +558,27 @@ id;unit_id;fr;de;note;has_audio_fr;has_audio_de
 560;14;Il a mis de l’encre dans l’{encrier|#261}.;Er hat Tinte in das {Tintenfass|#262} getan.;;true;true
 561;14;Son {écriture manuscrite|#263} est difficile à lire.;Seine {Schreibschrift|#264} ist schwer zu lesen.;;true;true
 562;14;Il écrit en {caractères d’imprimerie|#265}.;Er schreibt in {Druckbuchstaben|#266}.;;true;true
+563;15;Les {petits-enfants|#307} aiment écouter les histoires de leur grand-mère.;Die {Enkelkinder|#347} hören gern die Geschichten ihrer Großmutter.;;false;false
+564;15;Chaque {élève|#345} doit écrire son nom en {lettres majuscules|#344}.;Jeder {Schüler|#346} muss seinen Namen in {Großbuchstaben|#343} schreiben.;;false;false
+565;15;Le professeur demande aussi d’utiliser des {lettres minuscules|#341}.;Der Lehrer verlangt auch, {Kleinbuchstaben|#342} zu verwenden.;;false;false
+566;15;Nous avons commencé à utiliser une {tablette|#339} en classe.;Wir haben angefangen, ein {Tablet|#340} im Unterricht zu benutzen.;;false;false
+567;15;Mon fils va à {l’école primaire (f.)|#337} près de chez nous.;Mein Sohn geht in die {Grundschule|#338} in unserer Nähe.;;false;false
+568;15;Après {le collège (m.)|#333}, elle veut aller au {lycée (m.)|#336}.;Nach der {Mittelschule|#334} möchte sie auf das {Gymnasium|#335} gehen.;;false;false
+569;15;Il fait des {études de droit (f.)|#331} à l’université.;Er studiert {Jura|#332} an der Universität.;;false;false
+570;15;Je dois {me concentrer sur|#330} ce problème.;Ich muss mich {auf|#329} dieses Problem {konzentrieren|#329}.;;false;false
+571;15;Les mathématiques sont {une matière (f.)|#327} difficile pour lui.;Mathematik ist für ihn ein schwieriges {Fach|#328}.;;false;false
+572;15;Demain, nous avons {une interrogation écrite (f.)|#325}.;Morgen haben wir einen {schriftlichen Test|#326}.;;false;false
+573;15;Vendredi, il y a un {devoir sur table|#323} en histoire.;Am Freitag gibt es eine {Klassenarbeit|#324} in Geschichte.;;false;false
+574;15;À la fin de l’année, nous passons {un examen|#321} important.;Am Ende des Jahres machen wir eine wichtige {Prüfung|#322}.;;false;false
+575;15;J’utilise {un protège-cahier|#317} pour protéger mon cahier.;Ich benutze einen {Heftumschlag|#318}, um mein Heft zu schützen.;;true;true
+576;15;J’achète souvent des livres {d’occasion|#315} pour {économiser de l’argent|#319}.;Ich kaufe oft {gebrauchte|#316} Bücher, um {Geld zu sparen|#320}.;;true;true
+577;15;Les enfants écrivent sur une {ardoise|#311} avec un {crayon d'ardoise|#312}.;Die Kinder schreiben auf einer {Schiefertafel|#313} mit einem {Griffel|#314}.;;true;true
+578;15;Nous allons {commencer à|#305} travailler maintenant.;Wir werden jetzt {anfangen zu|#306} arbeiten.;;true;true
+579;15;Il faut {élargir|#302} la route.;Man muss die Straße {verbreitern|#301}.;;true;true
+580;15;Cette entreprise a {fait faillite|#299} l’année dernière.;Diese Firma ist letztes Jahr {pleite gegangen|#300}.;;true;true
+581;15;{Avec le recul |#297}, je comprends mieux cette décision.;{Im Nachhinein|#298} verstehe ich diese Entscheidung besser.;;true;true
+582;15;La {fenêtre|#303} est {embuée|#295} à cause du froid.;Das {Fenster|#304} ist wegen der Kälte {beschlagen|#296}.;;true;true
+583;15;Le {brouillard|#293} rend la route dangereuse.;Der {Nebel|#294} macht die Straße gefährlich.;;true;true
+584;15;La voiture doit {reculer|#291} pour sortir.;Das Auto muss {zurückfahren|#292}, um herauszukommen.;;true;true
+585;15;Il utilise un [{flang|#287}|{lance-pierre|#288}] pour tirer des petites pierres.;Er benutzt eine [{Flitsche|#289}|{Steinschleuder|#290}], um kleine Steine zu schießen.;;true;true
+586;15;Elle veut {militer|#283} pour la {protection de l’environnement|#284}.;Sie möchte {sich für|#285} den {Umweltschutz|#286} {engagieren|#285}.;;true;true

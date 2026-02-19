@@ -277,7 +277,74 @@ id;lang;term_text;category;genus;needs_vowel_article;unit_id;ref;tags;has_audio
 276;de;während {etw.};expression;;;;;;true
 277;de;Gespräch;noun;n;;;;;true
 278;de;{etw.} unterbrechen;verb;;;;;;true
-279;de;Mauer;noun;f;;;;;false
-280;fr;mur;noun;m;;;;;false
-281;fr;{s'}effondrer;verb;;;;;;false
-282;de;einstürzen;verb;;;;;;false
+279;de;Mauer;noun;f;;;;;true
+280;fr;mur;noun;m;;;;;true
+281;fr;{s'}effondrer;verb;;;;;;true
+282;de;einstürzen;verb;;;;;;true
+283;fr;militer {pour qc.};verb;;;;;;true
+284;fr;protection de l’environnement;noun;f;;;;;true
+285;de;sich für {etw.} engagieren;verb;;;;;;true
+286;de;Umweltschutz;noun;m;;;;;true
+287;fr;flang;noun;m;;;;;true
+288;fr;lance-pierre;noun;m;;;;;true
+289;de;Flitsche;noun;f;;;;;true
+290;de;Steinschleuder;noun;f;;;;;true
+291;fr;reculer {qc.};verb;;;;;;true
+292;de;{etw.} zurückfahren;verb;;;;;;true
+293;fr;brouillard;noun;m;;;;;true
+294;de;Nebel;noun;m;;;;;true
+295;fr;embué;adjective;;;;;;true
+296;de;beschlagen;adjective;;;;;;true
+297;fr;avec le recul;expression;;;;;;true
+298;de;im Nachhinein;expression;;;;;;true
+299;fr;faire faillite;verb;;;;;;true
+300;de;pleite gehen;verb;;;;;;true
+301;de;{etw.} verbreitern;verb;;;;;;true
+302;fr;élargir {qc.};verb;;;;;;true
+303;fr;fenêtre;noun;f;;;;;true
+304;de;Fenster;noun;n;;;;;true
+305;fr;commencer {à faire qc.};verb;;;;;;true
+306;de;anfangen {etw. zu tun};verb;;;;;;true
+307;fr;petits-enfants;noun;mpl;;;;;true
+308;de;Enkelkinder;noun;npl;;;;;true
+309;fr;{se} garer;verb;;;;;;true
+310;de;einparken;verb;;;;;;true
+311;fr;ardoise;noun;f;true;;;;true
+312;fr;crayon d'ardoise;noun;m;;;;;true
+313;de;Schiefertafel;noun;f;;;;;true
+314;de;Griffel;noun;m;;;;;true
+315;fr;d’occasion;adjective;;;;;;true
+316;de;gebraucht;adjective;;;;;;true
+317;fr;protège-cahier;noun;m;;;;;true
+318;de;Heftumschlag;noun;m;;;;;true
+319;fr;économiser {de l’argent};verb;;;;;;true
+320;de;{Geld} sparen;verb;;;;;;true
+321;fr;examen;noun;m;true;;;;true
+322;de;Prüfung;noun;f;;;;;true
+323;fr;devoir sur table;noun;m;;;;;true
+324;de;Klassenarbeit;noun;f;;;;;true
+325;fr;une interrogation écrite (f.);;;;;;;false
+326;de;schriftlichen Test;;;;;;;false
+327;fr;une matière (f.);;;;;;;false
+328;de;Fach;;;;;;;false
+329;de;{sich auf etw.} konzentrieren;verb;;;;;;false
+330;fr;{se} concentrer {sur qc.};verb;;;;;;false
+331;fr;études de droit (f.);;;;;;;false
+332;de;Jura;;;;;;;false
+333;fr;le collège (m.);;;;;;;false
+334;de;Mittelschule;;;;;;;false
+335;de;Gymnasium;;;;;;;false
+336;fr;lycée (m.);;;;;;;false
+337;fr;l’école primaire (f.);;;;;;;false
+338;de;Grundschule;;;;;;;false
+339;fr;une tablette (f.);;;;;;;false
+340;de;ein Tablet;;;;;;;false
+341;fr;lettres minuscules (f.);;;;;;;false
+342;de;Kleinbuchstaben;;;;;;;false
+343;de;Großbuchstaben;;;;;;;false
+344;fr;lettres majuscules (f.);;;;;;;false
+345;fr;élève (m.);;;;;;;false
+346;de;Schüler;;;;;;;false
+347;de;Enkelkinder;;;;;;;false
+348;fr;attendre {qc.};;;;;;;false
+349;de;{etw.} erwarten;;;;;;;false

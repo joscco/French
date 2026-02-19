@@ -2,7 +2,7 @@
   <div
     #scrubberEl
     data-scrubber
-    class="absolute inset-x-0 top-0 h-8 cursor-grab active:cursor-grabbing touch-none select-none z-40"
+    class="absolute inset-x-0 top-0 h-8 cursor-grab active:cursor-grabbing touch-none select-none z-10"
     style="
       -webkit-user-select: none;
       user-select: none;
@@ -15,13 +15,13 @@
     (pointercancel)="pointerUp.emit($event)"
   >
     <!-- Track mit individuellen Punkten -->
-    <div class="absolute inset-x-0 bottom-2 h-2 flex flex-row justify-between items-center px-1 transition-opacity duration-150"
+    <div class="absolute inset-x-0 bottom-2 h-2 flex flex-row justify-between items-center px-1 transition-opacity duration-150 z-10"
          [class.opacity-100]="scrubPreview()?.active || isTouchScreen()"
          [class.opacity-40]="!(scrubPreview()?.active || isTouchScreen())"
     >
       @for (dot of dots(); track dot.index) {
         <div
-          class="rounded-full transition-all duration-150"
+          class="rounded-full transition-all duration-150 z-10"
           [class]="dot.isActive ? 'w-2 h-2' : 'w-1.5 h-1.5'"
           [style.background-color]="'rgba(40, 40, 40, ' + dot.opacity + ')'"
         ></div>

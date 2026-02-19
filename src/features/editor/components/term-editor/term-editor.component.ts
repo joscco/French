@@ -72,7 +72,7 @@ export class TermEditorComponent implements OnDestroy {
 
   readonly genusOptionsByLanguage: Record<Lang, Genus[]> = {
     fr: ['m', 'f', 'mpl', 'fpl'], // no neuter in French
-    de: ['m', 'f', 'n', 'mpl', 'fpl'],
+    de: ['m', 'f', 'n', 'mpl', 'fpl', 'npl'],
   };
 
   readonly genusLabel: Record<Genus, string> = {
