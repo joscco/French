@@ -1,9 +1,7 @@
 import {ApplicationConfig, provideBrowserGlobalErrorListeners, provideZoneChangeDetection} from '@angular/core';
 import {provideRouter, Routes, withComponentInputBinding} from '@angular/router';
 import {AppComponent} from '../features/app/app';
-import {
-  EditorComponent
-} from '../features/editor/components/editor/editor.component';
+import {EditorComponent} from '../features/editor/components/editor.component';
 
 // Editor nur im lokalen Development-Modus verfügbar
 const isLocalDevelopment = typeof window !== 'undefined' &&

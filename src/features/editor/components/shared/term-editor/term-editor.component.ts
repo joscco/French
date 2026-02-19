@@ -2,13 +2,13 @@ import {CommonModule} from '@angular/common';
 import {Component, computed, effect, HostListener, inject, input, OnDestroy, signal} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 
-import {EditorStore} from '../../services/editor-store.service';
-import {TTSService} from '../../services/tts.service';
-import {Genus, Lang, TermCategory, TermRow} from '../../../../shared/contract/contract';
-import {beautifyGenus, getArticle, reverseLanguage} from '../../../app/helpers/utils';
-import {TermPickerComponent} from '../term-picker/term-picker.component';
-import {parseTermDisplayMarkup, TermDisplaySeg} from '../../../../shared/helpers/term-display-markup';
 import {MatIcon} from '@angular/material/icon';
+import {EditorStore} from '../../../services/editor-store.service';
+import {TTSService} from '../../../services/tts.service';
+import {TermPickerComponent} from '../../view-editor-sentences/term-picker/term-picker.component';
+import {parseTermDisplayMarkup, TermDisplaySeg} from '../../../../../shared/helpers/term-display-markup';
+import {Genus, Lang, TermCategory, TermRow} from '../../../../../shared/contract/contract';
+import {getArticle, reverseLanguage} from '../../../../app/helpers/utils';
 
 type OverlayPosition = { x: number; y: number };
 
@@ -596,7 +596,5 @@ export class TermEditorComponent implements OnDestroy {
 
   }
 
-  protected readonly beautifyGenus = beautifyGenus;
   protected readonly getArticle = getArticle;
-
 }

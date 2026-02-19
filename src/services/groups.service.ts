@@ -6,13 +6,6 @@ import {parseCSV, toNum} from '../features/editor/helpers/csv-utils';
 export class GroupsService {
   private readonly _groups = signal<GroupRow[]>([]);
   readonly groups = this._groups.asReadonly();
-  readonly byId = computed(() => {
-    const groupMap = new Map<number, GroupRow>();
-    for (const group of this._groups()) {
-      groupMap.set(group.id, group);
-    }
-    return groupMap;
-  });
 
   private loaded = false;
 

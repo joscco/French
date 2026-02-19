@@ -323,9 +323,9 @@ id;lang;term_text;category;genus;needs_vowel_article;unit_id;ref;tags;has_audio
 322;de;Prüfung;noun;f;;;;;true
 323;fr;devoir sur table;noun;m;;;;;true
 324;de;Klassenarbeit;noun;f;;;;;true
-325;fr;une interrogation écrite (f.);;;;;;;false
-326;de;schriftlichen Test;;;;;;;false
-327;fr;une matière (f.);;;;;;;false
+325;fr;interrogation écrite;noun;f;;;;;false
+326;de;{schriftliche} Test;noun;m;;;;;false
+327;fr;matière;noun;f;;;;;false
 328;de;Fach;;;;;;;false
 329;de;{sich auf etw.} konzentrieren;verb;;;;;;false
 330;fr;{se} concentrer {sur qc.};verb;;;;;;false

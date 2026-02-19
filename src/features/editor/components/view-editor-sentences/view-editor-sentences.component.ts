@@ -1,14 +1,14 @@
 import { Component, inject, computed, signal, HostListener } from '@angular/core';
 import { EditorStore } from '../../services/editor-store.service';
 import { SentenceRow } from '../../../../shared/contract/contract';
-import {TermEditorComponent} from '../term-editor/term-editor.component';
-import {SentencePairsTableComponent} from '../sentences-sub-table/sentences-sub-table.component';
 import {FormsModule} from '@angular/forms';
-import {SentenceSideEditorComponent} from '../sentence-side-editor/sentence-side-editor.components';
+import {SentenceSideEditorComponent} from './sentence-side-editor/sentence-side-editor.components';
+import {SentencePairsTableComponent} from './sentences-table/sentences-table.component';
+import {TermEditorComponent} from '../shared/term-editor/term-editor.component';
 
 @Component({
   selector: 'app-sentences-view',
-  templateUrl: './sentences-table.component.html',
+  templateUrl: './view-editor-sentences.component.html',
   imports: [
     TermEditorComponent,
     SentencePairsTableComponent,
@@ -16,7 +16,7 @@ import {SentenceSideEditorComponent} from '../sentence-side-editor/sentence-side
     SentenceSideEditorComponent
   ],
 })
-export class SentencesTableComponent {
+export class ViewEditorSentencesComponent {
   private readonly store = inject(EditorStore);
 
   // Lokale States für Filter und Auswahl

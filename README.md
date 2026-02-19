@@ -1,27 +1,26 @@
-# French Repository
+# FrenchCourse – Vokabel- und Satztrainer
 
 [Live-Demo](https://joscco.github.io/French)
 
-## Beschreibung
-- Ein Vokabeltrainer-Tool für den Französischunterricht.
+## Übersicht
+Ein flexibles Tool für den Französischunterricht: Vokabeln, Sätze, Audio, Editieren, Export und mehr.
 
 ## Features
-- Datenquelle: words.csv (Semikolon-getrennt, UTF-8, mit Headern)
-- Lektion-Filter: Auswahl „Alle" oder „Lektion n" aus den CSV-Daten
-- Übungsmodi: FR→DE, DE→FR, gemischt
-- Flashcards: Karte wenden und per Navigation durch die Karten gehen
-- PDF-Export: aktuell gefilterte Vokabeln als PDF-Tabelle herunterladen
-  - Artikel (FR: le/la/les, l' via Flag fr_needs_vowel_article; DE: der/die/das/die Pl.)
-  - Layout: 3 Spalten (Lektion | Französisch | Deutsch)
-  - Zeilen: Hauptbegriffe fett; Beispielsätze klein, grau, kursiv darunter
-  - Kategorie: klein/unauffällig in Klammern unter dem FR-Begriff (in der zweiten Zeile)
-  - Sortierung: alphabetisch nach dem französischen Begriff
+- **CSV-basierte Datenhaltung**: terms.csv, sentences.csv, units.csv, groups.csv, ...
+- **Filter**: Nach Gruppe, Unit, Sprache, Audio-Status, uvm. ("All"-Optionen überall)
+- **Editor**: Sätze und Terme bearbeiten, anlegen, löschen, mit Material Icons und Audio-Status
+- **Audio**: TTS-Integration (Google), Statusspalten in CSV, Batch- und Einzelgenerierung, Statusanzeige
+- **Navigation**: Pfeiltasten & ASDW, Enter, Escape, uvm. für schnelle Bearbeitung
+- **Material Icons**: Für Aktionen, Status, Navigation, Download, etc.
+- **PDF-Export**: Gefilterte Vokabeln/Sätze als PDF (jsPDF)
+- **Statisches Deployment**: z.B. GitHub Pages
 
 ## Technik
-- Angular 20, RxJS
+- Angular 20, RxJS, Signals
 - Tailwind CSS
-- Angular Material (Tooltip, Icons)
+- Angular Material (Icons, Tooltip, Inputs)
 - jsPDF + jspdf-autotable
+- Python (TTS-Server, Google Cloud)
 
 ## Lokale Entwicklung
 
@@ -30,56 +29,58 @@
 npm install
 npm start
 ```
-- Läuft standardmäßig unter http://localhost:4200
+- Läuft unter http://localhost:4200
 
-### Editor mit TTS-Funktionalität
+### Editor & TTS
+- Editor unter http://localhost:4200/editor
+- Sätze und Terme editieren, Audio generieren, Status prüfen
+- Filter für Gruppen, Units, Sprache, Audio-Status, uvm.
+- Material Icons für Aktionen und Status
 
-Der Editor (`/editor`) ermöglicht das Bearbeiten von Sätzen und Termen. Für die **Audio-Generierung** muss ein lokaler TTS-Server laufen:
-
-#### 1. TTS-Server starten (in separatem Terminal)
+#### TTS-Server starten
 ```bash
 ./generators/generate-tts/start_tts_server.sh
 ```
+- Setzt GOOGLE_APPLICATION_CREDENTIALS automatisch
+- Erstellt/aktiviert Python venv, installiert Dependencies
+- Startet Server auf http://localhost:3001
 
-Das Skript:
-- Setzt automatisch `GOOGLE_APPLICATION_CREDENTIALS` (falls `keys/google-tts-service-account.json` existiert)
-- Erstellt/aktiviert die Python Virtual Environment
-- Installiert Dependencies
-- Startet den Server auf `http://localhost:3001`
-
-#### 2. Editor öffnen
-- Navigiere zu http://localhost:4200/editor
-- Bei Sätzen/Termen ohne Audio erscheint ein 🎙️-Button
-- Klick auf 🎙️ generiert das Audio und spielt es automatisch ab
-
-#### Audio-Dateien
-- Sätze: `public/sounds/{lang}{id}.mp3` (z.B. `fr1.mp3`, `de1.mp3`)
-- Terme: `public/sounds/term_{lang}{id}.mp3` (z.B. `term_fr1.mp3`, `term_de1.mp3`)
-
-### Batch-Generierung von Audio
-
-Falls viele Audio-Dateien auf einmal benötigt werden:
-
+#### Audio-Generierung
+- Einzelgenerierung im Editor (🎙️-Button)
+- Batch-Generierung:
 ```bash
-# Französische Sätze 1-100
 ./generators/generate-tts/generate_tts.sh sentences --ids 1-100 --lang fr
-
-# Deutsche Sätze 1-100
 ./generators/generate-tts/generate_tts.sh sentences --ids 1-100 --lang de
-
-# Beide Sprachen
 ./generators/generate-tts/generate_tts.sh sentences --ids 1-100 --lang both
-
-# Terme 1-50
 ./generators/generate-tts/generate_tts.sh terms --ids 1-50
 ```
+- Audio-Dateien: public/sounds/{lang}{id}.mp3, public/sounds/term_{lang}{id}.mp3
+- Statusspalten in CSV werden automatisch aktualisiert
 
-## Build
+## Build & Deployment
 ```bash
 npm run build
 ```
-- Ausgabepfad: dist/
+- Output: dist/
+- Statisches Deployment möglich (z.B. GitHub Pages)
 
-## Datenformat (CSV)
-- Erwartete Header: lesson;id;category;fr_word;fr_genus;fr_needs_vowel_article;fr_sentence;de_word;de_genus;de_sentence
-- Semikolon als Trennzeichen; Anführungszeichen für Felder mit Trennzeichen/Zeilenumbrüchen
+## Datenformate
+- **terms.csv**: id, lang, term_text, category, genus, needs_vowel_article, unitId, group_id, tags, has_audio, ...
+- **sentences.csv**: id, unitId, fr, de, note, has_audio_fr, has_audio_de, ...
+- **units.csv**: id, group_id, name, ...
+- **groups.csv**: id, name, ...
+- Semikolon als Trennzeichen, UTF-8, Headerzeile
+
+## Shortcuts & Bedienung
+- Navigation: Pfeiltasten, ASDW, Enter, Escape
+- Filter: Sprache, Gruppe, Unit, Audio-Status, Textsuche
+- Aktionen: Material Icons für Edit, Audio, Download, etc.
+
+## Hinweise
+- Editor und App sind für statisches Hosting optimiert
+- Audio-Status wird beim Speichern automatisch geprüft
+- Bei Problemen mit Tooltips/Overlays: stacking context beachten (siehe Code-Kommentare)
+
+---
+
+Fragen, Feedback oder PRs willkommen!

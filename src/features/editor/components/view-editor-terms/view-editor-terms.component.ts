@@ -4,11 +4,11 @@ import {FormsModule} from '@angular/forms';
 
 import {EditorStore} from '../../services/editor-store.service';
 import {Lang, TermRow} from '../../../../shared/contract/contract';
-import {TermEditorComponent} from '../term-editor/term-editor.component';
 import {getArticle} from '../../../app/helpers/utils';
 import {getSortableText, parseTermDisplayMarkup} from '../../../../shared/helpers/term-display-markup';
 import {normalizeForCheck} from '../../../app/helpers/normalize';
 import {MatIcon} from '@angular/material/icon';
+import {TermEditorComponent} from '../shared/term-editor/term-editor.component';
 
 type SortKey = 'id' | 'display' | 'count';
 
@@ -16,9 +16,9 @@ type SortKey = 'id' | 'display' | 'count';
   standalone: true,
   selector: 'app-all-terms-translations',
   imports: [CommonModule, FormsModule, TermEditorComponent, MatIcon],
-  templateUrl: './terms-table.component.html',
+  templateUrl: './view-editor-terms.component.html',
 })
-export class TermsTableComponent {
+export class ViewEditorTermsComponent {
   private readonly store = inject(EditorStore);
 
   // filters

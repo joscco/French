@@ -2,10 +2,10 @@ import { CommonModule } from '@angular/common';
 import { Component, computed, effect, ElementRef, HostListener, inject, signal, ViewChild, input, output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatIcon } from '@angular/material/icon';
+import {Lang, SentenceRow, TermRow} from '../../../../../shared/contract/contract';
+import {parseSentenceMarkup, representativeText} from '../../../helpers/sentence-markup';
+import {EditorStore} from '../../../services/editor-store.service';
 
-import { EditorStore } from '../../services/editor-store.service';
-import { SentenceRow, Lang, TermRow } from '../../../../shared/contract/contract';
-import { parseSentenceMarkup, representativeText } from '../../helpers/sentence-markup';
 
 type AudioState = boolean | null; // null = checking / unknown
 
@@ -23,7 +23,7 @@ type SentenceStats = {
   standalone: true,
   selector: 'app-sentences-table',
   imports: [CommonModule, FormsModule, MatIcon],
-  templateUrl: './sentences-sub-table.component.html',
+  templateUrl: './sentences-table.component.html',
 })
 export class SentencePairsTableComponent {
   private readonly store = inject(EditorStore);
@@ -37,7 +37,7 @@ export class SentencePairsTableComponent {
 
   // UI
   query = signal('');
-  onlyIssues = signal(false);
+  onlyIssues = signal(true);
 
   @ViewChild('searchInput') searchInput?: ElementRef<HTMLInputElement>;
 

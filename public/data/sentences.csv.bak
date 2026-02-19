@@ -567,9 +567,9 @@ id;unit_id;fr;de;note;has_audio_fr;has_audio_de
 569;15;Il fait des {études de droit (f.)|#331} à l’université.;Er studiert {Jura|#332} an der Universität.;;false;false
 570;15;Je dois {me concentrer sur|#330} ce problème.;Ich muss mich {auf|#329} dieses Problem {konzentrieren|#329}.;;false;false
 571;15;Les mathématiques sont {une matière (f.)|#327} difficile pour lui.;Mathematik ist für ihn ein schwieriges {Fach|#328}.;;false;false
-572;15;Demain, nous avons {une interrogation écrite (f.)|#325}.;Morgen haben wir einen {schriftlichen Test|#326}.;;false;false
-573;15;Vendredi, il y a un {devoir sur table|#323} en histoire.;Am Freitag gibt es eine {Klassenarbeit|#324} in Geschichte.;;false;false
-574;15;À la fin de l’année, nous passons {un examen|#321} important.;Am Ende des Jahres machen wir eine wichtige {Prüfung|#322}.;;false;false
+572;15;Demain, nous avons {une interrogation écrite|#325}.;Morgen haben wir einen {schriftlichen Test|#326}.;;false;false
+573;15;Vendredi, il y a un {devoir sur table|#323} en histoire.;Am Freitag gibt es eine {Klassenarbeit|#324} in Geschichte.;;true;true
+574;15;À la fin de l’année, nous passons {un examen|#321} important.;Am Ende des Jahres machen wir eine wichtige {Prüfung|#322}.;;true;true
 575;15;J’utilise {un protège-cahier|#317} pour protéger mon cahier.;Ich benutze einen {Heftumschlag|#318}, um mein Heft zu schützen.;;true;true
 576;15;J’achète souvent des livres {d’occasion|#315} pour {économiser de l’argent|#319}.;Ich kaufe oft {gebrauchte|#316} Bücher, um {Geld zu sparen|#320}.;;true;true
 577;15;Les enfants écrivent sur une {ardoise|#311} avec un {crayon d'ardoise|#312}.;Die Kinder schreiben auf einer {Schiefertafel|#313} mit einem {Griffel|#314}.;;true;true

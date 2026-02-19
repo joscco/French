@@ -1,7 +1,7 @@
 import {Component, computed, effect, inject, input, output, signal} from '@angular/core';
 import {FormsModule} from '@angular/forms';
-import {Lang, TermCategory, TermRow} from '../../../../shared/contract/contract';
-import {EditorStore} from '../../services/editor-store.service';
+import {Lang, TermCategory, TermRow} from '../../../../../shared/contract/contract';
+import {EditorStore} from '../../../services/editor-store.service';
 
 @Component({
   standalone: true,

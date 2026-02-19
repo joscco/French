@@ -2,17 +2,17 @@ import { Component, computed, effect, HostListener, inject, input, output, signa
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { TermPickerComponent } from '../term-picker/term-picker.component';
-import { EditorStore } from '../../services/editor-store.service';
-import { TTSService } from '../../services/tts.service';
-import { Lang, TermRow } from '../../../../shared/contract/contract';
+import {MatIcon} from '@angular/material/icon';
 import {
   parseSentenceMarkup,
   PreviewSeg,
   previewSegments,
   replaceFirstExact,
-  representativeText,
-} from '../../helpers/sentence-markup';
-import {MatIcon} from '@angular/material/icon';
+  representativeText
+} from '../../../helpers/sentence-markup';
+import {EditorStore} from '../../../services/editor-store.service';
+import {TTSService} from '../../../services/tts.service';
+import {Lang, TermRow} from '../../../../../shared/contract/contract';
 
 type OverlayPosition = { x: number; y: number };
 
