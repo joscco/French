@@ -25,8 +25,9 @@ export class ViewEditorTermsComponent {
   query = signal('');
   showMissingTranslationOnly = signal(false);
   showMissingAudioOnly = signal(false);
+  showIncompleteOnly = signal(false);
   languageFilter = signal<Lang | 'all'>('all');
-  sortKey = signal<SortKey>('count');
+  sortKey = signal<SortKey>('display');
 
   selectedTermId = signal<number | null>(null);
 
@@ -60,51 +61,17 @@ export class ViewEditorTermsComponent {
     return categoryMissing || genusMissing;
   }
 
-  groupOptions = computed(() => {
-    const options: Array<{ id: number; label: string }> = [{ id: -1, label: 'All' }];
-    const allGroups = this.store.groups();
-    for (const group of allGroups) {
-      options.push({ id: group.id, label: group.name?.trim() || `Group ${group.id}` });
-    }
-    return options;
-  });
-
-  unitOptions = computed(() => {
-    const selectedGroupId = this.selectedGroupId();
-    const options: Array<{ id: number, label: string }> = [{ id: -1, label: 'All' }];
-    const allUnitsInGroup = selectedGroupId === -1
-      ? this.store.units()
-      : this.store.units().filter(unit => unit.group_id === selectedGroupId);
-    for (const unit of allUnitsInGroup) {
-      const name = unit.name?.trim() || `Unit ${unit.id}`;
-      options.push({ id: unit.id, label: name });
-    }
-    return options;
-  });
-
-  selectedGroupId = signal<number>(-1);
-  selectedUnitId = signal<number>(-1);
-
   filteredTerms = computed(() => {
     const selectedLanguage = this.languageFilter();
     const normalizedQuery = this.normalizeSearchText(this.query());
     const missingOnly = this.showMissingTranslationOnly();
-    const selectedGroupId = this.selectedGroupId();
-    const selectedUnitId = this.selectedUnitId();
     const missingAudioOnly = this.showMissingAudioOnly();
+    const incompleteOnly = this.showIncompleteOnly();
 
     let visibleTerms = this.terms();
 
     if (selectedLanguage !== 'all') {
       visibleTerms = visibleTerms.filter((termRow) => termRow.lang === selectedLanguage);
-    }
-
-    if (selectedGroupId !== -1) {
-      visibleTerms = visibleTerms.filter((termRow) => termRow.unitId != null && this.store.units().find(u => u.id === termRow.unitId)?.group_id === selectedGroupId);
-    }
-
-    if (selectedUnitId !== -1) {
-      visibleTerms = visibleTerms.filter((termRow) => termRow.unitId === selectedUnitId);
     }
 
     if (missingOnly) {
@@ -113,6 +80,10 @@ export class ViewEditorTermsComponent {
 
     if (missingAudioOnly) {
       visibleTerms = visibleTerms.filter((termRow) => !termRow.has_audio);
+    }
+
+    if (incompleteOnly) {
+      visibleTerms = visibleTerms.filter((termRow) => this.isInvalidTerm(termRow));
     }
 
     if (normalizedQuery.length > 0) {

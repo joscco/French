@@ -69,6 +69,16 @@ Die gesamte Logik ist modularisiert (siehe tools/data_server/python/README.md f�
 - Audio-Dateien: public/sounds/{lang}{id}.mp3, public/sounds/term_{lang}{id}.mp3
 - Statusspalten in CSV werden automatisch aktualisiert
 
+#### Aufräum-Skript: Verwaiste Audios und tote Referenzen entfernen
+
+Mit folgendem Befehl werden alle Audio-Dateien gelöscht, die zu keiner existierenden Term- oder Satz-ID mehr passen, und alle toten Referenzen in Sätzen entfernt (z.B. {text|#999} → {text}):
+
+```bash
+python3 tools/data_server/python/cleanup_audio_and_refs.py
+```
+
+Das Skript sucht automatisch das Projekt-Root und funktioniert von überall im Projektverzeichnis aus. Es gibt eine Zusammenfassung der gelöschten Audios und der bereinigten Referenzen aus.
+
 ## Build & Deployment
 ```bash
 npm run build
@@ -93,6 +103,3 @@ npm run build
 - Audio-Status wird beim Speichern automatisch geprüft
 - Bei Problemen mit Tooltips/Overlays: stacking context beachten (siehe Code-Kommentare)
 
----
-
-Fragen, Feedback oder PRs willkommen!

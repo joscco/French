@@ -20,16 +20,16 @@ id;unit_id;fr;de;note;has_audio_fr;has_audio_de
 19;1;Ce {repas|#109} est {dégoûtant|#108}.;Dieses {Essen|#110} ist {ekelhaft|#111}.;;true;true
 20;1;La maison est sur une {colline|#122}.;Das Haus liegt auf einem {Hügel|#121}.;;true;true
 21;1;Il porte une {sacoche|#123} en {cuir|#126}.;Er trägt eine {Umhängetasche|#124} aus {Leder|#125}.;;true;false
-22;1;J’ai perdu mes {bagages} à {l’aéroport}.;Ich habe mein {Gepäck} am {Flughafen} verloren.;;true;false
+22;1;J’ai perdu mes {bagages|#378} à l’{aéroport|#379}.;Ich habe mein {Gepäck|#381} am {Flughafen|#380} verloren.;;true;true
 23;1;Il a dû {pousser|#130} son vélo en montée.;Er musste sein Rad bergauf {schieben|#131}.;;true;false
-24;1;La voiture {roule} {vite}.;Das Auto {fährt} {schnell}.;;true;false
-25;1;Le {frein} de mon vélo ne marche pas.;Die {Bremse} meines Fahrrads funktioniert nicht.;;true;false
-26;1;Il faut porter un {casque à vélo}.;Beim Radfahren muss man einen {Fahrradhelm} tragen.;;true;false
-27;1;Il porte une {casquette} bleue.;Er trägt eine blaue {Kappe}.;;true;false
-28;1;Ce {sac} est très {lourd}.;Diese {Tasche} ist sehr {schwer}.;;true;false
-29;1;Ce {tissu} est très {léger}.;Dieser {Stoff} ist sehr {leicht}.;;true;false
-31;1;Les {aménagements} du parc sont {modernes}.;Die {Anlagen} des Parks sind {modern}.;;true;false
-32;1;{L’estuaire} de la Loire est {magnifique}.;Die {Mündung} der Loire ist {wunderschön}.;;true;false
+24;1;La voiture {roule|#382} {vite|#383}.;Das Auto {fährt|#385} {schnell|#384}.;;true;false
+25;1;Le {frein|#386} de mon {vélo|#422} ne marche pas.;Die {Bremse|#387} meines {Fahrrads|#423} funktioniert nicht.;;true;false
+26;1;Il faut porter un {casque à vélo|#388}.;Beim Radfahren muss man einen {Fahrradhelm|#389} tragen.;;true;false
+27;1;Il porte une {casquette|#390} bleue.;Er trägt eine blaue {Kappe|#391}.;;true;false
+28;1;Ce {sac|#392} est très {lourd|#393}.;Diese {Tasche|#395} ist sehr {schwer|#394}.;;true;false
+29;1;Ce {tissu|#396} est très {léger|#397}.;Dieser {Stoff|#398} ist sehr {leicht|#399}.;;true;false
+31;1;Les {aménagements|#400} du parc sont {modernes|#401}.;Die {Anlagen|#402} des Parks sind {modern|#403}.;;true;false
+32;1;L’{estuaire|#407} de la Loire est {magnifique|#406}.;Die {Mündung|#404} der Loire ist {wunderschön|#405}.;;true;false
 33;1;Je vais {en Grèce} cet été.;Ich fahre diesen Sommer {nach Griechenland}.;;true;false
 34;1;Elle est {grecque}.;Sie ist {Griechin}.;;true;false
 36;1;Le musée {est en rénovation}.;Das Museum {wird} gerade {renoviert}.;;true;false
@@ -502,27 +502,27 @@ id;unit_id;fr;de;note;has_audio_fr;has_audio_de
 504;12;Ce sont des conditions {spéciales}.;Das sind {besondere} Bedingungen.;;true;false
 505;12;Il se déplace en {trottinette}.;Er fährt mit einem {E-Scooter}.;;true;false
 506;12;Le cycliste se {faufile} entre les voitures.;Der Radfahrer {schlängelt sich} zwischen den Autos {durch}.;;true;false
-507;12;La ville veut {récompenser} les habitants.;Die Stadt will die Bewohner {jmdn. entlohnen}.;;true;false
-508;12;L’air est enfin {respirable}.;Die Luft ist endlich {atembar}.;;true;false
-509;12;Les {gaz d'échappement} polluent l’air.;{Abgase} verschmutzen die Luft.;;true;false
-510;12;Il restaure un vieux {Solex}.;Er restauriert einen alten {Solex}.;;true;false
-511;12;Le prix a augmenté de dix {pour cent}.;Der Preis ist um zehn {Prozent} gestiegen.;;true;false
-512;12;Il {possède} un appartement.;Er {besitzt} eine Wohnung.;;true;false
-513;12;Le bâtiment {est en bon état}.;Das Gebäude {ist in gutem Zustand}.;;true;false
-514;12;J’ai {garé} la voiture plus loin.;Ich habe {das Auto} weiter weg {geparkt}.;;true;false
-515;12;La route est en forte {pente}.;Die Straße hat eine starke {Steigung}.;;true;false
-516;12;La maison a {brûlé}.;Das Haus ist {abgebrannt}.;;true;false
+507;12;La ville veut {récompenser|#420} les habitants.;Die Stadt will die Bewohner {entlohnen|#421}.;;true;false
+508;12;L’air est enfin {respirable|#419}.;Die Luft ist endlich {atembar|#418}.;;true;false
+509;12;Les {gaz d'échappement|#416} polluent l’air.;{Abgase|#417} verschmutzen die Luft.;;true;false
+510;12;Il restaure un vieux {Solex|#414}.;Er restauriert einen alten {Solex|#415}.;;true;true
+511;12;Le prix a augmenté de dix {pour cent|#412}.;Der Preis ist um zehn {Prozent|#413} gestiegen.;;true;true
+512;12;Il {possède|#410} un appartement.;Er {besitzt|#411} eine Wohnung.;;true;true
+513;12;Le bâtiment {est en bon état|#408}.;Das Gebäude {ist in gutem Zustand|#409}.;;true;true
+514;12;J’ai {garé|#374} la {voiture|#376} plus loin.;Ich habe das {Auto|#377} weiter weg {geparkt|#375}.;;true;false
+515;12;La route {est en|#372} forte {pente|#372}.;Die Straße {hat|#373} eine starke {Steigung|#373}.;;true;false
+516;12;La maison a {brûlé|#370}.;Das Haus ist {abgebrannt|#371}.;;true;false
 517;12;L’{ambiance|#367} est {chaleureuse|#365}, pas agressive.;Die {Stimmung|#368} ist {herzlich|#366}, nicht aggressiv.;;true;false
 518;12;C’était un débat très {houleux|#363}.;Das war eine sehr {hitzige|#364} Debatte.;;true;false
 519;12;C’est un {concept|#361} intéressant.;Das ist ein interessantes {Konzept|#362}.;;true;false
 520;12;Il y a une {fontaine|#359} sur la place.;Auf dem Platz steht ein {Brunnen|#360}.;;true;false
 521;12;On suit la {trace|#357} laissée au sol.;Man folgt der am Boden hinterlassenen {Spur|#358}.;;true;false
-522;12;La ville veut {élargir|#355} la route.;Die Stadt will die Straße {verbreitern|#356}.;;true;false
+522;12;La ville veut {élargir|#302} la route.;Die Stadt will die Straße {verbreitern|#301}.;;true;false
 523;12;Il {regrette|#352} cette décision.;Er {bereut|#354} diese Entscheidung.;;true;false
 524;12;Elle {regrette|#352} son amie.;Sie {trauert|#353} ihrer Freundin {nach|#353}.;;true;true
 525;12;C’est plus {commode|#350} de venir en métro.;Es ist {bequemer|#351}, mit der U-Bahn zu kommen.;;true;false
-526;12;J’{attends|#348} une réponse.;Ich {erwarte|#349} eine Antwort.;;true;false
-527;12;Il a réussi à {se garer|#309}.;Er hat es geschafft, {einzuparken|#310}.;;true;false
+526;12;J’{attends|#348} une {réponse|#425}.;Ich {erwarte|#349} eine {Antwort|#424}.;;true;false
+527;12;Il a réussi à {se garer|#309}.;Er hat es geschafft, {einzuparken|#310}.;;true;true
 528;12;Le {mur|#280} {s’est effondré|#281}.;Die {Mauer|#279} {ist eingestürzt|#282}.;;true;true
 529;13;La {dinde|#154} {marchait|#155} lentement dans le jardin.;Die {Pute|#156} {lief|#157} langsam durch den Garten.;;true;true
 530;13;Elle a {rayonné|#158} quand elle a reçu la {bourse|#159}.;Sie hat {gestrahlt|#138}, als sie das {Stipendium|#160} [bekommen hat|bekam].;;true;true
@@ -558,16 +558,16 @@ id;unit_id;fr;de;note;has_audio_fr;has_audio_de
 560;14;Il a mis de l’encre dans l’{encrier|#261}.;Er hat Tinte in das {Tintenfass|#262} getan.;;true;true
 561;14;Son {écriture manuscrite|#263} est difficile à lire.;Seine {Schreibschrift|#264} ist schwer zu lesen.;;true;true
 562;14;Il écrit en {caractères d’imprimerie|#265}.;Er schreibt in {Druckbuchstaben|#266}.;;true;true
-563;15;Les {petits-enfants|#307} aiment écouter les histoires de leur grand-mère.;Die {Enkelkinder|#347} hören gern die Geschichten ihrer Großmutter.;;false;false
-564;15;Chaque {élève|#345} doit écrire son nom en {lettres majuscules|#344}.;Jeder {Schüler|#346} muss seinen Namen in {Großbuchstaben|#343} schreiben.;;false;false
-565;15;Le professeur demande aussi d’utiliser des {lettres minuscules|#341}.;Der Lehrer verlangt auch, {Kleinbuchstaben|#342} zu verwenden.;;false;false
-566;15;Nous avons commencé à utiliser une {tablette|#339} en classe.;Wir haben angefangen, ein {Tablet|#340} im Unterricht zu benutzen.;;false;false
-567;15;Mon fils va à {l’école primaire (f.)|#337} près de chez nous.;Mein Sohn geht in die {Grundschule|#338} in unserer Nähe.;;false;false
+563;15;Les {petits-enfants|#307} aiment écouter les histoires de leur grand-mère.;Die {Enkelkinder|#347} hören gern die Geschichten ihrer Großmutter.;;true;true
+564;15;Chaque {élève|#345} doit écrire son nom en {lettres majuscules|#344}.;Jeder {Schüler|#346} muss seinen Namen in {Großbuchstaben|#343} schreiben.;;true;true
+565;15;Le professeur demande aussi d’utiliser des {lettres minuscules|#341}.;Der Lehrer verlangt auch, {Kleinbuchstaben|#342} zu verwenden.;;true;true
+566;15;Nous avons commencé à utiliser une {tablette|#339} en classe.;Wir haben angefangen, ein {Tablet|#340} im Unterricht zu benutzen.;;true;true
+567;15;Mon fils va à l’{école primaire|#337} près de chez nous.;Mein Sohn geht in die {Grundschule|#338} in unserer Nähe.;;true;true
 568;15;Après {le collège|#333}, elle veut aller au {lycée|#336}.;Nach der {Mittelschule|#334} möchte sie auf das {Gymnasium|#335} gehen.;;true;true
 569;15;Il fait des {études de droit|#331} à l’université.;Er studiert {Jura|#332} an der Universität.;;true;true
-570;15;Je dois {me concentrer sur|#330} ce problème.;Ich muss mich {auf|#329} dieses Problem {konzentrieren|#329}.;;false;false
+570;15;Je dois {me concentrer sur|#330} ce problème.;Ich muss mich {auf|#329} dieses Problem {konzentrieren|#329}.;;true;true
 571;15;Les mathématiques sont {une matière|#327} difficile pour lui.;Mathematik ist für ihn ein schwieriges {Fach|#328}.;;true;true
-572;15;Demain, nous avons {une interrogation écrite|#325}.;Morgen haben wir einen {schriftlichen Test|#326}.;;false;false
+572;15;Demain, nous avons une {interrogation écrite|#325}.;Morgen haben wir einen {schriftlichen Test|#326}.;;true;true
 573;15;Vendredi, il y a un {devoir sur table|#323} en histoire.;Am Freitag gibt es eine {Klassenarbeit|#324} in Geschichte.;;true;true
 574;15;À la fin de l’année, nous passons un {examen|#102} important.;Am Ende des Jahres machen wir eine wichtige {Prüfung|#369}.;;true;true
 575;15;J’utilise {un protège-cahier|#317} pour protéger mon cahier.;Ich benutze einen {Heftumschlag|#318}, um mein Heft zu schützen.;;true;true

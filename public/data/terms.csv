@@ -333,36 +333,90 @@ id;lang;term_text;category;genus;needs_vowel_article;unit_id;ref;tags;has_audio
 334;de;Mittelschule;noun;f;;;;;true
 335;de;Gymnasium;noun;n;;;;;true
 336;fr;lycée;noun;m;;;;;true
-337;fr;l’école primaire (f.);;;;;;;false
-338;de;Grundschule;;;;;;;false
-339;fr;une tablette (f.);;;;;;;false
-340;de;ein Tablet;;;;;;;false
-341;fr;lettres minuscules (f.);;;;;;;false
-342;de;Kleinbuchstaben;;;;;;;false
-343;de;Großbuchstaben;;;;;;;false
-344;fr;lettres majuscules (f.);;;;;;;false
-345;fr;élève (m.);;;;;;;false
-346;de;Schüler;;;;;;;false
-347;de;Enkelkinder;;;;;;;false
-348;fr;attendre {qc.};;;;;;;false
-349;de;{etw.} erwarten;;;;;;;false
-350;fr;commode;adjective;;;;;;false
-351;de;bequem;adjective;;;;;;false
-352;fr;regretter {qc.};;;;;;;true
+337;fr;école primaire;noun;f;true;;;;true
+338;de;Grundschule;noun;f;;;;;true
+339;fr;tablette;noun;f;;;;;true
+340;de;Tablet;noun;n;;;;Technologie;true
+341;fr;lettre minuscule;noun;f;;;;;true
+342;de;Kleinbuchstabe;noun;m;;;;;true
+343;de;Großbuchstabe;noun;m;;;;;true
+344;fr;lettre majuscule;noun;f;;;;;true
+345;fr;élève;noun;m;true;;;;true
+346;de;Schüler;noun;m;;;;;true
+347;de;Enkelkinder;noun;npl;;;;;true
+348;fr;attendre {qc.};verb;;;;;;true
+349;de;{etw.} erwarten;verb;;;;;;true
+350;fr;commode;adjective;;;;;;true
+351;de;bequem;adjective;;;;;;true
+352;fr;regretter {qc.};verb;;;;;;true
 353;de;{etw.} nachtrauern;verb;;;;;;true
-354;de;{etw.} bereuen;verb;;;;;;false
-355;fr;élargir {qc.};;;;;;;false
-356;de;{etw.} verbreitern;verb;;;;;;false
-357;fr;trace;noun;f;;;;;false
-358;de;Spur;noun;f;;;;;false
-359;fr;fontaine;noun;f;;;;;false
-360;de;Brunnen;noun;m;;;;;false
-361;fr;concept;noun;m;;;;;false
-362;de;Konzept;noun;n;;;;;false
-363;fr;houleux;adjective;;;;;;false
-364;de;hitzig;adjective;;;;;;false
-365;fr;chaleureux;;;;;;;false
-366;de;herzlich;adjective;;;;;;false
-367;fr;ambiance;noun;f;true;;;;false
-368;de;Stimmung;noun;f;;;;;false
-369;de;Prüfung;noun;f;;;;;false
+354;de;{etw.} bereuen;verb;;;;;;true
+357;fr;trace;noun;f;;;;;true
+358;de;Spur;noun;f;;;;;true
+359;fr;fontaine;noun;f;;;;;true
+360;de;Brunnen;noun;m;;;;;true
+361;fr;concept;noun;m;;;;;true
+362;de;Konzept;noun;n;;;;;true
+363;fr;houleux;adjective;;;;;;true
+364;de;hitzig;adjective;;;;;;true
+365;fr;chaleureux;adjective;;;;;;true
+366;de;herzlich;adjective;;;;;;true
+367;fr;ambiance;noun;f;true;;;;true
+368;de;Stimmung;noun;f;;;;;true
+369;de;Prüfung;noun;f;;;;;true
+370;fr;brûler;verb;;;;;;true
+371;de;abbrennen;verb;;;;;;true
+372;fr;être en pente;verb;;;;;;true
+373;de;Steigung haben;verb;;;;;;true
+374;fr;garer {qc.};verb;;;;;;true
+375;de;{etw.} parken;verb;;;;;;true
+376;fr;voiture;noun;f;;;;;true
+377;de;Auto;noun;n;;;;;true
+378;fr;bagage;noun;m;;;;;true
+379;fr;aéroport;noun;m;true;;;;true
+380;de;Flughafen;noun;m;;;;;true
+381;de;Gepäck;noun;n;;;;;true
+382;fr;rouler;verb;;;;;;true
+383;fr;vite;adjective;;;;;;true
+384;de;schnell;adjective;;;;;;true
+385;de;fahren;verb;;;;;;true
+386;fr;frein;noun;m;;;;;true
+387;de;Bremse;noun;f;;;;;true
+388;fr;casque à vélo;noun;m;;;;;true
+389;de;Fahrradhelm;noun;m;;;;;true
+390;fr;casquette;noun;f;;;;;true
+391;de;Kappe;noun;f;;;;;true
+392;fr;sac;noun;m;;;;;true
+393;fr;lourd;adjective;;;;;;true
+394;de;schwer;adjective;;;;;;true
+395;de;Tasche;noun;f;;;;;true
+396;fr;tissu;noun;m;;;;;true
+397;fr;léger;adjective;;;;;;true
+398;de;Stoff;noun;m;;;;;true
+399;de;leicht;adjective;;;;;;true
+400;fr;aménagement;noun;m;true;;;;true
+401;fr;moderne;adjective;;;;;;true
+402;de;Anlage;noun;f;;;;;true
+403;de;modern;adjective;;;;;;true
+404;de;Mündung;noun;f;;;;;true
+405;de;wunderschön;adjective;;;;;;true
+406;fr;magnifique;adjective;;;;;;true
+407;fr;estuaire;noun;m;true;;;;true
+408;fr;être en bon état;verb;;;;;;true
+409;de;in gutem Zustand sein;verb;;;;;;true
+410;fr;posseder {qc.};verb;;;;;;true
+411;de;{etw.} besitzen;verb;;;;;;true
+412;fr;pour cent;noun;m;;;;;true
+413;de;Prozent;noun;n;;;;;true
+414;fr;Solex;noun;m;;;;;true
+415;de;Solex;noun;m;;;;;true
+416;fr;gaz d'échappement;noun;mpl;;;;;true
+417;de;Abgas;noun;n;;;;;true
+418;de;atembar;adjective;;;;;;true
+419;fr;respirable;adjective;;;;;;true
+420;fr;récompenser {qn.};verb;;;;;;true
+421;de;{jmdn.} entlohnen;verb;;;;;;true
+422;fr;vélo;noun;m;;;;;true
+423;de;Fahrrad;noun;n;;;;;true
+424;de;Antwort;noun;f;;;;;true
+425;fr;réponse;noun;f;;;;;true
