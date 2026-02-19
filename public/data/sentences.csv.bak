@@ -15,7 +15,7 @@ id;unit_id;fr;de;note;has_audio_fr;has_audio_de
 14;1;Ma {grand-mère|#92} est {allée en cure|#93}.;Meine {Oma|#94} ist {zur Kur gefahren|#95}.;;true;true
 15;1;Le voyage était {crevant|#96}.;Die Reise war {anstrengend|#97}.;;true;true
 16;1;C’est un {travail|#98} très {fatigant|#99}.;Das ist eine sehr {ermüdende|#100} {Arbeit|#101}.;;true;true
-17;1;{L’examen|#102} était très {dur|#103}.;Die {Prüfung|#104} war sehr {schwer|#105}.;;true;true
+17;1;L’{examen|#102} était très {dur|#103}.;Die {Prüfung|#104} war sehr {schwer|#105}.;;true;true
 18;1;Il a {joué un rôle|#106} important.;Er hat {eine|#107} wichtige {Rolle gespielt|#107}.;;true;true
 19;1;Ce {repas|#109} est {dégoûtant|#108}.;Dieses {Essen|#110} ist {ekelhaft|#111}.;;true;true
 20;1;La maison est sur une {colline|#122}.;Das Haus liegt auf einem {Hügel|#121}.;;true;true
@@ -512,14 +512,14 @@ id;unit_id;fr;de;note;has_audio_fr;has_audio_de
 514;12;J’ai {garé} la voiture plus loin.;Ich habe {das Auto} weiter weg {geparkt}.;;true;false
 515;12;La route est en forte {pente}.;Die Straße hat eine starke {Steigung}.;;true;false
 516;12;La maison a {brûlé}.;Das Haus ist {abgebrannt}.;;true;false
-517;12;L’ambiance est {chaleureuse}, pas agressive.;Die Stimmung ist {herzlich}, nicht aggressiv.;;true;false
-518;12;C’était un débat très {houleux}.;Das war eine sehr {hitzige} Debatte.;;true;false
-519;12;C’est un {concept} intéressant.;Das ist ein interessantes {Konzept}.;;true;false
-520;12;Il y a une {fontaine} sur la place.;Auf dem Platz steht ein {Brunnen}.;;true;false
-521;12;On suit la {trace} laissée au sol.;Man folgt der am Boden hinterlassenen {Spur}.;;true;false
-522;12;La ville veut {élargir} la route.;Die Stadt will die Straße {verbreitern}.;;true;false
-523;12;Il {regrette} cette décision.;Er {bereut} diese Entscheidung.;;true;false
-524;12;Elle {regrette|#352} son amie.;Sie {trauert|#353} ihrer Freundin {nach|#353}.;;true;false
+517;12;L’{ambiance|#367} est {chaleureuse|#365}, pas agressive.;Die {Stimmung|#368} ist {herzlich|#366}, nicht aggressiv.;;true;false
+518;12;C’était un débat très {houleux|#363}.;Das war eine sehr {hitzige|#364} Debatte.;;true;false
+519;12;C’est un {concept|#361} intéressant.;Das ist ein interessantes {Konzept|#362}.;;true;false
+520;12;Il y a une {fontaine|#359} sur la place.;Auf dem Platz steht ein {Brunnen|#360}.;;true;false
+521;12;On suit la {trace|#357} laissée au sol.;Man folgt der am Boden hinterlassenen {Spur|#358}.;;true;false
+522;12;La ville veut {élargir|#355} la route.;Die Stadt will die Straße {verbreitern|#356}.;;true;false
+523;12;Il {regrette|#352} cette décision.;Er {bereut|#354} diese Entscheidung.;;true;false
+524;12;Elle {regrette|#352} son amie.;Sie {trauert|#353} ihrer Freundin {nach|#353}.;;true;true
 525;12;C’est plus {commode|#350} de venir en métro.;Es ist {bequemer|#351}, mit der U-Bahn zu kommen.;;true;false
 526;12;J’{attends|#348} une réponse.;Ich {erwarte|#349} eine Antwort.;;true;false
 527;12;Il a réussi à {se garer|#309}.;Er hat es geschafft, {einzuparken|#310}.;;true;false
@@ -569,7 +569,7 @@ id;unit_id;fr;de;note;has_audio_fr;has_audio_de
 571;15;Les mathématiques sont {une matière|#327} difficile pour lui.;Mathematik ist für ihn ein schwieriges {Fach|#328}.;;true;true
 572;15;Demain, nous avons {une interrogation écrite|#325}.;Morgen haben wir einen {schriftlichen Test|#326}.;;false;false
 573;15;Vendredi, il y a un {devoir sur table|#323} en histoire.;Am Freitag gibt es eine {Klassenarbeit|#324} in Geschichte.;;true;true
-574;15;À la fin de l’année, nous passons {un examen|#321} important.;Am Ende des Jahres machen wir eine wichtige {Prüfung|#322}.;;true;true
+574;15;À la fin de l’année, nous passons un {examen|#370} important.;Am Ende des Jahres machen wir eine wichtige {Prüfung|#369}.;;true;true
 575;15;J’utilise {un protège-cahier|#317} pour protéger mon cahier.;Ich benutze einen {Heftumschlag|#318}, um mein Heft zu schützen.;;true;true
 576;15;J’achète souvent des livres {d’occasion|#315} pour {économiser de l’argent|#319}.;Ich kaufe oft {gebrauchte|#316} Bücher, um {Geld zu sparen|#320}.;;true;true
 577;15;Les enfants écrivent sur une {ardoise|#311} avec un {crayon d'ardoise|#312}.;Die Kinder schreiben auf einer {Schiefertafel|#313} mit einem {Griffel|#314}.;;true;true

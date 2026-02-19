@@ -71,7 +71,7 @@ export class ViewEditorTermsComponent {
 
   unitOptions = computed(() => {
     const selectedGroupId = this.selectedGroupId();
-    const options: Array<{ id: number; label: string }> = [{ id: -1, label: 'All' }];
+    const options: Array<{ id: number, label: string }> = [{ id: -1, label: 'All' }];
     const allUnitsInGroup = selectedGroupId === -1
       ? this.store.units()
       : this.store.units().filter(unit => unit.group_id === selectedGroupId);
@@ -221,6 +221,62 @@ export class ViewEditorTermsComponent {
       this.searchInput?.nativeElement?.select();
       return;
     }
+  }
+
+  // Multiselect für Term-Merge
+  selectedTermIds = signal<Set<number>>(new Set());
+
+  toggleTermSelection(termId: number) {
+    const set = new Set(this.selectedTermIds());
+    if (set.has(termId)) {
+      set.delete(termId);
+    } else {
+      set.add(termId);
+    }
+    this.selectedTermIds.set(set);
+  }
+
+  clearTermSelection() {
+    this.selectedTermIds.set(new Set());
+  }
+
+  async mergeSelectedTerms() {
+    const ids = Array.from(this.selectedTermIds());
+    if (ids.length < 2) return;
+    if (!confirm(`Merge ${ids.length} terms? This cannot be undone.`)) return;
+    const response = await fetch('http://localhost:3001/merge/terms', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ term_ids: ids }),
+    });
+    if (response.ok) {
+      await this.store.loadAll();
+      this.clearTermSelection();
+      alert('Terms merged!');
+    } else {
+      alert('Merge failed: ' + (await response.text()));
+    }
+  }
+
+  areAllFilteredTermsSelected(): boolean {
+    const filtered = this.filteredTerms();
+    if (filtered.length === 0) return false;
+    const selected = this.selectedTermIds();
+    return filtered.every(term => selected.has(term.id));
+  }
+
+  toggleSelectAllFilteredTerms(checked: boolean) {
+    if (checked) {
+      const set = new Set(this.filteredTerms().map(term => term.id));
+      this.selectedTermIds.set(set);
+    } else {
+      this.selectedTermIds.set(new Set());
+    }
+  }
+
+  handleSelectAllCheckboxChange(event: Event) {
+    const checked = (event.target && (event.target as HTMLInputElement).checked) || false;
+    this.toggleSelectAllFilteredTerms(checked);
   }
 
   protected readonly parseTermDisplayMarkup = parseTermDisplayMarkup;

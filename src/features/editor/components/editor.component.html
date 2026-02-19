@@ -78,6 +78,19 @@
         <mat-icon>file_download</mat-icon>
         <span>Download</span>
       </button>
+
+      @if (viewMode() === 'terms') {
+        <button
+          type="button"
+          class="rounded-xl border px-3 py-2 text-sm font-semibold flex items-center gap-2"
+          [ngClass]="canMergeTerms ? 'border-amber-400 bg-amber-50 text-amber-700 hover:bg-amber-100' : 'border-slate-200 bg-white text-slate-400'"
+          (click)="mergeSelectedTerms()"
+          [disabled]="!canMergeTerms"
+        >
+          <mat-icon>merge_type</mat-icon>
+          <span>Merge Terms</span>
+        </button>
+      }
     </div>
   </div>
 
@@ -107,6 +120,6 @@
   @if (viewMode() === 'sentences') {
     <app-sentences-view class="h-full flex-1 min-h-0"></app-sentences-view>
   } @else {
-    <app-all-terms-translations class="h-full flex-1 min-h-0"></app-all-terms-translations>
+    <app-all-terms-translations class="h-full flex-1 min-h-0" #termsComp></app-all-terms-translations>
   }
 </div>

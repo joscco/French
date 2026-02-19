@@ -78,6 +78,12 @@
       <table class="w-full table-fixed text-sm">
         <thead class="sticky top-0 z-10 bg-slate-50">
         <tr class="text-left text-xs font-extrabold uppercase tracking-wide text-slate-500">
+          <th class="w-8 px-2 py-2 text-center">
+            <input type="checkbox"
+                   [checked]="areAllFilteredTermsSelected()"
+                   (change)="handleSelectAllCheckboxChange($event)"
+                   title="Select all visible terms" />
+          </th>
           <th class="w-16 px-3 py-2 text-right">ID</th>
           <th class="w-16 px-3 py-2">Lang</th>
           <th class="px-3 py-2">Display</th>
@@ -89,7 +95,7 @@
         <tbody>
           @if (filteredTerms().length === 0) {
             <tr>
-              <td colspan="5" class="px-3 py-6">
+              <td colspan="6" class="px-3 py-6">
                 <div class="rounded-xl border border-dashed border-slate-300 p-3 text-sm text-slate-600">
                   No terms match your filter.
                 </div>
@@ -107,6 +113,14 @@
                   }"
                 (click)="selectTerm(termRow.id)"
               >
+                <td class="px-2 py-2 text-center">
+                  <input type="checkbox"
+                         [checked]="selectedTermIds().has(termRow.id)"
+                         (click)="$event.stopPropagation()"
+                         (change)="toggleTermSelection(termRow.id)"
+                         title="Select for merge" />
+                </td>
+
                 <td class="px-3 py-2 font-mono text-xs text-slate-500 text-right">{{ termRow.id }}</td>
 
                 <td class="px-3 py-2">
@@ -154,6 +168,17 @@
           }
         </tbody>
       </table>
+
+      <div class="mt-3 flex justify-end">
+        <button
+          type="button"
+          class="rounded-lg border border-slate-200 bg-white px-3 py-2 text-xs font-semibold hover:bg-slate-50 ml-2"
+          [disabled]="selectedTermIds().size < 2"
+          (click)="mergeSelectedTerms()"
+        >
+          Merge selected
+        </button>
+      </div>
     </div>
   </div>
 

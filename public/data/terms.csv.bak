@@ -319,8 +319,6 @@ id;lang;term_text;category;genus;needs_vowel_article;unit_id;ref;tags;has_audio
 318;de;Heftumschlag;noun;m;;;;;true
 319;fr;économiser {de l’argent};verb;;;;;;true
 320;de;{Geld} sparen;verb;;;;;;true
-321;fr;examen;noun;m;true;;;;true
-322;de;Prüfung;noun;f;;;;;true
 323;fr;devoir sur table;noun;m;;;;;true
 324;de;Klassenarbeit;noun;f;;;;;true
 325;fr;interrogation écrite;noun;f;true;;;;true
@@ -350,5 +348,22 @@ id;lang;term_text;category;genus;needs_vowel_article;unit_id;ref;tags;has_audio
 349;de;{etw.} erwarten;;;;;;;false
 350;fr;commode;adjective;;;;;;false
 351;de;bequem;adjective;;;;;;false
-352;fr;regretter {qc.};;;;;;;false
-353;de;{etw.} nachtrauern;verb;;;;;;false
+352;fr;regretter {qc.};;;;;;;true
+353;de;{etw.} nachtrauern;verb;;;;;;true
+354;de;{etw.} bereuen;verb;;;;;;false
+355;fr;élargir {qc.};;;;;;;false
+356;de;{etw.} verbreitern;verb;;;;;;false
+357;fr;trace;noun;f;;;;;false
+358;de;Spur;noun;f;;;;;false
+359;fr;fontaine;noun;f;;;;;false
+360;de;Brunnen;noun;m;;;;;false
+361;fr;concept;noun;m;;;;;false
+362;de;Konzept;noun;n;;;;;false
+363;fr;houleux;adjective;;;;;;false
+364;de;hitzig;adjective;;;;;;false
+365;fr;chaleureux;;;;;;;false
+366;de;herzlich;adjective;;;;;;false
+367;fr;ambiance;noun;f;true;;;;false
+368;de;Stimmung;noun;f;;;;;false
+369;de;Prüfung;noun;f;;;;;false
+370;fr;examen;noun;m;true;;;;false

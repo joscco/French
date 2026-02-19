@@ -1,4 +1,4 @@
-import {Component, computed, inject, signal} from '@angular/core';
+import {Component, ViewChild, computed, inject, signal} from '@angular/core';
 import {NgClass} from '@angular/common';
 import {FormsModule} from '@angular/forms';
 import {MatIcon} from '@angular/material/icon';
@@ -277,6 +277,20 @@ export class EditorComponent {
       return `Unit ${unitId}`;
     }
     return unit.name?.trim();
+  }
+
+  // Zugriff auf Term-Merge aus Kindkomponente
+  @ViewChild('termsComp') termsComponentRef!: ViewEditorTermsComponent;
+
+  // Proxy für Multiselect-Status und Merge-Action
+  get selectedTermIds() {
+    return this.termsComponentRef?.selectedTermIds() ?? new Set();
+  }
+  get canMergeTerms() {
+    return this.selectedTermIds.size > 1;
+  }
+  mergeSelectedTerms() {
+    this.termsComponentRef?.mergeSelectedTerms();
   }
 
   protected readonly Number = Number;

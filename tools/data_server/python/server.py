@@ -222,6 +222,83 @@ class TTSHandler(BaseHTTPRequestHandler):
             except Exception as e:
                 print(f"[Save] ❌ Fehler: {e}")
                 self._send_json({"success": False, "error": str(e)}, 500)
+        elif parsed.path == "/merge/terms":
+            try:
+                content_length = int(self.headers.get('Content-Length', 0))
+                body = self.rfile.read(content_length)
+                data = json.loads(body.decode('utf-8'))
+                term_ids = data.get("term_ids", [])
+                if not isinstance(term_ids, list) or len(term_ids) < 2:
+                    self._send_json({"success": False, "error": "Mindestens zwei Term-IDs angeben."}, 400)
+                    return
+                term_ids = [str(tid) for tid in term_ids]
+                target_id = min(term_ids, key=int)
+                import csv, io
+                from pathlib import Path
+                terms_path = PROJECT_ROOT / "public/data/terms.csv"
+                sentences_path = PROJECT_ROOT / "public/data/sentences.csv"
+                term_links_path = PROJECT_ROOT / "public/data/term_links.csv"
+                # Backup
+                for p in [terms_path, sentences_path, term_links_path]:
+                    if p.exists():
+                        import shutil
+                        shutil.copy(p, p.with_suffix(".csv.bak"))
+                # Terms laden
+                with open(terms_path, encoding="utf-8") as f:
+                    terms = list(csv.DictReader(f, delimiter=";"))
+                # Sentences laden
+                with open(sentences_path, encoding="utf-8") as f:
+                    sentences = list(csv.DictReader(f, delimiter=";"))
+                # Term-Links laden
+                with open(term_links_path, encoding="utf-8") as f:
+                    term_links = list(csv.DictReader(f, delimiter=";"))
+                # --- Terms mergen ---
+                terms_new = [t for t in terms if t["id"] not in term_ids or t["id"] == target_id]
+                # --- Sentences-Referenzen ummappen (auch Markup in fr/de Feldern!) ---
+                import re
+                id_pattern = re.compile(r"\{([^}|]+)\|#(\d+)\}")
+                for row in sentences:
+                    for k, v in row.items():
+                        # Felder wie term_id, term_id_fr, term_id_de
+                        if k.startswith("term_id") and v in term_ids:
+                            row[k] = target_id
+                    # Markup in fr/de Feldern ersetzen
+                    for lang_col in ("fr", "de"):
+                        if lang_col in row and row[lang_col]:
+                            def repl(m):
+                                text, id_ = m.group(1), m.group(2)
+                                return f"{{{text}|#{target_id}}}" if id_ in term_ids else m.group(0)
+                            row[lang_col] = id_pattern.sub(repl, row[lang_col])
+                # --- Term-Links ummappen (fr_id, de_id) ---
+                for link in term_links:
+                    if "fr_id" in link and link["fr_id"] in term_ids:
+                        link["fr_id"] = target_id
+                    if "de_id" in link and link["de_id"] in term_ids:
+                        link["de_id"] = target_id
+                # --- Doppelte Links entfernen ---
+                seen = set()
+                term_links_new = []
+                for link in term_links:
+                    key = (link.get("fr_id"), link.get("de_id"))
+                    if key not in seen and link.get("fr_id") != link.get("de_id"):
+                        seen.add(key)
+                        term_links_new.append(link)
+                # --- CSVs speichern ---
+                def write_csv(path, rows):
+                    if not rows:
+                        return
+                    with open(path, "w", encoding="utf-8", newline="") as f:
+                        writer = csv.DictWriter(f, fieldnames=rows[0].keys(), delimiter=";", lineterminator="\n")
+                        writer.writeheader()
+                        for row in rows:
+                            writer.writerow(row)
+                write_csv(terms_path, terms_new)
+                write_csv(sentences_path, sentences)
+                write_csv(term_links_path, term_links_new)
+                self._send_json({"success": True, "target_id": target_id})
+            except Exception as e:
+                print(f"[Merge] ❌ Fehler: {e}")
+                self._send_json({"success": False, "error": str(e)}, 500)
         else:
             self._send_json({"error": "Not found"}, 404)
 
@@ -240,6 +317,7 @@ def run_server(port: int = 3001):
     print(f"  GET  /generate/sentence?id=ID&lang=fr|de  (TTS für Satz)")
     print(f"  GET  /generate/term?id=ID           (TTS für Term)")
     print(f"  POST /save/csv                      (CSV speichern inkl. Audio-Status)")
+    print(f"  POST /merge/terms                   (Terms mergen)")
     print(f"  GET  /health                        (Healthcheck)")
     print()
     print("Drücke Ctrl+C zum Beenden.")
