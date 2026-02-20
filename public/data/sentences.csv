@@ -45,17 +45,17 @@ id;unit_id;fr;de;note;has_audio_fr;has_audio_de
 46;1;Il y a une {exposition|#472} d'art au {musée|#474}.;Es gibt eine {Kunstausstellung|#473} im {Museum|#475};;true;true
 47;1;Ce {tableau|#476} est de Picasso.;Dieses {Gemälde|#477} ist von Picasso.;;true;true
 48;1;J'aime le {design|#478} {scandinave|#480}.;Ich mag {skandinavisches|#481} {Design|#479}.;;true;true
-49;1;Le {parquet} est en {chêne}.;Das {Parkett} ist aus {Eiche}.;;true;true
-50;1;Le sol est en {parquet flottant}.;Der Boden ist aus {Laminat}.;;true;true
-51;1;Cette table est en {chêne}.;Der Tisch ist aus {Eiche}.;;true;true
-52;1;L'{aulne} pousse au bord des {rivières}.;{Erlen} wachsen oft an {Flüssen}.;;true;true
-53;1;Le {hêtre} est un {bois dur}.;{Buche} ist ein {Hartholz}.;;true;true
-54;1;Le {pin} est un {arbre résineux}.;Die {Kiefer} ist ein {Nadelbaum};;true;true
-55;1;L'{érable} donne du {sirop}.;Aus dem {Ahorn} gewinnt man {Sirup}.;;true;true
-56;1;L'{épicéa} est un arbre {commun} en Europe.;Die {Fichte} ist ein {häufiger} Baum in Europa.;;true;true
-57;1;Le {pin parasol} pousse dans le Sud.;Die {Pinie} wächst im Süden.;;true;true
-58;1;Le {bouleau} a une {écorce} blanche.;Die {Birke} hat weiße {Rinde}.;;true;true
-59;1;Le {cerisier} {fleurit} au {printemps}.;Der {Kirschbaum} {blüht} im {Frühling}.;;true;true
+49;1;Le {parquet|#508} est en {chêne|#506}.;Das {Parkett|#509} ist aus {Eiche|#507}.;;true;true
+50;1;Le sol est en {parquet flottant|#526}.;Der Boden ist aus {Laminat|#527}.;;true;true
+51;1;Cette table est en {chêne|#506}.;Der Tisch ist aus {Eiche|#507}.;;true;true
+52;1;L'{aulne|#529} pousse au bord des {rivières|#528}.;{Erlen|#530} wachsen oft an {Flüssen|#531}.;;true;true
+53;1;Le {hêtre|#535} est un {bois dur|#534}.;{Buche|#532} ist ein {Hartholz|#533}.;;true;true
+54;1;Le {pin|#539} est un {arbre résineux|#538}.;Die {Kiefer|#536} ist ein {Nadelbaum|#537};;true;true
+55;1;L'{érable|#540} donne du {sirop|#543}.;Aus dem {Ahorn|#541} gewinnt man {Sirup|#542}.;;true;true
+56;1;L'{épicéa|#544} est un arbre {commun|#546} en Europe.;Die {Fichte|#545} ist ein {häufiger|#547} Baum in Europa.;;true;true
+57;1;Le {pin parasol|#548} pousse {dans le Sud|#551}.;Die {Pinie|#549} wächst {im Süden|#550}.;;true;true
+58;1;Le {bouleau|#552} a une {écorce|#553} blanche.;Die {Birke|#555} hat weiße {Rinde|#554}.;;true;true
+59;1;Le {cerisier|#556} {fleurit|#558} {au printemps|#560}.;Der {Kirschbaum|#557} {blüht|#559} {im Frühling|#561}.;;true;true
 60;1;Cette {armoire} est en {merisier}.;Dieser {Schrank} ist aus {Kirschholz}.;;true;true
 61;1;C'est un {mélange} de {couleurs}.;Das ist eine {Farbmischung}.;;true;true
 62;1;J'ai acheté un {vase} au {marché aux puces}.;Ich habe eine {Vase} auf dem {Flohmarkt} gekauft.;;true;true
@@ -478,21 +478,21 @@ id;unit_id;fr;de;note;has_audio_fr;has_audio_de
 480;12;{Autrefois}, la ville était beaucoup plus calme.;{Früher} war die Stadt viel ruhiger.;;true;true
 481;12;Il habite {autre part} maintenant.;Er wohnt jetzt {woanders}.;;true;true
 482;12;La situation s’{est détériorée}.;Die Situation {hat sich verschlechtert}.;;true;true
-483;12;Cette décision a {détérioré} l’ambiance.;Diese Entscheidung {hat} die Stimmung {verschlechtert}.;;true;true
-484;12;Ils ont {annulé} la réunion.;Sie haben das Treffen {abgesagt}.;;true;true
-485;12;Il {fouille} dans son sac pour chercher ses {clés}.;Er {kramt} in seiner Tasche nach seinen {Schlüsseln}.;;true;true
-486;12;Il y a trop de {bazar} sur la table.;Auf dem Tisch liegt zu viel {Kram}.;;true;true
-487;12;Après le travail, j’aime {me détendre}.;Nach der Arbeit {entspanne} ich {mich} gern.;;true;true
-488;12;La ville veut {supprimer} des places de parking.;Die Stadt will Parkplätze {abschaffen}.;;true;true
-489;12;La France a {aboli} la peine de mort.;Frankreich hat die Todesstrafe {abgeschafft}.;;true;true
-490;12;Il y a souvent des {embouteillages} sur le {périphérique}.;Auf dem {Stadtring} gibt es oft {Staus}.;;true;true
-491;12;Il habite en {périphérie} de la ville.;Er wohnt am {Stadtrand}.;;true;true
-492;12;La pollution {diminue} lentement.;Die Verschmutzung {nimmt ab}.;;true;true
-493;12;Finalement, {ça a porté ses fruits}.;Am Ende {hat es etwas gebracht}.;;true;true
+483;12;Cette {décision|#572} a {détérioré|#574} l’{ambiance|#367}.;Diese {Entscheidung|#573} {hat|#575} die {Stimmung|#368} {verschlechtert|#575}.;;true;true
+484;12;Ils ont {annulé|#568} la {réunion|#570}.;Sie haben das {Treffen|#571} {abgesagt|#569}.;;true;true
+485;12;Il {fouille|#564} dans son sac pour chercher ses {clés|#567}.;Er {kramt|#565} in seiner Tasche nach seinen {Schlüsseln|#566}.;;true;true
+486;12;Il y a trop de {bazar|#562} sur la table.;Auf dem Tisch liegt zu viel {Kram|#563}.;;true;true
+487;12;Après le travail, j’aime {me détendre|#524}.;Nach der Arbeit {entspanne|#525} ich {mich|#525} gern.;;true;true
+488;12;La ville veut {supprimer|#522} des places de parking.;Die Stadt will Parkplätze {abschaffen|#519}.;;true;true
+489;12;La {France|#516} a {aboli|#518} la {peine de mort|#521}.;{Frankreich|#517} hat die {Todesstrafe|#520} {abgeschafft|#519}.;;true;true
+490;12;Il y a souvent des {embouteillages|#512} sur le {périphérique|#514}.;Auf dem {Stadtring|#513} gibt es oft {Staus|#515}.;;true;true
+491;12;Il habite {en périphérie de la ville|#510}.;Er wohnt {am Stadtrand|#511}.;;true;true
+492;12;La pollution {diminue|#504} lentement.;Die Verschmutzung {nimmt ab|#505}.;;true;true
+493;12;Finalement, ça a {porté ses fruits|#502}.;Am Ende {hat|#503} es {etwas gebracht|#503}.;;true;true
 494;12;Une nouvelle {mesure|#433} a été annoncée.;Eine neue {Maßnahme|#434} wurde angekündigt.;;true;true
 495;12;Un {radar|#431} contrôle la vitesse ici.;Hier überwacht ein {Blitzer|#432} die Geschwindigkeit.;;true;true
 496;12;Il faut faire attention aux {véhicules|#427} {en face|#428}.;Man muss auf die {entgegenkommenden|#429} {Fahrzeuge|#430} achten.;;true;true
-497;12;Cette action lui a {valu une bonne réputation}.;Diese Aktion hat ihm {einen guten Ruf eingebracht}.;;true;true
+497;12;Cette action lui a {valu une bonne réputation|#500}.;Diese Aktion hat ihm {einen guten Ruf eingebracht|#501}.;;true;true
 498;12;Le quartier {bâti|#496} est plus {dense|#498}.;Das {bebaute|#497} Viertel ist {dichter|#499}.;;true;true
 499;12;La région a été {battue par les vents|#494}.;Die Region wurde {von Winden heimgesucht|#495}.;;true;true
 500;12;Je prends souvent le {métro|#492} pour aller au travail.;Ich nehme oft die {U-Bahn|#493}.;;true;true
