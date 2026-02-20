@@ -455,19 +455,19 @@ id;unit_id;fr;de;note;has_audio_fr;has_audio_de
 457;11;On doit présenter un {justificatif de domicile}.;Man muss einen {Wohnsitznachweis} vorlegen.;;true;false
 458;11;Il {s'agace} quand on lui {coupe la parole}.;Er wird {genervt}, wenn man ihn {unterbricht}.;;true;false
 459;11;Il ne faut pas {crier} après les enfants.;Man sollte Kinder nicht {anschreien}.;;false;false
-460;11;Il est toujours {jovial} avec ses collègues.;Er ist immer {fröhlich} mit seinen Kollegen.;;true;false
-461;11;Cette {voie} est réservée aux bus.;Diese {Fahrspur} ist für Busse reserviert.;;true;false
-462;11;Au sol, le {traçage} des voies {interpelle} les passants.;Die {Markierung} der Fahrbahnen am Boden {fällt} Passanten {auf}.;;true;false
-463;11;Il lit {tandis que} j'écris.;Er liest, {während} ich schreibe.;;true;false
-464;11;Le {maire} a présenté un nouveau {projet urbain}.;Der {Bürgermeister} hat ein neues {Stadtprojekt} vorgestellt.;;true;false
-465;11;Il n'y a aucun {indice} sur l'origine du bruit.;Es gibt keinen {Hinweis} auf die Herkunft des Geräuschs.;;true;false
-466;11;Il est tombé dans l'{escalier} en courant.;Er ist die {Treppe} hinuntergefallen.;;true;false
+460;11;Il est toujours {jovial} avec ses collègues.;Er ist immer {fröhlich} mit seinen Kollegen.;;true;true
+461;11;Cette {voie} est réservée aux bus.;Diese {Fahrspur} ist für Busse reserviert.;;true;true
+462;11;Au sol, le {traçage} des voies {interpelle} les passants.;Die {Markierung} der Fahrbahnen am Boden {fällt} Passanten {auf}.;;true;true
+463;11;Il lit {tandis que} j'écris.;Er liest, {während} ich schreibe.;;true;true
+464;11;Le {maire} a présenté un nouveau {projet urbain}.;Der {Bürgermeister} hat ein neues {Stadtprojekt} vorgestellt.;;true;true
+465;11;Il n'y a aucun {indice} sur l'origine du bruit.;Es gibt keinen {Hinweis} auf die Herkunft des Geräuschs.;;true;true
+466;11;Il est tombé dans l'{escalier} en courant.;Er ist die {Treppe} hinuntergefallen.;;true;true
 467;11;On doit passer par Paris pour aller à Rouen.;Wir müssen durch Paris fahren, um nach Rouen zu kommen.;;true;false
-468;11;Les enfants jouent dans la {rue}.;Die Kinder spielen auf der {Straße}.;;true;false
-469;11;Il est assis sur l'{herbe}.;Er sitzt auf dem {Gras}.;;true;false
-470;11;Cette technologie {supplante} l'ancienne.;Diese Technologie {verdrängt} die alte.;;true;false
-471;11;On veut {embellir} le {centre-ville}.;Man möchte die {Innenstadt} {verschönern}.;;true;false
-472;11;La ville veut {végétaliser} les toits.;Die Stadt möchte die Dächer {begrünen}.;;true;false
+468;11;Les enfants jouent dans la {rue}.;Die Kinder spielen auf der {Straße}.;;true;true
+469;11;Il est assis sur l'{herbe}.;Er sitzt auf dem {Gras}.;;true;true
+470;11;Cette technologie {supplante} l'ancienne.;Diese Technologie {verdrängt} die alte.;;true;true
+471;11;On veut {embellir} le {centre-ville}.;Man möchte die {Innenstadt} {verschönern}.;;true;true
+472;11;La ville veut {végétaliser} les toits.;Die Stadt möchte die Dächer {begrünen}.;;true;true
 473;11;Le centre a été {piétonnisé} cet été.;Das Zentrum wurde diesen Sommer zur {Fußgängerzone} umgewandelt.;;true;true
 474;11;Derrière la maison, le terrain est {en pente} .;Hinter dem Haus ist das Gelände {abschüssig}.;;false;true
 475;11;Ils ont enlevé les {barrières} après les {travaux}.;Sie haben die Absperrungen nach den {Arbeiten} entfernt.;;true;true
