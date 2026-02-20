@@ -37,13 +37,13 @@ id;unit_id;fr;de;note;has_audio_fr;has_audio_de
 38;1;Ils {voyagent|#455} en {camping-car|#452}.;Sie {reisen|#454} mit dem {Wohnmobil|#453}.;;true;true
 39;1;La {plage|#448} était {bondée|#449}.;Der {Strand|#451} war {überfüllt|#450}.;;true;true
 40;1;Nous avons une maison sur la {côte|#456}.;Wir haben ein Haus an der {Küste|#457}.;;true;true
-41;1;Nous {allons en avion|#458} à Paris.;Wir {fliegen|#459} nach Paris.;;true;true
+41;1;Nous {allons en avion|#458} à Paris.;Wir {fliegen|#148} nach Paris.;;true;true
 42;1;L'hôtel est dans le {centre-ville|#460}.;Das Hotel ist im {Stadtzentrum|#461}.;;true;true
 43;1;L'{enquêteur|#464} cherche des {indices|#462}.;Der {Ermittler|#465} sucht nach {Hinweisen|#463}.;;true;true
 44;1;Le Sahara est un grand {désert|#466}.;Die Sahara ist eine große {Wüste|#467}.;;true;true
 45;1;Le {vol|#469} de l'avion a été {retardé|#468}.;Der {Flug|#470} wurde {verspätet|#471}.;;true;true
 46;1;Il y a une {exposition|#472} d'art au {musée|#474}.;Es gibt eine {Kunstausstellung|#473} im {Museum|#475};;true;true
-47;1;Ce {tableau|#476} est de Picasso.;Dieses {Gemälde|#477} ist von Picasso.;;true;true
+47;1;Ce {tableau|#119} est de Picasso.;Dieses {Gemälde|#477} ist von Picasso.;;true;true
 48;1;J'aime le {design|#478} {scandinave|#480}.;Ich mag {skandinavisches|#481} {Design|#479}.;;true;true
 49;1;Le {parquet|#508} est en {chêne|#506}.;Das {Parkett|#509} ist aus {Eiche|#507}.;;true;true
 50;1;Le sol est en {parquet flottant|#526}.;Der Boden ist aus {Laminat|#527}.;;true;true
@@ -461,16 +461,16 @@ id;unit_id;fr;de;note;has_audio_fr;has_audio_de
 463;11;Il lit {tandis que} j'écris.;Er liest, {während} ich schreibe.;;true;true
 464;11;Le {maire} a présenté un nouveau {projet urbain}.;Der {Bürgermeister} hat ein neues {Stadtprojekt} vorgestellt.;;true;true
 465;11;Il n'y a aucun {indice} sur l'origine du bruit.;Es gibt keinen {Hinweis} auf die Herkunft des Geräuschs.;;true;true
-466;11;Il est tombé dans l'{escalier} en courant.;Er ist die {Treppe} hinuntergefallen.;;true;true
+466;11;Il est tombé dans l'{escalier|#610} en courant.;Er ist die {Treppe|#611} hinuntergefallen.;;true;true
 467;11;On doit passer par Paris pour aller à Rouen.;Wir müssen durch Paris fahren, um nach Rouen zu kommen.;;true;false
-468;11;Les enfants jouent dans la {rue}.;Die Kinder spielen auf der {Straße}.;;true;true
-469;11;Il est assis sur l'{herbe}.;Er sitzt auf dem {Gras}.;;true;true
-470;11;Cette technologie {supplante} l'ancienne.;Diese Technologie {verdrängt} die alte.;;true;true
+468;11;Les enfants {jouent|#609} dans la {rue|#488}.;Die Kinder {spielen|#608} auf der {Straße|#487}.;;true;true
+469;11;Il {est assis sur|#606} l'{herbe|#604}.;Er {sitzt auf|#607} dem {Gras|#605}.;;true;true
+470;11;Cette technologie {supplante|#602} l'ancienne.;Diese Technologie {verdrängt|#603} die alte.;;true;true
 471;11;On veut {embellir|#596} le {centre-ville|#460}.;Man möchte die {Innenstadt|#598} {verschönern|#597}.;;true;true
 472;11;La ville veut {végétaliser|#594} les toits.;Die Stadt möchte die Dächer {begrünen|#595}.;;true;true
 473;11;Le centre a été {piétonnisé|#592} cet été.;Das Zentrum wurde diesen Sommer {zur Fußgängerzone umgewandelt|#593}.;;true;true
 474;11;Derrière la maison, le {terrain|#590} est {en pente|#589} .;Hinter dem Haus ist das {Gelände|#591} {abschüssig|#588}.;;true;true
-475;11;Ils ont enlevé les {barrières|#585} après les {travaux|#586}.;Sie haben die {Absperrungen|#587} nach den {Arbeiten|#101} entfernt.;;true;true
+475;11;Ils ont enlevé les {barrières|#585} après les {travaux|#98}.;Sie haben die {Absperrungen|#587} nach den {Arbeiten|#101} entfernt.;;true;true
 476;11;Les habitants {se sont insurgés contre|#78} le projet.;Die Bewohner haben {sich|#79} über das Projekt {empört|#79}.;;true;true
 477;11;L’{effacement|#74} des {graffitis|#76} a coûté cher.;Die {Entfernung|#75} der {Graffitis|#77} war teuer.;;true;false
 478;11;Il {avance|#582} d’un pas {mal assuré|#580}.;Er {geht|#583} mit einem {unsicheren|#581} Schritt.;;true;true
@@ -558,7 +558,7 @@ id;unit_id;fr;de;note;has_audio_fr;has_audio_de
 560;14;Il a mis de l’encre dans l’{encrier|#261}.;Er hat Tinte in das {Tintenfass|#262} getan.;;true;true
 561;14;Son {écriture manuscrite|#263} est difficile à lire.;Seine {Schreibschrift|#264} ist schwer zu lesen.;;true;true
 562;14;Il écrit en {caractères d’imprimerie|#265}.;Er schreibt in {Druckbuchstaben|#266}.;;true;true
-563;15;Les {petits-enfants|#307} aiment écouter les histoires de leur grand-mère.;Die {Enkelkinder|#347} hören gern die Geschichten ihrer Großmutter.;;true;true
+563;15;Les {petits-enfants|#307} aiment écouter les histoires de leur grand-mère.;Die {Enkelkinder|#308} hören gern die Geschichten ihrer Großmutter.;;true;true
 564;15;Chaque {élève|#345} doit écrire son nom en {lettres majuscules|#344}.;Jeder {Schüler|#346} muss seinen Namen in {Großbuchstaben|#343} schreiben.;;true;true
 565;15;Le professeur demande aussi d’utiliser des {lettres minuscules|#341}.;Der Lehrer verlangt auch, {Kleinbuchstaben|#342} zu verwenden.;;true;true
 566;15;Nous avons commencé à utiliser une {tablette|#339} en classe.;Wir haben angefangen, ein {Tablet|#340} im Unterricht zu benutzen.;;true;true

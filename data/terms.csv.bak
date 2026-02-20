@@ -1,5 +1,5 @@
 id;lang;term_text;category;genus;needs_vowel_article;unit_id;ref;tags;has_audio
-1;fr;s'inscrire à {qc.};verb;;;;;;true
+1;fr;{s'}inscrire {à qc.};verb;;;;;;true
 2;fr;cours de français;noun;m;;;;;true
 3;de;Französischkurs;noun;m;;;;;true
 4;de;{sich zu etw.} anmelden;verb;;;;;;true
@@ -343,7 +343,6 @@ id;lang;term_text;category;genus;needs_vowel_article;unit_id;ref;tags;has_audio
 344;fr;lettre majuscule;noun;f;;;;;true
 345;fr;élève;noun;m;true;;;;true
 346;de;Schüler;noun;m;;;;;true
-347;de;Enkelkinder;noun;npl;;;;;true
 348;fr;attendre {qc.};verb;;;;;;true
 349;de;{etw.} erwarten;verb;;;;;;true
 350;fr;commode;adjective;;;;;;true
@@ -451,7 +450,6 @@ id;lang;term_text;category;genus;needs_vowel_article;unit_id;ref;tags;has_audio
 456;fr;côte;noun;f;;;;;true
 457;de;Küste;noun;f;;;;;true
 458;fr;aller en avion;verb;;;;;;true
-459;de;fliegen;verb;;;;;;true
 460;fr;centre-ville;noun;m;;;;;true
 461;de;Stadtzentrum;noun;n;;;;;true
 462;fr;indice;noun;m;true;;;;true
@@ -468,7 +466,6 @@ id;lang;term_text;category;genus;needs_vowel_article;unit_id;ref;tags;has_audio
 473;de;Kunstausstellung;noun;f;;;;;true
 474;fr;musée;noun;m;;;;;true
 475;de;Museum;noun;n;;;;;true
-476;fr;tableau;noun;m;;;;;true
 477;de;Gemälde;noun;n;;;;;true
 478;fr;design;noun;m;;;;;true
 479;de;Design;noun;n;;;;;true
@@ -517,9 +514,9 @@ id;lang;term_text;category;genus;needs_vowel_article;unit_id;ref;tags;has_audio
 522;fr;supprimer {qc.};verb;;;;;;true
 524;fr;{se} détendre;verb;;;;;;true
 525;de;{sich} entspannen;verb;;;;;;true
-526;fr;parquet flottant;noun;m;;;;;false
-527;de;Laminat;noun;n;;;;;false
-528;fr;rivière;noun;f;;;;;false
+526;fr;parquet flottant;noun;m;;;;;true
+527;de;Laminat;noun;n;;;;;true
+528;fr;rivière;noun;f;;;;;true
 529;fr;aulne;noun;m;true;;;;true
 530;de;Erle;noun;f;;;;;true
 531;de;Fluss;noun;m;;;;;true
@@ -528,7 +525,7 @@ id;lang;term_text;category;genus;needs_vowel_article;unit_id;ref;tags;has_audio
 534;fr;bois dur;noun;m;;;;;true
 535;fr;hêtre;noun;m;;;;;true
 536;de;Kiefer;noun;f;;;;;true
-537;de;Nadelbaum;noun;m;;;;;false
+537;de;Nadelbaum;noun;m;;;;;true
 538;fr;arbre résineux;noun;m;true;;;;true
 539;fr;pin;noun;m;;;;;true
 540;fr;érable;noun;m;true;;;;true
@@ -554,41 +551,50 @@ id;lang;term_text;category;genus;needs_vowel_article;unit_id;ref;tags;has_audio
 560;fr;au printemps;expression;;;;;;true
 561;de;im Frühling;expression;;;;;;true
 562;fr;bazar;noun;m;;;;;true
-563;de;Kram;noun;m;;;;;false
+563;de;Kram;noun;m;;;;;true
 564;fr;fouillir;verb;;;;;;true
-565;de;kramen;verb;;;;;;false
-566;de;Schlüssel;noun;m;;;;;false
+565;de;kramen;verb;;;;;;true
+566;de;Schlüssel;noun;m;;;;;true
 567;fr;clé;noun;f;;;;;true
 568;fr;annuler {qc.};verb;;;;;;true
 569;de;{etw.} absagen;verb;;;;;;true
-570;fr;réunion;noun;f;;;;;false
+570;fr;réunion;noun;f;;;;;true
 571;de;Treffen;noun;n;;;;;true
 572;fr;décision;noun;f;;;;;true
 573;de;Entscheidung;noun;f;;;;;true
 574;fr;détériorer {qc.};verb;;;;;;true
 575;de;{etw.} verschlechtern;verb;;;;;;true
 576;fr;autre part;expression;;;;;;true
-577;de;woanders;expression;;;;;;false
+577;de;woanders;expression;;;;;;true
 578;fr;autrefois;expression;;;;;;true
-579;de;früher;expression;;;;;;false
-580;fr;mal assuré;adjective;;;;;;false
-581;de;unsicher;adjective;;;;;;false
+579;de;früher;expression;;;;;;true
+580;fr;mal assuré;adjective;;;;;;true
+581;de;unsicher;adjective;;;;;;true
 582;fr;avancer;verb;;;;;;true
-583;de;gehen;verb;;;;;;false
+583;de;gehen;verb;;;;;;true
 585;fr;barrière;noun;f;;;;;true
-586;fr;travail;noun;m;;;;;false
 587;de;Absperrung;noun;f;;;;;true
 588;de;abschüssig;adjective;;;;;;true
 589;fr;en pente;expression;;;;;;true
-590;fr;terrain;noun;m;;;;;false
-591;de;Gelände;noun;n;;;;;false
-592;fr;piétonniser {qc.};verb;;;;;;false
-593;de;{etw.} zur Fußgängerzone umwandeln;verb;;;;;;false
-594;fr;végétaliser {qc.};verb;;;;;;false
+590;fr;terrain;noun;m;;;;;true
+591;de;Gelände;noun;n;;;;;true
+592;fr;piétonniser {qc.};verb;;;;;;true
+593;de;{etw.} zur Fußgängerzone umwandeln;verb;;;;;;true
+594;fr;végétaliser {qc.};verb;;;;;;true
 595;de;{etw.} begrünen;verb;;;;;;true
 596;fr;embellir {qc.};verb;;;;;;true
-597;de;{etw.} verschönern;verb;;;;;;false
-598;de;Innenstadt;noun;f;;;;;false
+597;de;{etw.} verschönern;verb;;;;;;true
+598;de;Innenstadt;noun;f;;;;;true
 599;fr;crier {après qn.};verb;;;;;;true
 600;de;{jmdn.} anschreien;verb;;;;;;true
 601;fr;aller;verb;;;;;;true
+602;fr;supplanter {qc.};verb;;;;;;false
+603;de;{etw.} verdrängen;verb;;;;;;false
+604;fr;herbe;noun;m;true;;;;false
+605;de;Gras;noun;n;;;;;false
+606;fr;{être} assis sur {qc.};verb;;;;;;false
+607;de;{auf etw.} sitzen;verb;;;;;;false
+608;de;spielen;verb;;;;;;false
+609;fr;jouer;verb;;;;;;false
+610;fr;escalier;noun;m;true;;;;false
+611;de;Treppe;noun;f;;;;;false
