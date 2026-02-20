@@ -1,10 +1,21 @@
-import { CommonModule } from '@angular/common';
-import { Component, computed, effect, ElementRef, HostListener, inject, signal, ViewChild, input, output } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { MatIcon } from '@angular/material/icon';
+import {CommonModule} from '@angular/common';
+import {
+  Component,
+  computed,
+  effect,
+  ElementRef,
+  HostListener,
+  inject,
+  input,
+  output,
+  signal,
+  ViewChild
+} from '@angular/core';
+import {FormsModule} from '@angular/forms';
 import {Lang, SentenceRow, TermRow} from '../../../../../shared/contract/contract';
 import {parseSentenceMarkup, representativeText} from '../../../helpers/sentence-markup';
 import {EditorStore} from '../../../services/editor-store.service';
+import {SentenceAudioButtonComponent} from '../../shared/audio-button/sentence-audio-button.component';
 
 
 type AudioState = boolean | null; // null = checking / unknown
@@ -22,7 +33,7 @@ type SentenceStats = {
 @Component({
   standalone: true,
   selector: 'app-sentences-table',
-  imports: [CommonModule, FormsModule, MatIcon],
+  imports: [CommonModule, FormsModule, SentenceAudioButtonComponent],
   templateUrl: './sentences-table.component.html',
 })
 export class SentencePairsTableComponent {
@@ -136,73 +147,31 @@ export class SentencePairsTableComponent {
 
   // Filtered list + stats
   filteredRows = computed(() => {
-    const q = (this.query() ?? '').trim().toLowerCase();
-    const onlyIssues = this.onlyIssues();
+    const searchQuery = (this.query() ?? '').trim().toLowerCase();
+    const onlyShowIssues = this.onlyIssues();
 
-    let list = this.sentences();
+    let filteredSentences = this.sentences();
 
-    if (q) {
-      list = list.filter((s) => {
-        const hay = `${s.fr ?? ''} ${s.de ?? ''} ${s.note ?? ''}`.toLowerCase();
-        return hay.includes(q);
+    if (searchQuery) {
+      filteredSentences = filteredSentences.filter((sentence) => {
+        const searchableText = `${sentence.fr ?? ''} ${sentence.de ?? ''} ${sentence.note ?? ''}`.toLowerCase();
+        return searchableText.includes(searchQuery);
       });
     }
 
     // newest first (like your current list)
-    list = [...list].sort((a, b) => b.id - a.id);
+    filteredSentences = [...filteredSentences].sort((a, b) => b.id - a.id);
 
-    const rows = list.map((s) => ({ sentence: s, stats: this.computeStats(s) }));
+    const sentenceRows = filteredSentences.map((sentence) => ({ sentence, stats: this.computeStats(sentence) }));
 
-    if (onlyIssues) {
-      return rows.filter((r) => {
-        return r.stats.unlinkedCount > 0 || r.stats.invalidLinkedCount > 0 || r.stats.frAudio === false || r.stats.deAudio === false;
+    if (onlyShowIssues) {
+      return sentenceRows.filter((row) => {
+        return row.stats.unlinkedCount > 0 || row.stats.invalidLinkedCount > 0 || row.stats.frAudio === false || row.stats.deAudio === false;
       });
     }
 
-    return rows;
+    return sentenceRows;
   });
-
-  // Audio prefetch for visible rows (cached)
-  constructor() {
-    effect(() => {
-      const rows = this.filteredRows();
-      // Prefetch audio for visible rows only
-      for (const r of rows) {
-        this.ensureAudioChecked('fr', r.sentence.id);
-        this.ensureAudioChecked('de', r.sentence.id);
-      }
-    });
-  }
-
-  private pendingRequests = new Set<string>();
-
-  private async ensureAudioChecked(lang: Lang, id: number) {
-    const key = this.audioKey(lang, id);
-
-    // already known (true/false) -> do nothing
-    const cached = this.audioCache().get(key);
-    if (cached === true || cached === false) {
-      return;
-    }
-
-    // avoid duplicate concurrent calls
-    if (this.pendingRequests.has(key)) {
-      return;
-    }
-    this.pendingRequests.add(key);
-
-    // set to "checking"
-    this.setAudioCached(lang, id, null);
-
-    try {
-      const response = await fetch(this.audioUrl(lang, id), { method: 'HEAD' });
-      this.setAudioCached(lang, id, response.ok);
-    } catch {
-      this.setAudioCached(lang, id, false);
-    } finally {
-      this.pendingRequests.delete(key);
-    }
-  }
 
   onRowClick(id: number) {
     this.selectSentence.emit(id);

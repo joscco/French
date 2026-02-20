@@ -1,0 +1,46 @@
+<div class="inline-flex items-center gap-0.5 text-center">
+  @if (audioExists() === null) {
+    <span class="text-xs text-slate-400">…</span>
+  } @else if (audioExists()) {
+    <button type="button"
+            class="h-7 w-7 rounded-full bg-neutral-100 hover:bg-neutral-200 transition-colors flex items-center justify-center p-0"
+            [ngClass]="isPlaying() ? 'ring-2 ring-neutral-300' : ''"
+            title="Audio abspielen/stoppen"
+            (click)="$event.stopPropagation(); toggleAudio()">
+      <span class="flex items-center justify-center w-full h-full" style="height: 100%;">
+        <mat-icon style="font-size:18px; line-height:1; display:flex; align-items:center; justify-content:center; height:100%;">{{ isPlaying() ? 'stop' : 'play_arrow' }}</mat-icon>
+      </span>
+    </button>
+    <button type="button"
+            class="h-7 w-7 rounded-full bg-neutral-100 hover:bg-neutral-200 transition-colors flex items-center justify-center p-0"
+            [disabled]="isGenerating()"
+            title="Audio neu generieren"
+            (click)="$event.stopPropagation(); generateAudio()">
+      <span class="flex items-center justify-center w-full h-full" style="height: 100%;">
+        @if (isGenerating()) {
+          <mat-icon class="animate-spin" style="font-size:18px; line-height:1; display:flex; align-items:center; justify-content:center; height:100%;">hourglass_empty</mat-icon>
+        } @else {
+          <mat-icon style="font-size:18px; line-height:1; display:flex; align-items:center; justify-content:center; height:100%;">autorenew</mat-icon>
+        }
+      </span>
+    </button>
+  } @else {
+    <button type="button"
+            class="h-7 w-7 rounded-full bg-neutral-100 hover:bg-neutral-200 transition-colors flex items-center justify-center p-0"
+            [disabled]="isGenerating() || !ttsServerAvailable"
+            title="Audio generieren"
+            (click)="$event.stopPropagation(); generateAudio()">
+      <span class="flex items-center justify-center w-full h-full" style="height: 100%;">
+        @if (isGenerating()) {
+          <mat-icon class="animate-spin" style="font-size:18px; line-height:1; display:flex; align-items:center; justify-content:center; height:100%;">hourglass_empty</mat-icon>
+        } @else {
+          <mat-icon style="font-size:18px; line-height:1; display:flex; align-items:center; justify-content:center; height:100%;">mic</mat-icon>
+        }
+      </span>
+    </button>
+  }
+  @if (generateError()) {
+    <mat-icon style="color:#ef4444;font-size:18px; line-height:1; display:flex; align-items:center; justify-content:center; height:100%;" [title]="generateError()">warning</mat-icon>
+  }
+</div>
+

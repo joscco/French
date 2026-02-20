@@ -21,12 +21,11 @@
     <thead class="sticky top-0 z-10 bg-slate-50">
     <tr class="text-left text-xs font-extrabold uppercase tracking-wide text-slate-500">
       <th class="w-16 px-3 py-2 text-right">ID</th>
-      <th class="px-3 py-2">FR</th>
-      <th class="px-3 py-2">DE</th>
-      <th class="w-20 px-3 py-2 text-center">Audio</th>
-      <th class="w-20 px-3 py-2 text-center">Unlinked</th>
-      <th class="w-20 px-3 py-2 text-center">Linked</th>
-      <th class="w-24 px-3 py-2 text-center">Invalid</th>
+      <th class="w-16 px-3 py-2 text-center">FR</th>
+      <th class="w-16 px-3 py-2 text-center">DE</th>
+      <th class="w-18 px-3 py-2 text-center">Unlinked</th>
+      <th class="w-18 px-3 py-2 text-center">Linked</th>
+      <th class="w-18 px-3 py-2 text-center">Invalid</th>
     </tr>
     </thead>
 
@@ -52,32 +51,11 @@
           >
             <td class="px-3 py-2 font-mono text-xs text-slate-500 text-right">{{ row.sentence.id }}</td>
 
-            <td class="px-3 py-2">
-              <div class="truncate font-semibold text-slate-900">{{ row.stats.frRep }}</div>
-            </td>
-
-            <td class="px-3 py-2">
-              <div class="truncate font-semibold text-slate-900">{{ row.stats.deRep }}</div>
-            </td>
-
             <td class="px-3 py-2 text-center">
-              <div class="inline-flex items-center gap-1">
-                @if (row.stats.frAudio === null) {
-                  <span class="text-xs text-slate-400">…</span>
-                } @else if (row.stats.frAudio) {
-                  <mat-icon style="color:#22c55e" title="FR Audio vorhanden">check</mat-icon>
-                } @else {
-                  <mat-icon style="color:#ef4444" title="FR Audio fehlt">close</mat-icon>
-                }
-
-                @if (row.stats.deAudio === null) {
-                  <span class="text-xs text-slate-400">…</span>
-                } @else if (row.stats.deAudio) {
-                  <mat-icon style="color:#22c55e" title="DE Audio vorhanden">check</mat-icon>
-                } @else {
-                  <mat-icon style="color:#ef4444" title="DE Audio fehlt">close</mat-icon>
-                }
-              </div>
+              <app-sentence-audio-button [sentenceId]="row.sentence.id" lang="fr"></app-sentence-audio-button>
+            </td>
+            <td class="px-3 py-2 text-center">
+              <app-sentence-audio-button [sentenceId]="row.sentence.id" lang="de"></app-sentence-audio-button>
             </td>
 
             <td class="px-3 py-2 text-center">
