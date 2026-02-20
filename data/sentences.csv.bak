@@ -26,33 +26,33 @@ id;unit_id;fr;de;note;has_audio_fr;has_audio_de
 25;1;Le {frein|#386} de mon {vélo|#422} ne marche pas.;Die {Bremse|#387} meines {Fahrrads|#423} funktioniert nicht.;;true;false
 26;1;Il faut porter un {casque à vélo|#388}.;Beim Radfahren muss man einen {Fahrradhelm|#389} tragen.;;true;false
 27;1;Il porte une {casquette|#390} bleue.;Er trägt eine blaue {Kappe|#391}.;;true;false
-28;1;Ce {sac|#392} est très {lourd|#393}.;Diese {Tasche|#395} ist sehr {schwer|#394}.;;true;false
+28;1;Ce {sac|#392} est très {lourd|#393}.;Diese {Tasche|#395} ist sehr {schwer|#105}.;;true;false
 29;1;Ce {tissu|#396} est très {léger|#397}.;Dieser {Stoff|#398} ist sehr {leicht|#399}.;;true;false
 31;1;Les {aménagements|#400} du parc sont {modernes|#401}.;Die {Anlagen|#402} des Parks sind {modern|#403}.;;true;false
 32;1;L’{estuaire|#407} de la Loire est {magnifique|#406}.;Die {Mündung|#404} der Loire ist {wunderschön|#405}.;;true;false
-33;1;Je vais {en Grèce} cet été.;Ich fahre diesen Sommer {nach Griechenland}.;;true;false
-34;1;Elle est {grecque}.;Sie ist {Griechin}.;;true;false
-36;1;Le musée {est en rénovation}.;Das Museum {wird} gerade {renoviert}.;;true;false
-37;1;La {pâte d'amandes} est sucrée.;{Marzipan} ist süß.;;true;false
-38;1;Ils {voyagent} en {camping-car}.;Sie {reisen} mit dem {Wohnmobil}.;;true;false
-39;1;La {plage} était {bondée}.;Der {Strand} war {überfüllt}.;;true;false
-40;1;Nous avons une maison sur la {côte}.;Wir haben ein Haus an der {Küste}.;;true;false
-41;1;Nous allons {en avion} à Paris.;Wir {fliegen} nach Paris.;;true;false
-42;1;L'hôtel est dans le {centre-ville}.;Das Hotel ist im {Stadtzentrum};;true;false
-43;1;L'{enquêteur} cherche des {indices}.;Der {Ermittler} sucht nach {Hinweisen}.;;true;false
-44;1;Le Sahara est un grand {désert}.;Die Sahara ist eine große {Wüste}.;;true;false
-45;1;Le {vol} de l'avion a été {retardé}.;Der {Flug} wurde {verspätet}.;;true;false
-46;1;Il y a une {exposition} d'art au {musée}.;Es gibt eine {Kunstausstellung} im {Museum};;true;false
-47;1;Ce {tableau} est de Picasso.;Dieses {Gemälde} ist von Picasso.;;true;false
-48;1;J'aime le {design} scandinave.;Ich mag skandinavisches {Design}.;;true;false
-49;1;Le {parquet} est en {chêne}.;Das {Parkett} ist aus {Eiche}.;;true;false
-50;1;Le sol est en {parquet flottant}.;Der Boden ist aus {Laminat}.;;true;false
-51;1;Cette table est en {chêne}.;Der Tisch ist aus {Eiche}.;;true;false
-52;1;L'{aulne} pousse au bord des {rivières}.;{Erlen} wachsen oft an {Flüssen}.;;true;false
-53;1;Le {hêtre} est un {bois dur}.;{Buche} ist ein {Hartholz}.;;true;false
-54;1;Le {pin} est un {arbre résineux}.;Die {Kiefer} ist ein {Nadelbaum};;true;false
-55;1;L'{érable} donne du {sirop}.;Aus dem {Ahorn} gewinnt man {Sirup}.;;true;false
-56;1;L'{épicéa} est un arbre commun en Europe.;Die {Fichte} ist ein häufiger Baum in Europa.;;true;false
+33;1;Je vais {en Grèce|#441} cet été.;Ich fahre diesen Sommer {nach Griechenland|#440}.;;true;true
+34;1;Elle est {grecque|#442}.;Sie ist {Griechin|#443}.;;true;true
+36;1;Le musée {est en rénovation|#444}.;Das Museum {wird|#445} gerade {renoviert|#445}.;;true;true
+37;1;La {pâte d'amandes|#446} est sucrée.;{Marzipan|#447} ist süß.;;true;true
+38;1;Ils {voyagent|#455} en {camping-car|#452}.;Sie {reisen|#454} mit dem {Wohnmobil|#453}.;;true;true
+39;1;La {plage|#448} était {bondée|#449}.;Der {Strand|#451} war {überfüllt|#450}.;;true;true
+40;1;Nous avons une maison sur la {côte|#456}.;Wir haben ein Haus an der {Küste|#457}.;;true;true
+41;1;Nous {allons en avion|#458} à Paris.;Wir {fliegen|#459} nach Paris.;;true;true
+42;1;L'hôtel est dans le {centre-ville|#460}.;Das Hotel ist im {Stadtzentrum|#461}.;;true;true
+43;1;L'{enquêteur|#464} cherche des {indices|#462}.;Der {Ermittler|#465} sucht nach {Hinweisen|#463}.;;true;true
+44;1;Le Sahara est un grand {désert|#466}.;Die Sahara ist eine große {Wüste|#467}.;;true;true
+45;1;Le {vol|#469} de l'avion a été {retardé|#468}.;Der {Flug|#470} wurde {verspätet|#471}.;;true;true
+46;1;Il y a une {exposition|#472} d'art au {musée|#474}.;Es gibt eine {Kunstausstellung|#473} im {Museum|#475};;true;true
+47;1;Ce {tableau|#476} est de Picasso.;Dieses {Gemälde|#477} ist von Picasso.;;true;true
+48;1;J'aime le {design|#478} {scandinave|#480}.;Ich mag {skandinavisches|#481} {Design|#479}.;;true;true
+49;1;Le {parquet} est en {chêne}.;Das {Parkett} ist aus {Eiche}.;;true;true
+50;1;Le sol est en {parquet flottant}.;Der Boden ist aus {Laminat}.;;true;true
+51;1;Cette table est en {chêne}.;Der Tisch ist aus {Eiche}.;;true;true
+52;1;L'{aulne} pousse au bord des {rivières}.;{Erlen} wachsen oft an {Flüssen}.;;true;true
+53;1;Le {hêtre} est un {bois dur}.;{Buche} ist ein {Hartholz}.;;true;true
+54;1;Le {pin} est un {arbre résineux}.;Die {Kiefer} ist ein {Nadelbaum};;true;true
+55;1;L'{érable} donne du {sirop}.;Aus dem {Ahorn} gewinnt man {Sirup}.;;true;true
+56;1;L'{épicéa} est un arbre {commun} en Europe.;Die {Fichte} ist ein {häufiger} Baum in Europa.;;true;true
 57;1;Le {pin parasol} pousse dans le Sud.;Die {Pinie} wächst im Süden.;;true;false
 58;1;Le {bouleau} a une {écorce} blanche.;Die {Birke} hat weiße {Rinde}.;;true;false
 59;1;Le {cerisier} {fleurit} au {printemps}.;Der {Kirschbaum} {blüht} im {Frühling}.;;true;false
@@ -468,40 +468,40 @@ id;unit_id;fr;de;note;has_audio_fr;has_audio_de
 470;11;Cette technologie {supplante} l'ancienne.;Diese Technologie {verdrängt} die alte.;;true;false
 471;11;On veut {embellir} le {centre-ville}.;Man möchte die {Innenstadt} {verschönern}.;;true;false
 472;11;La ville veut {végétaliser} les toits.;Die Stadt möchte die Dächer {begrünen}.;;true;false
-473;11;Le centre a été {piétonnisé} cet été.;Das Zentrum wurde diesen Sommer zur {Fußgängerzone} umgewandelt.;;true;false
-474;11;Derrière la maison, le terrain est {en pente} .;Hinter dem Haus ist das Gelände {abschüssig}.;;false;false
-475;11;Ils ont enlevé les {barrières} après les {travaux}.;Sie haben die Absperrungen nach den {Arbeiten} entfernt.;;true;false
-476;11;Les habitants {se sont insurgés contre|#78} le projet.;Die Bewohner haben {sich|#79} über das Projekt {empört}.;;true;false
+473;11;Le centre a été {piétonnisé} cet été.;Das Zentrum wurde diesen Sommer zur {Fußgängerzone} umgewandelt.;;true;true
+474;11;Derrière la maison, le terrain est {en pente} .;Hinter dem Haus ist das Gelände {abschüssig}.;;false;true
+475;11;Ils ont enlevé les {barrières} après les {travaux}.;Sie haben die Absperrungen nach den {Arbeiten} entfernt.;;true;true
+476;11;Les habitants {se sont insurgés contre|#78} le projet.;Die Bewohner haben {sich|#79} über das Projekt {empört}.;;true;true
 477;11;L’{effacement|#74} des {graffitis|#76} a coûté cher.;Die {Entfernung|#75} der {Graffitis|#77} war teuer.;;true;false
-478;11;Il {avance} d’un pas {mal assuré}.;Er geht mit einem {unsicheren} Schritt.;;true;false
-479;11;Il se sent {mal assuré} dans cette situation.;Er fühlt sich in dieser Situation {unsicher}.;;true;false
-480;12;{Autrefois}, la ville était beaucoup plus calme.;{Früher} war die Stadt viel ruhiger.;;true;false
-481;12;Il habite {autre part} maintenant.;Er wohnt jetzt {woanders}.;;true;false
-482;12;La situation s’{est détériorée}.;Die Situation {hat sich verschlechtert}.;;true;false
-483;12;Cette décision a {détérioré} l’ambiance.;Diese Entscheidung {hat} die Stimmung {verschlechtert}.;;true;false
-484;12;Ils ont {annulé} la réunion.;Sie haben das Treffen {abgesagt}.;;true;false
-485;12;Il {fouille} dans son sac pour chercher ses {clés}.;Er {kramt} in seiner Tasche nach seinen {Schlüsseln}.;;true;false
-486;12;Il y a trop de {bazar} sur la table.;Auf dem Tisch liegt zu viel {Kram}.;;true;false
-487;12;Après le travail, j’aime {me détendre}.;Nach der Arbeit {entspanne} ich {mich} gern.;;true;false
-488;12;La ville veut {supprimer} des places de parking.;Die Stadt will Parkplätze {abschaffen}.;;true;false
-489;12;La France a {aboli} la peine de mort.;Frankreich hat die Todesstrafe {abgeschafft}.;;true;false
-490;12;Il y a souvent des {embouteillages} sur le {périphérique}.;Auf dem {Stadtring} gibt es oft {Staus}.;;true;false
-491;12;Il habite en {périphérie} de la ville.;Er wohnt am {Stadtrand}.;;true;false
-492;12;La pollution {diminue} lentement.;Die Verschmutzung {nimmt ab}.;;true;false
-493;12;Finalement, {ça a porté ses fruits}.;Am Ende {hat es etwas gebracht}.;;true;false
-494;12;Une nouvelle {mesure} a été annoncée.;Eine neue {Maßnahme} wurde angekündigt.;;true;false
-495;12;Un {radar} contrôle la vitesse ici.;Hier überwacht ein {Blitzer} die Geschwindigkeit.;;true;false
-496;12;Il faut faire attention aux {véhicules} {en face}.;Man muss auf die {entgegenkommenden} {Fahrzeuge} achten.;;true;false
-497;12;Cette action lui a {valu une bonne réputation}.;Diese Aktion hat ihm {einen guten Ruf eingebracht}.;;true;false
-498;12;Le quartier {bâti} est plus dense.;Das {bebaute} Viertel ist dichter.;;true;false
-499;12;La région a été {battue} par les vents.;Die Region wurde von Winden heimgesucht.;;true;false
-500;12;Je prends souvent le {métro} pour aller au travail.;Ich nehme oft die {U-Bahn}.;;true;false
-501;12;C’est une {rue piétonne}, sans voitures.;Das ist eine {Fußgängerzone}, ohne Autos.;;true;false
-502;12;C’est une {rue large} et lumineuse.;Das ist eine {breite Straße}.;;true;false
-503;12;Les {feux} sont passés au rouge.;Die {Ampeln} sind auf Rot gesprungen.;;true;false
-504;12;Ce sont des conditions {spéciales}.;Das sind {besondere} Bedingungen.;;true;false
-505;12;Il se déplace en {trottinette}.;Er fährt mit einem {E-Scooter}.;;true;false
-506;12;Le cycliste se {faufile} entre les voitures.;Der Radfahrer {schlängelt sich} zwischen den Autos {durch}.;;true;false
+478;11;Il {avance} d’un pas {mal assuré}.;Er geht mit einem {unsicheren} Schritt.;;true;true
+479;11;Il se sent {mal assuré} dans cette situation.;Er fühlt sich in dieser Situation {unsicher}.;;true;true
+480;12;{Autrefois}, la ville était beaucoup plus calme.;{Früher} war die Stadt viel ruhiger.;;true;true
+481;12;Il habite {autre part} maintenant.;Er wohnt jetzt {woanders}.;;true;true
+482;12;La situation s’{est détériorée}.;Die Situation {hat sich verschlechtert}.;;true;true
+483;12;Cette décision a {détérioré} l’ambiance.;Diese Entscheidung {hat} die Stimmung {verschlechtert}.;;true;true
+484;12;Ils ont {annulé} la réunion.;Sie haben das Treffen {abgesagt}.;;true;true
+485;12;Il {fouille} dans son sac pour chercher ses {clés}.;Er {kramt} in seiner Tasche nach seinen {Schlüsseln}.;;true;true
+486;12;Il y a trop de {bazar} sur la table.;Auf dem Tisch liegt zu viel {Kram}.;;true;true
+487;12;Après le travail, j’aime {me détendre}.;Nach der Arbeit {entspanne} ich {mich} gern.;;true;true
+488;12;La ville veut {supprimer} des places de parking.;Die Stadt will Parkplätze {abschaffen}.;;true;true
+489;12;La France a {aboli} la peine de mort.;Frankreich hat die Todesstrafe {abgeschafft}.;;true;true
+490;12;Il y a souvent des {embouteillages} sur le {périphérique}.;Auf dem {Stadtring} gibt es oft {Staus}.;;true;true
+491;12;Il habite en {périphérie} de la ville.;Er wohnt am {Stadtrand}.;;true;true
+492;12;La pollution {diminue} lentement.;Die Verschmutzung {nimmt ab}.;;true;true
+493;12;Finalement, {ça a porté ses fruits}.;Am Ende {hat es etwas gebracht}.;;true;true
+494;12;Une nouvelle {mesure|#433} a été annoncée.;Eine neue {Maßnahme|#434} wurde angekündigt.;;true;true
+495;12;Un {radar|#431} contrôle la vitesse ici.;Hier überwacht ein {Blitzer|#432} die Geschwindigkeit.;;true;true
+496;12;Il faut faire attention aux {véhicules|#427} {en face|#428}.;Man muss auf die {entgegenkommenden|#429} {Fahrzeuge|#430} achten.;;true;true
+497;12;Cette action lui a {valu une bonne réputation}.;Diese Aktion hat ihm {einen guten Ruf eingebracht}.;;true;true
+498;12;Le quartier {bâti|#496} est plus {dense|#498}.;Das {bebaute|#497} Viertel ist {dichter|#499}.;;true;true
+499;12;La région a été {battue par les vents|#494}.;Die Region wurde {von Winden heimgesucht|#495}.;;true;true
+500;12;Je prends souvent le {métro|#492} pour aller au travail.;Ich nehme oft die {U-Bahn|#493}.;;true;true
+501;12;C’est une {rue piétonne|#490}, sans voitures.;Das ist eine {Fußgängerzone|#491}, ohne Autos.;;true;true
+502;12;C’est une {rue|#488} {large|#486} et lumineuse.;Das ist eine {breite|#489} {Straße|#487}.;;true;true
+503;12;Les {feux|#484} sont passés au rouge.;Die {Ampeln|#485} sind auf Rot gesprungen.;;true;true
+504;12;Ce sont des conditions {spéciales|#482}.;Das sind {besondere|#483} Bedingungen.;;true;true
+505;12;Il se déplace en {trottinette|#438}.;Er fährt mit einem {E-Scooter|#439}.;;true;true
+506;12;Le {cycliste|#436} {se faufile entre|#426} les {voitures|#376}.;Der {Radfahrer|#437} {schlängelt sich zwischen|#435} den {Autos|#377} {durch|#435}.;;true;true
 507;12;La ville veut {récompenser|#420} les habitants.;Die Stadt will die Bewohner {entlohnen|#421}.;;true;false
 508;12;L’air est enfin {respirable|#419}.;Die Luft ist endlich {atembar|#418}.;;true;false
 509;12;Les {gaz d'échappement|#416} polluent l’air.;{Abgase|#417} verschmutzen die Luft.;;true;false
@@ -569,7 +569,7 @@ id;unit_id;fr;de;note;has_audio_fr;has_audio_de
 571;15;Les mathématiques sont {une matière|#327} difficile pour lui.;Mathematik ist für ihn ein schwieriges {Fach|#328}.;;true;true
 572;15;Demain, nous avons une {interrogation écrite|#325}.;Morgen haben wir einen {schriftlichen Test|#326}.;;true;true
 573;15;Vendredi, il y a un {devoir sur table|#323} en histoire.;Am Freitag gibt es eine {Klassenarbeit|#324} in Geschichte.;;true;true
-574;15;À la fin de l’année, nous passons un {examen|#102} important.;Am Ende des Jahres machen wir eine wichtige {Prüfung|#369}.;;true;true
+574;15;À la fin de l’année, nous passons un {examen|#102} important.;Am Ende des Jahres machen wir eine wichtige {Prüfung|#104}.;;true;true
 575;15;J’utilise {un protège-cahier|#317} pour protéger mon cahier.;Ich benutze einen {Heftumschlag|#318}, um mein Heft zu schützen.;;true;true
 576;15;J’achète souvent des livres {d’occasion|#315} pour {économiser de l’argent|#319}.;Ich kaufe oft {gebrauchte|#316} Bücher, um {Geld zu sparen|#320}.;;true;true
 577;15;Les enfants écrivent sur une {ardoise|#311} avec un {crayon d'ardoise|#312}.;Die Kinder schreiben auf einer {Schiefertafel|#313} mit einem {Griffel|#314}.;;true;true

@@ -363,7 +363,6 @@ id;lang;term_text;category;genus;needs_vowel_article;unit_id;ref;tags;has_audio
 366;de;herzlich;adjective;;;;;;true
 367;fr;ambiance;noun;f;true;;;;true
 368;de;Stimmung;noun;f;;;;;true
-369;de;Prüfung;noun;f;;;;;true
 370;fr;brûler;verb;;;;;;true
 371;de;abbrennen;verb;;;;;;true
 372;fr;être en pente;verb;;;;;;true
@@ -388,7 +387,6 @@ id;lang;term_text;category;genus;needs_vowel_article;unit_id;ref;tags;has_audio
 391;de;Kappe;noun;f;;;;;true
 392;fr;sac;noun;m;;;;;true
 393;fr;lourd;adjective;;;;;;true
-394;de;schwer;adjective;;;;;;true
 395;de;Tasche;noun;f;;;;;true
 396;fr;tissu;noun;m;;;;;true
 397;fr;léger;adjective;;;;;;true
@@ -420,3 +418,77 @@ id;lang;term_text;category;genus;needs_vowel_article;unit_id;ref;tags;has_audio
 423;de;Fahrrad;noun;n;;;;;true
 424;de;Antwort;noun;f;;;;;true
 425;fr;réponse;noun;f;;;;;true
+426;fr;{se} faufiler {entre qc.};verb;;;;;;true
+427;fr;véhicule;noun;m;;;;;true
+428;fr;en face;adjective;;;;;;true
+429;de;entgegenkommend;adjective;;;;;;true
+430;de;Fahrzeug;noun;n;;;;;true
+431;fr;radar;noun;m;;;;;true
+432;de;Blitzer;noun;m;;;;;true
+433;fr;mesure;noun;f;;;;;true
+434;de;Maßnahme;noun;f;;;;;true
+435;de;{sich zwischen etw.} hindurchschlängeln;verb;;;;;;true
+436;fr;cycliste;noun;m;;;;;true
+437;de;Radfahrer;noun;m;;;;;true
+438;fr;trottinette;noun;f;;;;;true
+439;de;E-Scooter;noun;m;;;;;true
+440;de;nach Griechenland;expression;;;;;;true
+441;fr;en Grèce;expression;;;;;;true
+442;fr;grecque;noun;f;;;;;true
+443;de;Griechin;noun;f;;;;;true
+444;fr;être en rénovation;verb;;;;;;true
+445;de;renoviert werden;verb;;;;;;true
+446;fr;pâte d'amandes;noun;f;;;;;true
+447;de;Marzipan;noun;n;;;;;true
+448;fr;plage;noun;f;;;;;true
+449;fr;bondé;adjective;;;;;;true
+450;de;überfüllt;adjective;;;;;;true
+451;de;Strand;noun;m;;;;;true
+452;fr;camping-car;noun;m;;;;;true
+453;de;Wohnmobil;noun;n;;;;;true
+454;de;reisen;verb;;;;;;true
+455;fr;voyager;verb;;;;;;true
+456;fr;côte;noun;f;;;;;true
+457;de;Küste;noun;f;;;;;true
+458;fr;aller en avion;verb;;;;;;true
+459;de;fliegen;verb;;;;;;true
+460;fr;centre-ville;noun;m;;;;;true
+461;de;Stadtzentrum;noun;n;;;;;true
+462;fr;indice;noun;m;true;;;;true
+463;de;Hinweis;noun;m;;;;;true
+464;fr;enquêteur;noun;m;true;;;;true
+465;de;Ermittler;noun;m;;;;;true
+466;fr;désert;noun;m;;;;;true
+467;de;Wüste;noun;f;;;;;true
+468;fr;retardé;adjective;;;;;;true
+469;fr;vol;noun;m;;;;;true
+470;de;Flug;noun;m;;;;;true
+471;de;verspätet;adjective;;;;;;true
+472;fr;exposition;noun;f;true;;;;true
+473;de;Kunstausstellung;noun;f;;;;;true
+474;fr;musée;noun;m;;;;;true
+475;de;Museum;noun;n;;;;;true
+476;fr;tableau;noun;m;;;;;true
+477;de;Gemälde;noun;n;;;;;true
+478;fr;design;noun;m;;;;;true
+479;de;Design;noun;n;;;;;true
+480;fr;scandinave;adjective;;;;;;true
+481;de;skandinavisch;adjective;;;;;;true
+482;fr;spéciale;adjective;;;;;;true
+483;de;besonders;adjective;;;;;;true
+484;fr;feu;noun;m;;;;;true
+485;de;Ampel;noun;f;;;;;true
+486;fr;large;adjective;;;;;;true
+487;de;Straße;noun;f;;;;;true
+488;fr;rue;noun;f;;;;;true
+489;de;breit;adjective;;;;;;true
+490;fr;rue piétonne;noun;f;;;;;true
+491;de;Fußgängerzone;noun;f;;;;;true
+492;fr;métro;noun;m;;;;;true
+493;de;U-Bahn;noun;f;;;;;true
+494;fr;battu par les vents;expression;;;;;;true
+495;de;von Winden heimgesucht;expression;;;;;;true
+496;fr;bâti;adjective;;;;;;true
+497;de;bebaut;adjective;;;;;;true
+498;fr;dense;adjective;;;;;;true
+499;de;dicht;adjective;;;;;;true
