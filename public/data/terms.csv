@@ -1,5 +1,5 @@
 id;lang;term_text;category;genus;needs_vowel_article;unit_id;ref;tags;has_audio
-1;fr;s'inscrire à {qc.};verb;;;;;;true
+1;fr;{s'}inscrire {à qc.};verb;;;;;;true
 2;fr;cours de français;noun;m;;;;;true
 3;de;Französischkurs;noun;m;;;;;true
 4;de;{sich zu etw.} anmelden;verb;;;;;;true
@@ -343,7 +343,6 @@ id;lang;term_text;category;genus;needs_vowel_article;unit_id;ref;tags;has_audio
 344;fr;lettre majuscule;noun;f;;;;;true
 345;fr;élève;noun;m;true;;;;true
 346;de;Schüler;noun;m;;;;;true
-347;de;Enkelkinder;noun;npl;;;;;true
 348;fr;attendre {qc.};verb;;;;;;true
 349;de;{etw.} erwarten;verb;;;;;;true
 350;fr;commode;adjective;;;;;;true
@@ -451,7 +450,6 @@ id;lang;term_text;category;genus;needs_vowel_article;unit_id;ref;tags;has_audio
 456;fr;côte;noun;f;;;;;true
 457;de;Küste;noun;f;;;;;true
 458;fr;aller en avion;verb;;;;;;true
-459;de;fliegen;verb;;;;;;true
 460;fr;centre-ville;noun;m;;;;;true
 461;de;Stadtzentrum;noun;n;;;;;true
 462;fr;indice;noun;m;true;;;;true
@@ -468,7 +466,6 @@ id;lang;term_text;category;genus;needs_vowel_article;unit_id;ref;tags;has_audio
 473;de;Kunstausstellung;noun;f;;;;;true
 474;fr;musée;noun;m;;;;;true
 475;de;Museum;noun;n;;;;;true
-476;fr;tableau;noun;m;;;;;true
 477;de;Gemälde;noun;n;;;;;true
 478;fr;design;noun;m;;;;;true
 479;de;Design;noun;n;;;;;true
@@ -576,7 +573,6 @@ id;lang;term_text;category;genus;needs_vowel_article;unit_id;ref;tags;has_audio
 582;fr;avancer;verb;;;;;;true
 583;de;gehen;verb;;;;;;true
 585;fr;barrière;noun;f;;;;;true
-586;fr;travail;noun;m;;;;;true
 587;de;Absperrung;noun;f;;;;;true
 588;de;abschüssig;adjective;;;;;;true
 589;fr;en pente;expression;;;;;;true
@@ -592,3 +588,13 @@ id;lang;term_text;category;genus;needs_vowel_article;unit_id;ref;tags;has_audio
 599;fr;crier {après qn.};verb;;;;;;true
 600;de;{jmdn.} anschreien;verb;;;;;;true
 601;fr;aller;verb;;;;;;true
+602;fr;supplanter {qc.};verb;;;;;;true
+603;de;{etw.} verdrängen;verb;;;;;;true
+604;fr;herbe;noun;m;true;;;;true
+605;de;Gras;noun;n;;;;;true
+606;fr;{être} assis sur {qc.};verb;;;;;;true
+607;de;{auf etw.} sitzen;verb;;;;;;true
+608;de;spielen;verb;;;;;;true
+609;fr;jouer;verb;;;;;;true
+610;fr;escalier;noun;m;true;;;;true
+611;de;Treppe;noun;f;;;;;true
