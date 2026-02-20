@@ -53,22 +53,22 @@ id;unit_id;fr;de;note;has_audio_fr;has_audio_de
 54;1;Le {pin} est un {arbre résineux}.;Die {Kiefer} ist ein {Nadelbaum};;true;true
 55;1;L'{érable} donne du {sirop}.;Aus dem {Ahorn} gewinnt man {Sirup}.;;true;true
 56;1;L'{épicéa} est un arbre {commun} en Europe.;Die {Fichte} ist ein {häufiger} Baum in Europa.;;true;true
-57;1;Le {pin parasol} pousse dans le Sud.;Die {Pinie} wächst im Süden.;;true;false
-58;1;Le {bouleau} a une {écorce} blanche.;Die {Birke} hat weiße {Rinde}.;;true;false
-59;1;Le {cerisier} {fleurit} au {printemps}.;Der {Kirschbaum} {blüht} im {Frühling}.;;true;false
-60;1;Cette {armoire} est en {merisier}.;Dieser {Schrank} ist aus {Kirschholz}.;;true;false
-61;1;C'est un {mélange} de {couleurs}.;Das ist eine {Farbmischung}.;;true;false
-62;1;J'ai acheté un {vase} au {marché aux puces}.;Ich habe eine {Vase} auf dem {Flohmarkt} gekauft.;;true;false
-63;1;La {vaisselle} est {propre}.;Das {Geschirr} ist {sauber}.;;true;false
-64;1;Quelle est la {marque} de cette voiture ?;Welche {Marke} hat dieses Auto?;;true;false
-65;1;Ces chaussures sont {bon marché}.;Diese Schuhe sind {billig}.;;true;false
-66;1;C'est {meilleur marché} que chez eux.;Das ist {günstiger} als bei ihnen.;;true;false
-67;1;La {TVA} en France est de 20 %.;Die {Mehrwertsteuer} in Frankreich beträgt 20 %.;;true;false
-68;1;Il y avait une {pancarte} devant la {boutique}.;Vor dem {Laden} hing ein {Schild}.;;true;false
-69;1;J'ai trouvé une vieille {lampe} à la {brocante}.;Ich habe eine alte {Lampe} auf dem {Flohmarkt} gefunden.;;true;false
-70;1;Le {village} organise un {vide-greniers} dimanche.;Das {Dorf} organisiert am Sonntag einen {Flohmarkt}.;;true;false
+57;1;Le {pin parasol} pousse dans le Sud.;Die {Pinie} wächst im Süden.;;true;true
+58;1;Le {bouleau} a une {écorce} blanche.;Die {Birke} hat weiße {Rinde}.;;true;true
+59;1;Le {cerisier} {fleurit} au {printemps}.;Der {Kirschbaum} {blüht} im {Frühling}.;;true;true
+60;1;Cette {armoire} est en {merisier}.;Dieser {Schrank} ist aus {Kirschholz}.;;true;true
+61;1;C'est un {mélange} de {couleurs}.;Das ist eine {Farbmischung}.;;true;true
+62;1;J'ai acheté un {vase} au {marché aux puces}.;Ich habe eine {Vase} auf dem {Flohmarkt} gekauft.;;true;true
+63;1;La {vaisselle} est {propre}.;Das {Geschirr} ist {sauber}.;;true;true
+64;1;Quelle est la {marque} de cette voiture ?;Welche {Marke} hat dieses Auto?;;true;true
+65;1;Ces chaussures sont {bon marché}.;Diese Schuhe sind {billig}.;;true;true
+66;1;C'est {meilleur marché} que chez eux.;Das ist {günstiger} als bei ihnen.;;true;true
+67;1;La {TVA} en France est de 20 %.;Die {Mehrwertsteuer} in Frankreich beträgt 20 %.;;true;true
+68;1;Il y avait une {pancarte} devant la {boutique}.;Vor dem {Laden} hing ein {Schild}.;;true;true
+69;1;J'ai trouvé une vieille {lampe} à la {brocante}.;Ich habe eine alte {Lampe} auf dem {Flohmarkt} gefunden.;;true;true
+70;1;Le {village} organise un {vide-greniers} dimanche.;Das {Dorf} organisiert am Sonntag einen {Flohmarkt}.;;true;true
 71;1;Dès que j’arrive, je t’appelle.;Sobald ich ankomme, rufe ich dich an.;;true;false
-72;1;Son {regard} {s'illumine} quand il parle de musique.;Sein {Blick} {hellt sich auf}, wenn er über Musik spricht.;;true;false
+72;1;Son {regard} {s'illumine} quand il parle de musique.;Sein {Blick} {hellt sich auf}, wenn er über Musik spricht.;;true;true
 73;1;Ses {yeux} {brillent} de {joie}.;Seine {Augen} {glänzen} vor {Freude}.;;true;false
 74;1;Elle écrit {fiévreusement} dans son {carnet}.;Sie schreibt {fieberhaft} in ihr {Notizbuch}.;;true;false
 75;1;C'est un {souvenir} {lointain} de mon {enfance}.;Das ist eine {ferne} {Erinnerung} aus meiner {Kindheit}.;;true;false
@@ -455,19 +455,19 @@ id;unit_id;fr;de;note;has_audio_fr;has_audio_de
 457;11;On doit présenter un {justificatif de domicile}.;Man muss einen {Wohnsitznachweis} vorlegen.;;true;false
 458;11;Il {s'agace} quand on lui {coupe la parole}.;Er wird {genervt}, wenn man ihn {unterbricht}.;;true;false
 459;11;Il ne faut pas {crier} après les enfants.;Man sollte Kinder nicht {anschreien}.;;false;false
-460;11;Il est toujours {jovial} avec ses collègues.;Er ist immer {fröhlich} mit seinen Kollegen.;;true;false
-461;11;Cette {voie} est réservée aux bus.;Diese {Fahrspur} ist für Busse reserviert.;;true;false
-462;11;Au sol, le {traçage} des voies {interpelle} les passants.;Die {Markierung} der Fahrbahnen am Boden {fällt} Passanten {auf}.;;true;false
-463;11;Il lit {tandis que} j'écris.;Er liest, {während} ich schreibe.;;true;false
-464;11;Le {maire} a présenté un nouveau {projet urbain}.;Der {Bürgermeister} hat ein neues {Stadtprojekt} vorgestellt.;;true;false
-465;11;Il n'y a aucun {indice} sur l'origine du bruit.;Es gibt keinen {Hinweis} auf die Herkunft des Geräuschs.;;true;false
-466;11;Il est tombé dans l'{escalier} en courant.;Er ist die {Treppe} hinuntergefallen.;;true;false
+460;11;Il est toujours {jovial} avec ses collègues.;Er ist immer {fröhlich} mit seinen Kollegen.;;true;true
+461;11;Cette {voie} est réservée aux bus.;Diese {Fahrspur} ist für Busse reserviert.;;true;true
+462;11;Au sol, le {traçage} des voies {interpelle} les passants.;Die {Markierung} der Fahrbahnen am Boden {fällt} Passanten {auf}.;;true;true
+463;11;Il lit {tandis que} j'écris.;Er liest, {während} ich schreibe.;;true;true
+464;11;Le {maire} a présenté un nouveau {projet urbain}.;Der {Bürgermeister} hat ein neues {Stadtprojekt} vorgestellt.;;true;true
+465;11;Il n'y a aucun {indice} sur l'origine du bruit.;Es gibt keinen {Hinweis} auf die Herkunft des Geräuschs.;;true;true
+466;11;Il est tombé dans l'{escalier} en courant.;Er ist die {Treppe} hinuntergefallen.;;true;true
 467;11;On doit passer par Paris pour aller à Rouen.;Wir müssen durch Paris fahren, um nach Rouen zu kommen.;;true;false
-468;11;Les enfants jouent dans la {rue}.;Die Kinder spielen auf der {Straße}.;;true;false
-469;11;Il est assis sur l'{herbe}.;Er sitzt auf dem {Gras}.;;true;false
-470;11;Cette technologie {supplante} l'ancienne.;Diese Technologie {verdrängt} die alte.;;true;false
-471;11;On veut {embellir} le {centre-ville}.;Man möchte die {Innenstadt} {verschönern}.;;true;false
-472;11;La ville veut {végétaliser} les toits.;Die Stadt möchte die Dächer {begrünen}.;;true;false
+468;11;Les enfants jouent dans la {rue}.;Die Kinder spielen auf der {Straße}.;;true;true
+469;11;Il est assis sur l'{herbe}.;Er sitzt auf dem {Gras}.;;true;true
+470;11;Cette technologie {supplante} l'ancienne.;Diese Technologie {verdrängt} die alte.;;true;true
+471;11;On veut {embellir} le {centre-ville}.;Man möchte die {Innenstadt} {verschönern}.;;true;true
+472;11;La ville veut {végétaliser} les toits.;Die Stadt möchte die Dächer {begrünen}.;;true;true
 473;11;Le centre a été {piétonnisé} cet été.;Das Zentrum wurde diesen Sommer zur {Fußgängerzone} umgewandelt.;;true;true
 474;11;Derrière la maison, le terrain est {en pente} .;Hinter dem Haus ist das Gelände {abschüssig}.;;false;true
 475;11;Ils ont enlevé les {barrières} après les {travaux}.;Sie haben die Absperrungen nach den {Arbeiten} entfernt.;;true;true
