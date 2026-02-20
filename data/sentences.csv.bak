@@ -454,7 +454,7 @@ id;unit_id;fr;de;note;has_audio_fr;has_audio_de
 456;11;Il faut être {muni} d'un {justificatif de domicile}.;Man muss einen {Wohnsitznachweis} bei sich haben.;;true;false
 457;11;On doit présenter un {justificatif de domicile}.;Man muss einen {Wohnsitznachweis} vorlegen.;;true;false
 458;11;Il {s'agace} quand on lui {coupe la parole}.;Er wird {genervt}, wenn man ihn {unterbricht}.;;true;false
-459;11;Il ne faut pas {crier} après les enfants.;Man sollte Kinder nicht {anschreien}.;;false;false
+459;11;Il ne faut pas {crier après|#599} les enfants.;Man sollte Kinder nicht {anschreien|#600}.;;false;false
 460;11;Il est toujours {jovial} avec ses collègues.;Er ist immer {fröhlich} mit seinen Kollegen.;;true;true
 461;11;Cette {voie} est réservée aux bus.;Diese {Fahrspur} ist für Busse reserviert.;;true;true
 462;11;Au sol, le {traçage} des voies {interpelle} les passants.;Die {Markierung} der Fahrbahnen am Boden {fällt} Passanten {auf}.;;true;true
@@ -466,18 +466,18 @@ id;unit_id;fr;de;note;has_audio_fr;has_audio_de
 468;11;Les enfants jouent dans la {rue}.;Die Kinder spielen auf der {Straße}.;;true;true
 469;11;Il est assis sur l'{herbe}.;Er sitzt auf dem {Gras}.;;true;true
 470;11;Cette technologie {supplante} l'ancienne.;Diese Technologie {verdrängt} die alte.;;true;true
-471;11;On veut {embellir} le {centre-ville}.;Man möchte die {Innenstadt} {verschönern}.;;true;true
-472;11;La ville veut {végétaliser} les toits.;Die Stadt möchte die Dächer {begrünen}.;;true;true
-473;11;Le centre a été {piétonnisé} cet été.;Das Zentrum wurde diesen Sommer zur {Fußgängerzone} umgewandelt.;;true;true
-474;11;Derrière la maison, le terrain est {en pente} .;Hinter dem Haus ist das Gelände {abschüssig}.;;false;true
-475;11;Ils ont enlevé les {barrières} après les {travaux}.;Sie haben die Absperrungen nach den {Arbeiten} entfernt.;;true;true
-476;11;Les habitants {se sont insurgés contre|#78} le projet.;Die Bewohner haben {sich|#79} über das Projekt {empört}.;;true;true
+471;11;On veut {embellir|#596} le {centre-ville|#460}.;Man möchte die {Innenstadt|#598} {verschönern|#597}.;;true;true
+472;11;La ville veut {végétaliser|#594} les toits.;Die Stadt möchte die Dächer {begrünen|#595}.;;true;true
+473;11;Le centre a été {piétonnisé|#592} cet été.;Das Zentrum wurde diesen Sommer {zur Fußgängerzone umgewandelt|#593}.;;true;true
+474;11;Derrière la maison, le {terrain|#590} est {en pente|#589} .;Hinter dem Haus ist das {Gelände|#591} {abschüssig|#588}.;;true;true
+475;11;Ils ont enlevé les {barrières|#585} après les {travaux|#586}.;Sie haben die {Absperrungen|#587} nach den {Arbeiten|#101} entfernt.;;true;true
+476;11;Les habitants {se sont insurgés contre|#78} le projet.;Die Bewohner haben {sich|#79} über das Projekt {empört|#79}.;;true;true
 477;11;L’{effacement|#74} des {graffitis|#76} a coûté cher.;Die {Entfernung|#75} der {Graffitis|#77} war teuer.;;true;false
-478;11;Il {avance} d’un pas {mal assuré}.;Er geht mit einem {unsicheren} Schritt.;;true;true
-479;11;Il se sent {mal assuré} dans cette situation.;Er fühlt sich in dieser Situation {unsicher}.;;true;true
-480;12;{Autrefois}, la ville était beaucoup plus calme.;{Früher} war die Stadt viel ruhiger.;;true;true
-481;12;Il habite {autre part} maintenant.;Er wohnt jetzt {woanders}.;;true;true
-482;12;La situation s’{est détériorée}.;Die Situation {hat sich verschlechtert}.;;true;true
+478;11;Il {avance|#582} d’un pas {mal assuré|#580}.;Er {geht|#583} mit einem {unsicheren|#581} Schritt.;;true;true
+479;11;Il se sent {mal assuré|#580} dans cette situation.;Er fühlt sich in dieser Situation {unsicher|#581}.;;true;true
+480;12;{Autrefois|#578}, la ville était beaucoup plus calme.;{Früher|#579} war die Stadt viel ruhiger.;;true;true
+481;12;Il habite {autre part|#576} maintenant.;Er wohnt jetzt {woanders|#577}.;;true;true
+482;12;La situation s’{est détériorée|#574}.;Die Situation {hat sich verschlechtert|#575}.;;true;true
 483;12;Cette {décision|#572} a {détérioré|#574} l’{ambiance|#367}.;Diese {Entscheidung|#573} {hat|#575} die {Stimmung|#368} {verschlechtert|#575}.;;true;true
 484;12;Ils ont {annulé|#568} la {réunion|#570}.;Sie haben das {Treffen|#571} {abgesagt|#569}.;;true;true
 485;12;Il {fouille|#564} dans son sac pour chercher ses {clés|#567}.;Er {kramt|#565} in seiner Tasche nach seinen {Schlüsseln|#566}.;;true;true
