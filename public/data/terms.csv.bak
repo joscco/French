@@ -410,7 +410,7 @@ id;lang;term_text;category;genus;needs_vowel_article;unit_id;ref;tags;has_audio
 415;de;Solex;noun;m;;;;;true
 416;fr;gaz d'échappement;noun;mpl;;;;;true
 417;de;Abgas;noun;n;;;;;true
-418;de;atembar;adjective;;;;;;true
+418;de;atem-bar;adjective;;;;;;true
 419;fr;respirable;adjective;;;;;;true
 420;fr;récompenser {qn.};verb;;;;;;true
 421;de;{jmdn.} entlohnen;verb;;;;;;true
