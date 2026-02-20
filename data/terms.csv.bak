@@ -410,7 +410,7 @@ id;lang;term_text;category;genus;needs_vowel_article;unit_id;ref;tags;has_audio
 415;de;Solex;noun;m;;;;;true
 416;fr;gaz d'échappement;noun;mpl;;;;;true
 417;de;Abgas;noun;n;;;;;true
-418;de;atem-bar;adjective;;;;;;true
+418;de;atembar;adjective;;;;;;true
 419;fr;respirable;adjective;;;;;;true
 420;fr;récompenser {qn.};verb;;;;;;true
 421;de;{jmdn.} entlohnen;verb;;;;;;true
@@ -492,3 +492,78 @@ id;lang;term_text;category;genus;needs_vowel_article;unit_id;ref;tags;has_audio
 497;de;bebaut;adjective;;;;;;true
 498;fr;dense;adjective;;;;;;true
 499;de;dicht;adjective;;;;;;true
+500;fr;valoir une bonne réputation à {qn.};verb;;;;;;true
+501;de;{jmdm.} einen guten Ruf einbringen;verb;;;;;;true
+502;fr;porter ses fruits;verb;;;;;;true
+503;de;{etw.} bringen;verb;;;;;;true
+504;fr;diminuer;verb;;;;;;true
+505;de;abnehmen;verb;;;;;;true
+506;fr;chêne;noun;m;;;;;true
+507;de;Eiche;noun;f;;;;;true
+508;fr;parquet;noun;m;;;;;true
+509;de;Parkett;noun;n;;;;;true
+510;fr;en périphérie de la ville;expression;;;;;;true
+511;de;am Stadtrand;expression;;;;;;true
+512;fr;embouteillage;noun;m;true;;;;true
+513;de;Stadtring;noun;m;;;;;true
+514;fr;périphérique;noun;m;;;;;true
+515;de;Stau;noun;m;;;;;true
+516;fr;France;other;;;;;;true
+517;de;Frankreich;other;;;;;;true
+518;fr;abolir {qc.};verb;;;;;;true
+519;de;{etw.} abschaffen;verb;;;;;;true
+520;de;Todesstrafe;noun;f;;;;;true
+521;fr;peine de mort;noun;f;;;;;true
+522;fr;supprimer {qc.};verb;;;;;;true
+524;fr;{se} détendre;verb;;;;;;true
+525;de;{sich} entspannen;verb;;;;;;true
+526;fr;parquet flottant;;;;;;;false
+527;de;Laminat;;;;;;;false
+528;fr;rivière;;;;;;;false
+529;fr;aulne;noun;m;true;;;;true
+530;de;Erle;noun;f;;;;;true
+531;de;Fluss;noun;m;;;;;true
+532;de;Buche;noun;f;;;;;true
+533;de;Hartholz;noun;n;;;;;true
+534;fr;bois dur;noun;m;;;;;true
+535;fr;hêtre;noun;m;;;;;true
+536;de;Kiefer;noun;f;;;;;true
+537;de;Nadelbaum;;;;;;;false
+538;fr;arbre résineux;noun;m;true;;;;true
+539;fr;pin;noun;m;;;;;true
+540;fr;érable;;;;;;;false
+541;de;Ahorn;noun;m;;;;;true
+542;de;Sirup;noun;m;;;;;true
+543;fr;sirop;noun;m;;;;;true
+544;fr;épicéa;;;;;;;false
+545;de;Fichte;noun;f;;;;;true
+546;fr;commun;;;;;;;false
+547;de;häufig;adjective;;;;;;true
+548;fr;pin parasol;noun;m;;;;;true
+549;de;Pinie;noun;f;;;;;true
+550;de;im Süden;expression;;;;;;true
+551;fr;dans le Sud;expression;;;;;;true
+552;fr;bouleau;noun;m;;;;;true
+553;fr;écorce;noun;f;true;;;;true
+554;de;Rinde;noun;f;;;;;true
+555;de;Birke;noun;f;;;;;true
+556;fr;cerisier;noun;m;;;;;true
+557;de;Kirschbaum;noun;m;;;;;true
+558;fr;fleurir;verb;;;;;;true
+559;de;blühen;verb;;;;;;true
+560;fr;au printemps;expression;;;;;;true
+561;de;im Frühling;expression;;;;;;true
+562;fr;bazar;noun;m;;;;;true
+563;de;Kram;;;;;;;false
+564;fr;fouillir;verb;;;;;;true
+565;de;kramen;;;;;;;false
+566;de;Schlüssel;;;;;;;false
+567;fr;clé;noun;f;;;;;true
+568;fr;annuler {qc.};verb;;;;;;true
+569;de;{etw.} absagen;verb;;;;;;true
+570;fr;réunion;;;;;;;false
+571;de;Treffen;noun;n;;;;;true
+572;fr;décision;noun;f;;;;;true
+573;de;Entscheidung;noun;f;;;;;true
+574;fr;détériorer {qc.};verb;;;;;;true
+575;de;{etw.} verschlechtern;verb;;;;;;true
