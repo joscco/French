@@ -598,3 +598,159 @@ id;lang;term_text;category;genus;needs_vowel_article;unit_id;ref;tags;has_audio
 609;fr;jouer;verb;;;;;;true
 610;fr;escalier;noun;m;true;;;;true
 611;de;Treppe;noun;f;;;;;true
+612;fr;justificatif de domicile;noun;m;;;;;true
+613;de;Wohnsitznachweis;noun;m;;;;;true
+614;fr;armoire;noun;f;true;;;;true
+615;de;Schrank;noun;m;;;;;true
+616;fr;merisier;noun;m;;;;;true
+617;de;Kirschholz;noun;n;;;;;true
+618;fr;origine;noun;f;true;;;;true
+619;fr;bruit;noun;m;;;;;true
+620;de;Geräusch;noun;n;;;;;true
+621;de;Herkunft;noun;f;;;;;true
+622;fr;maire;noun;m;;;;;true
+623;de;Bürgermeister;noun;m;;;;;true
+624;de;Stadtprojekt;noun;n;;;;;true
+625;fr;projet urbain;noun;m;;;;;true
+626;de;während;expression;;;;;;true
+627;fr;tandis que;expression;;;;;;true
+628;fr;traçage;noun;m;;;;;true
+629;de;Markierung;noun;f;;;;;true
+630;fr;interpeler {qn.};verb;;;;;;true
+631;de;{jmdm.} auffallen;verb;;;;;;true
+632;fr;voie;noun;f;;;;;true
+633;de;Fahrspur;noun;f;;;;;true
+634;fr;jovial;adjective;;;;;;true
+635;de;fröhlich;adjective;;;;;;true
+636;fr;mélange;noun;m;;;;;true
+637;de;Farbe;noun;f;;;;;true
+638;de;Mischung;noun;f;;;;;true
+639;fr;couleur;noun;f;;;;;true
+640;fr;vase;noun;m;;;;;true
+641;de;Vase;noun;f;;;;;true
+642;fr;marché aux puces;noun;m;;;;;true
+643;de;Flohmarkt;noun;m;;;;;true
+644;fr;propre;adjective;;;;;;true
+645;de;sauber;adjective;;;;;;true
+646;fr;vaisselle;noun;f;;;;;true
+647;de;Geschirr;noun;n;;;;;true
+648;fr;marque;noun;f;;;;;true
+649;de;Marke;noun;f;;;;;true
+650;fr;bon marché;adjective;;;;;;true
+651;de;billig;adjective;;;;;;true
+652;fr;meilleur marché;adjective;;;;;;true
+653;de;günstiger;adjective;;;;;;true
+654;fr;TVA;noun;f;;;;;true
+655;de;Mehrwertsteuer;noun;f;;;;;true
+656;fr;pancarte;noun;f;;;;;true
+657;de;Schild;noun;n;;;;;true
+658;fr;boutique;noun;f;;;;;true
+659;de;Laden;noun;m;;;;;true
+660;de;Lampe;noun;f;;;;;true
+661;fr;lampe;noun;f;;;;;true
+663;fr;brocante;noun;f;;;;;true
+664;fr;village;noun;m;;;;;true
+665;de;Dorf;noun;n;;;;;true
+666;fr;vide-grenier;noun;m;;;;;true
+668;fr;{s'}agacer;verb;;;;;;true
+669;de;genervt werden;verb;;;;;;true
+670;de;{jmdn.} unterbrechen;verb;;;;;;true
+671;fr;couper la parole {à qn.};verb;;;;;;true
+672;de;{etw.} bei sich haben;verb;;;;;;true
+673;fr;être muni de {qc.};verb;;;;;;true
+674;fr;accès;noun;m;true;;;;true
+675;de;Zugang;noun;m;;;;;true
+676;de;Anwohner;noun;m;;;;;true
+677;fr;riverain;noun;m;;;;;true
+678;fr;barrage;noun;m;;;;;true
+681;de;Sperre;noun;f;;;;;true
+682;fr;loi;noun;m;;;;;true
+683;de;Gesetz;noun;n;;;;;true
+684;fr;en vigueur;expression;;;;;;true
+685;de;in Kraft;expression;;;;;;true
+686;fr;piéton;noun;m;;;;;true
+687;de;Fußgänger;noun;m;;;;;true
+688;de;Zebrastreifen;noun;m;;;;;true
+689;fr;passage protégé;noun;m;;;;;true
+690;de;Reduzierung;noun;f;;;;;true
+691;de;Verkehr;noun;m;;;;;true
+692;de;atmen;verb;;;;;;true
+693;fr;respirer;verb;;;;;;true
+694;fr;trafic;noun;m;;;;;true
+695;fr;réduction;noun;f;;;;;true
+696;fr;trottoir;noun;m;;;;;true
+697;fr;scooter;noun;m;;;;;true
+698;de;Roller;noun;m;;;;;true
+699;de;Gehweg;noun;m;;;;;true
+700;fr;encombré;adjective;;;;;;true
+701;de;blockiert;adjective;;;;;;true
+702;fr;vignette;noun;f;;;;;true
+703;de;Plakette;noun;f;;;;;true
+704;fr;train;noun;m;;;;;true
+705;de;Zug;noun;m;;;;;true
+706;fr;bouchon;noun;m;;;;;true
+707;de;Flaschenverschluss;noun;m;;;;;true
+708;fr;autoroute;noun;f;true;;;;true
+709;de;Autobahn;noun;f;;;;;true
+710;fr;circulation;noun;f;;;;;true
+711;de;Autobahnabschnitt;noun;m;;;;;true
+712;fr;tronçon;noun;m;;;;;true
+713;fr;payant;adjective;;;;;;true
+714;de;mautpflichtig;adjective;;;;;;true
+715;fr;fluide;adjective;;;;;;true
+716;de;flüssig;adjective;;;;;;true
+717;de;Blick;noun;m;;;;;true
+718;fr;regard;noun;m;;;;;true
+719;de;sich aufhellen;verb;;;;;;true
+720;fr;{s'}illuminer;verb;;;;;;true
+721;fr;parler {de qc.};verb;;;;;;true
+722;de;{über etw.} sprechen;verb;;;;;;true
+723;fr;yeux;noun;mpl;;;;;true
+724;de;Augen;noun;npl;;;;;true
+725;de;glänzen;verb;;;;;;true
+726;fr;Ça y fait.;expression;;;;;;true
+727;de;Das macht etwas aus.;expression;;;;;;true
+728;fr;fiévreusement;adjective;;;;;;true
+729;de;fieberhaft;adjective;;;;;;true
+730;de;Notizbuch;noun;n;;;;;true
+731;fr;carnet;noun;m;;;;;true
+732;fr;pollution sonore;;;;;;;false
+733;de;Lärmverschmutzung;;;;;;;false
+734;fr;discussion;noun;f;;;;;false
+735;fr;vive;;;;;;;false
+736;de;heftige;;;;;;;false
+737;de;Diskussion;noun;f;;;;;false
+738;fr;nombre;noun;m;;;;;false
+739;de;gerade;adjective;;;;;;false
+740;de;Zahl;noun;f;;;;;true
+741;fr;pair;adjective;;;;;;false
+742;fr;impair;adjective;;;;;;false
+744;de;ungerade;adjective;;;;;;false
+745;fr;flics;;;;;;;false
+746;de;Bullen;noun;mpl;;;;;false
+747;fr;immeuble;;;;;;;false
+748;de;Gebäude;noun;n;;;;;false
+749;fr;GPS;;;;;;;false
+750;de;GPS-Geräte;;;;;;;false
+751;de;Route;;;;;;;false
+752;fr;itinéraire;;;;;;;false
+753;fr;klaxonner;;;;;;;false
+754;de;hupen;verb;;;;;;false
+755;fr;passer par {qc.};;;;;;;false
+756;de;{etw.} vermeiden;;;;;;;false
+757;fr;éviter {qc.};verb;;;;;;false
+758;de;{über etw.} fahren;;;;;;;false
+759;de;VW-Käfer;noun;m;;;;;false
+760;fr;scarabée;;;;;;;false
+761;de;Käfer;;;;;;;false
+762;fr;doubler {qc.};;;;;;;false
+763;de;{etw.} überholen;verb;;;;;;false
+764;fr;enfance;noun;f;true;;;;false
+765;fr;lointain;expression;;;;;;false
+766;de;fern;adjective;;;;;;false
+767;de;Erinnerung;noun;f;;;;;false
+768;de;Kindheit;noun;f;;;;;false
+769;de;Fundstück;noun;n;;;;;false
+770;fr;trouvaille;noun;f;;;;;false
+771;fr;chaise;noun;f;;;;;false
+772;de;Stuhl;noun;m;;;;;false
