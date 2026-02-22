@@ -23,13 +23,13 @@ id;unit_id;fr;de;note;has_audio_fr;has_audio_de
 22;1;J’ai perdu mes {bagages|#378} à l’{aéroport|#379}.;Ich habe mein {Gepäck|#381} am {Flughafen|#380} verloren.;;true;true
 23;1;Il a dû {pousser|#130} son vélo en montée.;Er musste sein Rad bergauf {schieben|#131}.;;true;true
 24;1;La voiture {roule|#382} {vite|#383}.;Das Auto {fährt|#385} {schnell|#384}.;;true;true
-25;1;Le {frein|#386} de mon {vélo|#422} ne marche pas.;Die {Bremse|#387} meines {Fahrrads|#423} funktioniert nicht.;;true;false
-26;1;Il faut porter un {casque à vélo|#388}.;Beim Radfahren muss man einen {Fahrradhelm|#389} tragen.;;true;false
-27;1;Il porte une {casquette|#390} bleue.;Er trägt eine blaue {Kappe|#391}.;;true;false
-28;1;Ce {sac|#392} est très {lourd|#393}.;Diese {Tasche|#395} ist sehr {schwer|#105}.;;true;false
-29;1;Ce {tissu|#396} est très {léger|#397}.;Dieser {Stoff|#398} ist sehr {leicht|#399}.;;true;false
-31;1;Les {aménagements|#400} du parc sont {modernes|#401}.;Die {Anlagen|#402} des Parks sind {modern|#403}.;;true;false
-32;1;L’{estuaire|#407} de la Loire est {magnifique|#406}.;Die {Mündung|#404} der Loire ist {wunderschön|#405}.;;true;false
+25;1;Le {frein|#386} de mon {vélo|#422} ne marche pas.;Die {Bremse|#387} meines {Fahrrads|#423} funktioniert nicht.;;true;true
+26;1;Il faut porter un {casque à vélo|#388}.;Beim Radfahren muss man einen {Fahrradhelm|#389} tragen.;;true;true
+27;1;Il porte une {casquette|#390} bleue.;Er trägt eine blaue {Kappe|#391}.;;true;true
+28;1;Ce {sac|#392} est très {lourd|#393}.;Diese {Tasche|#395} ist sehr {schwer|#105}.;;true;true
+29;1;Ce {tissu|#396} est très {léger|#397}.;Dieser {Stoff|#398} ist sehr {leicht|#399}.;;true;true
+31;1;Les {aménagements|#400} du parc sont {modernes|#401}.;Die {Anlagen|#402} des Parks sind {modern|#403}.;;true;true
+32;1;L’{estuaire|#407} de la Loire est {magnifique|#406}.;Die {Mündung|#404} der Loire ist {wunderschön|#405}.;;true;true
 33;1;Je vais {en Grèce|#441} cet été.;Ich fahre diesen Sommer {nach Griechenland|#440}.;;true;true
 34;1;Elle est {grecque|#442}.;Sie ist {Griechin|#443}.;;true;true
 36;1;Le musée {est en rénovation|#444}.;Das Museum {wird|#445} gerade {renoviert|#445}.;;true;true
@@ -67,17 +67,17 @@ id;unit_id;fr;de;note;has_audio_fr;has_audio_de
 68;1;Il y avait une {pancarte|#656} devant la {boutique|#658}.;Vor dem {Laden|#659} hing ein {Schild|#657}.;;true;true
 69;1;J'ai trouvé une vieille {lampe|#661} à la {brocante|#663}.;Ich habe eine alte {Lampe|#660} auf dem {Flohmarkt|#643} gefunden.;;true;true
 70;1;Le {village|#664} organise un {vide-greniers|#666} dimanche.;Das {Dorf|#665} organisiert am Sonntag einen {Flohmarkt|#643}.;;true;true
-71;1;Dès que j’arrive, je t’appelle.;Sobald ich ankomme, rufe ich dich an.;;true;false
+71;1;{Dès que|#1742} j’arrive, je t’appelle.;{Sobald|#1741} ich ankomme, rufe ich dich an.;;true;true
 72;1;Son {regard|#718} {s'illumine|#720} quand il {parle de|#721} musique.;Sein {Blick|#717} {hellt sich auf|#719}, wenn er {über|#722} Musik {spricht|#722}.;;true;true
-73;1;Ses {yeux|#723} {brillent|#162} de {joie|#208}.;Seine {Augen|#724} {glänzen|#725} vor {Freude|#210}.;;true;false
-74;1;Elle écrit {fiévreusement|#728} dans son {carnet|#731}.;Sie schreibt {fieberhaft|#729} in ihr {Notizbuch|#730}.;;true;false
-75;1;C'est un {souvenir|#36} {lointain|#765} de mon {enfance|#764}.;Das ist eine {ferne|#766} {Erinnerung|#767} aus meiner {Kindheit|#768}.;;true;false
+73;1;Ses {yeux|#723} {brillent|#162} de {joie|#208}.;Seine {Augen|#724} {glänzen|#725} vor {Freude|#210}.;;true;true
+74;1;Elle écrit {fiévreusement|#728} dans son {carnet|#731}.;Sie schreibt {fieberhaft|#729} in ihr {Notizbuch|#730}.;;true;true
+75;1;C'est un {souvenir|#36} {lointain|#765} de mon {enfance|#764}.;Das ist eine {ferne|#766} {Erinnerung|#767} aus meiner {Kindheit|#768}.;;true;true
 76;1;Cette {chaise|#771} est une belle {trouvaille|#770}.;Dieser {Stuhl|#772} ist ein schönes {Fundstück|#769}.;;true;false
 77;1;Nous allons {faire la route|#782} {ensemble|#780}.;Wir werden {die Strecke|#783} {gemeinsam|#781} {fahren|#783}.;;true;false
 78;1;Ils partent {avant même que|#800} le {soleil|#802} ne {se lève|#804}.;Sie brechen auf, {noch bevor|#801} die {Sonne|#803} {aufgeht|#805}.;;true;false
 79;1;Elle {emporte|#808} toujours un {cabas en toile|#807} au marché.;Sie {bringt|#33} immer eine {Stofftasche|#806} {mit|#33} zum Markt.;;true;false
 80;1;J'ai pris un {thermos|#818} de café.;Ich habe eine {Thermoskanne|#819} Kaffee mitgenommen.;;true;false
-81;1;Il a payé avec un {billet|#820} de 20 euros.;Er hat mit einem 20-Euro-{Geldschein|#821} bezahlt.;;true;false
+81;1;Il a payé avec un {billet|#820} de 20 euros.;Er hat mit einem 20-Euro-{Geldschein|#52} bezahlt.;;true;false
 82;1;Le {ticket de caisse|#824} indique le {lieu d'achat|#822}.;Der {Kassenzettel|#825} zeigt den {Kaufort|#823}.;;true;false
 83;1;Ils habitent à la {périphérie de la ville|#826}.;Sie wohnen am {Stadtrand|#827}.;;true;false
 84;1;Le marché est devenu un vrai {phénomène|#828} {culturel|#830}.;Der Markt ist zu einem echten {kulturellen|#831} {Phänomen|#829} geworden.;;true;false
@@ -157,7 +157,7 @@ id;unit_id;fr;de;note;has_audio_fr;has_audio_de
 158;3;L'{inondation|#1048} a {endommagé|#1050} de nombreuses maisons.;Die {Überschwemmung|#1049} hat viele Häuser {beschädigt|#1051}.;;true;false
 159;3;Les {retards|#1052} sont dûs à la {pluie|#1054}.;Die {Verspätungen|#1053} sind aufgrund des {Regens|#1055}.;;true;false
 160;3;La {sécheresse|#1056} dure depuis plusieurs mois.;Die {Dürre|#1057} hält seit mehreren Monaten an.;;true;false
-161;3;Le {climat|#1036} est très {sec|#1058} en {été|#1060}.;Das {Klima|#1037} ist im Sommer sehr {trocken|#1059}.;;true;false
+161;3;Le {climat|#1036} est très {sec|#936} en {été|#1060}.;Das {Klima|#1037} ist im Sommer sehr {trocken|#938}.;;true;false
 162;3;Un {oiseau migrateur|#1061} revient au {printemps|#1063}.;Ein {Zugvogel|#1062} kehrt im {Frühling|#1064} zurück.;;true;false
 163;3;La région est couverte d'une {forêt mixte|#1065}.;Die Region ist von einem {Mischwald|#1066} bedeckt.;;true;false
 164;3;Le {glacier|#1067} {fond|#951} rapidement.;Der {Gletscher|#1068} {schmilzt|#952} schnell.;;true;false
@@ -168,7 +168,7 @@ id;unit_id;fr;de;note;has_audio_fr;has_audio_de
 169;3;J'ai entendu dire qu'il allait {neiger|#1086}.;Ich habe gehört, dass es {schneien|#1087} wird.;;true;false
 170;3;Nous passons nos {vacances|#911} à la {mer Baltique|#1088}.;Wir verbringen unsere {Ferien|#913} an der {Ostsee|#1089}.;;true;false
 171;3;Une {chute de pierres|#1090} a bloqué la route.;Ein {Steinschlag|#1091} hat die Straße blockiert.;;true;false
-172;3;Le {froid|#1092} de l'hiver est {intense|#1094}.;Die {Winterkälte|#1093} ist {heftig|#1095}.;;true;false
+172;3;Le {froid|#1092} de l'hiver est {intense|#1094}.;Die {Winterkälte|#1093} ist {heftig|#736}.;;true;false
 173;3;Ce mur retient bien le {matériau isolant|#1096}.;Diese Wand hält das {Dämmmaterial|#1097} gut zurück.;;true;false
 174;3;Une {fissure|#1098} est apparue dans le mur.;Ein {Riss|#1099} ist in der Wand entstanden.;;true;false
 175;3;L'eau commence à {geler|#1100}.;Das Wasser beginnt zu {gefrieren|#1101}.;;true;false
@@ -246,7 +246,7 @@ id;unit_id;fr;de;note;has_audio_fr;has_audio_de
 248;5;Les {accumulateurs|#1304} stockent l'{énergie solaire|#1306}.;{Energiespeicher|#1305} speichern {Solarenergie|#1307}.;;true;false
 249;5;Il a {accumulé|#1308} beaucoup d'{expérience|#1310}.;Er hat viel {Erfahrung|#1311} {angesammelt|#1309}.;;true;false
 250;5;Ils {traversent|#773} le lac en {barque|#1312}.;Sie {überqueren|#774} den See mit einem {Boot|#1313}.;;true;false
-251;5;L'{extension|#1314} du {réseau|#1316} est en cours.;Die {Erweiterung|#1315} des {Netzes|#1317} ist im Gange.;;true;false
+251;5;L'{extension|#1314} du {réseau|#1316} est en cours.;Die {Erweiterung|#1315} des {Netzes|#1263} ist im Gange.;;true;false
 252;5;Le {damage|#1318} des {pistes|#1232} commence à l'{aube|#1320}.;Die {Präparierung|#1319} der {Pisten|#1233} beginnt im {Morgengrauen|#1321}.;;true;false
 253;5;La {dameuse|#1322} passe chaque nuit.;Die {Pistenraupe|#1323} fährt jede Nacht.;;true;false
 254;5;Ils ont dû {abattre|#1163} des arbres malades.;Sie mussten kranke Bäume {fällen|#1164}.;;true;false
@@ -294,7 +294,7 @@ id;unit_id;fr;de;note;has_audio_fr;has_audio_de
 296;6;Il sait bien {gérer|#1446} les {conflits|#1448} au travail.;Er kann {Konflikte|#1449} bei der Arbeit gut {lösen|#1447}.;;true;false
 297;6;Il y a une vraie {complicité|#1450} entre eux.;Zwischen ihnen besteht echte {Vertrautheit|#1451}.;;true;false
 298;6;J'ai {parcouru|#1452} l'{étude|#1454} rapidement.;Ich habe die {Studie|#1455} kurz {durchgesehen|#1453}.;;true;false
-299;6;Il a {atteint|#1171} son {objectif|#1458}.;Er hat sein {Ziel|#1459} {erreicht|#1457}.;;true;false
+299;6;Il a {atteint|#1171} son {objectif|#1387}.;Er hat sein {Ziel|#1388} {erreicht|#1172}.;;true;false
 300;6;Il est {tantôt|#1460} calme, {tantôt|#1460} nerveux.;Er ist {mal|#1461} ruhig, {mal|#1461} nervös.;;true;false
 301;6;L'{entraide|#1462} est essentielle dans notre équipe.;{Gegenseitige Hilfe|#1463} ist in unserem Team wichtig.;;true;false
 302;6;La police a dressé un {constat|#1464} après l'accident.;Die Polizei hat nach dem Unfall eine {Feststellung|#1465} aufgenommen.;;true;false
@@ -302,7 +302,7 @@ id;unit_id;fr;de;note;has_audio_fr;has_audio_de
 304;7;Vous êtes les {bienvenus|#1470} chez nous !;Ihr seid bei uns {willkommen|#1471}!;;true;false
 305;7;Les {traditions celtes|#1472} sont encore présentes en Bretagne.;Die {keltischen Traditionen|#1473} sind in der Bretagne noch lebendig.;;true;false
 306;7;Ils communiquent {par l'intermédiaire|#1474} d'un {avocat|#1476}.;Sie kommunizieren {über|#1475} einen {Anwalt|#1477}.;;true;false
-307;7;Il {entretient|#1478} de bonnes {relations|#1480} avec ses {voisins|#1482}.;Er {pflegt|#1479} gute {Beziehungen|#1481} zu seinen {Nachbarn|#1483}.;;true;false
+307;7;Il {entretient|#1181} de bonnes {relations|#1480} avec ses {voisins|#1482}.;Er {pflegt|#1479} gute {Beziehungen|#1481} zu seinen {Nachbarn|#1483}.;;true;false
 308;7;L'{entretien|#1484} a duré une heure.;Das {Gespräch|#277} dauerte eine Stunde.;;true;false
 309;7;Elle a réussi son {entretien d'embauche|#1485}.;Sie hat ihr {Bewerbungsgespräch|#1486} bestanden.;;true;false
 310;7;Ils se sont {entretenus|#1487} longuement.;Sie haben sich lange {unterhalten|#1488}.;;true;false
@@ -384,7 +384,7 @@ id;unit_id;fr;de;note;has_audio_fr;has_audio_de
 386;9;Elle m'a fait un {aveu|#1686} {confidentiel|#1688}.;Sie hat mir ein {vertrauliches|#1689} {Geständnis|#1687} gemacht.;;true;false
 387;9;Il faut toujours respecter {autrui|#1690}.;Man sollte immer {andere Menschen|#1691} respektieren.;;true;false
 388;9;Il occupe ce poste {par intérim|#1692};Er besetzt diese Stelle {vorübergehend|#1693}.;;true;false
-389;9;Ce cadeau a {comblé|#1694} ses {attentes|#920}.;Dieses Geschenk hat seine {Erwartungen|#1697} {erfüllt|#1695}.;;true;false
+389;9;Ce cadeau a {comblé|#1694} ses {attentes|#920}.;Dieses Geschenk hat seine {Erwartungen|#921} {erfüllt|#1695}.;;true;false
 390;9;L'{émulation|#1698} entre collègues peut être positive.;{Wettstreit|#1699} unter Kollegen kann positiv sein.;;true;false
 391;9;Son {épanchement|#1700} de sentiments m'a touché.;Sein {Gefühlsausbruch|#1701} hat mich berührt.;;true;false
 392;9;L'Odyssée est une grande {épopée|#1702} grecque.;Die Odyssee ist ein großes griechisches {Epos|#1703}.;;true;false
@@ -394,7 +394,7 @@ id;unit_id;fr;de;note;has_audio_fr;has_audio_de
 396;9;Ce bâtiment a une forme très {esthétique|#1712}.;Dieses Gebäude hat eine sehr {ästhetische|#1713} Form;;true;false
 397;9;Les {arabesques|#1714} décorent le {plafond|#1716} du palais.;Die {Arabesken|#1715} schmücken die {Decke|#1717} des Palastes.;;true;false
 398;9;Le risque est faible, presque {négligeable|#1718}.;Das Risiko ist gering, fast {vernachlässigbar|#1719}.;;true;false
-399;9;Il a {du mal à|#1375} s'en passer depuis qu'il a commencé.;Er kann nur {schwer|#1720} darauf verzichten, seit er angefangen hat.;;true;false
+399;9;Il a {du mal à|#1375} s'en passer depuis qu'il a commencé.;Er kann nur {schwer|#105} darauf verzichten, seit er angefangen hat.;;true;false
 400;9;Cette expérience {valorise|#1721} ton {parcours professionnel|#1723}.;Diese Erfahrung {wertet auf|#1722} deinen beruflichen {Werdegang|#1724}.;;true;false
 401;9;Cette situation {met|#1725} sa {patience|#1735} {à l'épreuve|#1725}.;Diese Situation {stellt|#1726} seine {Geduld|#1736} {auf die Probe|#1726}.;;true;true
 402;9;Depuis son {divorce|#1727}, il est {reclus|#1729} socialement.;Seit seiner {Scheidung|#1728} lebt er sozial {zurückgezogen|#1730}.;;true;false
@@ -422,33 +422,33 @@ id;unit_id;fr;de;note;has_audio_fr;has_audio_de
 424;11;Le {cycliste|#436} a {doublé|#762} la voiture.;Der {Radfahrer|#437} hat das Auto {überholt|#763}.;;true;false
 425;11;J'y suis allé hier sans problème.;Ich bin gestern ohne Probleme dorthin gegangen.;;true;false
 426;11;Il y a une {bosse|#778} au milieu de la route.;In der Straßenmitte ist eine {Bodenwelle|#779}.;;true;false
-427;11;Ses {boucles|#776} {brillent|#162} au soleil.;Ihre {Locken|#777} {glänzen|#725} in der Sonne.;;true;false
-428;11;Il est interdit de {doubler|#762} ici.;Hier ist {Überholen|#763} verboten.;;true;false
-429;11;Un {scarabée|#760} {traverse|#773} la {route|#775}.;Ein {Käfer|#761} {überquert|#774} die {Straße|#487}.;;true;false
-430;11;Il a acheté une vieille {Coccinelle|#238}.;Er hat einen alten {VW-Käfer|#759} gekauft.;;true;false
-431;11;On peut {passer par|#755} le {périphérique|#514} pour {éviter|#757} le centre.;Man kann {über|#758} den {Stadtring|#513} {fahren|#758}, um das Zentrum zu {vermeiden|#756}.;;false;false
-432;11;Il a {klaxonné|#753} pour prévenir le cycliste.;Er hat {gehupt|#754}, um den Radfahrer zu warnen.;;true;false
-433;11;Les {GPS|#749} indiquent un autre {itinéraire|#752}.;Die {GPS-Geräte|#750} zeigen eine andere {Route|#751} an.;;true;false
-434;11;Le {frein|#386} ne répond plus !;Die {Bremse|#387} reagiert nicht mehr!;;true;false
-435;11;J'ai {garé|#374} la voiture derrière l'{immeuble|#747}.;Ich habe das Auto hinter dem {Gebäude|#748} {geparkt|#375}.;;true;false
-436;11;Les {flics|#745} sont arrivés en deux minutes.;Die {Bullen|#746} war in zwei Minuten da.;;true;false
-437;11;Le {métro|#492} est {bondé|#449} ce matin.;Die {U-Bahn|#493} ist heute Morgen {überfüllt|#450}.;;true;false
-438;11;La {pollution sonore|#732} augmente en ville.;Die {Lärmverschmutzung|#733} nimmt in der Stadt zu.;;true;false
-439;11;Ils ont eu une {discussion|#734} {vive|#735} dans la rue.;Sie hatten eine {heftige|#736} {Diskussion|#737} auf der Straße.;;true;false
-440;11;Les {nombres|#738} {pairs|#741} sont plus simples à diviser.;{Gerade|#739} {Zahlen|#740} sind leichter zu teilen.;;true;false
-441;11;Les {nombres|#738} {impairs|#742} sont parfois plus complexes.;{Ungerade|#744} {Zahlen|#740} sind manchmal komplizierter.;;true;false
-442;11;Le {trafic|#694} est très {fluide|#715} ce matin.;Der {Verkehr|#691} ist heute Morgen sehr {flüssig|#716}.;;true;false
-443;11;{Ça y fait|#726} quand il y a moins de voitures.;{Das macht etwas aus|#727}, wenn weniger Autos unterwegs sind.;;true;false
-444;11;Ce {tronçon|#712} d'autoroute est {payant|#713}.;Dieser {Autobahnabschnitt|#711} ist {mautpflichtig|#714}.;;true;false
-445;11;La {circulation|#710} est fluide ce soir.;Der {Verkehr|#691} ist heute Abend flüssig.;;true;false
-446;11;Un {bouchon|#706} bloque l'{autoroute|#708}.;Ein {Stau|#515} blockiert die {Autobahn|#709}.;;true;false
-447;11;J'ai remis le {bouchon|#706} sur la bouteille.;Ich habe den {Flaschenverschluss|#707} wieder aufgesetzt.;;true;false
-448;11;J'aime aller à Paris en {train|#704}.;Ich fahre gern mit dem {Zug|#705} nach Paris hinein.;;false;false
-449;11;Ma voiture a une {vignette|#702} Crit'Air 2.;Mein Auto hat eine Crit'Air-{Plakette|#703} 2.;;true;false
-450;11;Le {trottoir|#696} est {encombré|#700} de {scooters|#697}.;Der {Gehweg|#699} ist mit {Rollern|#698} {blockiert|#701}.;;true;false
-451;11;On {respire|#693} mieux depuis la {réduction|#695} du {trafic|#694}.;Man {atmet|#692} besser, seit der {Reduzierung|#690} des {Verkehrs|#691}.;;true;false
-452;11;Le {piéton|#686} traverse au {passage protégé|#689}.;Der {Fußgänger|#687} überquert am {Zebrastreifen|#688}.;;true;false
-453;11;La nouvelle {loi|#682} est {en vigueur|#684} dès lundi.;Das neue {Gesetz|#683} tritt ab Montag {in Kraft|#685}.;;true;false
+427;11;Ses {boucles|#776} {brillent|#162} au soleil.;Ihre {Locken|#777} {glänzen|#725} in der Sonne.;;true;true
+428;11;Il est interdit de {doubler|#762} ici.;Hier ist {Überholen|#763} verboten.;;true;true
+429;11;Un {scarabée|#760} {traverse|#773} la {route|#775}.;Ein {Käfer|#761} {überquert|#774} die {Straße|#487}.;;true;true
+430;11;Il a acheté une vieille {Coccinelle|#238}.;Er hat einen alten {VW-Käfer|#759} gekauft.;;true;true
+431;11;On peut {passer par|#755} le {périphérique|#514} pour {éviter|#757} le centre.;Man kann {über|#758} den {Stadtring|#513} {fahren|#758}, um das Zentrum zu {vermeiden|#756}.;;true;true
+432;11;Il a {klaxonné|#753} pour prévenir le cycliste.;Er hat {gehupt|#754}, um den Radfahrer zu warnen.;;true;true
+433;11;Les {GPS|#749} indiquent un autre {itinéraire|#752}.;Die {GPS-Geräte|#750} zeigen eine andere {Route|#751} an.;;true;true
+434;11;Le {frein|#386} ne répond plus !;Die {Bremse|#387} reagiert nicht mehr!;;true;true
+435;11;J'ai {garé|#374} la voiture derrière l'{immeuble|#747}.;Ich habe das Auto hinter dem {Gebäude|#748} {geparkt|#375}.;;true;true
+436;11;Les {flics|#745} sont arrivés en deux minutes.;Die {Bullen|#746} waren in zwei Minuten da.;;true;true
+437;11;Le {métro|#492} est {bondé|#449} ce matin.;Die {U-Bahn|#493} ist heute Morgen {überfüllt|#450}.;;true;true
+438;11;La {pollution sonore|#732} augmente en ville.;Die {Lärmverschmutzung|#733} nimmt in der Stadt zu.;;true;true
+439;11;Ils ont eu une {discussion|#734} {vive|#735} dans la rue.;Sie hatten eine {heftige|#736} {Diskussion|#737} auf der Straße.;;true;true
+440;11;Les {nombres|#738} {pairs|#741} sont plus simples à diviser.;{Gerade|#739} {Zahlen|#740} sind leichter zu teilen.;;true;true
+441;11;Les {nombres|#738} {impairs|#742} sont parfois plus complexes.;{Ungerade|#744} {Zahlen|#740} sind manchmal komplizierter.;;true;true
+442;11;Le {trafic|#694} est très {fluide|#715} ce matin.;Der {Verkehr|#691} ist heute Morgen sehr {flüssig|#716}.;;true;true
+443;11;{Ça y fait|#726} quand il y a moins de voitures.;{Das macht etwas aus|#727}, wenn weniger Autos unterwegs sind.;;true;true
+444;11;Ce {tronçon|#712} d'autoroute est {payant|#713}.;Dieser {Autobahnabschnitt|#711} ist {mautpflichtig|#714}.;;true;true
+445;11;La {circulation|#710} est fluide ce soir.;Der {Verkehr|#691} ist heute Abend flüssig.;;true;true
+446;11;Un {bouchon|#706} bloque l'{autoroute|#708}.;Ein {Stau|#515} blockiert die {Autobahn|#709}.;;true;true
+447;11;J'ai remis le {bouchon|#706} sur la bouteille.;Ich habe den {Flaschenverschluss|#707} wieder aufgesetzt.;;true;true
+448;11;J'aime aller à Paris en {train|#704}.;Ich fahre gern mit dem {Zug|#705} nach Paris hinein.;;true;true
+449;11;Ma voiture a une {vignette|#702} Crit'Air 2.;Mein Auto hat eine Crit'Air-{Plakette|#703} 2.;;true;true
+450;11;Le {trottoir|#696} est {encombré|#700} de {scooters|#697}.;Der {Gehweg|#699} ist mit {Rollern|#698} {blockiert|#701}.;;true;true
+451;11;On {respire|#693} mieux depuis la {réduction|#695} du {trafic|#694}.;Man {atmet|#692} besser, seit der {Reduzierung|#690} des {Verkehrs|#691}.;;true;true
+452;11;Le {piéton|#686} traverse au {passage protégé|#689}.;Der {Fußgänger|#687} überquert am {Zebrastreifen|#688}.;;true;true
+453;11;La nouvelle {loi|#682} est {en vigueur|#684} dès lundi.;Das neue {Gesetz|#683} tritt ab Montag {in Kraft|#685}.;;true;true
 454;11;Un {barrage|#678} bloque l'{accès|#674} au centre-ville.;Eine {Sperre|#681} blockiert den {Zugang|#675} zur Innenstadt.;;true;true
 455;11;L'{accès|#674} est réservé aux {riverains|#677}.;Der {Zugang|#675} ist nur für {Anwohner|#676} erlaubt.;;true;true
 456;11;Il faut {être muni d|#673}'un {justificatif de domicile|#612}.;Man muss einen {Wohnsitznachweis|#613} {bei sich haben|#672}.;;true;true
