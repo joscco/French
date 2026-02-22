@@ -716,10 +716,10 @@ id;lang;term_text;category;genus;needs_vowel_article;unit_id;ref;tags;has_audio
 731;fr;carnet;noun;m;;;;;true
 732;fr;pollution sonore;noun;f;;;;;false
 733;de;Lärmverschmutzung;noun;f;;;;;false
-734;fr;discussion;noun;f;;;;;false
+734;fr;discussion;noun;f;;;;;true
 735;fr;vive;adjective;;;;;;false
 736;de;heftig;adjective;;;;;;false
-737;de;Diskussion;noun;f;;;;;false
+737;de;Diskussion;noun;f;;;;;true
 738;fr;nombre;noun;m;;;;;false
 739;de;gerade;adjective;;;;;;false
 740;de;Zahl;noun;f;;;;;true
@@ -727,7 +727,7 @@ id;lang;term_text;category;genus;needs_vowel_article;unit_id;ref;tags;has_audio
 742;fr;impair;adjective;;;;;;false
 744;de;ungerade;adjective;;;;;;false
 745;fr;flics;noun;mpl;;;;;false
-746;de;Bullen;noun;mpl;;;;;false
+746;de;Bullen;noun;mpl;;;;;true
 747;fr;immeuble;noun;m;true;;;;false
 748;de;Gebäude;noun;n;;;;;false
 749;fr;GPS;noun;m;;;;;false
@@ -752,83 +752,83 @@ id;lang;term_text;category;genus;needs_vowel_article;unit_id;ref;tags;has_audio
 768;de;Kindheit;noun;f;;;;;false
 769;de;Fundstück;noun;n;;;;;false
 770;fr;trouvaille;noun;f;;;;;false
-771;fr;chaise;noun;f;;;;;false
+771;fr;chaise;noun;f;;;;;true
 772;de;Stuhl;noun;m;;;;;false
 773;fr;traverser {qc.};verb;;;;;;false
 774;de;{etw.} überqueren;verb;;;;;;false
 775;fr;route;noun;f;;;;;false
-776;fr;boucle;noun;f;;;;;false
+776;fr;boucle;noun;f;;;;;true
 777;de;Locke;noun;f;;;;;false
-778;fr;bosse;noun;f;;;;;false
-779;de;Bodenwelle;noun;f;;;;;false
+778;fr;bosse;noun;f;;;;;true
+779;de;Bodenwelle;noun;f;;;;;true
 780;fr;ensemble;expression;;;;;;false
 781;de;gemeinsam;expression;;;;;;false
 782;fr;faire la route;verb;;;;;;false
-783;de;die Strecke fahren;verb;;;;;;false
-784;fr;bord du Rhin;noun;m;;;;;false
+783;de;die Strecke fahren;verb;;;;;;true
+784;fr;bord du Rhin;noun;m;;;;;true
 785;de;Rheinufer;noun;n;;;;;false
 786;fr;rôder {vers qc.};verb;;;;;;false
 787;de;um {etw.} herum schleichen;verb;;;;;;false
 788;fr;faillir {faire qc.};verb;;;;;;false
-789;de;beinahe {etw.} tun;verb;;;;;;false
+789;de;beinahe {etw.} tun;verb;;;;;;true
 790;fr;renverser {qc.};verb;;;;;;false
-791;de;{etw.} überfahren;verb;;;;;;false
-792;fr;croiser {qn.};verb;;;;;;false
-793;de;{jmdm.} begegnen;verb;;;;;;false
+791;de;{etw.} überfahren;verb;;;;;;true
+792;fr;croiser {qn.};verb;;;;;;true
+793;de;{jmdm.} begegnen;verb;;;;;;true
 794;de;{jmdn.} erkennen;verb;;;;;;true
 795;fr;reconnaître {qn.};verb;;;;;;false
-796;fr;automobiliste;noun;m;true;;;;false
-797;de;Autofahrer;noun;m;;;;;false
-798;de;bremsen;verb;;;;;;false
+796;fr;automobiliste;noun;m;true;;;;true
+797;de;Autofahrer;noun;m;;;;;true
+798;de;bremsen;verb;;;;;;true
 799;fr;freiner;verb;;;;;;false
-800;fr;avant même que;expression;;;;;;false
+800;fr;avant même {que};expression;;;;;;true
 801;de;noch bevor;expression;;;;;;false
 802;fr;soleil;noun;m;;;;;false
 803;de;Sonne;noun;f;;;;;false
 804;fr;{se} lever;verb;;;;;;false
 805;de;aufgehen;verb;;;;;;true
 806;de;Stofftasche;noun;f;;;;;false
-807;fr;cabas en toile;noun;m;;;;;false
+807;fr;cabas en toile;noun;m;;;;;true
 808;fr;emporter {qc.};verb;;;;;;false
 809;fr;rue à sens unique;noun;f;;;;;false
 810;de;Einbahnstraße;noun;f;;;;;false
 811;fr;piste cyclable;noun;f;;;;;false
 812;de;Fahrradweg;noun;m;;;;;false
 813;de;Straßenarbeit;noun;f;;;;;false
-814;fr;chantier;noun;m;;;;;false
-815;de;Baustelle;noun;f;;;;;false
-816;de;{etw.} blockieren;verb;;;;;;false
-817;fr;bloquer {qc.};verb;;;;;;false
+814;fr;chantier;noun;m;;;;;true
+815;de;Baustelle;noun;f;;;;;true
+816;de;{etw.} blockieren;verb;;;;;;true
+817;fr;bloquer {qc.};verb;;;;;;true
 818;fr;thermos;noun;m;;;;;false
 819;de;Thermoskanne;noun;f;;;;;false
-820;fr;billet;noun;m;;;;;false
+820;fr;billet;noun;m;;;;;true
 822;fr;lieu d'achat;noun;m;;;;;false
-823;de;Kaufort;noun;m;;;;;false
+823;de;Kaufort;noun;m;;;;;true
 824;fr;ticket de caisse;noun;m;;;;;false
-825;de;Kassenzettel;noun;m;;;;;false
+825;de;Kassenzettel;noun;m;;;;;true
 826;fr;périphérie de la ville;noun;f;;;;;false
 827;de;Stadtrand;noun;m;;;;;false
 828;fr;phénomène;noun;m;;;;;false
 829;de;Phänomen;noun;n;;;;;false
-830;fr;culturel;adjective;;;;;;false
+830;fr;culturel;adjective;;;;;;true
 831;de;kulturell;adjective;;;;;;false
 832;fr;{se} répandre;verb;;;;;;false
 833;de;{sich} verbreiten;verb;;;;;;false
 834;de;Nachricht;noun;f;;;;;false
 835;fr;nouvelle;noun;f;;;;;false
-836;fr;coin;noun;m;;;;;false
+836;fr;coin;noun;m;;;;;true
 837;de;Ecke;noun;f;;;;;false
 838;de;ruhig;adjective;;;;;;false
 839;fr;tranquille;adjective;;;;;;false
-840;fr;bibliothèque;noun;f;;;;;false
-841;de;Bibliothek;noun;f;;;;;false
-842;fr;chuchoter;verb;;;;;;false
-843;de;flüstern;verb;;;;;;false
+840;fr;bibliothèque;noun;f;;;;;true
+841;de;Bibliothek;noun;f;;;;;true
+842;fr;chuchoter {qc.};verb;;;;;;true
+843;de;{etw.} flüstern;verb;;;;;;true
 844;fr;assiette;noun;f;true;;;;true
 845;de;Teller;noun;m;;;;;false
 846;fr;ébréché;adjective;;;;;;false
 847;de;angeschlagen;adjective;;;;;;true
-848;fr;conducteur;noun;m;;;;;false
+848;fr;conducteur;noun;m;;;;;true
 849;de;Fahrer;noun;m;;;;;false
 850;fr;table de multiplication;noun;f;;;;;false
 851;de;Einmaleins;noun;n;;;;;false
@@ -839,19 +839,19 @@ id;lang;term_text;category;genus;needs_vowel_article;unit_id;ref;tags;has_audio
 856;fr;probabilité de gagner;noun;f;;;;;false
 857;de;Gewinnwahrscheinlichkeit;noun;f;;;;;false
 858;fr;poussette;noun;f;;;;;false
-859;de;Kinderwagen;noun;m;;;;;false
-860;fr;coffre de la voiture;noun;m;;;;;false
+859;de;Kinderwagen;noun;m;;;;;true
+860;fr;coffre de la voiture;noun;m;;;;;true
 861;de;Kofferraum;noun;m;;;;;false
 862;fr;écouteur;noun;m;true;;;;false
 863;de;In-Ear-Kopfhörer;noun;f;;;;;false
-864;fr;casque;noun;m;;;;;false
+864;fr;casque;noun;m;;;;;true
 865;de;{Over-Ear-}Kopfhörer;noun;f;;;;;false
 866;de;{jmdn.} stellen;verb;;;;;;false
 867;fr;du moins;expression;;;;;;false
-868;de;wenigstens;expression;;;;;;false
+868;de;wenigstens;expression;;;;;;true
 869;de;nachdrücklich;adjective;;;;;;false
 870;fr;appuyé;adjective;;;;;;true
-871;fr;avis;noun;m;true;;;;false
+871;fr;avis;noun;m;true;;;;true
 872;de;Meinung;noun;f;;;;;false
 873;fr;or;expression;;;;;;false
 874;de;jedoch;expression;;;;;;false
@@ -872,10 +872,10 @@ id;lang;term_text;category;genus;needs_vowel_article;unit_id;ref;tags;has_audio
 889;de;schlagen;verb;;;;;;false
 890;fr;midi;noun;m;;;;;false
 891;de;zwölf;other;;;;;;true
-892;fr;détail;noun;m;;;;;false
-893;de;Detail;noun;n;;;;;false
-894;fr;caractère;noun;m;;;;;false
-895;de;Charakter;noun;m;;;;;false
+892;fr;détail;noun;m;;;;;true
+893;de;Detail;noun;n;;;;;true
+894;fr;caractère;noun;m;;;;;true
+895;de;Charakter;noun;m;;;;;true
 896;fr;pièce;noun;f;;;;;false
 897;de;Raum;noun;m;;;;;false
 898;fr;plaisanter;verb;;;;;;false
@@ -902,20 +902,20 @@ id;lang;term_text;category;genus;needs_vowel_article;unit_id;ref;tags;has_audio
 919;de;am Meer;expression;;;;;;true
 920;fr;attente;noun;f;true;;;;true
 921;de;Erwartung;noun;f;;;;;false
-922;fr;déçu;adjective;;;;;;false
+922;fr;déçu;adjective;;;;;;true
 923;de;enttäuscht;adjective;;;;;;false
 924;fr;réderie;noun;f;;;;;false
-925;fr;braderie;noun;f;;;;;false
-926;fr;chiffre d'affaires;noun;m;;;;;false
+925;fr;braderie;noun;f;;;;;true
+926;fr;chiffre d'affaires;noun;m;;;;;true
 927;de;Umsatz;noun;m;;;;;false
 928;fr;augmenter;verb;;;;;;true
 929;de;steigen;verb;;;;;;false
-930;fr;cabas;noun;m;;;;;false
+930;fr;cabas;noun;m;;;;;true
 931;fr;toile;noun;f;;;;;false
 932;de;Einkaufstasche;noun;f;;;;;false
 933;fr;doux;adjective;;;;;;false
-934;de;weich;adjective;;;;;;false
-935;fr;brut;adjective;;;;;;false
+934;de;weich;adjective;;;;;;true
+935;fr;brut;adjective;;;;;;true
 936;fr;sec;adjective;;;;;;false
 937;de;herb;adjective;;;;;;false
 938;de;trocken;adjective;;;;;;false
@@ -923,31 +923,31 @@ id;lang;term_text;category;genus;needs_vowel_article;unit_id;ref;tags;has_audio
 940;de;Hefe;noun;f;;;;;false
 941;fr;pâte;noun;f;;;;;false
 942;de;Teig;noun;m;;;;;false
-943;fr;biberon;noun;m;;;;;false
+943;fr;biberon;noun;m;;;;;true
 944;de;Fläschchen;noun;n;;;;;false
 945;fr;remorque;noun;f;;;;;false
 946;de;Anhänger;noun;m;;;;;true
-947;fr;{se} débarrasser {de qc.};verb;;;;;;false
+947;fr;{se} débarrasser {de qc.};verb;;;;;;true
 948;de;{etw.} loswerden;verb;;;;;;false
 949;fr;meuble;noun;m;;;;;false
 950;de;Möbel;noun;npl;;;;;false
 951;fr;fondre;verb;;;;;;false
 952;de;schmelzen;verb;;;;;;false
-953;fr;couvert;noun;m;;;;;false
-954;de;Besteck;noun;n;;;;;false
+953;fr;couvert;noun;m;;;;;true
+954;de;Besteck;noun;n;;;;;true
 955;fr;métal précieux;noun;m;;;;;false
 956;de;Edelmetall;noun;n;;;;;false
 957;fr;tiroir;noun;m;;;;;false
 958;de;Schublade;noun;f;;;;;false
 959;fr;fourchette;noun;f;;;;;false
 960;de;Gabel;noun;f;;;;;false
-961;fr;couteau;noun;m;;;;;false
+961;fr;couteau;noun;m;;;;;true
 962;de;Messer;noun;n;;;;;false
 963;fr;aiguisé;adjective;;;;;;true
 964;de;geschärft;adjective;;;;;;false
-965;fr;cuillère;noun;f;;;;;false
+965;fr;cuillère;noun;f;;;;;true
 966;de;Löffel;noun;m;;;;;false
-967;fr;dot;noun;f;;;;;false
+967;fr;dot;noun;f;;;;;true
 968;de;Mitgift;noun;f;;;;;false
 969;fr;mariage;noun;m;;;;;false
 970;de;Hochzeit;noun;f;;;;;false
@@ -966,8 +966,8 @@ id;lang;term_text;category;genus;needs_vowel_article;unit_id;ref;tags;has_audio
 983;fr;perte;noun;f;;;;;false
 984;de;Verlust;noun;m;;;;;false
 985;fr;inquiéter {qn.};verb;;;;;;false
-986;de;beunruhigen;verb;;;;;;false
-987;fr;début;noun;m;;;;;false
+986;de;{jmdn.} beunruhigen;verb;;;;;;true
+987;fr;début;noun;m;;;;;true
 988;de;Anfang;noun;m;;;;;true
 989;fr;passionnant;adjective;;;;;;false
 990;de;spannend;adjective;;;;;;false
@@ -978,20 +978,20 @@ id;lang;term_text;category;genus;needs_vowel_article;unit_id;ref;tags;has_audio
 995;de;Auktion;noun;f;;;;;true
 996;fr;sauvegarder {qc.};verb;;;;;;false
 997;fr;fichier;noun;m;;;;;false
-998;de;Datei;noun;f;;;;;false
+998;de;Datei;noun;f;;;;;true
 999;de;speichern;verb;;;;;;false
 1000;fr;drap;noun;m;;;;;false
-1001;de;Bettlaken;noun;npl;;;;;false
+1001;de;Bettlaken;noun;n;;;;;true
 1002;fr;frais;adjective;;;;;;false
 1003;de;frisch;adjective;;;;;;false
 1004;fr;marchander;verb;;;;;;false
 1005;de;feilschen;verb;;;;;;false
-1006;fr;cigogne;noun;f;;;;;false
+1006;fr;cigogne;noun;f;;;;;true
 1007;de;Storch;noun;m;;;;;false
 1008;fr;nicher;verb;;;;;;false
 1009;de;nisten;verb;;;;;;false
 1010;fr;toit;noun;m;;;;;false
-1011;de;Dach;noun;n;;;;;false
+1011;de;Dach;noun;n;;;;;true
 1012;fr;faire la poussière;expression;;;;;;false
 1013;de;Staub wischen;expression;;;;;;false
 1014;fr;salon;noun;m;;;;;false
@@ -1000,7 +1000,7 @@ id;lang;term_text;category;genus;needs_vowel_article;unit_id;ref;tags;has_audio
 1017;de;Taschentuch;noun;n;;;;;false
 1018;fr;poche;noun;f;;;;;false
 1019;fr;trousseau;noun;m;;;;;false
-1020;de;Aussteuer;noun;f;;;;;false
+1020;de;Aussteuer;noun;f;;;;;true
 1021;fr;nappe;noun;f;;;;;false
 1022;de;Tischdecke;noun;f;;;;;false
 1023;fr;tasse;noun;f;;;;;false
@@ -1011,27 +1011,27 @@ id;lang;term_text;category;genus;needs_vowel_article;unit_id;ref;tags;has_audio
 1028;de;Silber;noun;n;;;;;false
 1029;fr;traîner;verb;;;;;;false
 1030;de;herumhängen;verb;;;;;;false
-1031;fr;bague;noun;f;;;;;false
-1032;de;Goldring;noun;m;;;;;false
+1031;fr;bague;noun;f;;;;;true
+1032;de;Ring;noun;m;;;;;false
 1033;fr;or;noun;m;true;;;;false
 1034;fr;scientifique;noun;m;true;;;;false
 1035;de;Wissenschaftler;noun;m;;;;;true
-1036;fr;climat;noun;m;;;;;false
+1036;fr;climat;noun;m;;;;;true
 1037;de;Klima;noun;n;;;;;false
 1038;fr;réchauffement climatique;noun;m;;;;;false
 1039;de;Erderwärmung;noun;f;;;;;false
 1040;fr;menace;noun;f;;;;;false
-1041;de;Bedrohung;noun;f;;;;;false
+1041;de;Bedrohung;noun;f;;;;;true
 1042;fr;mondial;adjective;;;;;;false
-1043;de;weltweit;adjective;;;;;;false
-1044;fr;changement climatique;noun;m;;;;;false
+1043;de;weltweit;adjective;;;;;;true
+1044;fr;changement climatique;noun;m;;;;;true
 1045;de;Klimawandel;noun;m;;;;;false
 1046;fr;planète;noun;f;;;;;false
 1047;de;Planet;noun;m;;;;;false
 1048;fr;inondation;noun;f;true;;;;false
 1049;de;Überschwemmung;noun;f;;;;;false
 1050;fr;endommager {qc.};verb;;;;;;false
-1051;de;{etw.} beschädigen;verb;;;;;;false
+1051;de;{etw.} beschädigen;verb;;;;;;true
 1052;fr;retard;noun;m;;;;;false
 1053;de;Verspätung;noun;f;;;;;false
 1054;fr;pluie;noun;f;;;;;false
@@ -1049,7 +1049,7 @@ id;lang;term_text;category;genus;needs_vowel_article;unit_id;ref;tags;has_audio
 1068;de;Gletscher;noun;m;;;;;false
 1069;fr;Vikings;other;;;;;;false
 1070;de;Wikinger;noun;mpl;;;;;true
-1071;fr;colon;noun;m;;;;;false
+1071;fr;colon;noun;m;;;;;true
 1072;de;Siedler;noun;mpl;;;;;false
 1073;fr;{s'}installer;verb;;;;;;false
 1074;de;{sich} niederlassen;verb;;;;;;false
@@ -1068,30 +1068,30 @@ id;lang;term_text;category;genus;needs_vowel_article;unit_id;ref;tags;has_audio
 1087;de;schneien;verb;;;;;;false
 1088;fr;mer Baltique;noun;f;;;;;false
 1089;de;Ostsee;noun;f;;;;;false
-1090;fr;chute de pierres;noun;f;;;;;false
+1090;fr;chute de pierres;noun;f;;;;;true
 1091;de;Steinschlag;noun;m;;;;;false
 1092;fr;froid;noun;m;;;;;false
 1093;de;Kälte;noun;f;;;;;true
 1094;fr;intense;adjective;;;;;;false
 1096;fr;matériau isolant;noun;m;;;;;false
-1097;de;Dämmmaterial;noun;n;;;;;false
+1097;de;Dämmmaterial;noun;n;;;;;true
 1098;fr;fissure;noun;f;;;;;false
 1099;de;Riss;noun;m;;;;;false
 1100;fr;geler;verb;;;;;;false
 1101;de;gefrieren;verb;;;;;;false
 1102;fr;patiner;verb;;;;;;false
 1103;de;Schlittschuh laufen;verb;;;;;;false
-1104;fr;déneiger {qc.};verb;;;;;;false
-1105;de;vom Schnee befreien;verb;;;;;;false
+1104;fr;déneiger {qc.};verb;;;;;;true
+1105;de;{etw.} vom Schnee befreien;verb;;;;;;true
 1106;fr;faire de la luge;verb;;;;;;false
 1107;de;rodeln;verb;;;;;;false
 1108;fr;téléphérique;noun;m;;;;;false
 1109;de;Seilbahn;noun;f;;;;;false
 1110;fr;sommet;noun;m;;;;;false
 1111;de;Gipfel;noun;m;;;;;false
-1112;fr;canon à neige;noun;m;;;;;false
-1113;de;Schneekanone;noun;f;;;;;false
-1114;fr;borne de recharge;noun;f;;;;;false
+1112;fr;canon à neige;noun;m;;;;;true
+1113;de;Schneekanone;noun;f;;;;;true
+1114;fr;borne de recharge;noun;f;;;;;true
 1115;de;Ladestation;noun;f;;;;;false
 1116;fr;parking;noun;m;;;;;false
 1117;de;Parkplatz;noun;m;;;;;false
@@ -1099,13 +1099,13 @@ id;lang;term_text;category;genus;needs_vowel_article;unit_id;ref;tags;has_audio
 1119;de;Rauch;noun;m;;;;;false
 1120;fr;{s'}échapper;verb;;;;;;false
 1121;de;entweichen;verb;;;;;;false
-1122;fr;cheminée;noun;f;;;;;false
+1122;fr;cheminée;noun;f;;;;;true
 1123;de;Schornstein;noun;m;;;;;false
-1124;fr;démarrer;verb;;;;;;false
-1125;de;starten;verb;;;;;;false
-1126;fr;décoller;verb;;;;;;false
+1124;fr;démarrer {qc.};verb;;;;;;true
+1125;de;{etw.} starten;verb;;;;;;true
+1126;fr;décoller;verb;;;;;;true
 1127;de;abheben;verb;;;;;;true
-1128;fr;décollage;noun;m;;;;;false
+1128;fr;décollage;noun;m;;;;;true
 1129;de;Start;noun;m;;;;;false
 1130;fr;atterrir;verb;;;;;;true
 1131;de;landen;verb;;;;;;false
@@ -1116,19 +1116,19 @@ id;lang;term_text;category;genus;needs_vowel_article;unit_id;ref;tags;has_audio
 1136;fr;flotter;verb;;;;;;false
 1137;de;treiben;verb;;;;;;false
 1138;fr;double vitrage;noun;m;;;;;false
-1139;de;Doppelverglasung;noun;f;;;;;false
+1139;de;Doppelverglasung;noun;f;;;;;true
 1140;fr;isolation;noun;f;true;;;;false
-1141;de;Dämmung;noun;f;;;;;false
-1142;fr;kérosène;noun;m;;;;;false
-1143;de;Kerosin;noun;n;;;;;false
-1144;fr;carburant d'avion;noun;m;;;;;false
+1141;de;Dämmung;noun;f;;;;;true
+1142;fr;kérosène;noun;m;;;;;true
+1143;de;Kerosin;noun;n;;;;;true
+1144;fr;carburant d'avion;noun;m;;;;;true
 1145;de;Flugzeugtreibstoff;noun;m;;;;;false
 1146;de;still stehen;verb;;;;;;false
 1146;fr;pompe à chaleur;noun;f;;;;;false
 1147;fr;être suspendu;verb;;;;;;false
 1147;de;Wärmepumpe;noun;f;;;;;false
-1148;fr;chauffer {qc.};verb;;;;;;false
-1149;de;heizen;verb;;;;;;false
+1148;fr;chauffer {qc.};verb;;;;;;true
+1149;de;{etw.} heizen;verb;;;;;;true
 1150;fr;enlever {qc.};verb;;;;;;false
 1151;de;entfernen;verb;;;;;;false
 1152;fr;arbuste;noun;m;true;;;;true
@@ -1137,10 +1137,10 @@ id;lang;term_text;category;genus;needs_vowel_article;unit_id;ref;tags;has_audio
 1155;de;Hecke;noun;f;;;;;false
 1156;fr;verdure;noun;f;;;;;false
 1157;de;Grün;noun;n;;;;;false
-1158;fr;couronne;noun;f;;;;;false
-1159;de;Baumkrone;noun;f;;;;;false
+1158;fr;couronne;noun;f;;;;;true
+1159;de;Baumkrone;noun;f;;;;;true
 1160;de;ausladend;adjective;;;;;;true
-1161;fr;déborder;verb;;;;;;false
+1161;fr;déborder;verb;;;;;;true
 1162;de;über die Ufer treten;verb;;;;;;false
 1163;fr;abattre {qc.};verb;;;;;;true
 1164;de;{etw.} fällen;verb;;;;;;false
@@ -1149,25 +1149,25 @@ id;lang;term_text;category;genus;needs_vowel_article;unit_id;ref;tags;has_audio
 1167;fr;électricité;noun;f;true;;;;false
 1168;de;Strom;noun;m;;;;;false
 1169;fr;forage;noun;m;;;;;false
-1170;de;Bohrung;noun;f;;;;;false
+1170;de;Bohrung;noun;f;;;;;true
 1171;fr;atteindre {qc.};verb;;;;;;true
 1172;de;{etw.} erreichen;verb;;;;;;true
 1173;fr;nappe d'eau;noun;f;;;;;false
-1174;de;Wasserader;noun;f;;;;;false
+1174;de;Wasserader;noun;f;;;;;true
 1175;fr;abîmer {qc.};verb;;;;;;true
 1177;fr;humidité;noun;f;true;;;;false
 1178;de;Feuchtigkeit;noun;f;;;;;false
 1179;fr;rail;noun;m;;;;;false
-1180;de;Bahnschiene;noun;f;;;;;false
+1180;de;Bahnschiene;noun;f;;;;;true
 1181;fr;entretenir {qc.};verb;;;;;;false
-1182;de;warten;verb;;;;;;false
+1182;de;{etw.} warten;verb;;;;;;true
 1183;fr;soutenir {qc.};verb;;;;;;false
 1184;de;unterstützen;verb;;;;;;false
 1185;fr;tiers;noun;m;;;;;false
 1186;de;Drittel;noun;n;;;;;false
 1187;fr;pétition;noun;f;;;;;false
 1188;de;Petition;noun;f;;;;;false
-1189;fr;chauffe-eau instantané;noun;m;;;;;false
+1189;fr;chauffe-eau instantané;noun;m;;;;;true
 1190;de;Durchlauferhitzer;noun;m;;;;;false
 1191;fr;arranger {qn.};verb;;;;;;true
 1192;de;{jmdm.} passen;verb;;;;;;true
@@ -1175,28 +1175,28 @@ id;lang;term_text;category;genus;needs_vowel_article;unit_id;ref;tags;has_audio
 1194;de;Amortisation;noun;f;;;;;true
 1195;fr;investissement;noun;m;true;;;;false
 1196;de;Investition;noun;f;;;;;false
-1197;fr;carrelage;noun;m;;;;;false
+1197;fr;carrelage;noun;m;;;;;true
 1198;de;Kachel;noun;f;;;;;false
 1199;fr;haut-parleur;noun;m;;;;;false
 1200;de;Lautsprecher;noun;m;;;;;false
 1201;fr;épaisseur;noun;f;true;;;;false
-1202;de;Dicke;noun;f;;;;;false
+1202;de;Dicke;noun;f;;;;;true
 1203;fr;guère;expression;;;;;;false
-1204;de;kaum;expression;;;;;;false
+1204;de;kaum;expression;;;;;;true
 1205;fr;prévision météo;noun;f;;;;;false
-1206;de;Wettervorhersage;noun;f;;;;;false
+1206;de;Wettervorhersage;noun;f;;;;;true
 1207;fr;prédiction;noun;f;;;;;false
 1208;de;Prognose;noun;f;;;;;false
-1209;fr;dégât;noun;m;;;;;false
-1210;de;Sturmschaden;noun;m;;;;;false
-1211;fr;tempête;noun;f;;;;;false
+1209;fr;dégât;noun;m;;;;;true
+1210;de;Schaden;noun;m;;;;;true
+1211;fr;tempête;noun;f;;;;;true
 1212;fr;fournir {qc.};verb;;;;;;false
 1213;de;Firma;noun;f;;;;;false
 1214;fr;preuve;noun;f;;;;;false
-1215;de;Beweis;noun;m;;;;;false
+1215;de;Beweis;noun;m;;;;;true
 1216;de;liefern;verb;;;;;;false
 1217;fr;maternelle;noun;f;;;;;false
-1218;de;Kindergarten;noun;m;;;;;false
+1218;de;Kindergarten;noun;m;;;;;true
 1219;fr;tisane;noun;f;;;;;false
 1220;de;Kräutertee;noun;m;;;;;false
 1221;fr;infusion;noun;f;true;;;;false
@@ -1216,8 +1216,8 @@ id;lang;term_text;category;genus;needs_vowel_article;unit_id;ref;tags;has_audio
 1235;de;krank;adjective;;;;;;false
 1236;fr;subitement;adjective;;;;;;false
 1237;de;plötzlich;adjective;;;;;;false
-1238;fr;couche;noun;f;;;;;false
-1239;de;Schneeschicht;noun;f;;;;;false
+1238;fr;couche;noun;f;;;;;true
+1239;de;Schicht;noun;f;;;;;true
 1240;fr;neige;noun;f;;;;;false
 1242;fr;tabouret;noun;m;;;;;false
 1243;de;Hocker;noun;m;;;;;false
@@ -1229,15 +1229,15 @@ id;lang;term_text;category;genus;needs_vowel_article;unit_id;ref;tags;has_audio
 1249;de;Schuh;noun;m;;;;;false
 1250;fr;semelle;noun;f;;;;;false
 1251;de;Sohle;noun;f;;;;;false
-1252;fr;botte;noun;f;;;;;false
+1252;fr;botte;noun;f;;;;;true
 1253;de;Stiefel;noun;m;;;;;false
-1254;fr;cassé;adjective;;;;;;false
-1255;de;kaputt;adjective;;;;;;false
+1254;fr;cassé;adjective;;;;;;true
+1255;de;kaputt;adjective;;;;;;true
 1256;fr;talon;noun;m;;;;;false
 1257;de;Absatz;noun;m;;;;;true
 1258;fr;guêtre;noun;f;;;;;false
 1259;de;Gamasche;noun;f;;;;;false
-1260;fr;boue;noun;f;;;;;false
+1260;fr;boue;noun;f;;;;;true
 1261;de;Schlamm;noun;m;;;;;false
 1262;fr;filet;noun;m;;;;;false
 1263;de;Netz;noun;n;;;;;false
@@ -1246,22 +1246,22 @@ id;lang;term_text;category;genus;needs_vowel_article;unit_id;ref;tags;has_audio
 1266;fr;mètre cube;noun;m;;;;;false
 1267;de;Kubikmeter;noun;m;;;;;false
 1268;fr;stockage;noun;m;;;;;false
-1269;de;Datenspeicherung;noun;f;;;;;false
+1269;de;Datenspeicherung;noun;f;;;;;true
 1270;fr;retenue d'eau;noun;f;;;;;false
 1271;de;Rückhaltebecken;noun;n;;;;;false
 1272;de;Stromerzeugung;noun;f;;;;;false
 1273;fr;acheminement;noun;m;true;;;;true
 1274;de;Transport;noun;m;;;;;false
-1275;fr;courrier;noun;m;;;;;false
+1275;fr;courrier;noun;m;;;;;true
 1276;de;Post;noun;f;;;;;false
 1277;fr;équilibrer {qc.};verb;;;;;;false
 1278;de;{etw.} ausgleichen;verb;;;;;;true
-1279;fr;budget;noun;m;;;;;false
-1280;de;Budget;noun;n;;;;;false
+1279;fr;budget;noun;m;;;;;true
+1280;de;Budget;noun;n;;;;;true
 1282;fr;vue;noun;f;;;;;false
-1283;de;Aussicht;noun;f;;;;;false
+1283;de;Aussicht;noun;f;;;;;true
 1284;fr;abondance;noun;f;true;;;;true
-1285;de;Überfluss;noun;m;;;;;false
+1285;de;Überfluss;noun;m;;;;;true
 1286;fr;rendez-vous;noun;m;;;;;false
 1287;de;Termin;noun;m;;;;;false
 1288;fr;otorhino;noun;m;true;;;;false
@@ -1272,14 +1272,14 @@ id;lang;term_text;category;genus;needs_vowel_article;unit_id;ref;tags;has_audio
 1293;de;Filterung;noun;f;;;;;false
 1294;fr;héliportage;noun;m;true;;;;false
 1295;de;Helikoptertransport;noun;m;;;;;false
-1296;fr;coucher de soleil;noun;m;;;;;false
+1296;fr;coucher de soleil;noun;m;;;;;true
 1297;de;Sonnenuntergang;noun;m;;;;;false
 1298;fr;montagne;noun;f;;;;;false
-1299;de;Berg;noun;m;;;;;false
-1300;fr;disque dur;noun;m;;;;;false
+1299;de;Berg;noun;m;;;;;true
+1300;fr;disque dur;noun;m;;;;;true
 1301;de;Festplatte;noun;f;;;;;false
 1302;fr;mémoire;noun;f;;;;;false
-1303;de;Datenspeicher;noun;m;;;;;false
+1303;de;Datenspeicher;noun;m;;;;;true
 1304;fr;accumulateur;noun;m;true;;;;true
 1305;de;Energiespeicher;noun;m;;;;;false
 1306;fr;énergie solaire;noun;f;true;;;;false
@@ -1287,49 +1287,49 @@ id;lang;term_text;category;genus;needs_vowel_article;unit_id;ref;tags;has_audio
 1308;fr;accumuler {qc.};verb;;;;;;true
 1309;de;{etw.} ansammeln;verb;;;;;;true
 1310;fr;expérience;noun;f;true;;;;false
-1311;de;Erfahrung;noun;f;;;;;false
-1312;fr;barque;noun;f;;;;;false
-1313;de;Boot;noun;n;;;;;false
+1311;de;Erfahrung;noun;f;;;;;true
+1312;fr;barque;noun;f;;;;;true
+1313;de;Boot;noun;n;;;;;true
 1314;fr;extension;noun;f;true;;;;false
 1315;de;Erweiterung;noun;f;;;;;false
 1316;fr;réseau;noun;m;;;;;false
-1318;fr;damage;noun;m;;;;;false
+1318;fr;damage;noun;m;;;;;true
 1319;de;Präparierung;noun;f;;;;;false
 1320;fr;aube;noun;f;true;;;;true
 1321;de;Morgengrauen;noun;n;;;;;false
-1322;fr;dameuse;noun;f;;;;;false
+1322;fr;dameuse;noun;f;;;;;true
 1323;de;Pistenraupe;noun;f;;;;;false
-1324;fr;débloquer {qc.};verb;;;;;;false
+1324;fr;débloquer {qc.};verb;;;;;;true
 1325;de;entsperren;verb;;;;;;false
 1326;fr;thermalisme;noun;m;;;;;false
 1327;de;Thermalwesen;noun;n;;;;;false
-1328;fr;curiste;noun;m;;;;;false
+1328;fr;curiste;noun;m;;;;;true
 1329;de;Kurgast;noun;m;;;;;false
 1330;fr;VTT;noun;m;;;;;false
 1331;de;Mountainbiken;noun;n;;;;;false
 1332;fr;moniteur;noun;m;;;;;false
 1333;de;Gleitschirmlehrer;noun;m;;;;;false
 1334;fr;parapente;noun;m;;;;;false
-1336;fr;consigne de sécurité;noun;f;;;;;false
+1336;fr;consigne de sécurité;noun;f;;;;;true
 1337;de;Sicherheitsregel;noun;f;;;;;false
 1338;fr;étaler {qc.};verb;;;;;;false
 1339;de;verteilen;verb;;;;;;false
 1340;fr;fréquentation;noun;f;;;;;false
-1341;de;Besuch;noun;m;;;;;false
+1341;de;Besuch;noun;m;;;;;true
 1342;fr;vent;noun;m;;;;;false
-1343;de;Schnee;noun;m;;;;;false
+1343;de;Schnee;noun;m;;;;;true
 1344;de;Wind;noun;m;;;;;true
 1345;fr;habit de ski;noun;m;true;;;;false
 1346;de;Skibekleidung;noun;f;;;;;false
 1347;fr;imperméable;adjective;;;;;;false
-1348;de;wasserdicht;adjective;;;;;;false
+1348;de;wasserdicht;adjective;;;;;;true
 1349;fr;raquette;noun;f;;;;;false
-1350;de;Schneeschuh;noun;m;;;;;false
-1351;fr;confinement;noun;m;;;;;false
+1350;de;Schneeschuh;noun;m;;;;;true
+1351;fr;confinement;noun;m;;;;;true
 1352;de;Lockdown;noun;m;;;;;false
 1353;fr;habitude;noun;f;true;;;;false
 1354;de;Gewohnheit;noun;f;;;;;false
-1355;fr;botte de ski;noun;f;;;;;false
+1355;fr;botte de ski;noun;f;;;;;true
 1356;de;Skischuh;noun;m;;;;;false
 1357;fr;matériel de ski;noun;m;;;;;false
 1358;de;Skiausrüstung;noun;f;;;;;false
@@ -1341,18 +1341,18 @@ id;lang;term_text;category;genus;needs_vowel_article;unit_id;ref;tags;has_audio
 1364;de;Skipass;noun;m;;;;;false
 1365;fr;suffisamment;expression;;;;;;false
 1366;de;ausreichend;expression;;;;;;true
-1367;fr;bilan;noun;m;;;;;false
+1367;fr;bilan;noun;m;;;;;true
 1368;de;Skigebiet;noun;n;;;;;false
 1369;fr;station;noun;f;;;;;false
-1370;de;Bilanz;noun;f;;;;;false
-1371;fr;déni;noun;m;;;;;false
-1372;de;leugnen;verb;;;;;;false
+1370;de;Bilanz;noun;f;;;;;true
+1371;fr;nier {qc.};verb;;;;;;true
+1372;de;{etw.} leugnen;verb;;;;;;true
 1373;fr;réalité;noun;f;;;;;false
 1374;de;Realität;noun;f;;;;;false
-1375;fr;avoir du mal à {faire qc.};verb;;;;;;false
+1375;fr;avoir du mal {à faire qc.};verb;;;;;;true
 1376;de;Schwierigkeit;noun;f;;;;;false
 1377;fr;hydrogène;noun;m;true;;;;false
-1378;de;Wasserstoff;noun;m;;;;;false
+1378;de;Wasserstoff;noun;m;;;;;true
 1379;fr;énergie propre;noun;f;true;;;;false
 1380;de;saubere Energiequelle;noun;f;;;;;false
 1381;fr;perdurer;verb;;;;;;false
@@ -1378,12 +1378,12 @@ id;lang;term_text;category;genus;needs_vowel_article;unit_id;ref;tags;has_audio
 1401;fr;gâter {qn.};verb;;;;;;false
 1402;de;verwöhnen;verb;;;;;;false
 1405;fr;fromage;noun;m;;;;;false
-1406;de;Käse;noun;m;;;;;false
+1406;de;Käse;noun;m;;;;;true
 1407;fr;artisanal;adjective;;;;;;true
 1408;de;handwerklich;adjective;;;;;;false
 1409;fr;fille unique;noun;f;;;;;false
 1410;de;Einzelkind;noun;n;;;;;false
-1412;fr;demi-frère;noun;m;;;;;false
+1412;fr;demi-frère;noun;m;;;;;true
 1413;de;Halbbruder;noun;m;;;;;false
 1414;fr;franc;adjective;;;;;;false
 1415;de;ehrlich;adjective;;;;;;false
@@ -1391,37 +1391,37 @@ id;lang;term_text;category;genus;needs_vowel_article;unit_id;ref;tags;has_audio
 1417;de;Ehrlichkeit;noun;f;;;;;false
 1418;fr;taux de natalité;noun;m;;;;;false
 1419;de;Geburtenrate;noun;f;;;;;false
-1420;fr;baisser;verb;;;;;;false
+1420;fr;baisser;verb;;;;;;true
 1421;de;sinken;verb;;;;;;false
 1422;fr;fédéralisme;noun;m;;;;;false
 1423;de;Föderalismus;noun;m;;;;;false
 1424;fr;pouvoir;noun;m;;;;;false
 1425;de;Macht;noun;f;;;;;false
 1426;fr;{se} sentir débordé;verb;;;;;;false
-1427;de;überfordert sein;verb;;;;;;false
-1428;fr;cabinet médical;noun;m;;;;;false
+1427;de;überfordert sein;verb;;;;;;true
+1428;fr;cabinet médical;noun;m;;;;;true
 1429;de;Arztpraxis;noun;f;;;;;true
-1430;fr;bagarre;noun;f;;;;;false
+1430;fr;bagarre;noun;f;;;;;true
 1431;de;Schlägerei;noun;f;;;;;false
 1432;fr;éclater;verb;;;;;;false
 1433;de;ausbrechen;verb;;;;;;true
-1434;fr;cafter;verb;;;;;;false
+1434;fr;cafter;verb;;;;;;true
 1435;de;petzen;verb;;;;;;false
-1436;fr;cafteuse;noun;f;;;;;false
+1436;fr;cafteuse;noun;f;;;;;true
 1437;de;Petze;noun;f;;;;;false
-1438;fr;avoir le cafard;verb;;;;;;false
+1438;fr;avoir le cafard;verb;;;;;;true
 1439;de;schlecht drauf sein;verb;;;;;;false
-1440;fr;cafard;noun;m;;;;;false
-1441;de;Kakerlake;noun;f;;;;;false
-1442;fr;désinhibé;adjective;;;;;;false
+1440;fr;cafard;noun;m;;;;;true
+1441;de;Kakerlake;noun;f;;;;;true
+1442;fr;désinhibé;adjective;;;;;;true
 1443;de;hemmungslos;adjective;;;;;;false
 1444;fr;ne pas prendre de gants;expression;;;;;;false
-1445;de;kein Blatt vor den Mund nehmen;expression;;;;;;false
+1445;de;kein Blatt vor den Mund nehmen;expression;;;;;;true
 1446;fr;gérer {qc.};verb;;;;;;false
 1447;de;lösen;verb;;;;;;false
-1448;fr;conflit;noun;m;;;;;false
+1448;fr;conflit;noun;m;;;;;true
 1449;de;Konflikt;noun;m;;;;;false
-1450;fr;complicité;noun;f;;;;;false
+1450;fr;complicité;noun;f;;;;;true
 1451;de;Vertrautheit;noun;f;;;;;false
 1452;fr;parcourir {qc.};verb;;;;;;false
 1453;de;durchsehen;verb;;;;;;false
@@ -1431,28 +1431,28 @@ id;lang;term_text;category;genus;needs_vowel_article;unit_id;ref;tags;has_audio
 1461;de;mal;expression;;;;;;false
 1462;fr;entraide;noun;f;true;;;;false
 1463;de;Gegenseitige Hilfe;noun;f;;;;;false
-1464;fr;constat;noun;m;;;;;false
+1464;fr;constat;noun;m;;;;;true
 1465;de;Feststellung;noun;f;;;;;false
-1466;fr;cargaison;noun;f;;;;;false
+1466;fr;cargaison;noun;f;;;;;true
 1467;de;Fracht;noun;f;;;;;false
 1468;fr;port;noun;m;;;;;false
 1469;de;Hafen;noun;m;;;;;false
-1470;fr;bienvenu;adjective;;;;;;false
+1470;fr;bienvenu;adjective;;;;;;true
 1471;de;willkommen;adjective;;;;;;true
 1472;fr;traditions celtes;noun;fpl;;;;;false
-1473;de;keltische Traditionen;noun;fpl;;;;;false
+1473;de;keltischen Traditionen;noun;fpl;;;;;true
 1474;fr;par l'intermédiaire de;expression;;;;;;false
 1475;de;über;expression;;;;;;false
-1476;fr;avocat;noun;m;true;;;;false
+1476;fr;avocat;noun;m;true;;;;true
 1477;de;Anwalt;noun;m;;;;;true
 1479;de;pflegen;verb;;;;;;false
 1480;fr;relation;noun;f;;;;;false
-1481;de;Beziehung;noun;f;;;;;false
+1481;de;Beziehung;noun;f;;;;;true
 1482;fr;voisin;noun;m;;;;;false
 1483;de;Nachbar;noun;m;;;;;false
 1484;fr;entretien;noun;m;true;;;;false
 1485;fr;entretien d'embauche;noun;m;true;;;;false
-1486;de;Bewerbungsgespräch;noun;n;;;;;false
+1486;de;Bewerbungsgespräch;noun;n;;;;;true
 1487;fr;{s'}entretenir;verb;;;;;;false
 1488;de;{sich} unterhalten;verb;;;;;;false
 1489;fr;rage de dents;noun;f;;;;;false
@@ -1463,37 +1463,37 @@ id;lang;term_text;category;genus;needs_vowel_article;unit_id;ref;tags;has_audio
 1494;de;erziehen;verb;;;;;;false
 1495;fr;éducation;noun;f;true;;;;false
 1496;de;Erziehung;noun;f;;;;;false
-1497;fr;{se} disputer;verb;;;;;;false
+1497;fr;{se} disputer;verb;;;;;;true
 1498;de;{sich} streiten;verb;;;;;;false
-1499;fr;broutille;noun;f;;;;;false
+1499;fr;broutille;noun;f;;;;;true
 1500;de;Kleinigkeit;noun;f;;;;;false
 1501;fr;hésiter;verb;;;;;;false
 1502;de;zögern;verb;;;;;;true
 1503;fr;grandir;verb;;;;;;false
 1504;de;aufwachsen;verb;;;;;;true
-1505;fr;hors de;expression;;;;;;false
-1506;de;außerhalb;expression;;;;;;false
+1505;fr;hors {de qc.};expression;;;;;;true
+1506;de;außerhalb {von etw.};expression;;;;;;true
 1507;fr;métier;noun;m;;;;;false
-1508;de;Beruf;noun;m;;;;;false
+1508;de;Beruf;noun;m;;;;;true
 1509;fr;sur le tas;expression;;;;;;false
 1510;de;durch Praxis;expression;;;;;;false
 1511;fr;tas;noun;m;;;;;false
 1512;de;Haufen;noun;m;;;;;false
 1513;fr;réjouissant;adjective;;;;;;false
-1514;de;erfreulich;adjective;;;;;;false
-1515;fr;demeurer;verb;;;;;;false
+1514;de;erfreulich;adjective;;;;;;true
+1515;fr;demeurer;verb;;;;;;true
 1516;fr;soutien;noun;m;;;;;false
 1517;de;Unterstützung;noun;f;;;;;false
 1518;fr;affectif;adjective;;;;;;true
 1519;de;emotional;adjective;;;;;;false
-1520;fr;désaccord;noun;m;;;;;false
+1520;fr;désaccord;noun;m;;;;;true
 1521;de;Unstimmigkeit;noun;f;;;;;false
 1522;fr;fratrie;noun;f;;;;;false
 1523;de;Geschwister;noun;npl;;;;;false
 1524;fr;pénaliser {qn.};verb;;;;;;false
-1525;de;benachteiligen;verb;;;;;;false
+1525;de;{jmdn.} benachteiligen;verb;;;;;;true
 1526;fr;pour autant;expression;;;;;;false
-1527;de;dennoch;expression;;;;;;false
+1527;de;dennoch;expression;;;;;;true
 1528;fr;rang de naissance;noun;m;;;;;false
 1529;de;Geburtsrang;noun;m;;;;;false
 1530;fr;répandre {qc.};verb;;;;;;false
@@ -1501,7 +1501,7 @@ id;lang;term_text;category;genus;needs_vowel_article;unit_id;ref;tags;has_audio
 1533;de;Spielzeug;noun;n;;;;;false
 1534;fr;aîné;noun;m;true;;;;true
 1535;de;Älteste;noun;m;;;;;true
-1536;fr;cadet;noun;m;;;;;false
+1536;fr;cadet;noun;m;;;;;true
 1537;de;Jüngste;noun;m;;;;;false
 1538;fr;timide;adjective;;;;;;false
 1539;de;schüchtern;adjective;;;;;;false
@@ -1509,37 +1509,37 @@ id;lang;term_text;category;genus;needs_vowel_article;unit_id;ref;tags;has_audio
 1541;de;Jugend;noun;f;;;;;false
 1542;fr;rebelle;adjective;;;;;;false
 1543;de;rebellisch;adjective;;;;;;false
-1544;fr;campagne;noun;f;;;;;false
-1545;de;Kampagne;noun;f;;;;;false
-1546;fr;cible;noun;f;;;;;false
+1544;fr;campagne;noun;f;;;;;true
+1545;de;Kampagne;noun;f;;;;;true
+1546;fr;cible;noun;f;;;;;true
 1547;de;Zielgruppe;noun;f;;;;;true
-1548;fr;davantage;expression;;;;;;false
+1548;fr;davantage;expression;;;;;;true
 1549;de;mehr;expression;;;;;;false
 1550;fr;gronder;verb;;;;;;false
 1551;de;schimpfen;verb;;;;;;false
-1552;fr;blâmer {qn.};verb;;;;;;false
-1553;de;tadeln;verb;;;;;;false
+1552;fr;blâmer {qn.};verb;;;;;;true
+1553;de;{jmdn.} tadeln;verb;;;;;;true
 1554;fr;à son égard;expression;;;;;;true
 1555;de;zu ihm;expression;;;;;;true
 1556;fr;{se} rapprocher;verb;;;;;;false
 1557;de;{sich} annähern;verb;;;;;;true
 1558;fr;âge adulte;noun;m;true;;;;true
 1559;de;Erwachsenenalter;noun;n;;;;;false
-1560;fr;détendre {qc.};verb;;;;;;false
-1561;de;lockern;verb;;;;;;false
+1560;fr;détendre {qc.};verb;;;;;;true
+1561;de;{etw.} lockern;verb;;;;;;true
 1562;fr;lien;noun;m;;;;;false
-1563;de;Bindung;noun;f;;;;;false
+1563;de;Bindung;noun;f;;;;;true
 1564;fr;rassembler {qc.};verb;;;;;;false
 1565;de;versammeln;verb;;;;;;false
-1566;fr;convention;noun;f;;;;;false
+1566;fr;convention;noun;f;;;;;true
 1567;de;Konvention;noun;f;;;;;false
 1568;fr;pipelette;noun;f;;;;;false
 1569;de;Plaudertasche;noun;f;;;;;false
-1570;fr;boum;noun;f;;;;;false
+1570;fr;boum;noun;f;;;;;true
 1571;de;Party;noun;f;;;;;false
 1572;fr;{s'}entendre bien;verb;;;;;;false
 1573;de;{sich} gut verstehen;verb;;;;;;false
-1574;fr;collègue;noun;m;;;;;false
+1574;fr;collègue;noun;m;;;;;true
 1575;de;Kollege;noun;m;;;;;false
 1576;fr;{s'}entendre mal;verb;;;;;;false
 1577;de;{sich} schlecht verstehen;verb;;;;;;false
@@ -1555,22 +1555,22 @@ id;lang;term_text;category;genus;needs_vowel_article;unit_id;ref;tags;has_audio
 1587;de;eineiigen Zwillinge;noun;mpl;;;;;false
 1588;fr;faux jumeaux;noun;mpl;;;;;false
 1589;de;zweieiigen Zwillinge;noun;mpl;;;;;true
-1590;fr;confondre {qc.};verb;;;;;;false
-1591;de;verwechseln;verb;;;;;;false
+1590;fr;confondre {qc.};verb;;;;;;true
+1591;de;{etw.} verwechseln;verb;;;;;;true
 1592;fr;prénom;noun;m;;;;;false
 1593;de;Vorname;noun;m;;;;;false
 1594;fr;prématuré;adjective;;;;;;false
 1595;de;frühgeboren;adjective;;;;;;false
-1596;fr;distinguer {qc.};verb;;;;;;false
+1596;fr;distinguer {qc.};verb;;;;;;true
 1597;de;{etw.} erkennen;verb;;;;;;false
-1598;fr;citoyen;noun;m;;;;;false
-1599;de;Bürger;noun;m;;;;;false
+1598;fr;citoyen;noun;m;;;;;true
+1599;de;Bürger;noun;m;;;;;true
 1600;fr;égal;adjective;;;;;;false
 1601;de;gleich;adjective;;;;;;false
-1602;fr;crèche;noun;f;;;;;false
-1603;de;Kinderkrippe;noun;f;;;;;false
+1602;fr;crèche;noun;f;;;;;true
+1603;de;Kinderkrippe;noun;f;;;;;true
 1604;fr;La Haye;other;;;;;;false
-1605;de;Den Haag;other;;;;;;false
+1605;de;Den Haag;other;;;;;;true
 1606;fr;Pays-Bas;other;;;;;;false
 1607;de;Niederlande;other;;;;;;false
 1608;fr;jardin;noun;m;;;;;false
@@ -1579,23 +1579,23 @@ id;lang;term_text;category;genus;needs_vowel_article;unit_id;ref;tags;has_audio
 1611;de;Thema;noun;n;;;;;false
 1612;fr;faire le malade;verb;;;;;;false
 1613;de;{sich} krank stellen;verb;;;;;;false
-1614;fr;besoin;noun;m;;;;;false
-1615;de;Bedarf;noun;m;;;;;false
+1614;fr;besoin;noun;m;;;;;true
+1615;de;Bedarf;noun;m;;;;;true
 1616;fr;prendre fin;verb;;;;;;false
-1617;de;Besprechung;noun;f;;;;;false
+1617;de;Besprechung;noun;f;;;;;true
 1618;de;zu Ende gehen;verb;;;;;;true
 1619;fr;{être} loin d'être le cas;expression;;;;;;false
-1620;de;bei weitem nicht der Fall {sein};expression;;;;;;false
+1620;de;bei weitem nicht der Fall {sein};expression;;;;;;true
 1621;fr;lorsque;expression;;;;;;false
-1622;de;wenn;expression;;;;;;false
+1622;de;wenn;expression;;;;;;true
 1623;fr;afin que;expression;;;;;;true
-1624;de;damit;expression;;;;;;false
-1625;fr;dissimuler {qc.};verb;;;;;;false
+1624;de;damit;expression;;;;;;true
+1625;fr;dissimuler {qc.};verb;;;;;;true
 1626;de;verbergen;verb;;;;;;false
 1627;fr;identité;noun;f;true;;;;false
 1628;de;Identität;noun;f;;;;;false
-1629;fr;changer de place;verb;;;;;;false
-1630;de;den Platz tauschen;verb;;;;;;false
+1629;fr;changer de place;verb;;;;;;true
+1630;de;den Platz tauschen;verb;;;;;;true
 1631;fr;ralentir;verb;;;;;;false
 1632;de;langsamer werden;verb;;;;;;false
 1633;fr;virage;noun;m;;;;;false
@@ -1603,45 +1603,45 @@ id;lang;term_text;category;genus;needs_vowel_article;unit_id;ref;tags;has_audio
 1635;fr;appel de phare;noun;m;true;;;;true
 1636;de;Lichthupe;noun;f;;;;;false
 1637;fr;gyrophare;noun;m;;;;;false
-1638;de;Blaulicht;noun;n;;;;;false
-1639;fr;clignoter;verb;;;;;;false
-1640;de;blinken;verb;;;;;;false
+1638;de;Blaulicht;noun;n;;;;;true
+1639;fr;clignoter;verb;;;;;;true
+1640;de;blinken;verb;;;;;;true
 1641;fr;généalogie;noun;f;;;;;false
 1642;de;Ahnenforschung;noun;f;;;;;true
 1643;fr;arbre généalogique;noun;m;true;;;;true
 1644;de;Stammbaum;noun;m;;;;;false
-1645;fr;avis de décès;noun;m;true;;;;false
+1645;fr;avis de décès;noun;m;true;;;;true
 1646;de;Todesanzeige;noun;f;;;;;false
-1647;fr;coutume;noun;f;;;;;false
-1648;de;Brauch;noun;m;;;;;false
-1649;fr;d'autrefois;expression;;;;;;false
+1647;fr;coutume;noun;f;;;;;true
+1648;de;Brauch;noun;m;;;;;true
+1649;fr;d'autrefois;expression;;;;;;true
 1650;fr;au lieu de {qc.};expression;;;;;;true
 1651;de;anstatt {etw.};expression;;;;;;true
-1652;fr;devoir;noun;m;;;;;false
+1652;fr;devoir;noun;m;;;;;true
 1653;de;Hausaufgabe;noun;f;;;;;false
-1654;fr;brouillon;noun;m;;;;;false
+1654;fr;brouillon;noun;m;;;;;true
 1655;de;Entwurf;noun;m;;;;;false
 1656;fr;lettre de condoléances;noun;f;;;;;false
-1657;de;Beileidsbrief;noun;m;;;;;false
+1657;de;Beileidsbrief;noun;m;;;;;true
 1658;fr;arbitre;noun;m;true;;;;true
 1659;de;Schiedsrichter;noun;m;;;;;false
-1660;fr;coupure d'électricité;noun;f;;;;;false
+1660;fr;coupure d'électricité;noun;f;;;;;true
 1661;de;Stromausfall;noun;m;;;;;false
 1662;fr;{s'}interroger;verb;;;;;;false
 1663;de;nachdenken;verb;;;;;;false
 1664;fr;en continu;expression;;;;;;false
 1665;de;ständig;expression;;;;;;false
-1666;fr;conseillère de vie;noun;f;;;;;false
+1666;fr;conseillère de vie;noun;f;;;;;true
 1667;de;Lebensberaterin;noun;f;;;;;false
-1668;fr;confident;noun;m;;;;;false
+1668;fr;confident;noun;m;;;;;true
 1669;de;Vertrauter;noun;m;;;;;false
-1670;fr;cadre;noun;m;;;;;false
+1670;fr;cadre;noun;m;;;;;true
 1671;de;leitender Angestellter;noun;m;;;;;false
 1672;fr;horaire chargé;noun;m;true;;;;false
 1673;de;Arbeitszeit;noun;f;;;;;true
 1674;fr;relation de confiance;noun;f;;;;;false
 1675;de;Vertrauensverhältnis;noun;n;;;;;false
-1676;fr;conférence;noun;f;;;;;false
+1676;fr;conférence;noun;f;;;;;true
 1677;de;Konferenz;noun;f;;;;;false
 1678;fr;{se} tailler {qc.};verb;;;;;;false
 1679;de;erkämpfen;verb;;;;;;false
@@ -1649,30 +1649,30 @@ id;lang;term_text;category;genus;needs_vowel_article;unit_id;ref;tags;has_audio
 1681;de;Kunstszene;noun;f;;;;;false
 1682;fr;interlocuteur;noun;m;;;;;false
 1683;de;Gesprächspartner;noun;m;;;;;false
-1684;fr;bavardage;noun;m;;;;;false
+1684;fr;bavardage;noun;m;;;;;true
 1685;de;Geplauder;noun;n;;;;;false
-1686;fr;aveu;noun;m;true;;;;false
+1686;fr;aveu;noun;m;true;;;;true
 1687;de;Geständnis;noun;n;;;;;false
-1688;fr;confidentiel;adjective;;;;;;false
+1688;fr;confidentiel;adjective;;;;;;true
 1689;de;vertraulich;adjective;;;;;;false
-1690;fr;autrui;pronoun;;;;;;false
+1690;fr;autrui;pronoun;;;;;;true
 1691;de;andere Menschen;expression;;;;;;true
 1692;fr;par intérim;expression;;;;;;false
 1693;de;vorübergehend;expression;;;;;;false
-1694;fr;combler {qc.};verb;;;;;;false
-1695;de;erfüllen;verb;;;;;;false
+1694;fr;combler {qc.};verb;;;;;;true
+1695;de;{etw.} erfüllen;verb;;;;;;true
 1698;fr;émulation;noun;f;true;;;;false
-1699;de;Wettstreit;noun;m;;;;;false
+1699;de;Wettstreit;noun;m;;;;;true
 1700;fr;épanchement;noun;m;true;;;;false
 1701;de;Gefühlsausbruch;noun;m;;;;;false
 1702;fr;épopée;noun;f;true;;;;false
 1703;de;Epos;noun;n;;;;;false
 1704;fr;emprunté;adjective;;;;;;false
 1705;de;gehemmt;adjective;;;;;;false
-1706;fr;challenger {qc.};verb;;;;;;false
-1707;de;hinterfragen;verb;;;;;;false
+1706;fr;challenger {qc.};verb;;;;;;true
+1707;de;{etw.} hinterfragen;verb;;;;;;true
 1708;fr;échec;noun;m;true;;;;false
-1709;de;Misserfolg;noun;m;;;;;false
+1709;de;Misserfolg;noun;m;;;;;true
 1710;fr;rebondir;verb;;;;;;false
 1711;de;{sich} aufrappeln;verb;;;;;;true
 1712;fr;esthétique;adjective;;;;;;false
@@ -1680,20 +1680,20 @@ id;lang;term_text;category;genus;needs_vowel_article;unit_id;ref;tags;has_audio
 1714;fr;arabesque;noun;f;true;;;;true
 1715;de;Arabeske;noun;f;;;;;true
 1716;fr;plafond;noun;m;;;;;false
-1717;de;Decke;noun;f;;;;;false
+1717;de;Decke;noun;f;;;;;true
 1718;fr;négligeable;adjective;;;;;;false
 1719;de;vernachlässigbar;adjective;;;;;;false
 1721;fr;valoriser {qc.};verb;;;;;;false
 1722;de;{etw.} aufwerten;verb;;;;;;true
 1723;fr;parcours professionnel;noun;m;;;;;false
-1724;de;Werdegang;noun;m;;;;;false
+1724;de;Werdegang;noun;m;;;;;true
 1725;fr;mettre {qc.} à l'épreuve;expression;;;;;;false
 1726;de;{etw.} auf die Probe stellen;expression;;;;;;true
-1727;fr;divorce;noun;m;;;;;false
+1727;fr;divorce;noun;m;;;;;true
 1728;de;Scheidung;noun;f;;;;;false
 1729;fr;reclus;adjective;;;;;;false
 1730;de;zurückgezogen;adjective;;;;;;true
-1731;fr;complaisant;adjective;;;;;;false
+1731;fr;complaisant;adjective;;;;;;true
 1732;de;nachsichtig;adjective;;;;;;false
 1733;fr;oreillette;noun;f;true;;;;false
 1734;de;Ohrhörer;noun;m;;;;;false
@@ -1704,4 +1704,8 @@ id;lang;term_text;category;genus;needs_vowel_article;unit_id;ref;tags;has_audio
 1739;fr;douze;other;;;;;;true
 1740;de;Mittag;noun;m;;;;;true
 1741;de;sobald;expression;;;;;;false
-1742;fr;dès que;expression;;;;;;false
+1742;fr;dès que;expression;;;;;;true
+1743;de;Schwierigkeiten haben {etw. zu tun};expression;;;;;;false
+1744;de;Gold;noun;n;;;;;false
+1745;fr;difficulté;noun;f;;;;;true
+1746;de;Sturm;noun;m;;;;;true
