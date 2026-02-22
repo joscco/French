@@ -817,3 +817,51 @@ id;lang;term_text;category;genus;needs_vowel_article;unit_id;ref;tags;has_audio
 833;de;{sich} verbreiten;verb;;;;;;false
 834;de;Nachricht;noun;f;;;;;false
 835;fr;nouvelle;noun;f;;;;;false
+836;fr;coin;noun;m;;;;;false
+837;de;Ecke;noun;f;;;;;false
+838;de;ruhig;adjective;;;;;;false
+839;fr;tranquille;adjective;;;;;;false
+840;fr;bibliothèque;noun;f;;;;;false
+841;de;Bibliothek;noun;f;;;;;false
+842;fr;chuchoter;verb;;;;;;false
+843;de;flüstern;verb;;;;;;false
+844;fr;assiette;noun;f;;;;;false
+845;de;Teller;noun;m;;;;;false
+846;fr;ébréché;adjective;;;;;;false
+847;de;angeschlagen;adjective;;;;;;false
+848;fr;conducteur;noun;m;;;;;false
+849;de;Fahrer;noun;m;;;;;false
+850;fr;table de multiplication;noun;f;;;;;false
+851;de;Einmaleins;noun;n;;;;;false
+852;fr;plagiat;noun;m;;;;;false
+853;de;Plagiat;noun;n;;;;;false
+854;fr;puni par la loi;expression;;;;;;false
+855;de;gesetzlich bestraft;expression;;;;;;false
+856;fr;probabilité de gagner;noun;f;;;;;false
+857;de;Gewinnwahrscheinlichkeit;noun;f;;;;;false
+858;fr;poussette;noun;f;;;;;false
+859;de;Kinderwagen;noun;m;;;;;false
+860;fr;coffre de la voiture;noun;m;;;;;false
+861;de;Kofferraum;noun;m;;;;;false
+862;fr;écouteur;noun;m;;;;;false
+863;de;In-Ear-Kopfhörer;noun;f;;;;;false
+864;fr;casque;noun;m;;;;;false
+865;de;{Over-Ear-}Kopfhörer;noun;f;;;;;false
+866;de;{jmdn.} stellen;verb;;;;;;false
+867;fr;du moins;expression;;;;;;false
+868;de;wenigstens;expression;;;;;;false
+869;de;nachdrücklich;;;;;;;false
+870;fr;appuyé;;;;;;;false
+871;fr;avis;noun;m;;;;;false
+872;de;Meinung;noun;f;;;;;false
+873;fr;or;expression;;;;;;false
+874;de;jedoch;expression;;;;;;false
+875;fr;évoquer {qc.};verb;;;;;;false
+876;de;{etw.} erwähnen;verb;;;;;;false
+877;de;Seele;noun;f;;;;;false
+878;fr;âme;noun;f;;;;;false
+879;fr;peinture;noun;f;;;;;false
+880;fr;{se} patiner;verb;;;;;;false
+881;de;Patina bekommen;verb;;;;;;false
+882;fr;milliers {de qc.};expression;;;;;;false
+883;de;tausende {von etw.};expression;;;;;;false

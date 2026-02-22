@@ -82,14 +82,14 @@ id;unit_id;fr;de;note;has_audio_fr;has_audio_de
 83;1;Ils habitent à la {périphérie de la ville|#826}.;Sie wohnen am {Stadtrand|#827}.;;true;false
 84;1;Le marché est devenu un vrai {phénomène|#828} {culturel|#830}.;Der Markt ist zu einem echten {kulturellen|#831} {Phänomen|#829} geworden.;;true;false
 85;1;La {nouvelle|#835} s'est rapidement {répandue|#832}.;Die {Nachricht|#834} hat sich schnell {verbreitet|#833}.;;true;false
-86;1;Des {milliers} de personnes visitent le marché.;{Tausende} Menschen besuchen den Markt.;;true;false
-87;1;Nous nous retrouvons dans un {coin} {tranquille}.;Wir treffen uns in einer {ruhigen} {Ecke}.;;true;false
-88;1;Les enfants {chuchotent} dans la {bibliothèque}.;Die Kinder {flüstern} in der {Bibliothek}.;;true;false
-89;1;J'ai une {assiette} {ébréchée}.;Ich habe einen {angeschlagenen} {Teller}.;;true;false
-90;1;Il {évoque} souvent ses {voyages}.;Er {erwähnt} oft seine {Reisen}.;;true;false
-91;1;Cette maison a une {âme}.;Dieses Haus hat eine {Seele}.;;true;false
+86;1;Des {milliers|#882} de personnes visitent le {marché|#46}.;{Tausende|#883} Menschen besuchen den {Markt|#41}.;;true;false
+87;1;Nous nous retrouvons dans un {coin|#836} {tranquille|#839}.;Wir treffen uns in einer {ruhigen|#838} {Ecke|#837}.;;true;false
+88;1;Les enfants {chuchotent|#842} dans la {bibliothèque|#840}.;Die Kinder {flüstern|#843} in der {Bibliothek|#841}.;;true;false
+89;1;J'ai une {assiette|#844} {ébréchée|#846}.;Ich habe einen {angeschlagenen|#847} {Teller|#845}.;;true;false
+90;1;Il {évoque|#875} souvent ses {voyages}.;Er {erwähnt|#876} oft seine {Reisen}.;;true;false
+91;1;Cette maison a une {âme|#878}.;Dieses Haus hat eine {Seele|#877}.;;true;false
 92;1;L'{horloge} {sonne} {midi}.;Die {Uhr} {schlägt} {zwölf}.;;true;false
-93;1;La {peinture} commence à {se patiner} avec le temps.;Die {Farbe} bekommt mit der Zeit {Patina}.;;true;false
+93;1;La {peinture|#879} commence à {se patiner|#880} avec le temps.;Die {Farbe|#637} {bekommt|#881} mit der Zeit {Patina|#881}.;;true;false
 94;1;Ce {détail} apporte du {caractère} à la {pièce}.;Dieses {Detail} verleiht dem {Raum} {Charakter}.;;true;false
 95;1;On {plaisante} toujours avec lui.;Mit ihm {scherzt} man immer.;;true;false
 96;1;Elle {négocie|#132} avec {ferveur} sur le marché.;Sie {handelt} {leidenschaftlich} auf dem Markt.;;true;false
@@ -399,17 +399,17 @@ id;unit_id;fr;de;note;has_audio_fr;has_audio_de
 401;9;Cette situation met sa patience {à l'épreuve}.;Diese Situation stellt seine Geduld {auf die Probe}.;;true;false
 402;9;Depuis son {divorce}, il est {reclus} socialement.;Seit seiner {Scheidung} lebt er sozial {zurückgezogen}.;;true;false
 403;9;Il est trop {complaisant} avec ses collègues.;Er ist zu {nachsichtig} mit seinen Kollegen.;;true;false
-404;9;Il voulait venir, {or} il était malade.;Er wollte kommen, {jedoch} war er krank.;;true;false
-405;9;Il a donné un {avis} {appuyé} sur la question.;Er hat eine {nachdrückliche} {Meinung} zu der Frage geäußert.;;true;false
-406;10;Il viendra demain, {du moins} je l'espère.;Er wird morgen kommen – {wenigstens} hoffe ich das.;;true;false
+404;9;Il voulait venir, {or|#873} il était malade.;Er wollte kommen, {jedoch|#874} war er krank.;;true;false
+405;9;Il a donné un {avis|#871} {appuyé|#870} sur la question.;Er hat eine {nachdrückliche|#869} {Meinung|#872} zu der Frage geäußert.;;true;false
+406;10;Il viendra demain, {du moins|#867} je l'espère.;Er wird morgen kommen, {wenigstens|#868} hoffe ich das.;;true;false
 407;10;Elle porte une {oreillette} pour téléphoner en voiture.;Sie trägt einen {Ohrhörer} zum Telefonieren im Auto.;;true;false
-408;10;Mes {écouteurs} ne fonctionnent plus.;Meine {In-Ear-Kopfhörer} funktionieren nicht mehr.;;true;false
-409;10;J'utilise un {casque} pour écouter de la musique.;Ich benutze {Kopfhörer}, um Musik zu hören.;;true;false
-410;10;La {poussette} est pliée dans le {coffre} de la voiture.;Der {Kinderwagen} liegt im {Kofferraum};;true;false
-411;10;La {probabilité} de gagner est très faible.;Die {Gewinnwahrscheinlichkeit} ist sehr gering.;;true;false
-412;10;Le {plagiat} est puni par la {loi}.;{Plagiate} werden {gesetzlich} bestraft.;;true;false
-413;10;Les enfants apprennent la {table de multiplication} à l'école.;Die Kinder lernen in der Schule das {Einmaleins}.;;true;false
-414;11;La police a {interpelé} le {conducteur}.;Die Polizei hat den {Fahrer} {gestellt}.;;false;false
+408;10;Mes {écouteurs|#862} ne fonctionnent plus.;Meine {In-Ear-Kopfhörer|#863} funktionieren nicht mehr.;;true;false
+409;10;J'utilise un {casque|#864} pour écouter de la musique.;Ich benutze {Kopfhörer|#865}, um Musik zu hören.;;true;false
+410;10;La {poussette|#858} est pliée dans le {coffre de la voiture|#860}.;Der {Kinderwagen|#859} liegt im {Kofferraum|#861};;true;false
+411;10;La {probabilité de gagner|#856} est très faible.;Die {Gewinnwahrscheinlichkeit|#857} ist sehr gering.;;true;false
+412;10;Le {plagiat|#852} est {puni par la loi|#854}.;{Plagiate|#853} werden {gesetzlich bestraft|#855}.;;true;false
+413;10;Les enfants apprennent la {table de multiplication|#850} à l'école.;Die Kinder lernen in der Schule das {Einmaleins|#851}.;;true;false
+414;11;La police a {interpelé|#630} le {conducteur|#848}.;Die Polizei hat den {Fahrer|#849} {gestellt|#866}.;;false;false
 415;11;Le {chantier|#814} {bloque|#817} une partie de la route.;Die {Baustelle|#815} {blockiert|#816} einen Teil der Straße.;;true;false
 416;11;Il y a des {travaux|#98} dans la rue aujourd'hui.;Heute gibt es {Straßenarbeiten|#813}.;;true;false
 417;11;La {piste cyclable|#811} est fermée pour travaux.;Der {Fahrradweg|#812} ist wegen Bauarbeiten gesperrt.;;true;false
