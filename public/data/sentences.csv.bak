@@ -19,10 +19,10 @@ id;unit_id;fr;de;note;has_audio_fr;has_audio_de
 18;1;Il a {joué un rôle|#106} important.;Er hat {eine|#107} wichtige {Rolle gespielt|#107}.;;true;true
 19;1;Ce {repas|#109} est {dégoûtant|#108}.;Dieses {Essen|#110} ist {ekelhaft|#111}.;;true;true
 20;1;La maison est sur une {colline|#122}.;Das Haus liegt auf einem {Hügel|#121}.;;true;true
-21;1;Il porte une {sacoche|#123} en {cuir|#126}.;Er trägt eine {Umhängetasche|#124} aus {Leder|#125}.;;true;false
+21;1;Il porte une {sacoche|#123} en {cuir|#126}.;Er trägt eine {Umhängetasche|#124} aus {Leder|#125}.;;true;true
 22;1;J’ai perdu mes {bagages|#378} à l’{aéroport|#379}.;Ich habe mein {Gepäck|#381} am {Flughafen|#380} verloren.;;true;true
-23;1;Il a dû {pousser|#130} son vélo en montée.;Er musste sein Rad bergauf {schieben|#131}.;;true;false
-24;1;La voiture {roule|#382} {vite|#383}.;Das Auto {fährt|#385} {schnell|#384}.;;true;false
+23;1;Il a dû {pousser|#130} son vélo en montée.;Er musste sein Rad bergauf {schieben|#131}.;;true;true
+24;1;La voiture {roule|#382} {vite|#383}.;Das Auto {fährt|#385} {schnell|#384}.;;true;true
 25;1;Le {frein|#386} de mon {vélo|#422} ne marche pas.;Die {Bremse|#387} meines {Fahrrads|#423} funktioniert nicht.;;true;false
 26;1;Il faut porter un {casque à vélo|#388}.;Beim Radfahren muss man einen {Fahrradhelm|#389} tragen.;;true;false
 27;1;Il porte une {casquette|#390} bleue.;Er trägt eine blaue {Kappe|#391}.;;true;false
@@ -86,16 +86,16 @@ id;unit_id;fr;de;note;has_audio_fr;has_audio_de
 87;1;Nous nous retrouvons dans un {coin|#836} {tranquille|#839}.;Wir treffen uns in einer {ruhigen|#838} {Ecke|#837}.;;true;false
 88;1;Les enfants {chuchotent|#842} dans la {bibliothèque|#840}.;Die Kinder {flüstern|#843} in der {Bibliothek|#841}.;;true;false
 89;1;J'ai une {assiette|#844} {ébréchée|#846}.;Ich habe einen {angeschlagenen|#847} {Teller|#845}.;;true;false
-90;1;Il {évoque|#875} souvent ses {voyages}.;Er {erwähnt|#876} oft seine {Reisen}.;;true;false
+90;1;Il {évoque|#875} souvent ses {voyages|#884}.;Er {erwähnt|#876} oft seine {Reisen|#885}.;;true;false
 91;1;Cette maison a une {âme|#878}.;Dieses Haus hat eine {Seele|#877}.;;true;false
-92;1;L'{horloge} {sonne} {midi}.;Die {Uhr} {schlägt} {zwölf}.;;true;false
+92;1;L'{horloge|#886} {sonne|#888} {midi|#890}.;Die {Uhr|#887} {schlägt|#889} {zwölf|#891}.;;true;false
 93;1;La {peinture|#879} commence à {se patiner|#880} avec le temps.;Die {Farbe|#637} {bekommt|#881} mit der Zeit {Patina|#881}.;;true;false
-94;1;Ce {détail} apporte du {caractère} à la {pièce}.;Dieses {Detail} verleiht dem {Raum} {Charakter}.;;true;false
-95;1;On {plaisante} toujours avec lui.;Mit ihm {scherzt} man immer.;;true;false
-96;1;Elle {négocie|#132} avec {ferveur} sur le marché.;Sie {handelt} {leidenschaftlich} auf dem Markt.;;true;false
-97;1;Les {vendeurs} partagent volontiers des {anecdotes} sur leurs {trésors}.;Die {Verkäufer} erzählen gerne {Anekdoten} über ihre {Schätze}.;;true;false
+94;1;Ce {détail|#892} apporte du {caractère|#894} à la {pièce|#896}.;Dieses {Detail|#893} verleiht dem {Raum|#897} {Charakter|#895}.;;true;false
+95;1;On {plaisante|#898} toujours avec lui.;Mit ihm {scherzt|#899} man immer.;;true;false
+96;1;Elle {négocie|#132} avec {ferveur|#900} sur le marché.;Sie {handelt|#902} {leidenschaftlich|#901} auf dem Markt.;;true;false
+97;1;Les {vendeurs|#903} partagent volontiers des {anecdotes|#905} sur leurs {trésors|#907}.;Die {Verkäufer|#904} erzählen gerne {Anekdoten|#906} über ihre {Schätze|#908}.;;true;false
 98;1;La {convivialité|#270} est {au cœur de|#271} cet {événement|#272}.;Die {Geselligkeit|#267} {steht im Mittelpunkt|#268} dieser {Veranstaltung|#269}.;;true;true
-99;1;Le temps semble {suspendu|#275} {au fil des|#274} {conversations|#273}.;Die Zeit scheint {während|#276} der {Gespräche|#277} {stillzustehen}.;;true;false
+99;1;Le temps semble {suspendu|#1147} {au fil des|#274} {conversations|#273}.;Die Zeit scheint {während|#276} der {Gespräche|#277} {stillzustehen|#1146}.;;true;false
 100;1;J'ai ressenti un {frisson|#207} de {joie|#208}.;Ich habe ein {Kribbeln|#209} vor {Freude|#210} gespürt.;;true;true
 101;1;Elle {s'assoit sur|#204} une chaise en {rotin|#205}.;Sie {setzt sich auf|#174} einen Stuhl aus {Rattan|#206}.;;true;true
 102;1;J'ai {souri|#112} {malgré moi|#113}.;Ich habe {unwillkürlich|#114} {gelächelt|#137}.;;true;true
@@ -109,300 +109,300 @@ id;unit_id;fr;de;note;has_audio_fr;has_audio_de
 110;1;C’est un {objet|#39} {insolite|#38}.;Das ist ein {ungewöhnlicher|#37} {Gegenstand|#40}.;;true;true
 111;1;J’{ai rapporté|#34} un {souvenir|#36} de Paris.;Ich {habe|#33} ein {Souvenir|#35} aus Paris {mitgebracht|#33}.;;true;true
 112;1;On {ressent|#32} la {magie|#5} du {lieu|#6}.;Man {spürt|#31} die {Magie|#23} des {Ortes|#24}.;;true;true
-113;2;{Au fil des années}, ils sont devenus amis.;{Im Lauf der Jahre} sind sie Freunde geworden.;;true;false
-114;2;Vous étiez en {vacances} quand je vous ai appelés.;Ihr wart im {Urlaub}, als ich euch anrief.;;true;false
-115;2;Nous passons nos {vacances} en Croatie.;Wir verbringen unsere {Ferien} in Kroatien.;;true;false
-116;2;Nous {louons} une {maison de vacances} au {bord de la mer}.;Wir {mieten} ein {Ferienhaus} am {Meer}.;;true;false
-117;2;Son {attente} d'une réponse rapide a été {déçue}.;Seine {Erwartung} auf eine schnelle Antwort wurde {enttäuscht}.;;true;false
-118;2;La {réderie} d'Amiens attire de nombreux visiteurs.;Der {Flohmarkt} von Amiens zieht viele Besucher an.;;true;false
-119;2;La {braderie} de Lille est très connue.;Der {Flohmarkt} in Lille ist sehr bekannt.;;true;false
-120;2;Le {chiffre d'affaires} a {augmenté} de 10 %.;Der {Umsatz} ist um 10 % {gestiegen}.;;true;false
-121;2;Elle emporte un {cabas} en {toile} au marché.;Sie bringt eine {Einkaufstasche} aus {Stoff} mit auf den Markt.;;true;false
-122;2;Le {tissu} de cette chemise est très {doux}.;Der {Stoff} dieses Hemdes ist sehr {weich}.;;true;false
-123;2;Ce vin est {brut} et {sec}.;Dieser Wein ist {herb} und {trocken}.;;true;false
-124;2;Il faut ajouter de la {levure} à la {pâte}.;Man muss dem {Teig} {Hefe} hinzufügen.;;true;false
-125;2;Le bébé boit son lait dans un {biberon}.;Das Baby trinkt seine Milch aus einem {Fläschchen}.;;true;false
-126;2;Il a accroché une {remorque} à sa voiture.;Er hat einen {Anhänger} an sein Auto gehängt.;;true;false
-127;2;Elle veut {se débarrasser} de ces vieux {meubles}.;Sie will diese alten {Möbel} {loswerden}.;;true;false
-128;2;Le chocolat {fond} au soleil.;Die Schokolade {schmilzt} in der Sonne.;;true;false
-129;2;Chaque invité a un {couvert} complet.;Zu jedem Gast gehört ein komplettes {Besteck}.;;true;false
-130;2;L'{argent} est un {métal précieux}.;{Silber} ist ein {Edelmetall}.;;true;false
-131;2;L'{argenterie} est rangée dans le {tiroir}.;Das {Silberbesteck} liegt in der {Schublade}.;;true;false
-132;2;Je n'ai pas de {fourchette} {propre}.;Ich habe keine {saubere} {Gabel}.;;true;false
-133;2;Le {couteau} n'est pas bien {aiguisé}.;Das {Messer} ist nicht gut {geschärft}.;;true;false
-134;2;Je prends une {cuillère} de sucre.;Ich nehme einen {Löffel} Zucker.;;true;false
-135;2;{Autrefois}, la {dot} était courante dans les {mariages}.;{Früher} war die {Mitgift} bei {Hochzeiten} üblich.;;true;false
-136;2;La {porcelaine} de Limoges est {célèbre}.;Das {Porzellan} aus Limoges ist {berühmt}.;;true;false
-137;2;Il faut {polir} l'{argenterie} pour qu'elle {brille}.;Man muss das {Silber} {polieren}, damit es {glänzt}.;;true;false
-138;2;Un grand {lustre} {éclaire} la salle.;Ein großer {Kronleuchter} {erhellt} den Saal.;;true;false
-139;2;Cet enfant est {insolent}.;Dieses Kind ist {frech}.;;true;false
-140;2;La {perte} de son {portefeuille} l'a beaucoup {inquiété}.;Der {Verlust} seiner {Brieftasche} hat ihn sehr {beunruhigt}.;;true;false
-141;2;Le {début} du film est {passionnant}.;Der {Anfang} des Films ist {spannend}.;;true;false
-142;2;La {faïence} de Delft est très {réputée}.;Das Delfter {Steingut} ist sehr {berühmt}.;;true;false
-143;2;La {vente aux enchères} a eu lieu hier.;Die {Auktion} fand gestern statt.;;true;false
-144;2;Je dois {sauvegarder} mes {fichiers}.;Ich muss meine {Dateien} {speichern}.;;true;false
-145;2;Les {draps} sont {propres} et {frais}.;Die {Bettlaken} sind {sauber} und {frisch}.;;true;false
-146;2;Il aime {marchander} les prix au marché.;Er {feilscht} gern um die Preise auf dem Markt.;;true;false
-147;2;Une {cigogne} a {niché} sur le {toit}.;Ein {Storch} hat auf dem {Dach} {genistet}.;;true;false
-148;2;Je dois {faire la poussière} dans le {salon}.;Ich muss im {Wohnzimmer} {Staub wischen}.;;true;false
-149;2;Il a sorti un {mouchoir} de sa {poche}.;Er zog ein {Taschentuch} aus seiner {Tasche}.;;true;false
-150;2;Elle a reçu un {trousseau} complet pour son {mariage}.;Sie hat zu ihrer {Hochzeit} eine komplette {Aussteuer} erhalten.;;true;false
-151;2;La {nappe} blanche est sur la table.;Die weiße {Tischdecke} liegt auf dem Tisch.;;true;false
-152;2;Je bois mon café dans une {tasse}.;Ich trinke meinen Kaffee aus einer {Tasse}.;;true;false
-153;3;Il aime simplement {traîner} le week-end.;Er {hängt} am Wochenende einfach nur {herum};;true;false
-154;3;Elle porte une {bague} en {or}.;Sie trägt einen {Goldring}.;;true;false
-155;3;Le {scientifique} étudie le {climat}.;Der {Wissenschaftler} untersucht das {Klima}.;;true;false
-156;3;Le {réchauffement climatique} est une {menace} {mondiale}.;Die {Erderwärmung} ist eine {weltweite} {Bedrohung}.;;true;false
-157;3;Le {changement climatique} affecte toute la {planète}.;Der {Klimawandel} betrifft den ganzen {Planeten}.;;true;false
-158;3;L'{inondation} a {endommagé} de nombreuses maisons.;Die {Überschwemmung} hat viele Häuser {beschädigt}.;;true;false
-159;3;Les {retards} sont dûs à la {pluie}.;Die {Verspätungen} sind aufgrund des {Regens}.;;true;false
-160;3;La {sécheresse} dure depuis plusieurs mois.;Die {Dürre} hält seit mehreren Monaten an.;;true;false
-161;3;Le {climat} est très {sec} en été.;Das {Klima} ist im Sommer sehr {trocken}.;;true;false
-162;3;Un {oiseau migrateur} revient au {printemps}.;Ein {Zugvogel} kehrt im {Frühling} zurück.;;true;false
-163;3;La région est couverte d'une {forêt mixte}.;Die Region ist von einem {Mischwald} bedeckt.;;true;false
-164;3;Le {glacier} {fond} rapidement.;Der {Gletscher} {schmilzt} schnell.;;true;false
-165;3;Les {Vikings} ont voyagé en Europe.;Die {Wikinger} reisten durch Europa.;;true;false
-166;3;Les {colons} se sont installés près du {fleuve}.;Die {Siedler} haben sich am {Fluss} niedergelassen.;;true;false
-167;3;La {période glaciaire} a duré plusieurs {millénaires}.;Die {Eiszeit} dauerte mehrere {Jahrtausende}.;;true;false
-168;3;Un {marais} {s'étend} derrière la forêt.;Hinter dem Wald {erstreckt sich} ein {Sumpf}.;;true;false
-169;3;J'ai entendu dire qu'il allait {neiger}.;Ich habe gehört, dass es {schneien} wird.;;true;false
-170;3;Nous passons nos {vacances} à la {mer Baltique}.;Wir verbringen unsere {Ferien} an der {Ostsee}.;;true;false
-171;3;Une {chute de pierres} a bloqué la route.;Ein {Steinschlag} hat die Straße blockiert.;;true;false
-172;3;Le {froid} de l'hiver est {intense}.;Die {Winterkälte} ist {heftig}.;;true;false
-173;3;Ce mur retient bien le {matériau isolant}.;Diese Wand hält das {Dämmmaterial} gut zurück.;;true;false
-174;3;Une {fissure} est apparue dans le mur.;Ein {Riss} ist in der Wand entstanden.;;true;false
-175;3;L'eau commence à {geler}.;Das Wasser beginnt zu {gefrieren}.;;true;false
-176;3;Nous aimons {patiner} en hiver.;Wir {laufen} im Winter gern {Schlittschuh}.;;true;false
-177;3;Il faut {déneiger} l'allée.;Man muss den Weg {vom Schnee befreien}.;;true;false
-178;3;Les enfants adorent {faire de la luge}.;Die Kinder {rodeln} gern.;;true;false
-179;3;Le {téléphérique} monte jusqu'au {sommet}.;Die {Seilbahn} fährt bis zum {Gipfel}.;;true;false
-180;3;Un {canon à neige} fonctionne toute la nuit.;Die {Schneekanone} läuft die ganze Nacht.;;true;false
-181;3;Une {borne de recharge} est installée près du {parking}.;Neben dem {Parkplatz} steht eine {Ladestation}.;;true;false
-182;3;La {fumée} {s'échappe} de la {cheminée}.;Der {Rauch} {entweicht} aus dem {Schornstein}.;;true;false
-183;3;La voiture {démarre} sans problème.;Das Auto {startet} ohne Probleme.;;true;false
-184;3;L'avion {décolle} à 15 heures.;Das Flugzeug {hebt} um 15 Uhr {ab}.;;true;false
-185;3;Le {décollage} de l'avion a été retardé.;Der {Start} des Flugzeugs hat sich verzögert.;;true;false
-186;3;L'avion va {atterrir} dans quelques minutes.;Das Flugzeug wird in wenigen Minuten {landen}.;;true;false
-187;3;L'{atterrissage} s'est bien passé.;Die {Landung} ist gut verlaufen.;;true;false
-188;3;Une {méduse} {flotte} près de la {plage}.;Eine {Qualle} {treibt} in der Nähe des {Strands}.;;true;false
-189;3;Un {double vitrage} améliore l'{isolation}.;Eine {Doppelverglasung} verbessert die {Dämmung}.;;true;false
-190;3;Le {kérosène} est utilisé comme {carburant} d'avion.;{Kerosin} wird als {Flugzeugtreibstoff} verwendet.;;true;false
-191;3;Une {pompe à chaleur} {chauffe} la maison.;Eine {Wärmepumpe} {heizt} das Haus.;;true;false
-192;3;Il faut {enlever} des arbres pour construire la route.;Man muss Bäume {entfernen}, um die Straße zu bauen.;;true;false
-193;3;Un {arbuste} pousse près de la {haie}.;Ein {Strauch} wächst neben der {Hecke}.;;true;false
-194;3;La {verdure} du parc est magnifique.;Das {Grün} des Parks ist wunderschön.;;true;false
-195;3;La {couronne} de l'arbre est très large.;Die {Baumkrone} ist sehr ausladend.;;true;false
-196;3;La rivière a {débordé} après la {pluie}.;Der Fluss ist nach dem {Regen} {über die Ufer getreten}.;;true;false
-197;3;Il faut {abattre} cet arbre malade.;Dieser kranke Baum muss {gefällt werden}.;;true;false
-198;3;Un {panneau solaire} produit de l'{électricité}.;Ein {Solarpanel} erzeugt {Strom};;true;false
-199;3;Le {forage} a atteint une {nappe d'eau}.;Die {Bohrung} hat eine {Wasserader} erreicht.;;true;false
-200;3;Le meuble est {abîmé} par l'{humidité}.;Das Möbelstück ist durch die {Feuchtigkeit} {beschädigt}.;;true;false
-201;3;Les {rails} du train doivent être {entretenus}.;Die {Bahnschienen} müssen {gewartet} werden.;;true;false
-202;3;Il faut {soutenir} ce projet.;Man muss dieses Projekt {unterstützen}.;;true;false
-204;3;Un {tiers} des habitants a signé la {pétition}.;Ein {Drittel} der Einwohner hat die {Petition} unterschrieben.;;true;false
-205;3;Un {chauffe-eau instantané} fournit de l'eau chaude immédiatement.;Ein {Durchlauferhitzer} liefert sofort heißes Wasser.;;true;false
-206;3;Ça nous {arrange} bien que tu puisses venir.;Es {passt} uns gut, dass du kommen kannst.;;true;false
-207;3;L'{amortissement} de l'{investissement} est prévu en cinq ans.;Die {Amortisation} der {Investition} ist in fünf Jahren geplant.;;true;false
-208;3;Le {carrelage} de la cuisine est neuf.;Die {Kacheln} in der Küche sind neu.;;true;false
-209;3;Un {haut-parleur} diffuse la musique.;Ein {Lautsprecher} gibt die Musik wieder.;;true;false
-210;3;L'{épaisseur} du mur est de 40 centimètres.;Die {Dicke} der Wand beträgt 40 cm;;true;false
-211;3;Il ne parle {guère} de sa famille.;Er spricht {kaum} über seine Familie.;;true;false
-212;3;La {prévision météo} annonce de la {pluie}.;Die {Wettervorhersage} meldet {Regen}.;;true;false
-213;3;La {prédiction} s'est révélée exacte.;Die {Prognose} hat sich als zutreffend erwiesen.;;true;false
-214;3;Les {dégâts} de la {tempête} sont importants.;Die {Sturmschäden} sind erheblich.;;true;false
-215;4;L'{entreprise} doit {fournir} des {preuves}.;Die {Firma} muss {Beweise} {liefern}.;;true;false
+113;2;{Au fil des années|#909}, ils sont devenus amis.;{Im Lauf der Jahre|#910} sind sie Freunde geworden.;;true;false
+114;2;Vous étiez en {vacances|#911} quand je vous ai appelés.;Ihr wart im {Urlaub|#912}, als ich euch anrief.;;true;false
+115;2;Nous passons nos {vacances|#911} en Croatie.;Wir verbringen unsere {Ferien|#913} in Kroatien.;;true;false
+116;2;Nous {louons|#914} une {maison de vacances|#916} {au bord de la mer|#918}.;Wir {mieten|#915} ein {Ferienhaus|#917} {am Meer|#919}.;;true;false
+117;2;Son {attente|#920} d'une réponse rapide a été {déçue|#922}.;Seine {Erwartung|#921} auf eine schnelle Antwort wurde {enttäuscht|#923}.;;true;false
+118;2;La {réderie|#924} d'Amiens attire de nombreux visiteurs.;Der {Flohmarkt|#643} von Amiens zieht viele Besucher an.;;true;false
+119;2;La {braderie|#925} de Lille est très connue.;Der {Flohmarkt|#643} in Lille ist sehr bekannt.;;true;false
+120;2;Le {chiffre d'affaires|#926} a {augmenté|#928} de 10 %.;Der {Umsatz|#927} ist um 10 % {gestiegen|#929}.;;true;false
+121;2;Elle emporte un {cabas|#930} en {toile|#931} au marché.;Sie bringt eine {Einkaufstasche|#932} aus {Stoff|#398} mit auf den Markt.;;true;false
+122;2;Le {tissu|#396} de cette chemise est très {doux|#933}.;Der {Stoff|#398} dieses Hemdes ist sehr {weich|#934}.;;true;false
+123;2;Ce vin est {brut|#935} et {sec|#936}.;Dieser Wein ist {herb|#937} und {trocken|#938}.;;true;false
+124;2;Il faut ajouter de la {levure|#939} à la {pâte|#941}.;Man muss dem {Teig|#942} {Hefe|#940} hinzufügen.;;true;false
+125;2;Le bébé boit son lait dans un {biberon|#943}.;Das Baby trinkt seine Milch aus einem {Fläschchen|#944}.;;true;false
+126;2;Il a accroché une {remorque|#945} à sa voiture.;Er hat einen {Anhänger|#946} an sein Auto gehängt.;;true;false
+127;2;Elle veut {se débarrasser|#947} de ces vieux {meubles|#949}.;Sie will diese alten {Möbel|#950} {loswerden|#948}.;;true;false
+128;2;Le chocolat {fond|#951} au soleil.;Die Schokolade {schmilzt|#952} in der Sonne.;;true;false
+129;2;Chaque invité a un {couvert|#953} complet.;Zu jedem Gast gehört ein komplettes {Besteck|#954}.;;true;false
+130;2;L'{argent|#1027} est un {métal précieux|#955}.;{Silber|#1028} ist ein {Edelmetall|#956}.;;true;false
+131;2;L'{argenterie|#1025} est rangée dans le {tiroir|#957}.;Das {Silberbesteck|#1026} liegt in der {Schublade|#958}.;;true;false
+132;2;Je n'ai pas de {fourchette|#959} {propre|#644}.;Ich habe keine {saubere|#645} {Gabel|#960}.;;true;false
+133;2;Le {couteau|#961} n'est pas bien {aiguisé|#963}.;Das {Messer|#962} ist nicht gut {geschärft|#964}.;;true;false
+134;2;Je prends une {cuillère|#965} de sucre.;Ich nehme einen {Löffel|#966} Zucker.;;true;false
+135;2;{Autrefois|#578}, la {dot|#967} était courante dans les {mariages|#969}.;{Früher|#579} war die {Mitgift|#968} bei {Hochzeiten|#970} üblich.;;true;false
+136;2;La {porcelaine|#971} de Limoges est {célèbre|#87}.;Das {Porzellan|#972} aus Limoges ist {berühmt|#89}.;;true;false
+137;2;Il faut {polir|#973} l'{argenterie|#1025} pour qu'elle {brille|#162}.;Man muss das {Silber|#1028} {polieren|#974}, damit es {glänzt|#725}.;;true;false
+138;2;Un grand {lustre|#975} {éclaire|#977} la {salle|#979}.;Ein großer {Kronleuchter|#976} {erhellt|#978} den {Saal|#980}.;;true;false
+139;2;Cet enfant est {insolent|#981}.;Dieses Kind ist {frech|#982}.;;true;false
+140;2;La {perte|#983} de son {portefeuille|#69} l'a beaucoup {inquiété|#985}.;Der {Verlust|#984} seiner {Brieftasche|#70} hat ihn sehr {beunruhigt|#986}.;;true;false
+141;2;Le {début|#987} du film est {passionnant|#989}.;Der {Anfang|#988} des Films ist {spannend|#990}.;;true;false
+142;2;La {faïence|#991} de Delft est très {réputée|#993}.;Das Delfter {Steingut|#992} ist sehr {berühmt|#89}.;;true;false
+143;2;La {vente aux enchères|#994} a eu lieu hier.;Die {Auktion|#995} fand gestern statt.;;true;false
+144;2;Je dois {sauvegarder|#996} mes {fichiers|#997}.;Ich muss meine {Dateien|#998} {speichern|#999}.;;true;false
+145;2;Les {draps|#1000} sont {propres|#644} et {frais|#1002}.;Die {Bettlaken|#1001} sind {sauber|#645} und {frisch|#1003}.;;true;false
+146;2;Il aime {marchander|#1004} les prix au marché.;Er {feilscht|#1005} gern um die Preise auf dem Markt.;;true;false
+147;2;Une {cigogne|#1006} a {niché|#1008} sur le {toit|#1010}.;Ein {Storch|#1007} hat auf dem {Dach|#1011} {genistet|#1009}.;;true;false
+148;2;Je dois {faire la poussière|#1012} dans le {salon|#1014}.;Ich muss im {Wohnzimmer|#1015} {Staub wischen|#1013}.;;true;false
+149;2;Il a sorti un {mouchoir|#1016} de sa {poche|#1018}.;Er zog ein {Taschentuch|#1017} aus seiner {Tasche|#395}.;;true;false
+150;2;Elle a reçu un {trousseau|#1019} complet pour son {mariage|#969}.;Sie hat zu ihrer {Hochzeit|#970} eine komplette {Aussteuer|#1020} erhalten.;;true;false
+151;2;La {nappe|#1021} blanche est sur la table.;Die weiße {Tischdecke|#1022} liegt auf dem Tisch.;;true;false
+152;2;Je bois mon café dans une {tasse|#1023}.;Ich trinke meinen Kaffee aus einer {Tasse|#1024}.;;true;false
+153;3;Il aime simplement {traîner|#1029} le week-end.;Er {hängt|#1030} am Wochenende einfach nur {herum|#1030};;true;false
+154;3;Elle porte une {bague|#1031} en {or|#1033}.;Sie trägt einen {Goldring|#1032}.;;true;false
+155;3;Le {scientifique|#1034} étudie le {climat|#1036}.;Der {Wissenschaftler|#1035} untersucht das {Klima|#1037}.;;true;false
+156;3;Le {réchauffement climatique|#1038} est une {menace|#1040} {mondiale|#1042}.;Die {Erderwärmung|#1039} ist eine {weltweite|#1043} {Bedrohung|#1041}.;;true;false
+157;3;Le {changement climatique|#1044} affecte toute la {planète|#1046}.;Der {Klimawandel|#1045} betrifft den ganzen {Planeten|#1047}.;;true;false
+158;3;L'{inondation|#1048} a {endommagé|#1050} de nombreuses maisons.;Die {Überschwemmung|#1049} hat viele Häuser {beschädigt|#1051}.;;true;false
+159;3;Les {retards|#1052} sont dûs à la {pluie|#1054}.;Die {Verspätungen|#1053} sind aufgrund des {Regens|#1055}.;;true;false
+160;3;La {sécheresse|#1056} dure depuis plusieurs mois.;Die {Dürre|#1057} hält seit mehreren Monaten an.;;true;false
+161;3;Le {climat|#1036} est très {sec|#1058} en {été|#1060}.;Das {Klima|#1037} ist im Sommer sehr {trocken|#1059}.;;true;false
+162;3;Un {oiseau migrateur|#1061} revient au {printemps|#1063}.;Ein {Zugvogel|#1062} kehrt im {Frühling|#1064} zurück.;;true;false
+163;3;La région est couverte d'une {forêt mixte|#1065}.;Die Region ist von einem {Mischwald|#1066} bedeckt.;;true;false
+164;3;Le {glacier|#1067} {fond|#951} rapidement.;Der {Gletscher|#1068} {schmilzt|#952} schnell.;;true;false
+165;3;Les {Vikings|#1069} ont {voyagé|#455} en Europe.;Die {Wikinger|#1070} {reisten|#454} durch Europa.;;true;false
+166;3;Les {colons|#1071} se sont {installés|#1073} {près de|#1075} le {fleuve|#1077}.;Die {Siedler|#1072} haben sich {niedergelassen|#1074} {am|#1076} {Fluss|#531}.;;true;false
+167;3;La {période glaciaire|#1078} a duré plusieurs {millénaires|#1080}.;Die {Eiszeit|#1079} dauerte mehrere {Jahrtausende|#1081}.;;true;false
+168;3;Un {marais|#1082} {s'étend|#1084} derrière la forêt.;Hinter dem Wald {erstreckt sich|#1085} ein {Sumpf|#1083}.;;true;false
+169;3;J'ai entendu dire qu'il allait {neiger|#1086}.;Ich habe gehört, dass es {schneien|#1087} wird.;;true;false
+170;3;Nous passons nos {vacances|#911} à la {mer Baltique|#1088}.;Wir verbringen unsere {Ferien|#913} an der {Ostsee|#1089}.;;true;false
+171;3;Une {chute de pierres|#1090} a bloqué la route.;Ein {Steinschlag|#1091} hat die Straße blockiert.;;true;false
+172;3;Le {froid|#1092} de l'hiver est {intense|#1094}.;Die {Winterkälte|#1093} ist {heftig|#1095}.;;true;false
+173;3;Ce mur retient bien le {matériau isolant|#1096}.;Diese Wand hält das {Dämmmaterial|#1097} gut zurück.;;true;false
+174;3;Une {fissure|#1098} est apparue dans le mur.;Ein {Riss|#1099} ist in der Wand entstanden.;;true;false
+175;3;L'eau commence à {geler|#1100}.;Das Wasser beginnt zu {gefrieren|#1101}.;;true;false
+176;3;Nous aimons {patiner|#1102} en hiver.;Wir {laufen|#1103} im Winter gern {Schlittschuh|#1103}.;;true;false
+177;3;Il faut {déneiger|#1104} l'allée.;Man muss den Weg {vom Schnee befreien|#1105}.;;true;false
+178;3;Les enfants adorent {faire de la luge|#1106}.;Die Kinder {rodeln|#1107} gern.;;true;false
+179;3;Le {téléphérique|#1108} monte jusqu'au {sommet|#1110}.;Die {Seilbahn|#1109} fährt bis zum {Gipfel|#1111}.;;true;false
+180;3;Un {canon à neige|#1112} fonctionne toute la nuit.;Die {Schneekanone|#1113} läuft die ganze Nacht.;;true;false
+181;3;Une {borne de recharge|#1114} est installée près du {parking|#1116}.;Neben dem {Parkplatz|#1117} steht eine {Ladestation|#1115}.;;true;false
+182;3;La {fumée|#1118} {s'échappe|#1120} de la {cheminée|#1122}.;Der {Rauch|#1119} {entweicht|#1121} aus dem {Schornstein|#1123}.;;true;false
+183;3;La voiture {démarre|#1124} sans problème.;Das Auto {startet|#1125} ohne Probleme.;;true;false
+184;3;L'avion {décolle|#1126} à 15 heures.;Das Flugzeug {hebt|#1127} um 15 Uhr {ab|#1127}.;;true;false
+185;3;Le {décollage|#1128} de l'avion a été {retardé|#468}.;Der {Start|#1129} des Flugzeugs hat sich verzögert.;;true;false
+186;3;L'avion va {atterrir|#1130} dans quelques minutes.;Das Flugzeug wird in wenigen Minuten {landen|#1131}.;;true;false
+187;3;L'{atterrissage|#1132} s'est bien passé.;Die {Landung|#1133} ist gut verlaufen.;;true;false
+188;3;Une {méduse|#1134} {flotte|#1136} près de la {plage|#448}.;Eine {Qualle|#1135} {treibt|#1137} in der Nähe des {Strands|#451}.;;true;false
+189;3;Un {double vitrage|#1138} améliore l'{isolation|#1140}.;Eine {Doppelverglasung|#1139} verbessert die {Dämmung|#1141}.;;true;false
+190;3;Le {kérosène|#1142} est utilisé comme {carburant d'avion|#1144}.;{Kerosin|#1143} wird als {Flugzeugtreibstoff|#1145} verwendet.;;true;false
+191;3;Une {pompe à chaleur|#1146} {chauffe|#1148} la maison.;Eine {Wärmepumpe|#1147} {heizt|#1149} das Haus.;;true;false
+192;3;Il faut {enlever|#1150} des arbres pour construire la route.;Man muss Bäume {entfernen|#1151}, um die Straße zu bauen.;;true;false
+193;3;Un {arbuste|#1152} {pousse|#242} près de la {haie|#1154}.;Ein {Strauch|#1153} {wächst|#278} neben der {Hecke|#1155}.;;true;false
+194;3;La {verdure|#1156} du parc est {magnifique|#406}.;Das {Grün|#1157} des Parks ist {wunderschön|#405}.;;true;false
+195;3;La {couronne|#1158} de l'arbre est très {large|#486}.;Die {Baumkrone|#1159} ist sehr {ausladend|#1160}.;;true;false
+196;3;La {rivière|#528} a {débordé|#1161} après la {pluie|#1054}.;Der {Fluss|#531} ist nach dem {Regen|#1055} {über die Ufer getreten|#1162}.;;true;false
+197;3;Il faut {abattre|#1163} cet arbre malade.;Dieser kranke Baum muss {gefällt werden|#1164}.;;true;false
+198;3;Un {panneau solaire|#1165} produit de l'{électricité|#1167}.;Ein {Solarpanel|#1166} erzeugt {Strom|#1168};;true;false
+199;3;Le {forage|#1169} a {atteint|#1171} une {nappe d'eau|#1173}.;Die {Bohrung|#1170} hat eine {Wasserader|#1174} {erreicht|#1172}.;;true;false
+200;3;Le meuble est {abîmé|#1175} par l'{humidité|#1177}.;Das Möbelstück ist durch die {Feuchtigkeit|#1178} {beschädigt|#1051}.;;true;false
+201;3;Les {rails|#1179} du train doivent être {entretenus|#1181}.;Die {Bahnschienen|#1180} müssen {gewartet|#1182} werden.;;true;false
+202;3;Il faut {soutenir|#1183} ce projet.;Man muss dieses Projekt {unterstützen|#1184}.;;true;false
+204;3;Un {tiers|#1185} des habitants a signé la {pétition|#1187}.;Ein {Drittel|#1186} der Einwohner hat die {Petition|#1188} unterschrieben.;;true;false
+205;3;Un {chauffe-eau instantané|#1189} fournit de l'eau chaude immédiatement.;Ein {Durchlauferhitzer|#1190} liefert sofort heißes Wasser.;;true;false
+206;3;Ça nous {arrange|#1191} bien que tu puisses venir.;Es {passt|#1192} uns gut, dass du kommen kannst.;;true;false
+207;3;L'{amortissement|#1193} de l'{investissement|#1195} est prévu en cinq ans.;Die {Amortisation|#1194} der {Investition|#1196} ist in fünf Jahren geplant.;;true;false
+208;3;Le {carrelage|#1197} de la cuisine est neuf.;Die {Kacheln|#1198} in der Küche sind neu.;;true;false
+209;3;Un {haut-parleur|#1199} diffuse la musique.;Ein {Lautsprecher|#1200} gibt die Musik wieder.;;true;false
+210;3;L'{épaisseur|#1201} du mur est de 40 centimètres.;Die {Dicke|#1202} der Wand beträgt 40 cm;;true;false
+211;3;Il ne parle {guère|#1203} de sa famille.;Er spricht {kaum|#1204} über seine Familie.;;true;false
+212;3;La {prévision météo|#1205} annonce de la {pluie|#1054}.;Die {Wettervorhersage|#1206} meldet {Regen|#1055}.;;true;false
+213;3;La {prédiction|#1207} s'est révélée exacte.;Die {Prognose|#1208} hat sich als zutreffend erwiesen.;;true;false
+214;3;Les {dégâts|#1209} de la {tempête|#1211} sont importants.;Die {Sturmschäden|#1210} sind erheblich.;;true;false
+215;4;L'{entreprise|#178} doit {fournir|#1212} des {preuves|#1214}.;Die {Firma|#1213} muss {Beweise|#1215} {liefern|#1216}.;;true;false
 216;4;On dit qu'on parle le meilleur français à Tours, sur la Loire.;Man sagt, in Tours an der Loire spricht man das beste Französisch.;;true;false
-217;4;Mon fils va à la {maternelle} depuis septembre.;Mein Sohn geht seit September in den {Kindergarten}.;;true;false
-218;4;Elle boit une {tisane} avant de dormir.;Sie trinkt vor dem Schlafengehen einen {Kräutertee}.;;true;false
-219;4;J'aime les {infusions} à la menthe.;Ich mag {Pfefferminztee}.;;true;false
-220;4;Ils veulent {agrandir} la maison.;Sie wollen das Haus {vergrößern}.;;true;false
-221;4;Ce {médicament} aide à {guérir} rapidement.;Dieses {Medikament} hilft, schnell zu {heilen}.;;true;false
-222;4;Le {skieur} descend la {piste} à toute vitesse.;Der {Skifahrer} fährt mit voller Geschwindigkeit die {Piste} hinunter.;;true;false
-223;4;Il est tombé {malade} {subitement}.;Er ist {plötzlich} {krank} geworden.;;true;false
-224;4;Il {neige} souvent au mois d'octobre ici.;Hier {schneit} es oft im Oktober.;;true;false
-225;4;Une {couche} de {neige} couvre les {toits}.;Eine {Schneeschicht} bedeckt die {Dächer}.;;true;false
-226;4;Peux-tu me passer le {tabouret} ?;Kannst du mir den {Hocker} reichen?;;true;false
-227;4;Il y a de la {rouille} sur le métal.;Auf dem Metall ist {Rost}.;;true;false
-228;4;Les vieilles chaînes ont commencé à {rouiller}.;Die alten Ketten haben angefangen zu {rosten}.;;true;false
-229;4;Il a mis ses {souliers} neufs pour la fête.;Er hat seine neuen {Schuhe} für die Feier angezogen.;;true;false
-230;4;La {semelle} de mes {bottes} est cassée.;Die {Sohle} meiner {Stiefel} ist kaputt.;;true;false
-231;4;Elle porte des chaussures à {talon} haut.;Sie trägt Schuhe mit hohen {Absätzen}.;;true;false
-232;4;Les {guêtres} protègent les jambes de la neige.;Die {Gamaschen} schützen die Beine vor Schnee.;;true;false
-233;4;Le chemin est plein de {boue} après la pluie.;Der Weg ist nach dem Regen voller {Schlamm};;true;false
-234;4;Il a attrapé le poisson avec un {filet}.;Er hat den Fisch mit einem {Netz} gefangen.;;true;false
-235;4;Les {travailleurs saisonniers} viennent chaque hiver.;Die {Saisonarbeiter} kommen jeden Winter.;;true;false
-236;4;On a besoin de dix {mètres cubes} de bois.;Wir brauchen zehn {Kubikmeter} Holz.;;true;false
-237;4;Le {stockage} des données est sécurisé.;Die {Datenspeicherung} ist sicher.;;true;false
-238;4;La {retenue d'eau} sert à produire de l'{électricité}.;Das {Rückhaltebecken} dient der {Stromerzeugung}.;;true;false
-239;4;L'{acheminement} du {courrier} prend deux jours.;Der {Transport} der {Post} dauert zwei Tage.;;true;false
-240;4;Il faut {équilibrer} le {budget}.;Man muss das {Budget} {ausgleichen}.;;true;false
-241;4;Du {sommet}, la {vue} est magnifique.;Vom {Gipfel} aus ist die {Aussicht} wunderschön.;;true;false
-242;4;Les fleurs {poussent} en {abondance} au {printemps}.;Im {Frühling} {wachsen} die Blumen im {Überfluss}.;;true;false
-243;5;J'ai pris {rendez-vous} chez l'{otorhino}.;Ich habe einen {Termin} beim {HNO-Arzt}.;;true;false
-244;5;L'{eau de pluie} est utilisable après {filtration}.;{Regenwasser} ist nach der {Filterung} verwendbar.;;true;false
-245;5;L'{héliportage} permet d'apporter du matériel en altitude.;Der {Helikoptertransport} ermöglicht den Materialtransport in der Höhe.;;true;false
-246;5;On admire le {coucher de soleil} au-dessus de la {montagne}.;Man bewundert den {Sonnenuntergang} über dem {Berg}.;;true;false
-247;5;Ce {disque dur} a une grande {mémoire}.;Diese {Festplatte} hat einen großen {Datenspeicher}.;;true;false
-248;5;Les {accumulateurs} stockent l'{énergie solaire}.;{Energiespeicher} speichern {Solarenergie}.;;true;false
-249;5;Il a {accumulé} beaucoup d'{expérience}.;Er hat viel {Erfahrung} {angesammelt}.;;true;false
-250;5;Ils {traversent} le lac en {barque}.;Sie {überqueren} den See mit einem {Boot}.;;true;false
-251;5;L'{extension} du {réseau} est en cours.;Die {Erweiterung} des {Netzes} ist im Gange.;;true;false
-252;5;Le {damage} des {pistes} commence à l'{aube}.;Die {Präparierung} der {Pisten} beginnt im {Morgengrauen}.;;true;false
-253;5;La {dameuse} passe chaque nuit.;Die {Pistenraupe} fährt jede Nacht.;;true;false
-254;5;Ils ont dû {abattre} des arbres malades.;Sie mussten kranke Bäume {fällen}.;;true;false
-255;5;Il faut {débloquer} le compte avant de continuer.;Man muss das Konto {entsperren}, bevor man weitermacht.;;true;false
-256;5;Le {thermalisme} attire beaucoup de {curistes}.;Das {Thermalwesen} zieht viele {Kurgäste} an.;;true;false
-257;5;Le {VTT} est très populaire en montagne.;{Mountainbiken} ist in den Bergen sehr beliebt.;;true;false
-258;5;Le {moniteur} de {parapente} explique les {consignes de sécurité}.;Der {Gleitschirmlehrer} erklärt die {Sicherheitsregeln}.;;true;false
-259;5;Ils veulent {étaler} la {fréquentation} sur toute l'année.;Sie wollen den {Besuch} über das ganze Jahr {verteilen}.;;true;false
-260;5;Il n'y a pas de {neige}, mais beaucoup de {vent}.;Es gibt keinen {Schnee}, aber viel {Wind}.;;true;false
-261;5;Les {habits de ski} doivent être {imperméables}.;{Skibekleidung} muss {wasserdicht} sein.;;true;false
-262;5;On marche avec des {raquettes} dans la neige.;Man geht mit {Schneeschuhen} durch den Schnee.;;true;false
-263;5;Le {confinement} a changé nos {habitudes}.;Der {Lockdown} hat unsere {Gewohnheiten} verändert.;;true;false
-264;5;Les {bottes de ski} sont lourdes à porter.;{Skischuhe} sind schwer zu tragen.;;true;false
-265;5;Le {matériel de ski} est prêt.;Die {Skiausrüstung} ist bereit.;;true;false
-266;5;Ce {matériau} est très {résistant}.;Dieses {Material} ist sehr {widerstandsfähig}.;;true;false
-267;5;Ils skient sans {forfait} aujourd'hui.;Sie fahren heute ohne {Skipass} Ski.;;true;false
-268;5;Il n'a pas {suffisamment} dormi.;Er hat nicht {ausreichend} geschlafen.;;true;false
-269;5;Le {bilan} économique de la {station} est positif.;Die wirtschaftliche {Bilanz} des {Skigebiets} ist positiv.;;true;false
-270;5;Il est dans le {déni} de la {réalité}.;Er {leugnet} die {Realität}.;;true;false
-271;5;J'ai {du mal à} me lever tôt.;Ich habe {Schwierigkeiten}, früh aufzustehen.;;true;false
-272;5;L'{hydrogène} est une {énergie propre}.;{Wasserstoff} ist eine {saubere Energiequelle}.;;true;false
-273;5;Ils veulent faire {perdurer} la {tradition}.;Sie wollen die {Tradition} {fortbestehen lassen}.;;true;false
-274;5;La {sobriété énergétique} est un {objectif} national.;{Energetische Genügsamkeit} ist ein nationales {Ziel}.;;true;false
-275;5;Les {gaz à effet de serre} augmentent la {température}.;Die {Treibhausgase} erhöhen die {Temperatur}.;;true;false
-276;5;La France {fait figure de} bon élève en matière d'{écologie}.;Frankreich {gilt als} Musterschüler in Sachen {Ökologie}.;;true;false
-277;5;Une {éolienne} produit de l'{électricité} grâce au {vent}.;Eine {Windkraftanlage} erzeugt {Strom} durch {Wind}.;;true;false
-278;5;Les fleurs {poussent} vite au {printemps}.;Die Blumen {wachsen} im {Frühling} schnell.;;true;false
-279;6;Ses {grands-parents} aiment le {gâter} à Noël.;Seine {Großeltern} {verwöhnen} ihn gern zu Weihnachten.;;true;false
-280;6;Ce {fromage} est produit de façon {artisanale}.;Dieser {Käse} wird {handwerklich} hergestellt.;;true;false
-281;6;Elle est {fille unique} et vit seule.;Sie ist {Einzelkind} und lebt allein.;;true;false
-282;6;J'ai un {demi-frère} qui habite à Lyon.;Ich habe einen {Halbbruder}, der in Lyon wohnt.;;true;false
-283;6;Elle est toujours très {franche} avec ses amis.;Sie ist immer sehr {ehrlich} zu ihren Freunden.;;true;false
-284;6;J'apprécie sa {franchise}.;Ich schätze ihre {Ehrlichkeit}.;;true;false
-285;6;Le {taux de natalité} {baisse} depuis dix ans.;Die {Geburtenrate} {sinkt} seit zehn Jahren.;;true;false
-286;6;Le {fédéralisme} donne plus de {pouvoir} aux régions.;Der {Föderalismus} gibt den Regionen mehr {Macht}.;;true;false
-287;6;Il se sent {débordé} par le travail.;Er fühlt sich von der Arbeit {überfordert}.;;true;false
-288;6;Le {cabinet médical} est au deuxième étage.;Die {Arztpraxis} ist im zweiten Stock.;;true;false
-289;6;Une {bagarre} a {éclaté} devant l'école.;Vor der Schule ist eine {Schlägerei} {ausgebrochen}.;;true;false
-290;6;Il a {cafté} à la maîtresse !;Er hat bei der Lehrerin {gepetzt}!;;true;false
-291;6;Quelle {cafteuse} !;Was für eine {Petze}!;;true;false
-292;6;J'ai {le cafard} depuis lundi.;Ich bin seit Montag {schlecht drauf}.;;true;false
-293;6;Un {cafard} court sur le mur !;Eine {Kakerlake} läuft über die Wand!;;true;false
-294;6;Il devient {désinhibé} après quelques verres.;Nach ein paar Gläsern wird er {hemmungslos}.;;true;false
-295;6;Elle {ne prend pas de gants} pour dire ce qu'elle pense.;Sie {nimmt kein Blatt vor den Mund}.;;true;false
-296;6;Il sait bien {gérer} les {conflits} au travail.;Er kann {Konflikte} bei der Arbeit gut {lösen}.;;true;false
-297;6;Il y a une vraie {complicité} entre eux.;Zwischen ihnen besteht echte {Vertrautheit}.;;true;false
-298;6;J'ai {parcouru} l'{étude} rapidement.;Ich habe die {Studie} kurz {durchgesehen}.;;true;false
-299;6;Il a {atteint} son {objectif}.;Er hat sein {Ziel} {erreicht}.;;true;false
-300;6;Il est {tantôt} calme, {tantôt} nerveux.;Er ist {mal} ruhig, {mal} nervös.;;true;false
-301;6;L'{entraide} est essentielle dans notre équipe.;{Gegenseitige Hilfe} ist in unserem Team wichtig.;;true;false
-302;6;La police a dressé un {constat} après l'accident.;Die Polizei hat nach dem Unfall eine {Feststellung} aufgenommen.;;true;false
-303;7;La {cargaison} est arrivée au {port}.;Die {Fracht} ist im {Hafen} angekommen.;;true;false
-304;7;Vous êtes les {bienvenus} chez nous !;Ihr seid bei uns {willkommen}!;;true;false
-305;7;Les {traditions celtes} sont encore présentes en Bretagne.;Die {keltischen Traditionen} sind in der Bretagne noch lebendig.;;true;false
-306;7;Ils communiquent {par l'intermédiaire} d'un {avocat}.;Sie kommunizieren {über} einen {Anwalt}.;;true;false
-307;7;Il {entretient} de bonnes {relations} avec ses {voisins}.;Er {pflegt} gute {Beziehungen} zu seinen {Nachbarn}.;;true;false
-308;7;L'{entretien} a duré une heure.;Das {Gespräch} dauerte eine Stunde.;;true;false
-309;7;Elle a réussi son {entretien d'embauche}.;Sie hat ihr {Bewerbungsgespräch} bestanden.;;true;false
-310;7;Ils se sont {entretenus} longuement.;Sie haben sich lange {unterhalten}.;;true;false
-311;7;Il souffre d'une {rage de dents} terrible.;Er hat furchtbare {Zahnschmerzen}.;;true;false
-312;7;Elle est {fâchée} contre lui.;Sie ist {wütend} auf ihn.;;true;false
-313;7;Il veut bien {éduquer} ses enfants.;Er will seine Kinder gut {erziehen}.;;true;false
-314;7;L'{éducation} des enfants n'est pas facile.;Die {Erziehung} der Kinder ist nicht einfach.;;true;false
-315;7;Ils {se disputent} souvent pour des {broutilles}.;Sie {streiten sich} oft wegen {Kleinigkeiten}.;;true;false
-316;7;N'{hésite} pas à poser des questions.;{Zögere} nicht, Fragen zu stellen.;;true;false
-317;7;Il a {grandi} {hors de} la famille.;Er ist {außerhalb} der Familie {aufgewachsen}.;;true;false
-318;7;Il a appris le {métier} {sur le tas}.;Er hat den {Beruf} {durch Praxis} gelernt.;;true;false
-319;7;Il y a un {tas} de papiers sur la table.;Auf dem Tisch liegt ein {Haufen} Papiere.;;true;false
-320;7;C'est une nouvelle très {réjouissante}.;Das ist eine sehr {erfreuliche} Nachricht.;;true;false
-321;7;Il {demeure} à Paris depuis cinq ans.;Er {wohnt} seit fünf Jahren in Paris.;;true;false
-322;7;Il a besoin d'un {soutien} {affectif}.;Er braucht {emotionale} {Unterstützung}.;;true;false
-323;7;Elle sait gérer les {désaccords} dans son équipe.;Sie kann {Unstimmigkeiten} in ihrem Team managen.;;true;false
-324;7;La {fratrie} compte trois enfants.;Die {Geschwister} sind zu dritt.;;true;false
-325;7;Cette erreur pourrait le {pénaliser}.;Dieser Fehler könnte ihn {benachteiligen}.;;true;false
-326;7;Ce n'est pas grave, mais ce n'est pas normal {pour autant}.;Es ist nicht schlimm, aber {dennoch} nicht normal.;;true;false
-327;7;Son {rang de naissance} influence son caractère.;Sein {Geburtsrang} beeinflusst seinen Charakter.;;true;false
-328;7;Les enfants {répandent} leurs {jouets} partout.;Die Kinder {verteilen} ihr {Spielzeug} überall.;;true;false
-329;7;L'{aîné} aide souvent les plus jeunes.;Der {Älteste} hilft oft den Jüngeren.;;true;false
-330;7;Le {cadet} est plus {timide} que son frère.;Der {Jüngste} ist {schüchterner} als sein Bruder.;;true;false
-331;7;À l'{adolescence}, il était très {rebelle}.;In der {Jugend} war er sehr {rebellisch}.;;true;false
-332;7;Cette {campagne} vise une large {cible}.;Diese {Kampagne} richtet sich an eine breite {Zielgruppe}.;;true;false
-333;7;Il faut {davantage} de temps pour finir ce projet.;Man braucht {mehr} Zeit, um dieses Projekt zu beenden.;;true;false
-334;7;La mère {gronde} son fils.;Die Mutter {schimpft} mit ihrem Sohn.;;true;false
-335;7;Il ne faut pas le {blâmer} pour cette erreur.;Man sollte ihn für diesen Fehler nicht {tadeln}.;;true;false
-336;7;Elle a toujours été gentille {à son égard}.;Sie war immer nett {zu ihm};;true;false
-337;7;Ils se sont {rapprochés} à l'{âge adulte}.;Sie haben sich im {Erwachsenenalter} {angenähert}.;;true;false
-338;7;Le temps a {détendu} les {liens} entre eux.;Die Zeit hat die {Bindung} zwischen ihnen {gelockert}.;;true;false
-339;7;Ils veulent {rassembler} la famille pour Noël.;Sie wollen die Familie zu Weihnachten {versammeln}.;;true;false
-340;7;Ils sont mariés par {convention}, pas par amour.;Sie sind aus {Konvention} verheiratet, nicht aus Liebe.;;true;false
-341;8;Quelle {pipelette}, elle parle sans arrêt !;Was für eine {Plaudertasche}, sie redet ohne Ende!;;true;false
-342;8;Ils organisent une {boum} pour fêter la fin des examens.;Sie veranstalten eine {Party}, um das Ende der Prüfungen zu feiern.;;true;false
-343;8;Je {m'entends bien} avec mes {collègues}.;Ich {verstehe mich gut} mit meinen {Kollegen}.;;true;false
-344;8;Elle {s'entend mal} avec son frère.;Sie {versteht sich schlecht} mit ihrem Bruder.;;true;false
-345;8;Les {jumeaux} {se ressemblent} beaucoup.;Die {Zwillinge} {ähneln sich} sehr.;;true;false
-346;8;Les {jumelles} portent les mêmes {vêtements}.;Die {Zwillingsschwestern} tragen die gleichen {Kleider}.;;true;false
-347;8;Ce sont de {vrais jumeaux}, ils se ressemblent parfaitement.;Das sind {eineiige Zwillinge}, sie sehen völlig gleich aus.;;true;false
-348;8;Les {faux jumeaux} ne se ressemblent pas vraiment.;Die {zweieiigen Zwillinge} sehen sich nicht wirklich ähnlich.;;true;false
-349;8;Je {confonds} toujours leurs {prénoms}.;Ich {verwechsele} ihre {Vornamen} ständig.;;true;false
-350;8;Le bébé est né {prématuré}.;Das Baby wurde {frühgeboren}.;;true;false
-351;8;On {distingue} à peine les montagnes dans le {brouillard}.;Man {erkennt} die Berge im {Nebel} kaum;;true;false
-352;8;Tous les {citoyens} sont {égaux} devant la {loi}.;Alle {Bürger} sind vor dem {Gesetz} {gleich}.;;true;false
-353;8;Mon fils est à la {maternelle} depuis septembre.;Mein Sohn ist seit September im {Kindergarten}.;;true;false
-354;8;La {crèche} ouvre à sept heures du matin.;Die {Kinderkrippe} öffnet um sieben Uhr morgens.;;true;false
-355;8;{La Haye} est une ville importante aux {Pays-Bas}.;{Den Haag} ist eine wichtige Stadt in den {Niederlanden}.;;true;false
-356;8;Une {haie} sépare les deux {jardins}.;Eine {Hecke} trennt die beiden {Gärten}.;;true;false
-357;8;Il a changé de {sujet} pour {éviter} la question.;Er hat das {Thema} gewechselt, um der Frage {auszuweichen}.;;true;false
-358;8;Il {fait le malade} pour ne pas aller à l'école.;Er {stellt sich krank}, um nicht in die Schule zu gehen.;;true;false
-359;9;Ce projet répond à un vrai {besoin}.;Dieses Projekt deckt einen echten {Bedarf}.;;true;false
-360;9;La {réunion} vient de {prendre fin}.;Die {Besprechung} ist gerade {zu Ende gegangen}.;;true;false
-361;9;On pense que tout est simple, mais c'est {loin d'être le cas}.;Man denkt, alles sei einfach, aber das ist {bei weitem nicht der Fall}.;;true;false
-362;9;Je pars {lorsque} tu arrives, {afin que} tu ne sois pas seul.;Ich gehe, {wenn} du kommst, {damit} du nicht allein bist.;;true;false
-363;9;Il a {dissimulé} son {identité} pendant des années.;Er hat seine {Identität} jahrelang {verborgen}.;;true;false
-364;9;Peux-tu {changer de place} avec moi ?;Kannst du mit mir den {Platz tauschen}?;;true;false
-365;9;Le {conducteur} a {ralenti} avant le {virage}.;Der {Fahrer} wurde vor der {Kurve} {langsamer}.;;true;false
-366;9;Il m'a fait des {appels de phare} pour me prévenir.;Er hat mir mit der {Lichthupe} Bescheid gegeben.;;true;false
-367;9;Le {gyrophare} bleu {clignote} sur la voiture de police.;Das {Blaulicht} {blinkt} auf dem Polizeiauto.;;true;false
-368;9;Elle s'intéresse beaucoup à la {généalogie} de sa famille.;Sie interessiert sich sehr für die {Ahnenforschung} ihrer Familie.;;true;false
-369;9;Ils ont créé un {arbre généalogique} détaillé.;Sie haben einen detaillierten {Stammbaum} erstellt.;;true;false
-370;9;L'{avis de décès} a été publié dans le journal.;Die {Todesanzeige} wurde in der Zeitung veröffentlicht.;;true;false
-371;9;C'est une {coutume} {d'autrefois}.;Das ist ein {Brauch} von {früher}.;;true;false
-372;9;Il regarde la télé {au lieu de} faire ses {devoirs}.;Er schaut fern, {anstatt} seine {Hausaufgaben} zu machen.;;true;false
-373;9;J'ai écrit la lettre au {brouillon} avant de la recopier.;Ich habe den Brief im {Entwurf} geschrieben, bevor ich ihn abgeschrieben habe.;;true;false
-374;9;Elle a envoyé une {lettre de condoléances} à la famille.;Sie hat der Familie einen {Beileidsbrief} geschickt.;;true;false
-375;9;L'{arbitre} a arrêté le match.;Der {Schiedsrichter} hat das Spiel unterbrochen.;;true;false
-376;9;Il y a eu une {coupure d'électricité} hier soir.;Gestern Abend gab es einen {Stromausfall}.;;true;false
-377;9;Il {s'interroge} {en continu} sur le sens de la vie.;Er {denkt} {ständig} über den Sinn des Lebens {nach}.;;true;false
-378;9;Elle travaille comme {conseillère de vie}.;Sie arbeitet als {Lebensberaterin}.;;true;false
-379;9;C'est son {confident} depuis des années.;Er ist seit Jahren ihr {Vertrauter}.;;true;false
-380;9;Les {cadres} ont souvent des {horaires chargés}.;{Leitende Angestellte} haben oft volle {Arbeitszeiten}.;;true;false
-381;9;Il a noué une {relation de confiance} avec son équipe.;Er hat ein {Vertrauensverhältnis} zu seinem Team aufgebaut.;;true;false
-382;9;La {conférence} s'est déroulée sans problème.;Die {Konferenz} verlief ohne Probleme.;;true;false
-383;9;Elle {s'est taillé} une place dans le {milieu artistique}.;Sie hat sich in der {Kunstszene} einen Platz {erkämpft}.;;true;false
-384;9;L'{interlocuteur} a bien compris la question.;Der {Gesprächspartner} hat die Frage gut verstanden.;;true;false
-385;9;Le professeur n'aime pas le {bavardage} en classe.;Der Lehrer mag kein {Geplauder} im Unterricht.;;true;false
-386;9;Elle m'a fait un {aveu} {confidentiel}.;Sie hat mir ein {vertrauliches} {Geständnis} gemacht.;;true;false
-387;9;Il faut toujours respecter {autrui}.;Man sollte immer {andere Menschen} respektieren.;;true;false
-388;9;Il occupe ce poste {par intérim};Er besetzt diese Stelle {vorübergehend}.;;true;false
-389;9;Ce cadeau a {comblé} ses {attentes}.;Dieses Geschenk hat seine {Erwartungen} {erfüllt}.;;true;false
-390;9;L'{émulation} entre collègues peut être positive.;{Wettstreit} unter Kollegen kann positiv sein.;;true;false
-391;9;Son {épanchement} de sentiments m'a touché.;Sein {Gefühlsausbruch} hat mich berührt.;;true;false
-392;9;L'Odyssée est une grande {épopée} grecque.;Die Odyssee ist ein großes griechisches {Epos}.;;true;false
-393;9;Il était un peu {emprunté} pendant la réunion.;Er war während der Besprechung etwas {gehemmt}.;;true;false
-394;9;L'enseignant l'a invité à {challenger} la réponse donnée.;Der Lehrer forderte ihn auf, die gegebene Antwort zu {hinterfragen}.;;true;false
-395;9;Après un {échec}, il a su {rebondir}.;Nach einem {Misserfolg} hat er sich wieder {aufgerappelt}.;;true;false
-396;9;Ce bâtiment a une forme très {esthétique}.;Dieses Gebäude hat eine sehr {ästhetische} Form;;true;false
-397;9;Les {arabesques} décorent le {plafond} du palais.;Die {Arabesken} schmücken die {Decke} des Palastes.;;true;false
-398;9;Le risque est faible, presque {négligeable}.;Das Risiko ist gering, fast {vernachlässigbar}.;;true;false
-399;9;Il a {du mal à} s'en passer depuis qu'il a commencé.;Er kann nur {schwer} darauf verzichten, seit er angefangen hat.;;true;false
-400;9;Cette expérience {valorise} ton {parcours professionnel}.;Diese Erfahrung {wertet} deinen beruflichen {Werdegang} {auf}.;;true;false
-401;9;Cette situation met sa patience {à l'épreuve}.;Diese Situation stellt seine Geduld {auf die Probe}.;;true;false
-402;9;Depuis son {divorce}, il est {reclus} socialement.;Seit seiner {Scheidung} lebt er sozial {zurückgezogen}.;;true;false
-403;9;Il est trop {complaisant} avec ses collègues.;Er ist zu {nachsichtig} mit seinen Kollegen.;;true;false
+217;4;Mon fils va à la {maternelle|#1217} depuis septembre.;Mein Sohn geht seit September in den {Kindergarten|#1218}.;;true;false
+218;4;Elle boit une {tisane|#1219} avant de dormir.;Sie trinkt vor dem Schlafengehen einen {Kräutertee|#1220}.;;true;false
+219;4;J'aime les {infusions|#1221} à la {menthe|#1223}.;Ich mag {Pfefferminztee|#1222}.;;true;false
+220;4;Ils veulent {agrandir|#1224} la maison.;Sie wollen das Haus {vergrößern|#1225}.;;true;false
+221;4;Ce {médicament|#1226} aide à {guérir|#1228} rapidement.;Dieses {Medikament|#1227} hilft, schnell zu {heilen|#1229}.;;true;false
+222;4;Le {skieur|#1230} descend la {piste|#1232} à toute vitesse.;Der {Skifahrer|#1231} fährt mit voller Geschwindigkeit die {Piste|#1233} hinunter.;;true;false
+223;4;Il est tombé {malade|#1234} {subitement|#1236}.;Er ist {plötzlich|#1237} {krank|#1235} geworden.;;true;false
+224;4;Il {neige|#1086} souvent au mois d'octobre ici.;Hier {schneit|#1087} es oft im Oktober.;;true;false
+225;4;Une {couche|#1238} de {neige|#1240} couvre les {toits|#1010}.;Eine {Schneeschicht|#1239} bedeckt die {Dächer|#1011}.;;true;false
+226;4;Peux-tu me passer le {tabouret|#1242} ?;Kannst du mir den {Hocker|#1243} reichen?;;true;false
+227;4;Il y a de la {rouille|#1244} sur le métal.;Auf dem Metall ist {Rost|#1245}.;;true;false
+228;4;Les vieilles chaînes ont commencé à {rouiller|#1246}.;Die alten Ketten haben angefangen zu {rosten|#1247}.;;true;false
+229;4;Il a mis ses {souliers|#1248} neufs pour la fête.;Er hat seine neuen {Schuhe|#1249} für die Feier angezogen.;;true;false
+230;4;La {semelle|#1250} de mes {bottes|#1252} est {cassée|#1254}.;Die {Sohle|#1251} meiner {Stiefel|#1253} ist {kaputt|#1255}.;;true;false
+231;4;Elle porte des chaussures à {talon|#1256} haut.;Sie trägt Schuhe mit hohen {Absätzen|#1257}.;;true;false
+232;4;Les {guêtres|#1258} protègent les jambes de la neige.;Die {Gamaschen|#1259} schützen die Beine vor Schnee.;;true;false
+233;4;Le chemin est plein de {boue|#1260} après la {pluie|#1054}.;Der Weg ist nach dem {Regen|#1055} voller {Schlamm|#1261};;true;false
+234;4;Il a attrapé le poisson avec un {filet|#1262}.;Er hat den Fisch mit einem {Netz|#1263} gefangen.;;true;false
+235;4;Les {travailleurs saisonniers|#1264} viennent chaque hiver.;Die {Saisonarbeiter|#1265} kommen jeden Winter.;;true;false
+236;4;On a besoin de dix {mètres cubes|#1266} de bois.;Wir brauchen zehn {Kubikmeter|#1267} Holz.;;true;false
+237;4;Le {stockage|#1268} des données est sécurisé.;Die {Datenspeicherung|#1269} ist sicher.;;true;false
+238;4;La {retenue d'eau|#1270} sert à produire de l'{électricité|#1167}.;Das {Rückhaltebecken|#1271} dient der {Stromerzeugung|#1272}.;;true;false
+239;4;L'{acheminement|#1273} du {courrier|#1275} prend deux jours.;Der {Transport|#1274} der {Post|#1276} dauert zwei Tage.;;true;false
+240;4;Il faut {équilibrer|#1277} le {budget|#1279}.;Man muss das {Budget|#1280} {ausgleichen|#1278}.;;true;false
+241;4;Du {sommet|#1110}, la {vue|#1282} est {magnifique|#406}.;Vom {Gipfel|#1111} aus ist die {Aussicht|#1283} {wunderschön|#405}.;;true;false
+242;4;Les fleurs {poussent|#242} en {abondance|#1284} au {printemps|#1063}.;Im {Frühling|#1064} {wachsen|#278} die Blumen im {Überfluss|#1285}.;;true;false
+243;5;J'ai pris {rendez-vous|#1286} chez l'{otorhino|#1288}.;Ich habe einen {Termin|#1287} beim {HNO-Arzt|#1289}.;;true;false
+244;5;L'{eau de pluie|#1290} est utilisable après {filtration|#1292}.;{Regenwasser|#1291} ist nach der {Filterung|#1293} verwendbar.;;true;false
+245;5;L'{héliportage|#1294} permet d'apporter du matériel en altitude.;Der {Helikoptertransport|#1295} ermöglicht den Materialtransport in der Höhe.;;true;false
+246;5;On admire le {coucher de soleil|#1296} au-dessus de la {montagne|#1298}.;Man bewundert den {Sonnenuntergang|#1297} über dem {Berg|#1299}.;;true;false
+247;5;Ce {disque dur|#1300} a une grande {mémoire|#1302}.;Diese {Festplatte|#1301} hat einen großen {Datenspeicher|#1303}.;;true;false
+248;5;Les {accumulateurs|#1304} stockent l'{énergie solaire|#1306}.;{Energiespeicher|#1305} speichern {Solarenergie|#1307}.;;true;false
+249;5;Il a {accumulé|#1308} beaucoup d'{expérience|#1310}.;Er hat viel {Erfahrung|#1311} {angesammelt|#1309}.;;true;false
+250;5;Ils {traversent|#773} le lac en {barque|#1312}.;Sie {überqueren|#774} den See mit einem {Boot|#1313}.;;true;false
+251;5;L'{extension|#1314} du {réseau|#1316} est en cours.;Die {Erweiterung|#1315} des {Netzes|#1317} ist im Gange.;;true;false
+252;5;Le {damage|#1318} des {pistes|#1232} commence à l'{aube|#1320}.;Die {Präparierung|#1319} der {Pisten|#1233} beginnt im {Morgengrauen|#1321}.;;true;false
+253;5;La {dameuse|#1322} passe chaque nuit.;Die {Pistenraupe|#1323} fährt jede Nacht.;;true;false
+254;5;Ils ont dû {abattre|#1163} des arbres malades.;Sie mussten kranke Bäume {fällen|#1164}.;;true;false
+255;5;Il faut {débloquer|#1324} le compte avant de continuer.;Man muss das Konto {entsperren|#1325}, bevor man weitermacht.;;true;false
+256;5;Le {thermalisme|#1326} attire beaucoup de {curistes|#1328}.;Das {Thermalwesen|#1327} zieht viele {Kurgäste|#1329} an.;;true;false
+257;5;Le {VTT|#1330} est très populaire en montagne.;{Mountainbiken|#1331} ist in den Bergen sehr beliebt.;;true;false
+258;5;Le {moniteur|#1332} de {parapente|#1334} explique les {consignes de sécurité|#1336}.;Der {Gleitschirmlehrer|#1333} erklärt die {Sicherheitsregeln|#1337}.;;true;false
+259;5;Ils veulent {étaler|#1338} la {fréquentation|#1340} sur toute l'année.;Sie wollen den {Besuch|#1341} über das ganze Jahr {verteilen|#1339}.;;true;false
+260;5;Il n'y a pas de {neige|#1240}, mais beaucoup de {vent|#1342}.;Es gibt keinen {Schnee|#1343}, aber viel {Wind|#1344}.;;true;false
+261;5;Les {habits de ski|#1345} doivent être {imperméables|#1347}.;{Skibekleidung|#1346} muss {wasserdicht|#1348} sein.;;true;false
+262;5;On marche avec des {raquettes|#1349} dans la neige.;Man geht mit {Schneeschuhen|#1350} durch den Schnee.;;true;false
+263;5;Le {confinement|#1351} a changé nos {habitudes|#1353}.;Der {Lockdown|#1352} hat unsere {Gewohnheiten|#1354} verändert.;;true;false
+264;5;Les {bottes de ski|#1355} sont lourdes à porter.;{Skischuhe|#1356} sind schwer zu tragen.;;true;false
+265;5;Le {matériel de ski|#1357} est prêt.;Die {Skiausrüstung|#1358} ist bereit.;;true;false
+266;5;Ce {matériau|#1359} est très {résistant|#1361}.;Dieses {Material|#1360} ist sehr {widerstandsfähig|#1362}.;;true;false
+267;5;Ils skient sans {forfait|#1363} aujourd'hui.;Sie fahren heute ohne {Skipass|#1364} Ski.;;true;false
+268;5;Il n'a pas {suffisamment|#1365} dormi.;Er hat nicht {ausreichend|#1366} geschlafen.;;true;false
+269;5;Le {bilan|#1367} économique de la {station|#1369} est positif.;Die wirtschaftliche {Bilanz|#1370} des {Skigebiets|#1368} ist positiv.;;true;false
+270;5;Il est dans le {déni|#1371} de la {réalité|#1373}.;Er {leugnet|#1372} die {Realität|#1374}.;;true;false
+271;5;J'ai {du mal à|#1375} me lever tôt.;Ich habe {Schwierigkeiten|#1376}, früh aufzustehen.;;true;false
+272;5;L'{hydrogène|#1377} est une {énergie propre|#1379}.;{Wasserstoff|#1378} ist eine {saubere Energiequelle|#1380}.;;true;false
+273;5;Ils veulent faire {perdurer|#1381} la {tradition|#1383}.;Sie wollen die {Tradition|#1384} {fortbestehen lassen|#1382}.;;true;false
+274;5;La {sobriété énergétique|#1385} est un {objectif|#1387} national.;{Energetische Genügsamkeit|#1386} ist ein nationales {Ziel|#1388}.;;true;false
+275;5;Les {gaz à effet de serre|#1389} augmentent la {température|#1391}.;Die {Treibhausgase|#1390} erhöhen die {Temperatur|#1392}.;;true;false
+276;5;La France {fait figure de|#1393} bon élève en matière d'{écologie|#1395}.;Frankreich {gilt als|#1394} Musterschüler in Sachen {Ökologie|#1396}.;;true;false
+277;5;Une {éolienne|#1397} produit de l'{électricité|#1167} grâce au {vent|#1342}.;Eine {Windkraftanlage|#1398} erzeugt {Strom|#1168} durch {Wind|#1344}.;;true;false
+278;5;Les fleurs {poussent|#242} vite au {printemps|#1063}.;Die Blumen {wachsen|#278} im {Frühling|#1064} schnell.;;true;false
+279;6;Ses {grands-parents|#1399} aiment le {gâter|#1401} à Noël.;Seine {Großeltern|#1400} {verwöhnen|#1402} ihn gern zu Weihnachten.;;true;false
+280;6;Ce {fromage|#1405} est produit de façon {artisanale|#1407}.;Dieser {Käse|#1406} wird {handwerklich|#1408} hergestellt.;;true;false
+281;6;Elle est {fille unique|#1409} et vit seule.;Sie ist {Einzelkind|#1410} und lebt allein.;;true;false
+282;6;J'ai un {demi-frère|#1412} qui habite à Lyon.;Ich habe einen {Halbbruder|#1413}, der in Lyon wohnt.;;true;false
+283;6;Elle est toujours très {franche|#1414} avec ses amis.;Sie ist immer sehr {ehrlich|#1415} zu ihren Freunden.;;true;false
+284;6;J'apprécie sa {franchise|#1416}.;Ich schätze ihre {Ehrlichkeit|#1417}.;;true;false
+285;6;Le {taux de natalité|#1418} {baisse|#1420} depuis dix ans.;Die {Geburtenrate|#1419} {sinkt|#1421} seit zehn Jahren.;;true;false
+286;6;Le {fédéralisme|#1422} donne plus de {pouvoir|#1424} aux régions.;Der {Föderalismus|#1423} gibt den Regionen mehr {Macht|#1425}.;;true;false
+287;6;Il se sent {débordé|#1426} par le travail.;Er fühlt sich von der Arbeit {überfordert|#1427}.;;true;false
+288;6;Le {cabinet médical|#1428} est au deuxième étage.;Die {Arztpraxis|#1429} ist im zweiten Stock.;;true;false
+289;6;Une {bagarre|#1430} a {éclaté|#1432} devant l'école.;Vor der Schule ist eine {Schlägerei|#1431} {ausgebrochen|#1433}.;;true;false
+290;6;Il a {cafté|#1434} à la maîtresse !;Er hat bei der Lehrerin {gepetzt|#1435}!;;true;false
+291;6;Quelle {cafteuse|#1436} !;Was für eine {Petze|#1437}!;;true;false
+292;6;J'ai {le cafard|#1438} depuis lundi.;Ich bin seit Montag {schlecht drauf|#1439}.;;true;false
+293;6;Un {cafard|#1440} court sur le {mur|#280} !;Eine {Kakerlake|#1441} läuft über die Wand!;;true;false
+294;6;Il devient {désinhibé|#1442} après quelques verres.;Nach ein paar Gläsern wird er {hemmungslos|#1443}.;;true;false
+295;6;Elle {ne prend pas de gants|#1444} pour dire ce qu'elle pense.;Sie {nimmt kein Blatt vor den Mund|#1445}.;;true;false
+296;6;Il sait bien {gérer|#1446} les {conflits|#1448} au travail.;Er kann {Konflikte|#1449} bei der Arbeit gut {lösen|#1447}.;;true;false
+297;6;Il y a une vraie {complicité|#1450} entre eux.;Zwischen ihnen besteht echte {Vertrautheit|#1451}.;;true;false
+298;6;J'ai {parcouru|#1452} l'{étude|#1454} rapidement.;Ich habe die {Studie|#1455} kurz {durchgesehen|#1453}.;;true;false
+299;6;Il a {atteint|#1171} son {objectif|#1458}.;Er hat sein {Ziel|#1459} {erreicht|#1457}.;;true;false
+300;6;Il est {tantôt|#1460} calme, {tantôt|#1460} nerveux.;Er ist {mal|#1461} ruhig, {mal|#1461} nervös.;;true;false
+301;6;L'{entraide|#1462} est essentielle dans notre équipe.;{Gegenseitige Hilfe|#1463} ist in unserem Team wichtig.;;true;false
+302;6;La police a dressé un {constat|#1464} après l'accident.;Die Polizei hat nach dem Unfall eine {Feststellung|#1465} aufgenommen.;;true;false
+303;7;La {cargaison|#1466} est arrivée au {port|#1468}.;Die {Fracht|#1467} ist im {Hafen|#1469} angekommen.;;true;false
+304;7;Vous êtes les {bienvenus|#1470} chez nous !;Ihr seid bei uns {willkommen|#1471}!;;true;false
+305;7;Les {traditions celtes|#1472} sont encore présentes en Bretagne.;Die {keltischen Traditionen|#1473} sind in der Bretagne noch lebendig.;;true;false
+306;7;Ils communiquent {par l'intermédiaire|#1474} d'un {avocat|#1476}.;Sie kommunizieren {über|#1475} einen {Anwalt|#1477}.;;true;false
+307;7;Il {entretient|#1478} de bonnes {relations|#1480} avec ses {voisins|#1482}.;Er {pflegt|#1479} gute {Beziehungen|#1481} zu seinen {Nachbarn|#1483}.;;true;false
+308;7;L'{entretien|#1484} a duré une heure.;Das {Gespräch|#277} dauerte eine Stunde.;;true;false
+309;7;Elle a réussi son {entretien d'embauche|#1485}.;Sie hat ihr {Bewerbungsgespräch|#1486} bestanden.;;true;false
+310;7;Ils se sont {entretenus|#1487} longuement.;Sie haben sich lange {unterhalten|#1488}.;;true;false
+311;7;Il souffre d'une {rage de dents|#1489} terrible.;Er hat furchtbare {Zahnschmerzen|#1490}.;;true;false
+312;7;Elle est {fâchée|#1491} contre lui.;Sie ist {wütend|#1492} auf ihn.;;true;false
+313;7;Il veut bien {éduquer|#1493} ses enfants.;Er will seine Kinder gut {erziehen|#1494}.;;true;false
+314;7;L'{éducation|#1495} des enfants n'est pas facile.;Die {Erziehung|#1496} der Kinder ist nicht einfach.;;true;false
+315;7;Ils {se disputent|#1497} souvent pour des {broutilles|#1499}.;Sie {streiten sich|#1498} oft wegen {Kleinigkeiten|#1500}.;;true;false
+316;7;N'{hésite|#1501} pas à poser des questions.;{Zögere|#1502} nicht, Fragen zu stellen.;;true;false
+317;7;Il a {grandi|#1503} {hors de|#1505} la famille.;Er ist {außerhalb|#1506} der Familie {aufgewachsen|#1504}.;;true;false
+318;7;Il a appris le {métier|#1507} {sur le tas|#1509}.;Er hat den {Beruf|#1508} {durch Praxis|#1510} gelernt.;;true;false
+319;7;Il y a un {tas|#1511} de papiers sur la table.;Auf dem Tisch liegt ein {Haufen|#1512} Papiere.;;true;false
+320;7;C'est une nouvelle très {réjouissante|#1513}.;Das ist eine sehr {erfreuliche|#1514} Nachricht.;;true;false
+321;7;Il {demeure|#1515} à Paris depuis cinq ans.;Er {wohnt|#84} seit fünf Jahren in Paris.;;true;false
+322;7;Il a besoin d'un {soutien|#1516} {affectif|#1518}.;Er braucht {emotionale|#1519} {Unterstützung|#1517}.;;true;false
+323;7;Elle sait gérer les {désaccords|#1520} dans son équipe.;Sie kann {Unstimmigkeiten|#1521} in ihrem Team managen.;;true;false
+324;7;La {fratrie|#1522} compte trois enfants.;Die {Geschwister|#1523} sind zu dritt.;;true;false
+325;7;Cette erreur pourrait le {pénaliser|#1524}.;Dieser Fehler könnte ihn {benachteiligen|#1525}.;;true;false
+326;7;Ce n'est pas grave, mais ce n'est pas normal {pour autant|#1526}.;Es ist nicht schlimm, aber {dennoch|#1527} nicht normal.;;true;false
+327;7;Son {rang de naissance|#1528} influence son caractère.;Sein {Geburtsrang|#1529} beeinflusst seinen Charakter.;;true;false
+328;7;Les enfants {répandent|#1530} leurs {jouets|#1532} partout.;Die Kinder {verteilen|#1339} ihr {Spielzeug|#1533} überall.;;true;false
+329;7;L'{aîné|#1534} aide souvent les plus jeunes.;Der {Älteste|#1535} hilft oft den Jüngeren.;;true;false
+330;7;Le {cadet|#1536} est plus {timide|#1538} que son frère.;Der {Jüngste|#1537} ist {schüchterner|#1539} als sein Bruder.;;true;false
+331;7;À l'{adolescence|#1540}, il était très {rebelle|#1542}.;In der {Jugend|#1541} war er sehr {rebellisch|#1543}.;;true;false
+332;7;Cette {campagne|#1544} vise une large {cible|#1546}.;Diese {Kampagne|#1545} richtet sich an eine breite {Zielgruppe|#1547}.;;true;false
+333;7;Il faut {davantage|#1548} de temps pour finir ce projet.;Man braucht {mehr|#1549} Zeit, um dieses Projekt zu beenden.;;true;false
+334;7;La mère {gronde|#1550} son fils.;Die Mutter {schimpft|#1551} mit ihrem Sohn.;;true;false
+335;7;Il ne faut pas le {blâmer|#1552} pour cette erreur.;Man sollte ihn für diesen Fehler nicht {tadeln|#1553}.;;true;false
+336;7;Elle a toujours été gentille {à son égard|#1554}.;Sie war immer nett {zu ihm|#1555};;true;false
+337;7;Ils se sont {rapprochés|#1556} à l'{âge adulte|#1558}.;Sie haben sich im {Erwachsenenalter|#1559} {angenähert|#1557}.;;true;false
+338;7;Le temps a {détendu|#1560} les {liens|#1562} entre eux.;Die Zeit hat die {Bindung|#1563} zwischen ihnen {gelockert|#1561}.;;true;false
+339;7;Ils veulent {rassembler|#1564} la famille pour Noël.;Sie wollen die Familie zu Weihnachten {versammeln|#1565}.;;true;false
+340;7;Ils sont mariés par {convention|#1566}, pas par amour.;Sie sind aus {Konvention|#1567} verheiratet, nicht aus Liebe.;;true;false
+341;8;Quelle {pipelette|#1568}, elle parle sans arrêt !;Was für eine {Plaudertasche|#1569}, sie redet ohne Ende!;;true;false
+342;8;Ils organisent une {boum|#1570} pour fêter la fin des examens.;Sie veranstalten eine {Party|#1571}, um das Ende der Prüfungen zu feiern.;;true;false
+343;8;Je {m'entends bien|#1572} avec mes {collègues|#1574}.;Ich {verstehe mich gut|#1573} mit meinen {Kollegen|#1575}.;;true;false
+344;8;Elle {s'entend mal|#1576} avec son frère.;Sie {versteht sich schlecht|#1577} mit ihrem Bruder.;;true;false
+345;8;Les {jumeaux|#1578} {se ressemblent|#1580} beaucoup.;Die {Zwillinge|#1579} {ähneln sich|#1581} sehr.;;true;false
+346;8;Les {jumelles|#1582} portent les mêmes {vêtements|#1584}.;Die {Zwillingsschwestern|#1583} tragen die gleichen {Kleider|#1585}.;;true;false
+347;8;Ce sont de {vrais jumeaux|#1586}, ils se ressemblent parfaitement.;Das sind {eineiige Zwillinge|#1587}, sie sehen völlig gleich aus.;;true;false
+348;8;Les {faux jumeaux|#1588} ne se ressemblent pas vraiment.;Die {zweieiigen Zwillinge|#1589} sehen sich nicht wirklich ähnlich.;;true;false
+349;8;Je {confonds|#1590} toujours leurs {prénoms|#1592}.;Ich {verwechsele|#1591} ihre {Vornamen|#1593} ständig.;;true;false
+350;8;Le bébé est né {prématuré|#1594}.;Das Baby wurde {frühgeboren|#1595}.;;true;false
+351;8;On {distingue|#1596} à peine les montagnes dans le {brouillard|#293}.;Man {erkennt|#1597} die Berge im {Nebel|#294} kaum;;true;false
+352;8;Tous les {citoyens|#1598} sont {égaux|#1600} devant la {loi|#682}.;Alle {Bürger|#1599} sind vor dem {Gesetz|#683} {gleich|#1601}.;;true;false
+353;8;Mon fils est à la {maternelle|#1217} depuis septembre.;Mein Sohn ist seit September im {Kindergarten|#1218}.;;true;false
+354;8;La {crèche|#1602} ouvre à sept heures du matin.;Die {Kinderkrippe|#1603} öffnet um sieben Uhr morgens.;;true;false
+355;8;{La Haye|#1604} est une ville importante aux {Pays-Bas|#1606}.;{Den Haag|#1605} ist eine wichtige Stadt in den {Niederlanden|#1607}.;;true;false
+356;8;Une {haie|#1154} sépare les deux {jardins|#1608}.;Eine {Hecke|#1155} trennt die beiden {Gärten|#1609}.;;true;false
+357;8;Il a changé de {sujet|#1610} pour {éviter|#757} la question.;Er hat das {Thema|#1611} gewechselt, um der Frage {auszuweichen|#756}.;;true;false
+358;8;Il {fait le malade|#1612} pour ne pas aller à l'école.;Er {stellt sich krank|#1613}, um nicht in die Schule zu gehen.;;true;false
+359;9;Ce projet répond à un vrai {besoin|#1614}.;Dieses Projekt deckt einen echten {Bedarf|#1615}.;;true;false
+360;9;La {réunion|#570} vient de {prendre fin|#1616}.;Die {Besprechung|#1617} ist gerade {zu Ende gegangen|#1618}.;;true;false
+361;9;On pense que tout est simple, mais c'est {loin d'être le cas|#1619}.;Man denkt, alles sei einfach, aber das ist {bei weitem nicht der Fall|#1620}.;;true;false
+362;9;Je pars {lorsque|#1621} tu arrives, {afin que|#1623} tu ne sois pas seul.;Ich gehe, {wenn|#1622} du kommst, {damit|#1624} du nicht allein bist.;;true;false
+363;9;Il a {dissimulé|#1625} son {identité|#1627} pendant des années.;Er hat seine {Identität|#1628} jahrelang {verborgen|#1626}.;;true;false
+364;9;Peux-tu {changer de place|#1629} avec moi ?;Kannst du mit mir den {Platz tauschen|#1630}?;;true;false
+365;9;Le {conducteur|#848} a {ralenti|#1631} avant le {virage|#1633}.;Der {Fahrer|#849} wurde vor der {Kurve|#1634} {langsamer|#1632}.;;true;false
+366;9;Il m'a fait des {appels de phare|#1635} pour me prévenir.;Er hat mir mit der {Lichthupe|#1636} Bescheid gegeben.;;true;false
+367;9;Le {gyrophare|#1637} bleu {clignote|#1639} sur la voiture de police.;Das {Blaulicht|#1638} {blinkt|#1640} auf dem Polizeiauto.;;true;false
+368;9;Elle s'intéresse beaucoup à la {généalogie|#1641} de sa famille.;Sie interessiert sich sehr für die {Ahnenforschung|#1642} ihrer Familie.;;true;false
+369;9;Ils ont créé un {arbre généalogique|#1643} détaillé.;Sie haben einen detaillierten {Stammbaum|#1644} erstellt.;;true;false
+370;9;L'{avis de décès|#1645} a été publié dans le journal.;Die {Todesanzeige|#1646} wurde in der Zeitung veröffentlicht.;;true;false
+371;9;C'est une {coutume|#1647} {d'autrefois|#1649}.;Das ist ein {Brauch|#1648} von {früher|#579}.;;true;false
+372;9;Il regarde la télé {au lieu de|#1650} faire ses {devoirs|#1652}.;Er schaut fern, {anstatt|#1651} seine {Hausaufgaben|#1653} zu machen.;;true;false
+373;9;J'ai écrit la lettre au {brouillon|#1654} avant de la recopier.;Ich habe den Brief im {Entwurf|#1655} geschrieben, bevor ich ihn abgeschrieben habe.;;true;false
+374;9;Elle a envoyé une {lettre de condoléances|#1656} à la famille.;Sie hat der Familie einen {Beileidsbrief|#1657} geschickt.;;true;false
+375;9;L'{arbitre|#1658} a arrêté le match.;Der {Schiedsrichter|#1659} hat das Spiel unterbrochen.;;true;false
+376;9;Il y a eu une {coupure d'électricité|#1660} hier soir.;Gestern Abend gab es einen {Stromausfall|#1661}.;;true;false
+377;9;Il {s'interroge|#1662} {en continu|#1664} sur le sens de la vie.;Er {denkt nach|#1663} {ständig|#1665} über den Sinn des Lebens.;;true;false
+378;9;Elle travaille comme {conseillère de vie|#1666}.;Sie arbeitet als {Lebensberaterin|#1667}.;;true;false
+379;9;C'est son {confident|#1668} depuis des années.;Er ist seit Jahren ihr {Vertrauter|#1669}.;;true;false
+380;9;Les {cadres|#1670} ont souvent des {horaires chargés|#1672}.;{Leitende Angestellte|#1671} haben oft volle {Arbeitszeiten|#1673}.;;true;false
+381;9;Il a noué une {relation de confiance|#1674} avec son équipe.;Er hat ein {Vertrauensverhältnis|#1675} zu seinem Team aufgebaut.;;true;false
+382;9;La {conférence|#1676} s'est déroulée sans problème.;Die {Konferenz|#1677} verlief ohne Probleme.;;true;false
+383;9;Elle {s'est taillé|#1678} une place dans le {milieu artistique|#1680}.;Sie hat sich in der {Kunstszene|#1681} einen Platz {erkämpft|#1679}.;;true;false
+384;9;L'{interlocuteur|#1682} a bien compris la question.;Der {Gesprächspartner|#1683} hat die Frage gut verstanden.;;true;false
+385;9;Le professeur n'aime pas le {bavardage|#1684} en classe.;Der Lehrer mag kein {Geplauder|#1685} im Unterricht.;;true;false
+386;9;Elle m'a fait un {aveu|#1686} {confidentiel|#1688}.;Sie hat mir ein {vertrauliches|#1689} {Geständnis|#1687} gemacht.;;true;false
+387;9;Il faut toujours respecter {autrui|#1690}.;Man sollte immer {andere Menschen|#1691} respektieren.;;true;false
+388;9;Il occupe ce poste {par intérim|#1692};Er besetzt diese Stelle {vorübergehend|#1693}.;;true;false
+389;9;Ce cadeau a {comblé|#1694} ses {attentes|#920}.;Dieses Geschenk hat seine {Erwartungen|#1697} {erfüllt|#1695}.;;true;false
+390;9;L'{émulation|#1698} entre collègues peut être positive.;{Wettstreit|#1699} unter Kollegen kann positiv sein.;;true;false
+391;9;Son {épanchement|#1700} de sentiments m'a touché.;Sein {Gefühlsausbruch|#1701} hat mich berührt.;;true;false
+392;9;L'Odyssée est une grande {épopée|#1702} grecque.;Die Odyssee ist ein großes griechisches {Epos|#1703}.;;true;false
+393;9;Il était un peu {emprunté|#1704} pendant la réunion.;Er war während der Besprechung etwas {gehemmt|#1705}.;;true;false
+394;9;L'enseignant l'a invité à {challenger|#1706} la réponse donnée.;Der Lehrer forderte ihn auf, die gegebene Antwort zu {hinterfragen|#1707}.;;true;false
+395;9;Après un {échec|#1708}, il a su {rebondir|#1710}.;Nach einem {Misserfolg|#1709} hat er sich wieder {aufgerappelt|#1711}.;;true;false
+396;9;Ce bâtiment a une forme très {esthétique|#1712}.;Dieses Gebäude hat eine sehr {ästhetische|#1713} Form;;true;false
+397;9;Les {arabesques|#1714} décorent le {plafond|#1716} du palais.;Die {Arabesken|#1715} schmücken die {Decke|#1717} des Palastes.;;true;false
+398;9;Le risque est faible, presque {négligeable|#1718}.;Das Risiko ist gering, fast {vernachlässigbar|#1719}.;;true;false
+399;9;Il a {du mal à|#1375} s'en passer depuis qu'il a commencé.;Er kann nur {schwer|#1720} darauf verzichten, seit er angefangen hat.;;true;false
+400;9;Cette expérience {valorise|#1721} ton {parcours professionnel|#1723}.;Diese Erfahrung {wertet auf|#1722} deinen beruflichen {Werdegang|#1724}.;;true;false
+401;9;Cette situation {met|#1725} sa {patience|#1735} {à l'épreuve|#1725}.;Diese Situation {stellt|#1726} seine {Geduld|#1736} {auf die Probe|#1726}.;;true;true
+402;9;Depuis son {divorce|#1727}, il est {reclus|#1729} socialement.;Seit seiner {Scheidung|#1728} lebt er sozial {zurückgezogen|#1730}.;;true;false
+403;9;Il est trop {complaisant|#1731} avec ses collègues.;Er ist zu {nachsichtig|#1732} mit seinen Kollegen.;;true;false
 404;9;Il voulait venir, {or|#873} il était malade.;Er wollte kommen, {jedoch|#874} war er krank.;;true;false
 405;9;Il a donné un {avis|#871} {appuyé|#870} sur la question.;Er hat eine {nachdrückliche|#869} {Meinung|#872} zu der Frage geäußert.;;true;false
 406;10;Il viendra demain, {du moins|#867} je l'espère.;Er wird morgen kommen, {wenigstens|#868} hoffe ich das.;;true;false
-407;10;Elle porte une {oreillette} pour téléphoner en voiture.;Sie trägt einen {Ohrhörer} zum Telefonieren im Auto.;;true;false
+407;10;Elle porte une {oreillette|#1733} pour téléphoner en voiture.;Sie trägt einen {Ohrhörer|#1734} zum Telefonieren im Auto.;;true;false
 408;10;Mes {écouteurs|#862} ne fonctionnent plus.;Meine {In-Ear-Kopfhörer|#863} funktionieren nicht mehr.;;true;false
 409;10;J'utilise un {casque|#864} pour écouter de la musique.;Ich benutze {Kopfhörer|#865}, um Musik zu hören.;;true;false
 410;10;La {poussette|#858} est pliée dans le {coffre de la voiture|#860}.;Der {Kinderwagen|#859} liegt im {Kofferraum|#861};;true;false
@@ -449,12 +449,12 @@ id;unit_id;fr;de;note;has_audio_fr;has_audio_de
 451;11;On {respire|#693} mieux depuis la {réduction|#695} du {trafic|#694}.;Man {atmet|#692} besser, seit der {Reduzierung|#690} des {Verkehrs|#691}.;;true;false
 452;11;Le {piéton|#686} traverse au {passage protégé|#689}.;Der {Fußgänger|#687} überquert am {Zebrastreifen|#688}.;;true;false
 453;11;La nouvelle {loi|#682} est {en vigueur|#684} dès lundi.;Das neue {Gesetz|#683} tritt ab Montag {in Kraft|#685}.;;true;false
-454;11;Un {barrage|#678} bloque l'{accès|#674} au centre-ville.;Eine {Sperre|#681} blockiert den {Zugang|#675} zur Innenstadt.;;true;false
-455;11;L'{accès|#674} est réservé aux {riverains|#677}.;Der {Zugang|#675} ist nur für {Anwohner|#676} erlaubt.;;true;false
-456;11;Il faut {être muni d|#673}'un {justificatif de domicile|#612}.;Man muss einen {Wohnsitznachweis|#613} {bei sich haben|#672}.;;true;false
-457;11;On doit présenter un {justificatif de domicile|#612}.;Man muss einen {Wohnsitznachweis|#613} vorlegen.;;true;false
-458;11;Il {s'agace|#668} quand on lui {coupe la parole|#671}.;Er wird {genervt|#669}, wenn man ihn {unterbricht|#670}.;;true;false
-459;11;Il ne faut pas {crier après|#599} les enfants.;Man sollte Kinder nicht {anschreien|#600}.;;false;false
+454;11;Un {barrage|#678} bloque l'{accès|#674} au centre-ville.;Eine {Sperre|#681} blockiert den {Zugang|#675} zur Innenstadt.;;true;true
+455;11;L'{accès|#674} est réservé aux {riverains|#677}.;Der {Zugang|#675} ist nur für {Anwohner|#676} erlaubt.;;true;true
+456;11;Il faut {être muni d|#673}'un {justificatif de domicile|#612}.;Man muss einen {Wohnsitznachweis|#613} {bei sich haben|#672}.;;true;true
+457;11;On doit présenter un {justificatif de domicile|#612}.;Man muss einen {Wohnsitznachweis|#613} vorlegen.;;true;true
+458;11;Il {s'agace|#668} quand on lui {coupe la parole|#671}.;Er wird {genervt|#669}, wenn man ihn {unterbricht|#670}.;;true;true
+459;11;Il ne faut pas {crier après|#599} les enfants.;Man sollte Kinder nicht {anschreien|#600}.;;true;true
 460;11;Il est toujours {jovial|#634} avec ses collègues.;Er ist immer {fröhlich|#635} mit seinen Kollegen.;;true;true
 461;11;Cette {voie|#632} est réservée aux bus.;Diese {Fahrspur|#633} ist für Busse reserviert.;;true;true
 462;11;Au sol, le {traçage|#628} des voies {interpelle|#630} les passants.;Die {Markierung|#629} der Fahrbahnen am Boden {fällt|#631} Passanten {auf|#631}.;;true;true
@@ -462,7 +462,7 @@ id;unit_id;fr;de;note;has_audio_fr;has_audio_de
 464;11;Le {maire|#622} a présenté un nouveau {projet urbain|#625}.;Der {Bürgermeister|#623} hat ein neues {Stadtprojekt|#624} vorgestellt.;;true;true
 465;11;Il n'y a aucun {indice|#462} sur l'{origine|#618} du {bruit|#619}.;Es gibt keinen {Hinweis|#463} auf die {Herkunft|#621} des {Geräuschs|#620}.;;true;true
 466;11;Il est tombé dans l'{escalier|#610} en courant.;Er ist die {Treppe|#611} hinuntergefallen.;;true;true
-467;11;On doit passer par Paris pour aller à Rouen.;Wir müssen durch Paris fahren, um nach Rouen zu kommen.;;true;false
+467;11;On doit passer par Paris pour aller à Rouen.;Wir müssen durch Paris fahren, um nach Rouen zu kommen.;;true;true
 468;11;Les enfants {jouent|#609} dans la {rue|#488}.;Die Kinder {spielen|#608} auf der {Straße|#487}.;;true;true
 469;11;Il {est assis sur|#606} l'{herbe|#604}.;Er {sitzt auf|#607} dem {Gras|#605}.;;true;true
 470;11;Cette technologie {supplante|#602} l'ancienne.;Diese Technologie {verdrängt|#603} die alte.;;true;true
@@ -472,7 +472,7 @@ id;unit_id;fr;de;note;has_audio_fr;has_audio_de
 474;11;Derrière la maison, le {terrain|#590} est {en pente|#589} .;Hinter dem Haus ist das {Gelände|#591} {abschüssig|#588}.;;true;true
 475;11;Ils ont enlevé les {barrières|#585} après les {travaux|#98}.;Sie haben die {Absperrungen|#587} nach den {Arbeiten|#101} entfernt.;;true;true
 476;11;Les habitants {se sont insurgés contre|#78} le projet.;Die Bewohner haben {sich|#79} über das Projekt {empört|#79}.;;true;true
-477;11;L’{effacement|#74} des {graffitis|#76} a coûté cher.;Die {Entfernung|#75} der {Graffitis|#77} war teuer.;;true;false
+477;11;L’{effacement|#74} des {graffitis|#76} a coûté cher.;Die {Entfernung|#75} der {Graffitis|#77} war teuer.;;true;true
 478;11;Il {avance|#582} d’un pas {mal assuré|#580}.;Er {geht|#583} mit einem {unsicheren|#581} Schritt.;;true;true
 479;11;Il se sent {mal assuré|#580} dans cette situation.;Er fühlt sich in dieser Situation {unsicher|#581}.;;true;true
 480;12;{Autrefois|#578}, la ville était beaucoup plus calme.;{Früher|#579} war die Stadt viel ruhiger.;;true;true
@@ -502,22 +502,22 @@ id;unit_id;fr;de;note;has_audio_fr;has_audio_de
 504;12;Ce sont des conditions {spéciales|#482}.;Das sind {besondere|#483} Bedingungen.;;true;true
 505;12;Il se déplace en {trottinette|#438}.;Er fährt mit einem {E-Scooter|#439}.;;true;true
 506;12;Le {cycliste|#436} {se faufile entre|#426} les {voitures|#376}.;Der {Radfahrer|#437} {schlängelt sich zwischen|#435} den {Autos|#377} {durch|#435}.;;true;true
-507;12;La ville veut {récompenser|#420} les habitants.;Die Stadt will die Bewohner {entlohnen|#421}.;;true;false
-508;12;L’air est enfin {respirable|#419}.;Die Luft ist endlich {atembar|#418}.;;true;false
-509;12;Les {gaz d'échappement|#416} polluent l’air.;{Abgase|#417} verschmutzen die Luft.;;true;false
+507;12;La ville veut {récompenser|#420} les habitants.;Die Stadt will die Bewohner {entlohnen|#421}.;;true;true
+508;12;L’air est enfin {respirable|#419}.;Die Luft ist endlich {atembar|#418}.;;true;true
+509;12;Les {gaz d'échappement|#416} polluent l’air.;{Abgase|#417} verschmutzen die Luft.;;true;true
 510;12;Il restaure un vieux {Solex|#414}.;Er restauriert einen alten {Solex|#415}.;;true;true
 511;12;Le prix a augmenté de dix {pour cent|#412}.;Der Preis ist um zehn {Prozent|#413} gestiegen.;;true;true
 512;12;Il {possède|#410} un appartement.;Er {besitzt|#411} eine Wohnung.;;true;true
 513;12;Le bâtiment {est en bon état|#408}.;Das Gebäude {ist in gutem Zustand|#409}.;;true;true
-514;12;J’ai {garé|#374} la {voiture|#376} plus loin.;Ich habe das {Auto|#377} weiter weg {geparkt|#375}.;;true;false
-515;12;La route {est en|#372} forte {pente|#372}.;Die Straße {hat|#373} eine starke {Steigung|#373}.;;true;false
-516;12;La maison a {brûlé|#370}.;Das Haus ist {abgebrannt|#371}.;;true;false
-517;12;L’{ambiance|#367} est {chaleureuse|#365}, pas agressive.;Die {Stimmung|#368} ist {herzlich|#366}, nicht aggressiv.;;true;false
-518;12;C’était un débat très {houleux|#363}.;Das war eine sehr {hitzige|#364} Debatte.;;true;false
-519;12;C’est un {concept|#361} intéressant.;Das ist ein interessantes {Konzept|#362}.;;true;false
-520;12;Il y a une {fontaine|#359} sur la place.;Auf dem Platz steht ein {Brunnen|#360}.;;true;false
-521;12;On suit la {trace|#357} laissée au sol.;Man folgt der am Boden hinterlassenen {Spur|#358}.;;true;false
-522;12;La ville veut {élargir|#302} la route.;Die Stadt will die Straße {verbreitern|#301}.;;true;false
+514;12;J’ai {garé|#374} la {voiture|#376} plus loin.;Ich habe das {Auto|#377} weiter weg {geparkt|#375}.;;true;true
+515;12;La route {est en|#372} forte {pente|#372}.;Die Straße {hat|#373} eine starke {Steigung|#373}.;;true;true
+516;12;La maison a {brûlé|#370}.;Das Haus ist {abgebrannt|#371}.;;true;true
+517;12;L’{ambiance|#367} est {chaleureuse|#365}, pas agressive.;Die {Stimmung|#368} ist {herzlich|#366}, nicht aggressiv.;;true;true
+518;12;C’était un débat très {houleux|#363}.;Das war eine sehr {hitzige|#364} Debatte.;;true;true
+519;12;C’est un {concept|#361} intéressant.;Das ist ein interessantes {Konzept|#362}.;;true;true
+520;12;Il y a une {fontaine|#359} sur la place.;Auf dem Platz steht ein {Brunnen|#360}.;;true;true
+521;12;On suit la {trace|#357} laissée au sol.;Man folgt der am Boden hinterlassenen {Spur|#358}.;;true;true
+522;12;La ville veut {élargir|#302} la route.;Die Stadt will die Straße {verbreitern|#301}.;;true;true
 523;12;Il {regrette|#352} cette décision.;Er {bereut|#354} diese Entscheidung.;;true;true
 524;12;Elle {regrette|#352} son amie.;Sie {trauert|#353} ihrer Freundin {nach|#353}.;;true;true
 525;12;C’est plus {commode|#350} de venir en métro.;Es ist {bequemer|#351} mit der U-Bahn zu kommen.;;true;true

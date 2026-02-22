@@ -7,9 +7,7 @@
 
       <!-- Audio Button -->
       <div class="flex items-center gap-1">
-        @if (audioExists() === null) {
-          <span class="text-xs text-slate-400">…</span>
-        } @else if (audioExists()) {
+        @if (hasAudio()) {
           <button
             type="button"
             class="flex items-center gap-1.5 rounded-lg border px-2 py-1 text-xs font-semibold transition"

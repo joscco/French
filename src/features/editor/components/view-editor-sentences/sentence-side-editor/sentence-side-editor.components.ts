@@ -2,7 +2,7 @@ import { Component, computed, effect, HostListener, inject, input, output, signa
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { TermPickerComponent } from '../term-picker/term-picker.component';
-import {MatIcon} from '@angular/material/icon';
+import { MatIcon } from '@angular/material/icon';
 import {
   parseSentenceMarkup,
   PreviewSeg,
@@ -10,9 +10,9 @@ import {
   replaceFirstExact,
   representativeText
 } from '../../../helpers/sentence-markup';
-import {EditorStore} from '../../../services/editor-store.service';
-import {TTSService} from '../../../services/tts.service';
-import {Lang, TermRow} from '../../../../../shared/contract/contract';
+import { EditorStore } from '../../../services/editor-store.service';
+import { TTSService } from '../../../services/tts.service';
+import { Lang, TermRow } from '../../../../../shared/contract/contract';
 
 type OverlayPosition = { x: number; y: number };
 
@@ -41,10 +41,11 @@ export class SentenceSideEditorComponent implements OnDestroy {
 
   // Audio state
   private audioElement: HTMLAudioElement | null = null;
-  audioExists = signal<boolean | null>(null); // null = checking, true = exists, false = not found
   isPlaying = signal(false);
   isGenerating = signal(false);
   generateError = signal<string | null>(null);
+
+  hasAudio = computed(() => this.store.hasSentenceAudio(this.lang() as any, this.sentenceId()));
 
   // TTS Server URL für Audio-Dateien (umgeht Angular's File-Watcher)
   private readonly TTS_SERVER_URL = 'http://localhost:3001';
@@ -82,43 +83,15 @@ export class SentenceSideEditorComponent implements OnDestroy {
     return `${this.TTS_SERVER_URL}/sounds/${filename}`;
   }
 
-  // Check if audio file exists when sentence changes
-  constructor() {
-    // Reactive effect: check audio existence whenever sentenceId or lang changes
-    effect(() => {
-      // Access reactive inputs to track them
-      this.sentenceId(); // Track sentenceId changes
-      this.lang(); // Track lang changes
-
-      // Reset state
-      this.audioExists.set(null);
-      this.stopAudio();
-
-      // Check audio for both languages
-      this.checkAudioExists();
-    });
-  }
-
   ngOnDestroy() {
     this.stopAudio();
   }
 
-  private async checkAudioExists() {
-    const path = this.getAudioPath();
-    if (!path) {
-      this.audioExists.set(false);
+  playAudio() {
+    if (!this.hasAudio()) {
       return;
     }
 
-    try {
-      const response = await fetch(path, { method: 'HEAD' });
-      this.audioExists.set(response.ok);
-    } catch {
-      this.audioExists.set(false);
-    }
-  }
-
-  playAudio() {
     const path = this.getAudioPath();
     if (!path) {
       return;
@@ -133,7 +106,6 @@ export class SentenceSideEditorComponent implements OnDestroy {
     this.audioElement.onpause = () => this.isPlaying.set(false);
     this.audioElement.onerror = () => {
       this.isPlaying.set(false);
-      this.audioExists.set(false);
     };
 
     this.audioElement.play().catch(() => {
@@ -170,8 +142,7 @@ export class SentenceSideEditorComponent implements OnDestroy {
     this.isGenerating.set(false);
 
     if (result.success) {
-      this.audioExists.set(true);
-      // Auto-play after generation
+      this.store.markSentenceAudioGenerated(this.lang() as any, this.sentenceId());
       setTimeout(() => this.playAudio(), 100);
     } else {
       this.generateError.set(result.error ?? 'Unbekannter Fehler');

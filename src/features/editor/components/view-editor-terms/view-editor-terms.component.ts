@@ -31,6 +31,10 @@ export class ViewEditorTermsComponent {
 
   selectedTermId = signal<number | null>(null);
 
+  hasAudio(termRow: TermRow): boolean {
+    return this.store.hasTermAudio(termRow.lang as any, termRow.id);
+  }
+
   isNoun(termRow: TermRow): boolean {
     return (termRow.category ?? '') === 'noun';
   }
@@ -79,7 +83,7 @@ export class ViewEditorTermsComponent {
     }
 
     if (missingAudioOnly) {
-      visibleTerms = visibleTerms.filter((termRow) => !termRow.has_audio);
+      visibleTerms = visibleTerms.filter((termRow) => !this.hasAudio(termRow));
     }
 
     if (incompleteOnly) {
@@ -149,7 +153,6 @@ export class ViewEditorTermsComponent {
   // 2) Keyboard workflow
   @HostListener('document:keydown', ['$event'])
   onDocumentKeydown(keyboardEvent: KeyboardEvent) {
-    // don’t steal keys while typing
     const target = keyboardEvent.target as HTMLElement | null;
     const isTyping = !!target && (target.tagName === 'INPUT' || target.tagName === 'TEXTAREA' || target.getAttribute('contenteditable') === 'true');
     if (isTyping) {
@@ -161,7 +164,6 @@ export class ViewEditorTermsComponent {
       return;
     }
 
-    // Pfeiltasten und ASDW
     if (keyboardEvent.key === 'ArrowDown' || keyboardEvent.key.toLowerCase() === 's') {
       keyboardEvent.preventDefault();
       this.setSelectionByOffset(+1);
@@ -175,7 +177,6 @@ export class ViewEditorTermsComponent {
     }
 
     if (keyboardEvent.key === 'Enter') {
-      // Enter toggles: open first if none, close if open
       keyboardEvent.preventDefault();
       if (this.selectedTermId() != null) {
         this.selectedTermId.set(null);
@@ -186,7 +187,6 @@ export class ViewEditorTermsComponent {
     }
 
     if ((keyboardEvent.ctrlKey || keyboardEvent.metaKey) && keyboardEvent.key.toLowerCase() === 'f') {
-      // focus search instead of browser find if you want
       keyboardEvent.preventDefault();
       this.searchInput?.nativeElement?.focus();
       this.searchInput?.nativeElement?.select();

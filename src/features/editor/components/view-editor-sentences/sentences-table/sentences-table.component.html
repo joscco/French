@@ -1,10 +1,21 @@
 <div class="flex flex-wrap items-center gap-2 mb-3">
   <div class="text-sm font-extrabold text-slate-900">Sentences</div>
+  <span
+    class="ml-2 inline-block rounded-full bg-slate-200 px-2 py-1 text-xs font-semibold text-slate-700"
+    title="Number of filtered sentences"
+  >
+    {{ filteredRows().length }}
+  </span>
   <div class="flex-1"></div>
 
   <label class="flex items-center gap-2 text-xs text-slate-600">
     <input type="checkbox" class="h-4 w-4" [ngModel]="onlyIssues()" (ngModelChange)="onlyIssues.set(!!$event)" />
-    Issues only
+    Issues
+  </label>
+
+  <label class="flex items-center gap-2 text-xs text-slate-600">
+    <input type="checkbox" class="h-4 w-4" [checked]="onlyMissingAudio()" (change)="onlyMissingAudio.set(!!$event)" />
+    Audio fehlt
   </label>
 
   <input
@@ -54,6 +65,7 @@
             <td class="px-3 py-2 text-center">
               <app-sentence-audio-button [sentenceId]="row.sentence.id" lang="fr"></app-sentence-audio-button>
             </td>
+
             <td class="px-3 py-2 text-center">
               <app-sentence-audio-button [sentenceId]="row.sentence.id" lang="de"></app-sentence-audio-button>
             </td>
