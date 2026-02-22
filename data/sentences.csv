@@ -73,23 +73,23 @@ id;unit_id;fr;de;note;has_audio_fr;has_audio_de
 74;1;Elle écrit {fiévreusement|#728} dans son {carnet|#731}.;Sie schreibt {fieberhaft|#729} in ihr {Notizbuch|#730}.;;true;false
 75;1;C'est un {souvenir|#36} {lointain|#765} de mon {enfance|#764}.;Das ist eine {ferne|#766} {Erinnerung|#767} aus meiner {Kindheit|#768}.;;true;false
 76;1;Cette {chaise|#771} est une belle {trouvaille|#770}.;Dieser {Stuhl|#772} ist ein schönes {Fundstück|#769}.;;true;false
-77;1;Nous allons {faire la route} {ensemble}.;Wir werden die Strecke {gemeinsam} fahren.;;true;false
-78;1;Ils partent {avant même que} le {soleil} ne {se lève}.;Sie brechen auf, {noch bevor} die {Sonne} {aufgeht}.;;true;false
-79;1;Elle emporte toujours un {cabas} en {toile} au marché.;Sie bringt immer eine {Stofftasche} mit zum Markt.;;true;false
-80;1;J'ai pris un {thermos} de café.;Ich habe eine {Thermoskanne} Kaffee mitgenommen.;;true;false
-81;1;Il a payé avec un {billet} de 20 euros.;Er hat mit einem 20-Euro-{Geldschein} bezahlt.;;true;false
-82;1;Le {ticket de caisse} indique le {lieu d'achat}.;Der {Kassenzettel} zeigt den {Kaufort}.;;true;false
-83;1;Ils habitent à la {périphérie} de la ville.;Sie wohnen am {Stadtrand}.;;true;false
-84;1;Le marché est devenu un vrai {phénomène} {culturel}.;Der Markt ist zu einem echten kulturellen {Phänomen} geworden.;;true;false
-85;1;La {nouvelle} s'est rapidement {répandue}.;Die {Nachricht} hat sich schnell {verbreitet}.;;true;false
-86;1;Des {milliers} de personnes visitent le marché.;{Tausende} Menschen besuchen den Markt.;;true;false
-87;1;Nous nous retrouvons dans un {coin} {tranquille}.;Wir treffen uns in einer {ruhigen} {Ecke}.;;true;false
-88;1;Les enfants {chuchotent} dans la {bibliothèque}.;Die Kinder {flüstern} in der {Bibliothek}.;;true;false
-89;1;J'ai une {assiette} {ébréchée}.;Ich habe einen {angeschlagenen} {Teller}.;;true;false
-90;1;Il {évoque} souvent ses {voyages}.;Er {erwähnt} oft seine {Reisen}.;;true;false
-91;1;Cette maison a une {âme}.;Dieses Haus hat eine {Seele}.;;true;false
+77;1;Nous allons {faire la route|#782} {ensemble|#780}.;Wir werden {die Strecke|#783} {gemeinsam|#781} {fahren|#783}.;;true;false
+78;1;Ils partent {avant même que|#800} le {soleil|#802} ne {se lève|#804}.;Sie brechen auf, {noch bevor|#801} die {Sonne|#803} {aufgeht|#805}.;;true;false
+79;1;Elle {emporte|#808} toujours un {cabas en toile|#807} au marché.;Sie {bringt|#33} immer eine {Stofftasche|#806} {mit|#33} zum Markt.;;true;false
+80;1;J'ai pris un {thermos|#818} de café.;Ich habe eine {Thermoskanne|#819} Kaffee mitgenommen.;;true;false
+81;1;Il a payé avec un {billet|#820} de 20 euros.;Er hat mit einem 20-Euro-{Geldschein|#821} bezahlt.;;true;false
+82;1;Le {ticket de caisse|#824} indique le {lieu d'achat|#822}.;Der {Kassenzettel|#825} zeigt den {Kaufort|#823}.;;true;false
+83;1;Ils habitent à la {périphérie de la ville|#826}.;Sie wohnen am {Stadtrand|#827}.;;true;false
+84;1;Le marché est devenu un vrai {phénomène|#828} {culturel|#830}.;Der Markt ist zu einem echten {kulturellen|#831} {Phänomen|#829} geworden.;;true;false
+85;1;La {nouvelle|#835} s'est rapidement {répandue|#832}.;Die {Nachricht|#834} hat sich schnell {verbreitet|#833}.;;true;false
+86;1;Des {milliers|#882} de personnes visitent le {marché|#46}.;{Tausende|#883} Menschen besuchen den {Markt|#41}.;;true;false
+87;1;Nous nous retrouvons dans un {coin|#836} {tranquille|#839}.;Wir treffen uns in einer {ruhigen|#838} {Ecke|#837}.;;true;false
+88;1;Les enfants {chuchotent|#842} dans la {bibliothèque|#840}.;Die Kinder {flüstern|#843} in der {Bibliothek|#841}.;;true;false
+89;1;J'ai une {assiette|#844} {ébréchée|#846}.;Ich habe einen {angeschlagenen|#847} {Teller|#845}.;;true;false
+90;1;Il {évoque|#875} souvent ses {voyages}.;Er {erwähnt|#876} oft seine {Reisen}.;;true;false
+91;1;Cette maison a une {âme|#878}.;Dieses Haus hat eine {Seele|#877}.;;true;false
 92;1;L'{horloge} {sonne} {midi}.;Die {Uhr} {schlägt} {zwölf}.;;true;false
-93;1;La {peinture} commence à {se patiner} avec le temps.;Die {Farbe} bekommt mit der Zeit {Patina}.;;true;false
+93;1;La {peinture|#879} commence à {se patiner|#880} avec le temps.;Die {Farbe|#637} {bekommt|#881} mit der Zeit {Patina|#881}.;;true;false
 94;1;Ce {détail} apporte du {caractère} à la {pièce}.;Dieses {Detail} verleiht dem {Raum} {Charakter}.;;true;false
 95;1;On {plaisante} toujours avec lui.;Mit ihm {scherzt} man immer.;;true;false
 96;1;Elle {négocie|#132} avec {ferveur} sur le marché.;Sie {handelt} {leidenschaftlich} auf dem Markt.;;true;false
@@ -399,32 +399,32 @@ id;unit_id;fr;de;note;has_audio_fr;has_audio_de
 401;9;Cette situation met sa patience {à l'épreuve}.;Diese Situation stellt seine Geduld {auf die Probe}.;;true;false
 402;9;Depuis son {divorce}, il est {reclus} socialement.;Seit seiner {Scheidung} lebt er sozial {zurückgezogen}.;;true;false
 403;9;Il est trop {complaisant} avec ses collègues.;Er ist zu {nachsichtig} mit seinen Kollegen.;;true;false
-404;9;Il voulait venir, {or} il était malade.;Er wollte kommen, {jedoch} war er krank.;;true;false
-405;9;Il a donné un {avis} {appuyé} sur la question.;Er hat eine {nachdrückliche} {Meinung} zu der Frage geäußert.;;true;false
-406;10;Il viendra demain, {du moins} je l'espère.;Er wird morgen kommen – {wenigstens} hoffe ich das.;;true;false
+404;9;Il voulait venir, {or|#873} il était malade.;Er wollte kommen, {jedoch|#874} war er krank.;;true;false
+405;9;Il a donné un {avis|#871} {appuyé|#870} sur la question.;Er hat eine {nachdrückliche|#869} {Meinung|#872} zu der Frage geäußert.;;true;false
+406;10;Il viendra demain, {du moins|#867} je l'espère.;Er wird morgen kommen, {wenigstens|#868} hoffe ich das.;;true;false
 407;10;Elle porte une {oreillette} pour téléphoner en voiture.;Sie trägt einen {Ohrhörer} zum Telefonieren im Auto.;;true;false
-408;10;Mes {écouteurs} ne fonctionnent plus.;Meine {In-Ear-Kopfhörer} funktionieren nicht mehr.;;true;false
-409;10;J'utilise un {casque} pour écouter de la musique.;Ich benutze {Kopfhörer}, um Musik zu hören.;;true;false
-410;10;La {poussette} est pliée dans le {coffre} de la voiture.;Der {Kinderwagen} liegt im {Kofferraum};;true;false
-411;10;La {probabilité} de gagner est très faible.;Die {Gewinnwahrscheinlichkeit} ist sehr gering.;;true;false
-412;10;Le {plagiat} est puni par la {loi}.;{Plagiate} werden {gesetzlich} bestraft.;;true;false
-413;10;Les enfants apprennent la {table de multiplication} à l'école.;Die Kinder lernen in der Schule das {Einmaleins}.;;true;false
-414;11;La police a {interpelé} le {conducteur}.;Die Polizei hat den {Fahrer} {gestellt}.;;false;false
-415;11;Le {chantier} bloque une partie de la route.;Die {Baustelle} blockiert einen Teil der Straße.;;true;false
-416;11;Il y a des {travaux} dans la rue aujourd'hui.;Heute gibt es {Straßenarbeiten}.;;true;false
-417;11;La {piste cyclable} est fermée pour travaux.;Der {Fahrradweg} ist wegen Bauarbeiten gesperrt.;;true;false
-418;11;Attention, c'est une {rue à sens unique} !;Vorsicht, das ist eine {Einbahnstraße}!;;true;false
-419;11;L'{automobiliste} a {freiné} trop tard.;Der {Autofahrer} hat zu spät {gebremst}.;;true;false
-420;11;J'ai {croisé} quelqu'un qui m'a reconnu.;Ich bin jemandem {begegnet}, der mich erkannt hat.;;true;false
-421;11;La voiture a {failli} {renverser} un {piéton}.;Das Auto hätte {beinahe} einen {Fußgänger} {überfahren}.;;true;false
-422;11;Un homme {rôdait} près des voitures.;Ein Mann {schlich} um die Autos herum;;true;false
-423;11;Nous avons marché au {bord du Rhin}.;Wir sind am {Rheinufer} entlanggelaufen.;;true;false
-424;11;Le {cycliste} a {doublé} la voiture.;Der {Radfahrer} hat das Auto {überholt}.;;true;false
+408;10;Mes {écouteurs|#862} ne fonctionnent plus.;Meine {In-Ear-Kopfhörer|#863} funktionieren nicht mehr.;;true;false
+409;10;J'utilise un {casque|#864} pour écouter de la musique.;Ich benutze {Kopfhörer|#865}, um Musik zu hören.;;true;false
+410;10;La {poussette|#858} est pliée dans le {coffre de la voiture|#860}.;Der {Kinderwagen|#859} liegt im {Kofferraum|#861};;true;false
+411;10;La {probabilité de gagner|#856} est très faible.;Die {Gewinnwahrscheinlichkeit|#857} ist sehr gering.;;true;false
+412;10;Le {plagiat|#852} est {puni par la loi|#854}.;{Plagiate|#853} werden {gesetzlich bestraft|#855}.;;true;false
+413;10;Les enfants apprennent la {table de multiplication|#850} à l'école.;Die Kinder lernen in der Schule das {Einmaleins|#851}.;;true;false
+414;11;La police a {interpelé|#630} le {conducteur|#848}.;Die Polizei hat den {Fahrer|#849} {gestellt|#866}.;;false;false
+415;11;Le {chantier|#814} {bloque|#817} une partie de la route.;Die {Baustelle|#815} {blockiert|#816} einen Teil der Straße.;;true;false
+416;11;Il y a des {travaux|#98} dans la rue aujourd'hui.;Heute gibt es {Straßenarbeiten|#813}.;;true;false
+417;11;La {piste cyclable|#811} est fermée pour travaux.;Der {Fahrradweg|#812} ist wegen Bauarbeiten gesperrt.;;true;false
+418;11;Attention, c'est une {rue à sens unique|#809} !;Vorsicht, das ist eine {Einbahnstraße|#810}!;;true;false
+419;11;L'{automobiliste|#796} a {freiné|#799} trop tard.;Der {Autofahrer|#797} hat zu spät {gebremst|#798}.;;true;false
+420;11;J'ai {croisé|#792} quelqu'un qui m'{a reconnu|#795}.;Ich bin jemandem {begegnet|#793}, der mich {erkannt hat|#794}.;;true;false
+421;11;La voiture a {failli|#788} {renverser|#790} un {piéton|#686}.;Das Auto hätte {beinahe|#789} einen {Fußgänger|#687} {überfahren|#791}.;;true;false
+422;11;Un homme {rôdait près des|#786} voitures.;Ein Mann {schlich um|#787} die Autos {herum|#787}.;;true;false
+423;11;Nous avons marché au {bord du Rhin|#784}.;Wir sind am {Rheinufer|#785} entlanggelaufen.;;true;false
+424;11;Le {cycliste|#436} a {doublé|#762} la voiture.;Der {Radfahrer|#437} hat das Auto {überholt|#763}.;;true;false
 425;11;J'y suis allé hier sans problème.;Ich bin gestern ohne Probleme dorthin gegangen.;;true;false
-426;11;Il y a une {bosse} au milieu de la route.;In der Straßenmitte ist eine {Bodenwelle}.;;true;false
-427;11;Ses {boucles} {brillent|#162} au soleil.;Ihre {Locken} {glänzen|#725} in der Sonne.;;true;false
+426;11;Il y a une {bosse|#778} au milieu de la route.;In der Straßenmitte ist eine {Bodenwelle|#779}.;;true;false
+427;11;Ses {boucles|#776} {brillent|#162} au soleil.;Ihre {Locken|#777} {glänzen|#725} in der Sonne.;;true;false
 428;11;Il est interdit de {doubler|#762} ici.;Hier ist {Überholen|#763} verboten.;;true;false
-429;11;Un {scarabée|#760} traverse la route.;Ein {Käfer|#761} überquert die Straße.;;true;false
+429;11;Un {scarabée|#760} {traverse|#773} la {route|#775}.;Ein {Käfer|#761} {überquert|#774} die {Straße|#487}.;;true;false
 430;11;Il a acheté une vieille {Coccinelle|#238}.;Er hat einen alten {VW-Käfer|#759} gekauft.;;true;false
 431;11;On peut {passer par|#755} le {périphérique|#514} pour {éviter|#757} le centre.;Man kann {über|#758} den {Stadtring|#513} {fahren|#758}, um das Zentrum zu {vermeiden|#756}.;;false;false
 432;11;Il a {klaxonné|#753} pour prévenir le cycliste.;Er hat {gehupt|#754}, um den Radfahrer zu warnen.;;true;false

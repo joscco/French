@@ -714,11 +714,11 @@ id;lang;term_text;category;genus;needs_vowel_article;unit_id;ref;tags;has_audio
 729;de;fieberhaft;adjective;;;;;;true
 730;de;Notizbuch;noun;n;;;;;true
 731;fr;carnet;noun;m;;;;;true
-732;fr;pollution sonore;;;;;;;false
-733;de;Lärmverschmutzung;;;;;;;false
+732;fr;pollution sonore;noun;f;;;;;false
+733;de;Lärmverschmutzung;noun;f;;;;;false
 734;fr;discussion;noun;f;;;;;false
-735;fr;vive;;;;;;;false
-736;de;heftige;;;;;;;false
+735;fr;vive;adjective;;;;;;false
+736;de;heftig;adjective;;;;;;false
 737;de;Diskussion;noun;f;;;;;false
 738;fr;nombre;noun;m;;;;;false
 739;de;gerade;adjective;;;;;;false
@@ -726,24 +726,24 @@ id;lang;term_text;category;genus;needs_vowel_article;unit_id;ref;tags;has_audio
 741;fr;pair;adjective;;;;;;false
 742;fr;impair;adjective;;;;;;false
 744;de;ungerade;adjective;;;;;;false
-745;fr;flics;;;;;;;false
+745;fr;flics;noun;mpl;;;;;false
 746;de;Bullen;noun;mpl;;;;;false
-747;fr;immeuble;;;;;;;false
+747;fr;immeuble;noun;m;true;;;;false
 748;de;Gebäude;noun;n;;;;;false
-749;fr;GPS;;;;;;;false
-750;de;GPS-Geräte;;;;;;;false
-751;de;Route;;;;;;;false
-752;fr;itinéraire;;;;;;;false
-753;fr;klaxonner;;;;;;;false
+749;fr;GPS;noun;m;;;;;false
+750;de;GPS-Gerät;noun;n;;;;;false
+751;de;Route;noun;f;;;;;false
+752;fr;itinéraire;noun;m;true;;;;false
+753;fr;klaxonner;verb;;;;;;false
 754;de;hupen;verb;;;;;;false
-755;fr;passer par {qc.};;;;;;;false
-756;de;{etw.} vermeiden;;;;;;;false
+755;fr;passer par {qc.};verb;;;;;;false
+756;de;{etw.} vermeiden;verb;;;;;;false
 757;fr;éviter {qc.};verb;;;;;;false
-758;de;{über etw.} fahren;;;;;;;false
+758;de;{über etw.} fahren;verb;;;;;;false
 759;de;VW-Käfer;noun;m;;;;;false
-760;fr;scarabée;;;;;;;false
-761;de;Käfer;;;;;;;false
-762;fr;doubler {qc.};;;;;;;false
+760;fr;scarabée;noun;m;;;;;false
+761;de;Käfer;noun;m;;;;;false
+762;fr;doubler {qc.};verb;;;;;;false
 763;de;{etw.} überholen;verb;;;;;;false
 764;fr;enfance;noun;f;true;;;;false
 765;fr;lointain;expression;;;;;;false
@@ -754,3 +754,114 @@ id;lang;term_text;category;genus;needs_vowel_article;unit_id;ref;tags;has_audio
 770;fr;trouvaille;noun;f;;;;;false
 771;fr;chaise;noun;f;;;;;false
 772;de;Stuhl;noun;m;;;;;false
+773;fr;traverser {qc.};verb;;;;;;false
+774;de;{etw.} überqueren;verb;;;;;;false
+775;fr;route;noun;f;;;;;false
+776;fr;boucle;noun;f;;;;;false
+777;de;Locke;noun;f;;;;;false
+778;fr;bosse;noun;f;;;;;false
+779;de;Bodenwelle;noun;f;;;;;false
+780;fr;ensemble;expression;;;;;;false
+781;de;gemeinsam;expression;;;;;;false
+782;fr;faire la route;verb;;;;;;false
+783;de;die Strecke fahren;verb;;;;;;false
+784;fr;bord du Rhin;noun;m;;;;;false
+785;de;Rheinufer;noun;n;;;;;false
+786;fr;rôder {vers qc.};verb;;;;;;false
+787;de;um {etw.} herum schleichen;verb;;;;;;false
+788;fr;faillir {faire qc.};verb;;;;;;false
+789;de;beinahe {etw.} tun;verb;;;;;;false
+790;fr;renverser {qc.};verb;;;;;;false
+791;de;{etw.} überfahren;verb;;;;;;false
+792;fr;croiser {qn.};verb;;;;;;false
+793;de;{jmdm.} begegnen;verb;;;;;;false
+794;de;{jmdn.} erkennen;verb;;;;;;false
+795;fr;reconnaître {qn.};verb;;;;;;false
+796;fr;automobiliste;noun;m;true;;;;false
+797;de;Autofahrer;noun;m;;;;;false
+798;de;bremsen;verb;;;;;;false
+799;fr;freiner;verb;;;;;;false
+800;fr;avant même que;expression;;;;;;false
+801;de;noch bevor;expression;;;;;;false
+802;fr;soleil;noun;m;;;;;false
+803;de;Sonne;noun;f;;;;;false
+804;fr;{se} lever;verb;;;;;;false
+805;de;aufgehen;verb;;;;;;false
+806;de;Stofftasche;noun;f;;;;;false
+807;fr;cabas en toile;noun;m;;;;;false
+808;fr;emporter {qc.};verb;;;;;;false
+809;fr;rue à sens unique;noun;f;;;;;false
+810;de;Einbahnstraße;noun;f;;;;;false
+811;fr;piste cyclable;noun;f;;;;;false
+812;de;Fahrradweg;noun;m;;;;;false
+813;de;Straßenarbeit;noun;f;;;;;false
+814;fr;chantier;noun;m;;;;;false
+815;de;Baustelle;noun;f;;;;;false
+816;de;{etw.} blockieren;verb;;;;;;false
+817;fr;bloquer {qc.};verb;;;;;;false
+818;fr;thermos;noun;m;;;;;false
+819;de;Thermoskanne;noun;f;;;;;false
+820;fr;billet;noun;m;;;;;false
+821;de;Geldschein;noun;m;;;;;false
+822;fr;lieu d'achat;noun;m;;;;;false
+823;de;Kaufort;noun;m;;;;;false
+824;fr;ticket de caisse;noun;m;;;;;false
+825;de;Kassenzettel;noun;m;;;;;false
+826;fr;périphérie de la ville;noun;f;;;;;false
+827;de;Stadtrand;noun;m;;;;;false
+828;fr;phénomène;noun;m;;;;;false
+829;de;Phänomen;noun;n;;;;;false
+830;fr;culturel;adjective;;;;;;false
+831;de;kulturell;adjective;;;;;;false
+832;fr;{se} répandre;verb;;;;;;false
+833;de;{sich} verbreiten;verb;;;;;;false
+834;de;Nachricht;noun;f;;;;;false
+835;fr;nouvelle;noun;f;;;;;false
+836;fr;coin;noun;m;;;;;false
+837;de;Ecke;noun;f;;;;;false
+838;de;ruhig;adjective;;;;;;false
+839;fr;tranquille;adjective;;;;;;false
+840;fr;bibliothèque;noun;f;;;;;false
+841;de;Bibliothek;noun;f;;;;;false
+842;fr;chuchoter;verb;;;;;;false
+843;de;flüstern;verb;;;;;;false
+844;fr;assiette;noun;f;;;;;false
+845;de;Teller;noun;m;;;;;false
+846;fr;ébréché;adjective;;;;;;false
+847;de;angeschlagen;adjective;;;;;;false
+848;fr;conducteur;noun;m;;;;;false
+849;de;Fahrer;noun;m;;;;;false
+850;fr;table de multiplication;noun;f;;;;;false
+851;de;Einmaleins;noun;n;;;;;false
+852;fr;plagiat;noun;m;;;;;false
+853;de;Plagiat;noun;n;;;;;false
+854;fr;puni par la loi;expression;;;;;;false
+855;de;gesetzlich bestraft;expression;;;;;;false
+856;fr;probabilité de gagner;noun;f;;;;;false
+857;de;Gewinnwahrscheinlichkeit;noun;f;;;;;false
+858;fr;poussette;noun;f;;;;;false
+859;de;Kinderwagen;noun;m;;;;;false
+860;fr;coffre de la voiture;noun;m;;;;;false
+861;de;Kofferraum;noun;m;;;;;false
+862;fr;écouteur;noun;m;;;;;false
+863;de;In-Ear-Kopfhörer;noun;f;;;;;false
+864;fr;casque;noun;m;;;;;false
+865;de;{Over-Ear-}Kopfhörer;noun;f;;;;;false
+866;de;{jmdn.} stellen;verb;;;;;;false
+867;fr;du moins;expression;;;;;;false
+868;de;wenigstens;expression;;;;;;false
+869;de;nachdrücklich;;;;;;;false
+870;fr;appuyé;;;;;;;false
+871;fr;avis;noun;m;;;;;false
+872;de;Meinung;noun;f;;;;;false
+873;fr;or;expression;;;;;;false
+874;de;jedoch;expression;;;;;;false
+875;fr;évoquer {qc.};verb;;;;;;false
+876;de;{etw.} erwähnen;verb;;;;;;false
+877;de;Seele;noun;f;;;;;false
+878;fr;âme;noun;f;;;;;false
+879;fr;peinture;noun;f;;;;;false
+880;fr;{se} patiner;verb;;;;;;false
+881;de;Patina bekommen;verb;;;;;;false
+882;fr;milliers {de qc.};expression;;;;;;false
+883;de;tausende {von etw.};expression;;;;;;false
