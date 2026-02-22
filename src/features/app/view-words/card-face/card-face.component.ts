@@ -1,5 +1,5 @@
 import {Component, computed, input} from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {CommonModule} from '@angular/common';
 import {Genus, Lang} from '../../../../shared/contract/contract';
 import {beautifyGenus, getArticle} from '../../helpers/utils';
 import {parseTermDisplayMarkup, TermDisplaySeg} from '../../../../shared/helpers/term-display-markup';
@@ -17,6 +17,8 @@ export class CardFaceComponent {
   readonly language = input<Lang>('fr');
   readonly needsVowelArticle = input(false);
   readonly tags = input<string[] | undefined>();
+
+  readonly layout = input<'center' | 'flow'>('center');
 
   readonly primarySegments = computed<TermDisplaySeg[]>(() =>
     parseTermDisplayMarkup(this.primary())

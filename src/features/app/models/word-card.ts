@@ -1,4 +1,4 @@
-import {Genus, Lang} from '../../../shared/contract/contract';
+import {Genus, Lang, TermRow} from '../../../shared/contract/contract';
 
 export interface WordCard {
   id: number;
@@ -24,4 +24,20 @@ export interface WordCard {
   };
 
   frontLanguage?: Lang;
+}
+
+export interface WordCardBackVm {
+  headTerm: TermRow;          // das Wort auf der Vorderseite (je nach Richtung FR oder DE)
+  headLang: Lang;
+
+  translationLang: Lang;      // die Sprache der Liste auf der Rückseite
+  translations: Array<{
+    term: TermRow;
+    example?: {
+      sentenceId: number;
+      unitId: number;
+      headText: string;        // Satz in headLang (also “Prompt-Sprache”)
+      translationText: string; // Satz in translationLang
+    };
+  }>;
 }

@@ -7,7 +7,7 @@ import {WordService} from '../../services/word.service';
 import {PracticeRouteStateService} from '../../services/route-state.service';
 import {PracticeKind} from '../../models/types';
 import {LessonOption} from '../../models/lesson-option';
-import {WordCard} from '../../models/word-card';
+import {WordCard, WordCardBackVm} from '../../models/word-card';
 import {SentencesService} from '../../../../services/sentence.service';
 import {UnitsService} from '../../../../services/units.service';
 import {SentenceRow} from '../../../../shared/contract/contract';
@@ -15,6 +15,8 @@ import {extractTermRefs} from '../../helpers/extract-term-refs';
 import {SentenceVm} from '../../models/sentence-vm';
 import {parseSentenceMarkup, representativeText} from '../../../editor/helpers/sentence-markup';
 import {getSortableText} from '../../../../shared/helpers/term-display-markup';
+import {WordCardBackService} from '../../services/word-back.service';
+
 
 @Component({
   selector: 'app-practice-host',
@@ -27,6 +29,8 @@ export class PracticeHostComponent {
   private readonly sentenceService = inject(SentencesService);
   private readonly unitsService = inject(UnitsService);
   private readonly routeState = inject(PracticeRouteStateService);
+
+  private readonly wordCardBackService = inject(WordCardBackService);
 
   practiceKind = input<PracticeKind>('sentence');
   selectedLesson = input<LessonOption | undefined>(undefined);
@@ -63,6 +67,19 @@ export class PracticeHostComponent {
     const vocabCards = this.vocabList();
     const clampedIndex = this.clamp(this.index(), vocabCards.length);
     return vocabCards[clampedIndex];
+  });
+
+
+  currentVocabBackVm = computed<WordCardBackVm | undefined>(() => {
+    const vocab = this.currentVocab();
+    if (!vocab) {
+      return undefined;
+    }
+
+    const headLang = vocab.frontLanguage ?? 'fr';
+    const headTermId = headLang === 'fr' ? vocab.frenchTermId : vocab.germanTermId;
+
+    return this.wordCardBackService.buildForHeadTerm(headTermId, headLang);
   });
 
   currentSentence = computed(() => {

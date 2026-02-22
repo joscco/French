@@ -1,0 +1,39 @@
+<div class="flex flex-col">
+  <div class="flex text-lg items-baseline gap-1 ">
+    @if (genus()) {
+      <span class="opacity-50">
+        {{ getArticle(lang(), genus(), needsVowelArticle()) }}
+      </span>
+    }
+
+    <div class="font-semibold leading-snug">
+      @for (seg of segments(); track $index) {
+        @if (seg.kind === 'text') {
+          <span>{{ seg.text }}</span>
+        } @else {
+          <span class="opacity-50">{{ seg.text }}</span>
+        }
+      }
+    </div>
+
+    @if (showGenusHint()) {
+      <span class="text-sm italic opacity-50">
+        ({{ beautifyGenus(genus()) }})
+      </span>
+    }
+  </div>
+
+  @if (ref()) {
+    <div class="mt-1 text-sm opacity-60">{{ ref() }}</div>
+  }
+
+  @if (hasTags()) {
+    <div class="flex flex-wrap gap-1 mt-2">
+      @for (tag of tags() ?? []; track tag) {
+        <span class="inline-block rounded-full bg-slate-100 px-2 py-0.5 text-xs text-slate-500">
+          {{ tag }}
+        </span>
+      }
+    </div>
+  }
+</div>

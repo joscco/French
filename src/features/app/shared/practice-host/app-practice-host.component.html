@@ -17,10 +17,11 @@
         [germanSecondary]="vocabCard.germanSecondary || ''"
         [frenchTermId]="vocabCard.frenchTermId"
         [germanTermId]="vocabCard.germanTermId"
-        [frontLang]="vocabCard.frontLanguage || 'fr'"
         [flipDirection]="'up'"
         [isTouchscreen]="true"
-      />
+        [frontLang]="vocabCard.frontLanguage || 'fr'"
+        [backVm]="currentVocabBackVm()"
+        />
     }
   } @else {
     @if (currentSentence(); as sentence) {

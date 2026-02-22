@@ -69,7 +69,7 @@
           "builder": "@angular/build:dev-server",
           "options": {
             "liveReload": true,
-            "watch": false,
+            "watch": true,
             "buildTarget": "FrenchCourse:build:development"
           },
           "configurations": {

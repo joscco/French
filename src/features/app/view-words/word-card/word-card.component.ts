@@ -1,5 +1,6 @@
 import {
-  Component, computed,
+  Component,
+  computed,
   effect,
   ElementRef,
   input,
@@ -10,16 +11,18 @@ import {
 import {CommonModule} from '@angular/common';
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
-import {CardFaceComponent} from '../card-face/card-face.component';
-import {LangIndicatorComponent} from '../../shared/lang-indicator/lang-indicator.component';
 import gsap from 'gsap';
 import {reverseLanguage} from '../../helpers/utils';
 import {Lang} from '../../../../shared/contract/contract';
+import {LangIndicatorComponent} from '../../shared/lang-indicator/lang-indicator.component';
+import {CardFaceComponent} from '../card-face/card-face.component';
+import {WordCardBackVm} from '../../models/word-card';
+import {TermInlineComponent} from '../term-inline/term-inline.component';
 
 @Component({
   selector: 'app-word-card',
   standalone: true,
-  imports: [CommonModule, MatIconModule, MatButtonModule, CardFaceComponent, LangIndicatorComponent],
+  imports: [CommonModule, MatIconModule, MatButtonModule, LangIndicatorComponent, CardFaceComponent, TermInlineComponent],
   templateUrl: './word-card.component.html'
 })
 export class WordCardComponent implements OnDestroy {
@@ -31,37 +34,45 @@ export class WordCardComponent implements OnDestroy {
   flipDirection = input('up');
   isTouchscreen = input<boolean>(false);
 
-  // Term-IDs für Audio-Wiedergabe
   frenchTermId = input<number | undefined>();
   germanTermId = input<number | undefined>();
+
+  backVm = input<WordCardBackVm | undefined>(undefined);
 
   frontLang = input<Lang>('fr');
   flipped = signal(false);
   isSpeaking = signal(false);
 
-  // Audio-Existenz-Status
   frenchAudioExists = signal<boolean>(false);
   germanAudioExists = signal<boolean>(false);
 
   public readonly currentLanguage = computed<Lang>(() =>
     this.flipped() ? reverseLanguage(this.frontLang()) : this.frontLang()
   );
-  renderLanguage = signal<Lang>(this.frontLang());
 
-  @ViewChild('faceContainer', {static: false}) faceContainer?: ElementRef<HTMLDivElement>;
+  readonly headPrimary = computed(() => this.frontLang() === 'fr' ? this.frenchPrimary() : this.germanPrimary());
+  readonly headSecondary = computed(() => this.frontLang() === 'fr' ? this.frenchSecondary() : this.germanSecondary());
+
+  @ViewChild('headBlock', {static: false}) headBlock?: ElementRef<HTMLDivElement>;
+  @ViewChild('detailsBlock', {static: false}) detailsBlock?: ElementRef<HTMLDivElement>;
+  @ViewChild('detailsWrap', {static: false}) detailsWrap?: ElementRef<HTMLDivElement>;
+
   public animating = false;
   private audio?: HTMLAudioElement;
+  private tl?: gsap.core.Timeline;
 
   constructor() {
-    // Reset when input changes
+    // Reset when inputs change
     effect(() => {
-      // Track these signals
       this.frenchPrimary();
       this.germanPrimary();
+      this.frontLang();
 
       this.stopSpeaking();
       this.flipped.set(false);
-      this.renderLanguage.set(this.frontLang());
+
+      // Reset animation state immediately (no flicker)
+      queueMicrotask(() => this.resetToFrontVisualState());
     });
 
     // Check audio existence when term IDs change
@@ -84,6 +95,77 @@ export class WordCardComponent implements OnDestroy {
     });
   }
 
+  private resetToFrontVisualState() {
+    if (!this.headBlock || !this.detailsBlock || !this.detailsWrap) {
+      return;
+    }
+
+    this.tl?.kill();
+    this.tl = undefined;
+
+    // GPU friendly
+    gsap.set(this.headBlock.nativeElement, { y: 0, scale: 1, force3D: true, transformOrigin: '50% 50%' });
+
+    // Details initial: unsichtbar + Wrapper Höhe 0
+    gsap.set(this.detailsBlock.nativeElement, { opacity: 0, y: 8, force3D: true, pointerEvents: 'none' });
+    gsap.set(this.detailsWrap.nativeElement, { height: 0 });
+
+    this.animating = false;
+  }
+
+  private animateFlip(toBack: boolean) {
+    if (!this.headBlock || !this.detailsBlock || !this.detailsWrap) {
+      return;
+    }
+
+    this.animating = true;
+    this.tl?.kill();
+    this.tl = undefined;
+
+    const headEl = this.headBlock.nativeElement;
+    const detailsEl = this.detailsBlock.nativeElement;
+    const wrapEl = this.detailsWrap.nativeElement;
+
+    // kill running tweens hard, verhindert “wobble” beim schnellen klicken
+    gsap.killTweensOf([headEl, detailsEl, wrapEl]);
+
+    // Höhe für expand: erst auf auto messen (GSAP kann "auto" animieren)
+    // Wir animieren wrapper-height, nicht layout-classes.
+    this.tl = gsap.timeline({
+      defaults: { overwrite: 'auto' },
+      onComplete: () => {
+        this.animating = false;
+        this.tl = undefined;
+
+        // Wenn offen, Height auf "auto" lassen, damit content/scroll später (Bilder) sauber wächst
+        if (toBack) {
+          gsap.set(wrapEl, { height: 'auto' });
+        }
+      },
+    });
+
+    if (toBack) {
+      // Setze Height erst auf aktuellen Wert (0), dann to "auto"
+      gsap.set(wrapEl, { height: wrapEl.offsetHeight }); // stabiler Startwert
+
+      this.tl
+        .to(headEl, { y: -10, duration: 0.26, ease: 'power3.out' }, 0)
+        .to(wrapEl, { height: 'auto', duration: 0.30, ease: 'power2.out' }, 0.02)
+        .to(detailsEl, { opacity: 1, y: -10, duration: 0.24, ease: 'power2.out' }, 0.08)
+        .set(detailsEl, { pointerEvents: 'auto' }, 0.08);
+    } else {
+      // Beim Schließen: Height von auto -> 0
+      // Erst fixen auf px, damit "auto" nicht springt
+      gsap.set(wrapEl, { height: wrapEl.offsetHeight });
+
+      this.tl
+        .set(detailsEl, { pointerEvents: 'none' }, 0)
+        .to(detailsEl, { opacity: 0, y: 10, duration: 0.18, ease: 'power2.in' }, 0)
+        .to(wrapEl, { height: 0, duration: 0.26, ease: 'power2.inOut' }, 0.02)
+        .to(headEl, { y: 0, duration: 0.24, ease: 'power3.out' }, 0.06);
+    }
+  }
+
   private async checkAudioExists(lang: Lang, termId: number) {
     const src = `sounds/term_${lang}${termId}.mp3`;
     try {
@@ -104,43 +186,13 @@ export class WordCardComponent implements OnDestroy {
 
   ngOnDestroy() {
     this.stopSpeaking();
+    this.tl?.kill();
   }
 
   onCardClick() {
-    this.flipped.update(v => !v);
-    this.animateFlip();
-  }
-
-  animateFlip() {
-    if (!this.faceContainer) {
-      return;
-    }
-
-    this.animating = true;
-    const el = this.faceContainer.nativeElement;
-    gsap.to(el, {
-      y: this.flipDirection() === 'up' ? -40 : 40,
-      opacity: 0,
-      duration: 0.25,
-      onComplete: () => {
-        this.renderLanguage.set(this.currentLanguage());
-        if (this.renderLanguage() !== 'fr' && this.isSpeaking()) {
-          this.stopSpeaking();
-        }
-        gsap.fromTo(
-          el,
-          {y: this.flipDirection() === 'up' ? 40 : -40, opacity: 0},
-          {
-            y: 0,
-            opacity: 1,
-            duration: 0.25,
-            onComplete: () => {
-              this.animating = false;
-            }
-          }
-        );
-      }
-    });
+    const toBack = !this.flipped();
+    this.flipped.set(toBack);
+    this.animateFlip(toBack);
   }
 
   canSpeak(): boolean {
@@ -161,11 +213,13 @@ export class WordCardComponent implements OnDestroy {
     if (!this.canSpeak()) {
       return;
     }
+
     const lang = this.currentLanguage();
     const termId = lang === 'fr' ? this.frenchTermId() : this.germanTermId();
     const src = new URL(`sounds/term_${lang}${termId}.mp3`, document.baseURI).toString();
 
     this.stopSpeaking();
+
     if (!this.audio) {
       this.audio = new Audio();
       this.audio.preload = 'none';
@@ -180,6 +234,7 @@ export class WordCardComponent implements OnDestroy {
       this.audio.src = src;
       this.audio.load();
       this.isSpeaking.set(true);
+
       const playPromise = this.audio.play();
       if (playPromise && typeof playPromise.then === 'function') {
         playPromise.catch((err) => {

@@ -1,70 +1,98 @@
 <div class="w-full h-full flex flex-col items-center p-6 cursor-pointer"
      (click)="onCardClick()">
-    <div class="w-full flex flex-row items-center justify-between">
-      @if (meta() && meta()!['category']) {
-        <div class="italic opacity-50">{{ meta()!['category'] }}</div>
-      }
-      <div class="flex items-center text-sm italic opacity-50 transition-opacity duration-300 hover:opacity-100">
-        <mat-icon class="mr-1">ads_click</mat-icon>
-        <span>Flip</span>
-      </div>
+
+  <div class="w-full flex flex-row items-center justify-between">
+    @if (meta() && meta()!['category']) {
+      <div class="italic opacity-50">{{ meta()!['category'] }}</div>
+    }
+    <div class="flex items-center text-sm italic opacity-50 transition-opacity duration-300 hover:opacity-100">
+      <mat-icon class="mr-1">ads_click</mat-icon>
+      <span>Flip</span>
     </div>
-    <div class="w-full grow flex flex-col items-center justify-center">
-      <div
-        #faceContainer
-        class="relative w-full min-h-[160px] select-none cursor-pointer"
-      >
-        @if (renderLanguage()=== 'fr') {
-          <app-card-face
-            [primary]="frenchPrimary()"
-            [secondary]="frenchSecondary()"
-            [language]="'fr'"
-            [needsVowelArticle]="meta()?.['fr_needs_vowel_article']"
-            [genus]="meta()?.['fr_genus']"
-            [tags]="meta()?.['fr_tags']"
-          />
-        } @else {
-          <app-card-face
-            [primary]="germanPrimary()"
-            [secondary]="germanSecondary()"
-            [language]="'de'"
-            [needsVowelArticle]="false"
-            [genus]="meta()?.['de_genus']"
-            [tags]="meta()?.['de_tags']"
-          />
+  </div>
+
+  <!-- WICHTIG: kein Class-Toggle mehr -->
+  <div class="w-full grow min-h-0 flex flex-col">
+    <!-- HEAD: bleibt immer flex-1 => Wort alleine bleibt immer vertikal mittig -->
+    <div #headBlock class="w-full flex-1 flex flex-col justify-center">
+      <app-card-face
+        [primary]="headPrimary()"
+        [secondary]="headSecondary() || ''"
+        [language]="frontLang()"
+        [needsVowelArticle]="frontLang()==='fr' ? meta()?.['fr_needs_vowel_article'] : false"
+        [genus]="frontLang()==='fr' ? meta()?.['fr_genus'] : meta()?.['de_genus']"
+        [tags]="frontLang()==='fr' ? meta()?.['fr_tags'] : meta()?.['de_tags']"
+        [layout]="'flow'"
+      />
+    </div>
+
+    <div #detailsWrap class="w-full overflow-hidden">
+      <div #detailsBlock class="w-full">
+        @if (backVm(); as vm) {
+          <div class="mt-4 border-neutral-200 flex flex-col gap-3 pr-1">
+            @for (entry of vm.translations; track entry.term.id) {
+              <div class="rounded-2xl border border-neutral-200 p-4">
+                <app-term-inline
+                  [text]="entry.term.term_text"
+                  [lang]="vm.translationLang"
+                  [genus]="entry.term.genus"
+                  [needsVowelArticle]="vm.translationLang==='fr' ? (entry.term.needsVowelArticle ?? false) : false"
+                  [ref]="entry.term.ref"
+                  [tags]="entry.term.tags"
+                ></app-term-inline>
+                @if (entry.term.ref) {
+                  <div class="mt-1 text-sm opacity-60">
+                    {{ entry.term.ref }}
+                  </div>
+                }
+                @if ((entry.term.tags ?? []).length > 0) {
+                  <div class="flex flex-wrap gap-1 mt-2">
+                    @for (tag of entry.term.tags; track tag) {
+                      <span class="inline-block rounded-full bg-slate-100 px-2 py-0.5 text-xs text-slate-500">
+                      {{ tag }}
+                    </span>
+                    }
+                  </div>
+                }
+
+                @if (entry.example) {
+                  <div class="mt-3 text-sm text-neutral-700">
+                    <div class="opacity-70">{{ entry.example.headText }}</div>
+                    <div class="mt-1">{{ entry.example.translationText }}</div>
+                  </div>
+                }
+              </div>
+            }
+          </div>
         }
-
       </div>
     </div>
-    <div class="flex flex-row items-center justify-between w-full h-12">
-      <div class="relative flex items-center h-5 select-none text-sm opacity-60">
-        <div class="flex items-center gap-2 absolute left-0 transition-opacity duration-300"
-             [class.opacity-100]="renderLanguage()=== 'fr'" [class.opacity-0]="renderLanguage()=== 'de'">
-          <app-lang-indicator [lang]="'fr'"></app-lang-indicator>
-        </div>
-        <div class="flex items-center gap-2 absolute left-0 transition-opacity duration-300"
-             [class.opacity-100]="renderLanguage()=== 'de'" [class.opacity-0]="renderLanguage()=== 'fr'">
-          <app-lang-indicator [lang]="'de'"></app-lang-indicator>
-        </div>
+  </div>
+
+  <div class="flex flex-row items-center justify-between w-full h-12">
+    <div class="relative flex items-center h-5 select-none text-sm opacity-60">
+      <div class="flex items-center gap-2 absolute left-0 transition-opacity duration-300"
+           [class.opacity-100]="currentLanguage()=== 'fr'" [class.opacity-0]="currentLanguage()=== 'de'">
+        <app-lang-indicator [lang]="'fr'"></app-lang-indicator>
       </div>
-
-      <!-- Lautsprecher unten rechts nur einblenden, wenn verfügbar -->
-      <button
-        class="w-10 h-10 flex items-center justify-center rounded-2xl border border-neutral-300
-      bg-white/80 hover:bg-neutral-200 active:bg-neutral-300
-      transition-opacity duration-150"
-        (click)="toggleSpeak($event)"
-        (touchstart)="$event.stopPropagation()"
-        (touchmove)="$event.stopPropagation()"
-        (touchend)="$event.stopPropagation()"
-        [class.opacity-100]="canSpeak()"
-        [class.opacity-0]="!canSpeak()"
-        [disabled]="!canSpeak()"
-        [attr.aria-label]="isSpeaking() ? 'Vorlesen stoppen' : 'Vorlesen starten'"
-        [attr.title]="isSpeaking() ? 'Vorlesen stoppen' : 'Vorlesen starten'"
-      >
-        <mat-icon>{{ isSpeaking() ? 'stop' : 'volume_up' }}</mat-icon>
-      </button>
-
+      <div class="flex items-center gap-2 absolute left-0 transition-opacity duration-300"
+           [class.opacity-100]="currentLanguage()=== 'de'" [class.opacity-0]="currentLanguage()=== 'fr'">
+        <app-lang-indicator [lang]="'de'"></app-lang-indicator>
+      </div>
     </div>
+
+    <button
+      class="w-10 h-10 flex items-center justify-center rounded-2xl border border-neutral-300
+             bg-white/80 hover:bg-neutral-200 active:bg-neutral-300 transition-opacity duration-150"
+      (click)="toggleSpeak($event)"
+      (touchstart)="$event.stopPropagation()"
+      (touchmove)="$event.stopPropagation()"
+      (touchend)="$event.stopPropagation()"
+      [class.opacity-100]="canSpeak()"
+      [class.opacity-0]="!canSpeak()"
+      [disabled]="!canSpeak()"
+    >
+      <mat-icon>{{ isSpeaking() ? 'stop' : 'volume_up' }}</mat-icon>
+    </button>
+  </div>
 </div>
