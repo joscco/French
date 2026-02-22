@@ -37,38 +37,12 @@ export class EditorComponent {
   saveError = signal<string | null>(null);
 
   filter = signal('');
-  selectedGroupId = signal<number>(1);
   selectedUnitId = signal<number | null>(null);
   selectedSentenceId = signal<number | null>(null);
-  selectedTermId = signal<number | null>(null);
 
   groups = this.store.groups;
   units = this.store.units;
   sentences = this.store.sentences;
-
-  groupOptions = computed(() => {
-    const options: Array<{ id: number; label: string }> = [];
-    const allGroups = this.groups();
-    for (const group of allGroups) {
-      options.push({ id: group.id, label: group.name?.trim() || `Group ${group.id}` });
-    }
-    return options;
-  });
-
-  unitOptions = computed(() => {
-    const selectedGroupId = this.selectedGroupId();
-    const options: Array<{ id: number; label: string }> = [];
-
-    const allUnitsInGroup = this.units().filter(unit => {
-      return unit.group_id === selectedGroupId;
-    });
-
-    for (const unit of allUnitsInGroup) {
-      const name = unit.name?.trim() || `Unit ${unit.id}`;
-      options.push({ id: unit.id, label: name });
-    }
-    return options;
-  });
 
   viewMode = signal<'sentences' | 'terms'>('sentences');
 
@@ -102,13 +76,6 @@ export class EditorComponent {
     });
   });
 
-  selectedSentence = computed(() => {
-    const sentenceId = this.selectedSentenceId();
-    if (sentenceId == null) {
-      return null;
-    }
-    return this.sentences().find(sentence => sentence.id === sentenceId) ?? null;
-  });
 
   private ensureSelectionIsValid() {
     const currentId = this.selectedSentenceId();
@@ -122,9 +89,6 @@ export class EditorComponent {
     }
   }
 
-  // -------------------------
-  // Lifecycle-ish
-  // -------------------------
   constructor() {
     this.load();
   }
@@ -155,82 +119,6 @@ export class EditorComponent {
       this.state.set('error');
       this.error.set(String(error?.message ?? error));
     }
-  }
-
-  // -------------------------
-  // Actions
-  // -------------------------
-  selectSentence(id: number) {
-    this.selectedSentenceId.set(id);
-  }
-
-  onEditTerm(termId: number) {
-    this.selectedTermId.set(termId);
-  }
-
-  clearSelectedTerm() {
-    this.selectedTermId.set(null);
-  }
-
-  changeGroupFilter(id: number) {
-    const numericValue = Number(id);
-    this.selectedGroupId.set(numericValue);
-
-    this.selectFirstPossibleUnitId();
-    this.selectFirstPossibleSentence();
-  }
-
-  changeUnitFilter(id: number) {
-    const numericValue = Number(id);
-    this.selectedUnitId.set(numericValue);
-
-    this.selectFirstPossibleSentence();
-  }
-
-  private selectFirstPossibleUnitId() {
-    const currentSelection = this.selectedUnitId();
-    const visibleUnits = this.unitOptions();
-    if (!visibleUnits.length) {
-      this.selectedUnitId.set(null);
-      return;
-    }
-    if (currentSelection == null || !visibleUnits.some(unit => unit.id === currentSelection)) {
-      this.selectedUnitId.set(visibleUnits[0].id);
-    }
-  }
-
-  private selectFirstPossibleSentence() {
-    const currentSelection = this.selectedSentenceId();
-    const visibleSentences = this.filteredSentences();
-    if (!visibleSentences.length) {
-      this.selectedSentenceId.set(null);
-      return;
-    }
-    if (currentSelection == null || !visibleSentences.some(sentence => sentence.id === currentSelection)) {
-      this.selectedSentenceId.set(visibleSentences[0].id);
-    }
-  }
-
-  createSentence() {
-    const unitId = this.selectedUnitId();
-    if (!unitId) {
-      return;
-    }
-
-    const nextId = Math.max(0, ...this.sentences().map(sentence => sentence.id)) + 1;
-
-    const newSentence: SentenceRow = {
-      id: nextId,
-      unitId,
-      fr: '',
-      de: '',
-      note: undefined,
-    };
-
-    this.store.sentences.set([newSentence, ...this.sentences()].sort((a, b) => a.id - b.id));
-    this.selectedSentenceId.set(newSentence.id);
-    this.filter.set('');
-    this.selectedUnitId.set(unitId);
   }
 
   saveAsCSVs() {
@@ -271,18 +159,8 @@ export class EditorComponent {
     return this.ttsService.serverAvailable();
   }
 
-  unitLabel(unitId: number): string {
-    const unit = this.store.unitById().get(unitId);
-    if (!unit) {
-      return `Unit ${unitId}`;
-    }
-    return unit.name?.trim();
-  }
-
-  // Zugriff auf Term-Merge aus Kindkomponente
   @ViewChild('termsComp') termsComponentRef!: ViewEditorTermsComponent;
 
-  // Proxy für Multiselect-Status und Merge-Action
   get selectedTermIds() {
     return this.termsComponentRef?.selectedTermIds() ?? new Set();
   }

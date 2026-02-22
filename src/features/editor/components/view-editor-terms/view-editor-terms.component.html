@@ -4,6 +4,13 @@
     <div class="mb-3 flex flex-wrap items-center gap-2">
       <div class="text-sm font-extrabold text-slate-900">All Terms</div>
 
+      <span
+        class="ml-2 inline-block rounded-full bg-slate-200 px-2 py-1 text-xs font-semibold text-slate-700"
+        title="Number of filtered terms"
+      >
+        {{ filteredTerms().length }}
+      </span>
+
       <div class="flex-1"></div>
 
       <label class="flex items-center gap-2 text-xs text-slate-600">
@@ -162,14 +169,14 @@
   </div>
 
   <div
-    class="min-h-0 rounded-2xl border border-slate-200 bg-white transition-[width] duration-300 ease-out"
+    class="min-h-0 rounded-2xl border border-slate-200 bg-white transition-[width] duration-300 ease-out flex flex-col overflow-hidden"
     [class.w-0]="!selectedTermId()"
     [class.w-104]="!!selectedTermId()"
     [class.p-0]="!selectedTermId()"
     [class.p-3]="!!selectedTermId()"
     [class.border-transparent]="!selectedTermId()"
   >
-    <div class="w-96" [class.hidden]="!selectedTermId()">
+    <div class="w-96 min-h-0 flex flex-col" [class.hidden]="!selectedTermId()">
       <div class="mb-2 flex items-center justify-between">
         <div class="text-sm font-extrabold text-slate-900">Term details</div>
 
@@ -182,7 +189,9 @@
         </button>
       </div>
 
-      <app-term-editor [termId]="selectedTermId()"></app-term-editor>
+      <div class="flex-1 min-h-0 overflow-auto">
+        <app-term-editor [termId]="selectedTermId()"></app-term-editor>
+      </div>
     </div>
   </div>
 </div>
